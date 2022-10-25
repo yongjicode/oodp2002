@@ -1,6 +1,10 @@
 public class Seating {
 
-    private int[][] seats = new int[10][10];
+    private int[][] seats;
+
+    public Seating() {
+        this.seats = new int[10][10];
+    }
 
     public void printSeats() {
         for(int row = 0; row<10; row++){
