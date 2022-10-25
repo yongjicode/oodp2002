@@ -8,7 +8,9 @@ public class Show {
     private int showId;
     private LocalDateTime showTime;
     private Cinema cinema;
+
     private Movie movie;
+
     private Seating seating;
 
     public Show(LocalDateTime showTime, Cinema cinema, Movie movie) {
@@ -18,12 +20,24 @@ public class Show {
         this.movie = movie;
         this.seating = new Seating();
     }
-
+    public Movie getMovie() {
+        return movie;
+    }
+    public Seating getSeating() {
+        return seating;
+    }
     public int getShowId() {
         return showId;
     }
     public void showSeating(){ //for user
         seating.printSeats();
+    }
+
+    public void printShowDetails(){
+        System.out.println("ShowId: " + showId);
+        System.out.println("Movie: " + movie);
+        System.out.println("Cinema: " + cinema);
+        System.out.println("Day & Time: " + showTime);
     }
 
 
