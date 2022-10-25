@@ -11,9 +11,4 @@ public class Cinema {
         this.cinemaCode = currentCode++;
         this.classLevel = classLevel;
     }
-
-
-
-
-
 }

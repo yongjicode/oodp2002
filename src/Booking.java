@@ -28,4 +28,15 @@ public class Booking {
         ticket.getShow().getSeating().bookSeat(ticket.getSeatId());
     }
 
+
+    public void printBookingDetails() {
+        System.out.println("Customer: " + customerName);
+        System.out.println("Mobile Number: " + mobileNumber);
+        System.out.println("Email: " + emailAddress);
+        System.out.println("Customer: " + customerName);
+        System.out.println("Tickets: ");
+        for(MovieTicket ticket: tickets){
+            ticket.printTicketDetails();
+        }
+    }
 }

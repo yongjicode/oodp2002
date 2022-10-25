@@ -43,10 +43,25 @@ public class Cineplex {
         }
     }
 
+    public static Movie searchMovieById(int movieId){
+        for(Movie movie: movies){
+            if(movie.getMovieId()==movieId){
+                return movie;
+            }
+        }
+        return null;
+    }
+
+    public static void updateMovieStatus(int movieId, String status){
+        Cineplex.searchMovieById(movieId).setStatus(status);
+    }
+
     public static void showTopRatingMovies(){
         Collections.sort(movies, Comparator.comparingInt(Movie::getRating));
         if(movies.size()<=5){
-            movies.forEach(System.out::println);
+            for(int i=0; i<movies.size(); i++){
+                movies.get(i).printMovieDetails();
+            }
         } else {
             for(int i=0; i<5; i++){
                 movies.get(i).printMovieDetails();
@@ -58,7 +73,9 @@ public class Cineplex {
         Collections.sort(movies, Comparator.comparingInt(Movie::getTicketSold));
         System.out.println("Top Ticket Sales Movies:");
         if(movies.size()<=5){
-            movies.forEach(System.out::println);
+            for(int i=0; i<movies.size(); i++){
+                movies.get(i).printMovieDetails();
+            }
         } else {
             for(int i=0; i<5; i++){
                 movies.get(i).printMovieDetails();
@@ -82,7 +99,9 @@ public class Cineplex {
     }
 
     public static void listShows(){
-        shows.forEach(System.out::println);
+        for(Show show: shows){
+            show.printShowDetails();
+        }
     }
 
     public static Show searchShow(int showId){

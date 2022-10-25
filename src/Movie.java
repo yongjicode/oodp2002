@@ -11,6 +11,7 @@ public class Movie{
 
     private int movieId;
     private String title;
+
     private String status; //should be enum
     private String synopsis;
     private String director;
@@ -39,6 +40,10 @@ public class Movie{
 
     public String getTitle() {
         return title;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void incrementTicketSold(){
