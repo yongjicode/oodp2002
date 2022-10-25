@@ -1,6 +1,8 @@
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Show {
+
     private static int currentId=1;
 
     private int showId;
@@ -23,5 +25,6 @@ public class Show {
     public void showSeating(){ //for user
         seating.printSeats();
     }
+
 
 }
