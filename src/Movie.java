@@ -41,6 +41,10 @@ public class Movie{
         return title;
     }
 
+    public void incrementTicketSold(){
+        this.ticketSold++;
+    }
+
     public void printMovieDetails() {
         System.out.println("Movie ID:" + movieId);
         System.out.println("Title: " + title);

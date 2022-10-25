@@ -6,7 +6,8 @@ public class Company {
 
     private static ArrayList<Booking> bookings = new ArrayList<>();
 
-    // contains Booking History
 
+
+    // contains Booking History
 
 }
