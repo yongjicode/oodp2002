@@ -1,10 +1,15 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Optional;
 
 public class Cineplex {
     private String name;
+    private String location;
     private static ArrayList<Cinema> cinemas = new ArrayList<>();
     private static ArrayList<Movie> movies = new ArrayList<>();
+
+    private static ArrayList<Show> shows = new ArrayList<>();
 
     public static void addCinema(Cinema cinema){
         cinemas.add(cinema);
@@ -15,8 +20,12 @@ public class Cineplex {
 
     public static void removeMovie(int movieId){
         for(Movie movie: movies){
-            //if(movie.)
+            if(movie.getMovieId() == movieId){
+                movies.remove(movie);
+                System.out.println("Movie " + movieId + " has been removed.");
+            }
         }
+        System.out.println("Movie " + movieId + " does not exist.");
     }
 
     public static void listMovies(){
@@ -32,6 +41,57 @@ public class Cineplex {
                 movie.printMovieDetails();
             }
         }
+    }
+
+    public static void showTopRatingMovies(){
+        Collections.sort(movies, Comparator.comparingInt(Movie::getRating));
+        if(movies.size()<=5){
+            movies.forEach(System.out::println);
+        } else {
+            for(int i=0; i<5; i++){
+                movies.get(i).printMovieDetails();
+            }
+        }
+    }
+
+    public static void showTopSaleMovies(){
+        Collections.sort(movies, Comparator.comparingInt(Movie::getTicketSold));
+        System.out.println("Top Ticket Sales Movies:");
+        if(movies.size()<=5){
+            movies.forEach(System.out::println);
+        } else {
+            for(int i=0; i<5; i++){
+                movies.get(i).printMovieDetails();
+            }
+        }
+    }
+
+    public static void addShow(Show show){ //for admin
+        shows.add(show);
+    }
+
+    public static void removeShow(int showId){
+        for(Show show : shows){
+            if(show.getShowId()==showId){
+                shows.remove(show);
+                System.out.println("Show " + showId + " has been removed.");
+                return;
+            }
+        }
+        System.out.println("Show " + showId + " does not exist.");
+    }
+
+    public static void listShows(){
+        shows.forEach(System.out::println);
+    }
+
+    public static Show searchShow(int showId){
+        for(Show show: shows){
+            if(show.getShowId()==showId){
+                return show;
+            }
+        }
+        return null;
     }
 
 }
