@@ -1,4 +1,4 @@
-package ratings;
+package review;
 
 public class Review {
 
@@ -6,7 +6,7 @@ public class Review {
     private String reviewDescription;
     private int rating;
 
-    public String printReview() {
+    public void printReview() {
         System.out.println("Description: " + reviewDescription);
         System.out.println("Rating: " + rating);
     }
