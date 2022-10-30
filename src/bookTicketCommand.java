@@ -33,13 +33,14 @@ public class bookTicketCommand implements Command{
 			String seatId = scanner.nextLine();
 			System.out.println("Enter age:");
 			String age = scanner.nextLine();
+			//can add error handling
+			show.getMovie().incrementTicketSold();
+			show.getSeating().bookSeat(seatId);
 			booking.addTickets(new MovieTicket(seatId,show,0,age));
 		}
 		System.out.println();
 		booking.printBookingDetails();
 		this.company.addBooking(booking);
-		//logic for adding numTicketsSold
-		//logic for setting seat as occupied
 		scanner.close();
 ;	}
 
