@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+
 public class Application {
     /**
      * Main entry-point for the java.duke.Duke application.
@@ -8,34 +9,87 @@ public class Application {
         new Application().run();
     }
 
-    /**
-     * To run the Duke Application
-     */
+   
 
     public void run() {
-        assert false : "input should be a tree";
+    	Company company = new Company();
+    	Cineplex cineplex = new Cineplex();
+    	Cinema cinema = new Cinema("test1","test2");
+    	Scanner scanner = new Scanner(System.in);
         greetUser();
-        boolean isExit = false;
+        mainMenu();
+        int ch = 0;
+        while(true) {
+        	ch = scanner.nextInt();
+        	if (ch == 1 || ch ==2 || ch == 3)
+        		break;
 
-        while (!isExit) {
-            try {
-                String fullCommand = readCommand();
-                showLine();
-//                Command c = parser.parseCommand(fullCommand);
-//                c.execute();
-//                isExit = c.isExit();
-//            } catch (DukeException e) {
-//                ui.displayMessage(e.getErrorMessage());
-            } finally {
-                showLine();
-            }
+        	System.out.println("Invalid Entry");
+	
         }
+        if (ch==1) {
+        	int userCh = 0;
+        	while (true) {
+        		System.out.println("=================");
+        		userMenu();
+        		userCh = scanner.nextInt();
+        		if (userCh == 8) break;
+        		switch (userCh) {
+        		case 1:
+        			new userSearchMovie(cineplex).execute();
+        			break;
+        		case 2:
+        			new userListMovies(cineplex).execute();
+        			break;
+        		case 3:
+        			new showSeatAvailabilityCommand(cineplex).execute();
+        			break;
+        		case 4:
+        			new bookTicketCommand(cineplex,company).execute();
+        			break;
+        		case 5:
+        			new viewBookingHistoryCommand(company).execute();
+        			
+        			break;
+        		case 6:
+        			new rankTicketSalesCommand(cineplex).execute();
+        			break;
+        		case 7:
+        			new rankReviewRatingsCommand(cineplex).execute();
+        			break;
+        		default:
+        			System.out.println("Invalid Command");
+        			break;
+        		}
+        	}
+        	
+        }
+        else if (ch==2){
+        	//admin module
+        }
+        	
         endProgram();
     }
 
     private static void greetUser(){
         System.out.println("Hello I'm MOBLIMA");
         System.out.println("I am a movie booking & listing management application!");
+    }
+    
+    private static void mainMenu() {
+    	System.out.println("1. User");
+        System.out.println("2. Admin");
+        System.out.println("3. Exit");
+    }
+    private static void userMenu() {
+    	System.out.println("1. Search Movie");
+    	System.out.println("2. List Movies");
+    	System.out.println("3. View Seat Availability");
+    	System.out.println("4. Book Tickets");
+    	System.out.println("5. View Booking History");
+    	System.out.println("6. Top 5 ranking by ticket sales");
+    	System.out.println("7. Top 5 ranking by review ratings");
+    	System.out.println("8. Exit");
     }
     private static String readCommand(){
         Scanner in = new Scanner(System.in);

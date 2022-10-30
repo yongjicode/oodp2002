@@ -11,14 +11,14 @@ public class Cineplex {
 
     private static ArrayList<Show> shows = new ArrayList<>();
 
-    public static void addCinema(Cinema cinema){
+    public void addCinema(Cinema cinema){
         cinemas.add(cinema);
     }
-    public static void addMovie(Movie movie){
+    public void addMovie(Movie movie){
         movies.add(movie);
     }
 
-    public static void removeMovie(int movieId){
+    public void removeMovie(int movieId){
         for(Movie movie: movies){
             if(movie.getMovieId() == movieId){
                 movies.remove(movie);
@@ -28,13 +28,13 @@ public class Cineplex {
         System.out.println("Movie " + movieId + " does not exist.");
     }
 
-    public static void listMovies(){
+    public void listMovies(){
         for(Movie movie: movies){
             movie.printMovieDetails();
         }
     }
 
-    public static void searchMovieTitle(String keyword){
+    public void searchMovieTitle(String keyword){
         System.out.println("Search Results for " + keyword + ":");
         for(Movie movie: movies){
             if(movie.getTitle().toLowerCase().contains(keyword.toLowerCase())){
@@ -52,11 +52,11 @@ public class Cineplex {
         return null;
     }
 
-    public static void updateMovieStatus(int movieId, String status){
+    public void updateMovieStatus(int movieId, String status){
         Cineplex.searchMovieById(movieId).setStatus(status);
     }
 
-    public static void showTopRatingMovies(){
+    public void showTopRatingMovies(){
         Collections.sort(movies, Comparator.comparingInt(Movie::getRating));
         if(movies.size()<=5){
             for(int i=0; i<movies.size(); i++){
@@ -69,7 +69,7 @@ public class Cineplex {
         }
     }
 
-    public static void showTopSaleMovies(){
+    public void showTopSaleMovies(){
         Collections.sort(movies, Comparator.comparingInt(Movie::getTicketSold));
         System.out.println("Top Ticket Sales Movies:");
         if(movies.size()<=5){
@@ -83,11 +83,11 @@ public class Cineplex {
         }
     }
 
-    public static void addShow(Show show){ //for admin
+    public void addShow(Show show){ //for admin
         shows.add(show);
     }
 
-    public static void removeShow(int showId){
+    public void removeShow(int showId){
         for(Show show : shows){
             if(show.getShowId()==showId){
                 shows.remove(show);
@@ -98,13 +98,13 @@ public class Cineplex {
         System.out.println("Show " + showId + " does not exist.");
     }
 
-    public static void listShows(){
+    public void listShows(){
         for(Show show: shows){
             show.printShowDetails();
         }
     }
 
-    public static Show searchShow(int showId){
+    public Show searchShow(int showId){
         for(Show show: shows){
             if(show.getShowId()==showId){
                 return show;

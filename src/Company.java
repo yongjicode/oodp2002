@@ -6,12 +6,12 @@ public class Company {
 
     private static ArrayList<Booking> bookings = new ArrayList<>();
 
-    public static void showBookingHistory(){
+    public void showBookingHistory(){
         for(Booking booking: bookings){
             booking.printBookingDetails();
         }
     }
-    public static void addBooking(Booking booking){
+    public void addBooking(Booking booking){
         bookings.add(booking);
     }
 
