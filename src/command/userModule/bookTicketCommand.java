@@ -1,24 +1,26 @@
-package command;
+package command.userModule;
 
+import command.Command;
 import moblima.*;
 
 import java.util.Scanner;
 public class bookTicketCommand implements Command {
 	private Cineplex cineplex;
-	private Company company;
-	public bookTicketCommand(Cineplex cineplex, Company company) {
+
+	public bookTicketCommand(Cineplex cineplex) {
 		this.cineplex = cineplex;
-		this.company = company;
 	}
 	
 	public void execute() {
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.println("Enter moblima.Show ID:");
+		// handle error later
 		int showID = scanner.nextInt();
 		Show show = this.cineplex.searchShow(showID);
 		if (show == null) {
 			//TODO Error handling
+			System.out.println("===== Show ID " + showID + " does not exist! =====");
 			return;
 		}
 		show.printShowDetails();
@@ -44,8 +46,8 @@ public class bookTicketCommand implements Command {
 		}
 		System.out.println();
 		booking.printBookingDetails();
-		this.company.addBooking(booking);
-		scanner.close();
+		Company.addBooking(booking);
+		// scanner.close();
 ;	}
 
 }

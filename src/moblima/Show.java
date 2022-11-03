@@ -25,6 +25,7 @@ public class Show {
         this.movie = movie;
         this.seating = new Seating();
     }
+
     public Movie getMovie() {
         return movie;
     }

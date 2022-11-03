@@ -1,4 +1,4 @@
-import command.*;
+import command.userModule.*;
 import moblima.Cinema;
 import moblima.Cineplex;
 import moblima.Company;
@@ -39,26 +39,25 @@ public class Application {
         		if (userCh == 8) break;
         		switch (userCh) {
         		case 1:
-        			new userSearchMovieCommand(cineplex).execute();
+        			new userSearchMovieCommand().execute();
         			break;
         		case 2:
-        			new userListMoviesCommand(cineplex).execute();
+        			new userListMoviesCommand().execute();
         			break;
         		case 3:
         			new showSeatAvailabilityCommand(cineplex).execute();
         			break;
         		case 4:
-        			new bookTicketCommand(cineplex,company).execute();
+        			new bookTicketCommand(cineplex).execute();
         			break;
         		case 5:
-        			new viewBookingHistoryCommand(company).execute();
-        			
+        			new viewBookingHistoryCommand().execute();
         			break;
         		case 6:
-        			new rankTicketSalesCommand(cineplex).execute();
+        			new rankTicketSalesCommand().execute();
         			break;
         		case 7:
-        			new rankReviewRatingsCommand(cineplex).execute();
+        			new rankReviewRatingsCommand().execute();
         			break;
         		default:
         			System.out.println("Invalid command.Command");
