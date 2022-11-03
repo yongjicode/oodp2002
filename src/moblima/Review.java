@@ -2,7 +2,7 @@ package moblima;
 
 public class Review {
 
-    private String ticketId;
+    // removed ticketId
     private String reviewDescription;
 
     public int getRating() {
