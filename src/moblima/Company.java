@@ -24,18 +24,23 @@ public class Company {
         bookings.add(booking);
     }
 
-    public void addMovie(Movie movie){
+    public static void addMovie(Movie movie){
         movies.add(movie);
     }
 
-    public void removeMovie(int movieId){
+    public static void removeMovie(int movieId){
         for(Movie movie: movies){
             if(movie.getMovieId() == movieId){
                 movies.remove(movie);
                 System.out.println("moblima.Movie " + movieId + " has been removed.");
+                return;
             }
         }
         System.out.println("moblima.Movie " + movieId + " does not exist.");
+    }
+
+    public static void addCineplex(Cineplex cineplex){
+        cineplexes.add(cineplex);
     }
 
     public static void listMovies(){
@@ -64,6 +69,15 @@ public class Company {
         for(Movie movie: movies){
             if(movie.getMovieId()==movieId){
                 return movie;
+            }
+        }
+        return null;
+    }
+
+    public static Cineplex searchCineplexByLocation(String location){
+        for(Cineplex cineplex: cineplexes){
+            if(cineplex.getLocation().equals(location)){
+                return cineplex;
             }
         }
         return null;

@@ -7,6 +7,11 @@ import java.util.Comparator;
 public class Cineplex {
     private String name;
     private String location;
+
+    public Cineplex(String name, String location) {
+        this.name = name;
+        this.location = location;
+    }
     private static ArrayList<Cinema> cinemas = new ArrayList<>();
 
     private static ArrayList<Show> shows = new ArrayList<>();
@@ -29,11 +34,22 @@ public class Cineplex {
         }
         System.out.println("moblima.Show " + showId + " does not exist.");
     }
-
+    public String getLocation(){
+        return this.location;
+    }
     public void listShows(){
         for(Show show: shows){
             show.printShowDetails();
         }
+    }
+
+    public Cinema searchCinema(int cinemaId){
+        for (Cinema cinema: cinemas){
+            if (cinema.getCinemaCode() == cinemaId){
+                return cinema;
+            }
+        }
+        return null;
     }
 
     public Show searchShow(int showId){
