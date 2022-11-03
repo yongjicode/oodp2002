@@ -4,14 +4,14 @@ import command.Command;
 import moblima.Company;
 
 public class viewBookingHistoryCommand implements Command {
-
-	public viewBookingHistoryCommand() {
-		// TODO Auto-generated constructor stub
+	private String username;
+	public viewBookingHistoryCommand(String username) {
+		this.username = username;
 	}
 	
 	public void execute() {
 		//should search for specific customers
-		Company.showBookingHistory();
+		Company.showUserBookingHistory(username);
 	}
 
 }

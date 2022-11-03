@@ -12,9 +12,9 @@ public class Cineplex {
         this.name = name;
         this.location = location;
     }
-    private static ArrayList<Cinema> cinemas = new ArrayList<>();
+    private ArrayList<Cinema> cinemas = new ArrayList<>();
 
-    private static ArrayList<Show> shows = new ArrayList<>();
+    private ArrayList<Show> shows = new ArrayList<>();
 
     public void addCinema(Cinema cinema){
         cinemas.add(cinema);
@@ -40,6 +40,11 @@ public class Cineplex {
     public void listShows(){
         for(Show show: shows){
             show.printShowDetails();
+        }
+    }
+    public void listCinema(){
+        for(Cinema cinema:cinemas){
+            cinema.printDetails();
         }
     }
 

@@ -4,11 +4,14 @@ import moblima.Cinema;
 import moblima.Cineplex;
 import moblima.Company;
 import moblima.Movie;
+import moblima.Show;
 import account.Account;
 import account.UserAccount;
 import account.CineplexAdminAccount;
 import account.CompanyAdminAccount;
 
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.Scanner;
 
 
@@ -23,16 +26,41 @@ public class Application {
 
 
 	public void run() {
-		Company.addMovie(new Movie("a","b","c","d","e"));
-		Company.addMovie(new Movie("z","y","x","w","v"));
+		Movie a = new Movie("a","b","c","d","e");
+		Movie b = new Movie("z","y","x","w","v");
+		Company.addMovie(a);
+		Company.addMovie(b);
 		Cineplex tempCine = new Cineplex("hello cinema","bedok");
-		tempCine.addCinema(new Cinema("gold class"));
+		Cineplex changiCine = new Cineplex("Golden Village","changi");
+		Cinema cn = new Cinema("gold class");
+		Cinema cn2 = new Cinema("Poor people");
+		tempCine.addCinema(cn);
+		tempCine.addCinema(cn2);
+		Cinema cn3 = new Cinema("Business Class");
+		Cinema cn4 = new Cinema("Economy");
+		changiCine.addCinema(cn3);
+		changiCine.addCinema(cn4);
+		tempCine.addShow(new Show(LocalDateTime.of(2015,
+				Month.JULY, 29, 19, 30), cn, a));
+		tempCine.addShow(new Show(LocalDateTime.of(2017,
+				Month.JULY, 29, 16, 20), cn2, a));
+		tempCine.addShow(new Show(LocalDateTime.of(2018,
+				Month.JULY, 29, 16, 20), cn2, b));
+		tempCine.addShow(new Show(LocalDateTime.of(2022,
+				Month.JULY, 29, 16, 20), cn, b));
+		changiCine.addShow(new Show(LocalDateTime.of(2026,
+				Month.JULY, 29, 16, 20), cn3, b));
+		changiCine.addShow(new Show(LocalDateTime.of(2026,
+				Month.JULY, 29, 16, 20), cn4, a));
+
 		Company.addCineplex(tempCine);
-		Account[] accounts = new Account[3];
+		Company.addCineplex(changiCine);
+		Account[] accounts = new Account[4];
 		Account curAcc;
 		accounts[0] = new UserAccount("apple","sauce",0);
 		accounts[1] = new CineplexAdminAccount("orange","sauce",1, "999", "bedok");
-		accounts[2] = new CompanyAdminAccount("durian","sauce",2,"995");
+		accounts[2] = new CineplexAdminAccount("banana","sauce",1, "999", "changi");
+		accounts[3] = new CompanyAdminAccount("durian","sauce",2,"995");
 		Scanner scanner = new Scanner(System.in);
 		int userCh = 0;
 		int privilege;
@@ -54,13 +82,19 @@ public class Application {
 		}
 
 		if (privilege == 0){
+			UserAccount userAcc = (UserAccount) curAcc;
 			System.out.println("Logged in as user: " + curAcc.getLoginId());
-			//get Cinema LOCATION
+			Company.listLocations();
+			System.out.println("Enter Cinema Location: ");
+			String location = scanner.nextLine();
+			Cineplex userCineplex = Company.searchCineplexByLocation(location);
+			System.out.println(userCineplex.getLocation());
 			while (true) {
+
 				System.out.println("=================");
 				userMenu();
 				userCh = scanner.nextInt();
-				if (userCh == 8) break;
+				if (userCh == 9) break;
 				switch (userCh) {
 					case 1:
 						new userSearchMovieCommand().execute();
@@ -69,18 +103,23 @@ public class Application {
 						new userListMoviesCommand().execute();
 						break;
 					case 3:
-						new showSeatAvailabilityCommand(tempCine).execute();
+						new showSeatAvailabilityCommand(userCineplex).execute();
 						break;
 					case 4:
-						new bookTicketCommand(tempCine).execute();
+						new bookTicketCommand(userCineplex, userAcc.getLoginId()).execute();
 						break;
 					case 5:
-						new viewBookingHistoryCommand().execute();
+						new viewBookingHistoryCommand(userAcc.getLoginId()).execute();
 						break;
+
 					case 6:
-						new rankTicketSalesCommand().execute();
+						//need to implement
+						//new reviewMovieCommand().execute();
 						break;
 					case 7:
+						new rankTicketSalesCommand().execute();
+						break;
+					case 8:
 						new rankReviewRatingsCommand().execute();
 						break;
 					default:
@@ -95,14 +134,15 @@ public class Application {
 		else if (privilege==1){
 			CineplexAdminAccount cineplexAdmin = (CineplexAdminAccount) curAcc;
 			System.out.println("Logged in as Cineplex Admin: " + cineplexAdmin.getLoginId());
+			Cineplex cineplex = Company.searchCineplexByLocation(cineplexAdmin.getLocation());
 			while (true) {
 				System.out.println("=================");
 				cineplexAdminMenu();
 				userCh = scanner.nextInt();
+
 				if (userCh == 4) break;
 				switch (userCh){
 					case 1:
-						Cineplex cineplex = Company.searchCineplexByLocation(cineplexAdmin.getLocation());
 						new createShowCommand(cineplex).execute();
 						cineplex.listShows();
 						break;
@@ -111,7 +151,7 @@ public class Application {
 						break;
 
 					case 3:
-						new deleteShowCommand(tempCine).execute();
+						new deleteShowCommand(cineplex).execute();
 						tempCine.listShows();
 						break;
 
@@ -167,9 +207,10 @@ public class Application {
 		System.out.println("3. View Seat Availability");
 		System.out.println("4. Book Tickets");
 		System.out.println("5. View Booking History");
-		System.out.println("6. Top 5 ranking by ticket sales");
-		System.out.println("7. Top 5 ranking by review ratings");
-		System.out.println("8. Exit");
+		System.out.println("6. Review Movie");
+		System.out.println("7. Top 5 ranking by ticket sales");
+		System.out.println("8. Top 5 ranking by review ratings");
+		System.out.println("9. Exit");
 	}
 
 	private static void cineplexAdminMenu(){

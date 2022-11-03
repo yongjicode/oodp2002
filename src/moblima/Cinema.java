@@ -13,6 +13,10 @@ public class Cinema {
         this.classLevel = classLevel;
     }
 
+    public void printDetails(){
+        System.out.println("Cinema Code: " + cinemaCode);
+        System.out.println("Class Level: " + classLevel);
+    }
     public String getClassLevel(){return classLevel;}
     public int getCinemaCode(){
         return cinemaCode;

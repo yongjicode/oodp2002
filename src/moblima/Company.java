@@ -12,12 +12,27 @@ public class Company {
     private static ArrayList<Movie> movies = new ArrayList<>();
     private static ArrayList<Booking> bookings = new ArrayList<>();
 
+    //function might not be needed
     public static void showBookingHistory(){
         System.out.println("Booking History:");
         for(Booking booking: bookings){
             booking.printBookingDetails();
         }
         System.out.println("===== There are " + bookings.size() + " in the booking history! =====");
+    }
+
+    public static void showUserBookingHistory(String username){
+        System.out.println("User Booking History:");
+        int i = 1;
+        System.out.println("============");
+        for(Booking booking: bookings){
+            if (booking.getCustomerName() == username){
+                System.out.println("Booking 1:");
+                booking.printBookingDetails();
+                System.out.println();
+            }
+
+        }
     }
 
     public static void addBooking(Booking booking){
@@ -37,6 +52,14 @@ public class Company {
             }
         }
         System.out.println("moblima.Movie " + movieId + " does not exist.");
+    }
+
+    public static void listLocations(){
+        int i = 1;
+        System.out.println("Locations:");
+        for (Cineplex cineplex: cineplexes){
+            System.out.println((i++) + ". " + cineplex.getLocation());
+        }
     }
 
     public static void addCineplex(Cineplex cineplex){
@@ -88,7 +111,8 @@ public class Company {
     }
 
     public static void showTopRatingMovies(){
-        Collections.sort(movies, Comparator.comparingInt(Movie::getRating));
+        //reversed cause highest should be at top
+        Collections.sort(movies, Comparator.comparingInt(Movie::getRating).reversed());
         System.out.println("Top 5 Movies by Ratings:");
         if(movies.size()<=5){
             for(int i=0; i<movies.size(); i++){
@@ -102,7 +126,7 @@ public class Company {
     }
 
     public static void showTopSaleMovies(){
-        Collections.sort(movies, Comparator.comparingInt(Movie::getTicketSold));
+        Collections.sort(movies, Comparator.comparingInt(Movie::getTicketSold).reversed());
         System.out.println("Top 5 Movies by Ticket Sales:");
         if(movies.size()<=5){
             for(int i=0; i<movies.size(); i++){

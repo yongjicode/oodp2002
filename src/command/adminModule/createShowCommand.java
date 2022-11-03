@@ -32,8 +32,11 @@ public class createShowCommand implements Command{
         String str = scanner.nextLine();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
+        System.out.println("List of cinemas:");
+        cineplex.listCinema();
         System.out.println("Enter Cinema Code: ");
         int cinemaCode = scanner.nextInt();
+        scanner.nextLine();
         Cinema cinema = cineplex.searchCinema(cinemaCode);
         //error handling
         cineplex.addShow(new Show(dateTime,cinema,movie));
