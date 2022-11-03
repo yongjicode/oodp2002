@@ -1,5 +1,7 @@
-import review.Review;
-import review.ReviewList;
+package moblima;
+
+import moblima.Review;
+import moblima.ReviewList;
 
 public class Movie{
 
@@ -51,7 +53,7 @@ public class Movie{
     }
 
     public void printMovieDetails() {
-        System.out.println("Movie ID:" + movieId);
+        System.out.println("moblima.Movie ID:" + movieId);
         System.out.println("Title: " + title);
         System.out.println("Status: " + status);
         System.out.println("Synopsis: " + synopsis);

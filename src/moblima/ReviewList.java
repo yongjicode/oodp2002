@@ -1,4 +1,6 @@
-package review;
+package moblima;
+
+import moblima.Review;
 
 import java.util.ArrayList;
 

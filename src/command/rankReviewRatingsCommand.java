@@ -1,5 +1,8 @@
+package command;
 
-public class rankReviewRatingsCommand implements Command{
+import moblima.Cineplex;
+
+public class rankReviewRatingsCommand implements Command {
 	private Cineplex cineplex;
 	public rankReviewRatingsCommand(Cineplex cineplex) {
 		// TODO Auto-generated constructor stub

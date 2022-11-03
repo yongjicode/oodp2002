@@ -1,5 +1,9 @@
+package command;
+
+import moblima.*;
+
 import java.util.Scanner;
-public class bookTicketCommand implements Command{
+public class bookTicketCommand implements Command {
 	private Cineplex cineplex;
 	private Company company;
 	public bookTicketCommand(Cineplex cineplex, Company company) {
@@ -10,7 +14,7 @@ public class bookTicketCommand implements Command{
 	public void execute() {
 		Scanner scanner = new Scanner(System.in);
 		
-		System.out.println("Enter Show ID:");
+		System.out.println("Enter moblima.Show ID:");
 		int showID = scanner.nextInt();
 		Show show = this.cineplex.searchShow(showID);
 		if (show == null) {

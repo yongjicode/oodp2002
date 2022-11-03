@@ -1,5 +1,8 @@
+package command;
 
-public class viewBookingHistoryCommand implements Command{
+import moblima.Company;
+
+public class viewBookingHistoryCommand implements Command {
 	private Company company;
 	public viewBookingHistoryCommand(Company company) {
 		// TODO Auto-generated constructor stub

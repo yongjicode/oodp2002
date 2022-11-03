@@ -1,3 +1,5 @@
+package moblima;
+
 public class MovieTicket {
     private static final double basePrice = 6;
 

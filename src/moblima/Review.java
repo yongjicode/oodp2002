@@ -1,4 +1,4 @@
-package review;
+package moblima;
 
 public class Review {
 

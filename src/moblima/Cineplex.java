@@ -1,7 +1,8 @@
+package moblima;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Optional;
 
 public class Cineplex {
     private String name;
@@ -22,10 +23,10 @@ public class Cineplex {
         for(Movie movie: movies){
             if(movie.getMovieId() == movieId){
                 movies.remove(movie);
-                System.out.println("Movie " + movieId + " has been removed.");
+                System.out.println("moblima.Movie " + movieId + " has been removed.");
             }
         }
-        System.out.println("Movie " + movieId + " does not exist.");
+        System.out.println("moblima.Movie " + movieId + " does not exist.");
     }
 
     public void listMovies(){
@@ -91,11 +92,11 @@ public class Cineplex {
         for(Show show : shows){
             if(show.getShowId()==showId){
                 shows.remove(show);
-                System.out.println("Show " + showId + " has been removed.");
+                System.out.println("moblima.Show " + showId + " has been removed.");
                 return;
             }
         }
-        System.out.println("Show " + showId + " does not exist.");
+        System.out.println("moblima.Show " + showId + " does not exist.");
     }
 
     public void listShows(){

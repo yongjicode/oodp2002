@@ -1,5 +1,10 @@
+package moblima;
+
+import moblima.Cinema;
+import moblima.Movie;
+import moblima.Seating;
+
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public class Show {
 
@@ -35,8 +40,8 @@ public class Show {
 
     public void printShowDetails(){
         System.out.println("ShowId: " + showId);
-        System.out.println("Movie: " + movie);
-        System.out.println("Cinema: " + cinema);
+        System.out.println("moblima.Movie: " + movie);
+        System.out.println("moblima.Cinema: " + cinema);
         System.out.println("Day & Time: " + showTime);
     }
 

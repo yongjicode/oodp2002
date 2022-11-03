@@ -1,5 +1,10 @@
+package command;
+
+import moblima.Cineplex;
+import moblima.Show;
+
 import java.util.Scanner;
-public class showSeatAvailabilityCommand implements Command{
+public class showSeatAvailabilityCommand implements Command {
 	private Cineplex cineplex;
 	public showSeatAvailabilityCommand(Cineplex cineplex) {
 		this.cineplex = cineplex;

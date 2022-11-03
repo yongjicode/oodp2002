@@ -1,3 +1,5 @@
+package moblima;
+
 public class Seating {
 
     private int[][] seats;

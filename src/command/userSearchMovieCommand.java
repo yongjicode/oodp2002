@@ -1,9 +1,13 @@
+package command;
+
+import moblima.Cineplex;
+
 import java.util.Scanner;
 
-public class userSearchMovie implements Command {
+public class userSearchMovieCommand implements Command {
 	private Cineplex cineplex;
 	
-	public userSearchMovie(Cineplex cineplex) {
+	public userSearchMovieCommand(Cineplex cineplex) {
 		this.cineplex = cineplex;
 	}
 	public void execute() {
