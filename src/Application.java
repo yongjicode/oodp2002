@@ -22,23 +22,22 @@ public class Application {
 
     public void run() {
 
+		// TODO: ACCOUNT DB
 		// BOOKING
 		// ArrayList<Booking> bookings = CSVReader.readBookingsFromCSV("src\\database\\bookingDB.csv");
         // for (Booking booking : bookings) { 
         //     booking.printBookingDetails();
         // }
-
-
-		ArrayList<ReviewList> reviewLists = CSVReader.readReviewsFromCSV("src\\database\\reviewListDB.csv");
-        for (ReviewList reviewList : reviewLists) { 
-            reviewList.listReviews();
-        }
-		
+		// REVIEW LISTS
+		// ArrayList<ReviewList> reviewLists = CSVReader.readReviewsFromCSV("src\\database\\reviewListDB.csv");
+        // for (ReviewList reviewList : reviewLists) { 
+        //     reviewList.listReviews();
+        // }
+		// MOVIES 
 		// ArrayList<Movie> movies = CSVReader.readMoviesFromCSV("src\\database\\movieDB.csv");
         // for (Movie movie : movies) { 
         //     movie.printMovieDetails();
         // }
-
 
     	Company company = new Company();
     	Cineplex cineplex = new Cineplex();

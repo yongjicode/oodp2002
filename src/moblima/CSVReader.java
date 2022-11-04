@@ -83,15 +83,17 @@ public class CSVReader{
                 String[] attributes = line.split(",");
                 String ticketString = attributes[1];
                 String[] ticketList = ticketString.split(";");
-
+                
                 String ratingString = attributes[2];
                 String[] ratingList = ratingString.split(";");
+
                 int ratingSize = ratingList.length;
                 int[] ratingIntList = new int[ratingSize];
 
                 for (int i=0; i<ratingSize; i++) {
                     ratingIntList[i] = Integer.parseInt(ratingList[i]);
                 }
+                System.out.println(ratingIntList);
 
                 String reviewDescString = attributes[3];
                 String[] reviewDescList = reviewDescString.split(";");
