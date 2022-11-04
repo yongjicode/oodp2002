@@ -1,10 +1,9 @@
-privilege,username,password,mobileNumber
-0 (user),MengKiat,password123,NA
-0 (user),Nicky,password123,NA
-0 (user),YongJie,password124,NA
-0 (user),JinKai,password125,NA
-0 (user),Sahana,password126,NA
-0 (user),Xavier,password127,NA
-0 (user),Tharun,password128,NA
-1 (Cineplex Admin),ZhangLeittier,sad1102,90001102
-2 (Company Admin),DrLoke,sc1007,90001007
+0,MengKiat,password123,NA
+0,Nicky,password123,NA
+0,YongJie,password124,NA
+0,JinKai,password125,NA
+0,Sahana,password126,NA
+0,Xavier,password127,NA
+0,Tharun,password128,NA
+1,ZhangLeittier,sad1102,90001102
+2,DrLoke,sc1007,90001007

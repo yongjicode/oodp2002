@@ -67,8 +67,6 @@ public class CSVReader{
         return movies; 
     }
 
-
-
     // TODO: reading lists in csv unsupported (commas in lists)
     public static ArrayList<ReviewList> readReviewsFromCSV(String fileName) {
         
