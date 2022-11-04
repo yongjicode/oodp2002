@@ -67,7 +67,6 @@ public class CSVReader{
         return movies; 
     }
 
-    // TODO: reading lists in csv unsupported (commas in lists)
     public static ArrayList<ReviewList> readReviewsFromCSV(String fileName) {
         
         ArrayList<ReviewList> reviewLists = new ArrayList<>(); 
@@ -104,14 +103,41 @@ public class CSVReader{
                 }
 
                 reviewLists.add(reviewList);
-
                 line = br.readLine(); 
-
             } 
         } catch (IOException ioe) { 
             ioe.printStackTrace(); 
         } 
         return reviewLists; 
+    }
+
+    public static ArrayList<MovieTicket> readTicketsFromCSV(String movieTicketFile, String showFile) {
+        
+        ArrayList<MovieTicket> movieTickets = new ArrayList<>(); 
+        Path pathToFile = Paths.get(movieTicketFile);
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) { 
+            
+            String line = br.readLine();
+            
+            while (line != null) { 
+                
+                String[] attributes = line.split(",");
+                String ttransactionId = attributes[0];
+                String username = attributes[1];
+                String seatId = attributes[2];
+                String showId = attributes[3];
+                String price = attributes[4];
+                String age = attributes[5];
+
+                // TODO: required to have Show object to create MovieTicket
+                MovieTicket movieTicket = new MovieTicket(seatId, show, price, age);
+                movieTickets.add(movieTicket); 
+                line = br.readLine(); 
+            } 
+        } catch (IOException ioe) { 
+            ioe.printStackTrace(); 
+        } 
+        return movieTickets; 
     }
 
 }

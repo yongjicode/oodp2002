@@ -23,6 +23,7 @@ public class Application {
     public void run() {
 
 		// TODO: ACCOUNT DB
+		
 		// BOOKING
 		// ArrayList<Booking> bookings = CSVReader.readBookingsFromCSV("src\\database\\bookingDB.csv");
         // for (Booking booking : bookings) { 
