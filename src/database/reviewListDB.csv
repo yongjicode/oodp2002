@@ -1,7 +1,7 @@
-reviewList_1,"[""ticket_001"", ""ticket_002""]","5,5","[""Very Good Movie"", ""Excellent""]",10
-reviewList_2,"[""ticket_003"", ""ticket_004""]","4,4","[""Good Movie"", ""Not bad""]",8
-reviewList_3,"[""ticket_005"", ""ticket_006""]","1,2","{""Movie was bad"", ""Bad""]",3
-reviewList_4,"[""ticket_007"", ""ticket_008"", , ""ticket_015""]","1,2,4","[""Bad Movie"", ""Poor"", ""Good""]",7
-reviewList_5,"[""ticket_009"", ""ticket_010""]","3,4","[""Average Movie"", ""Average""]",7
-reviewList_6,"[""ticket_011"", ""ticket_012""]","3,3","[""Movie was Average"", ""Could be better""]",6
-reviewList_7,"[""ticket_013"", ""ticket_014""]","2,1","[""Meh"", ""Not good""]",3
+reviewList_1,"ticket_001;ticket_002","5,5","Very Good Movie;Excellent",10
+reviewList_2,"ticket_003;ticket_004","4,4","Good Movie;Not bad",8
+reviewList_3,"ticket_005;ticket_006","1,2","Movie was bad;Bad",3
+reviewList_4,"ticket_007;ticket_008;ticket_015","1,2,4","Bad Movie;Poor;Good",7
+reviewList_5,"ticket_009;ticket_010","3,4","Average Movie;Average",7
+reviewList_6,"ticket_011;ticket_012","3,3","Movie was Average;Could be better",6
+reviewList_7,"ticket_013;ticket_014","2,1","Meh;Not good",3
