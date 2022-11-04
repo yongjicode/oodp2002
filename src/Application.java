@@ -2,9 +2,15 @@ import command.userModule.*;
 import moblima.Cinema;
 import moblima.Cineplex;
 import moblima.Company;
+import moblima.Booking;
+import moblima.MovieTicket;
+import moblima.ReviewList;
+import moblima.Review;
+import moblima.Movie;
+import moblima.CSVReader;
 
 import java.util.Scanner;
-
+import java.util.ArrayList;
 
 public class Application {
     /**
@@ -15,6 +21,25 @@ public class Application {
     }
 
     public void run() {
+
+		// TODO: ACCOUNT DB
+		
+		// BOOKING
+		// ArrayList<Booking> bookings = CSVReader.readBookingsFromCSV("src\\database\\bookingDB.csv");
+        // for (Booking booking : bookings) { 
+        //     booking.printBookingDetails();
+        // }
+		// REVIEW LISTS
+		// ArrayList<ReviewList> reviewLists = CSVReader.readReviewsFromCSV("src\\database\\reviewListDB.csv");
+        // for (ReviewList reviewList : reviewLists) { 
+        //     reviewList.listReviews();
+        // }
+		// MOVIES 
+		// ArrayList<Movie> movies = CSVReader.readMoviesFromCSV("src\\database\\movieDB.csv");
+        // for (Movie movie : movies) { 
+        //     movie.printMovieDetails();
+        // }
+
     	Company company = new Company();
     	Cineplex cineplex = new Cineplex();
     	Cinema cinema = new Cinema("test1","test2");
