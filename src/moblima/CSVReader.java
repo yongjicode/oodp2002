@@ -80,15 +80,24 @@ public class CSVReader{
                 
                 ReviewList reviewList = new ReviewList();
 
-                String[] attributes = line.split(","); 
-                List<Integer> rating = (Arrays.asList(Integer.parseInt(attributes[2])));
-                List<String> reviewDescription = Arrays.asList(attributes[3]);
-                int totalRating = Integer.parseInt(attributes[4]);
+                String[] attributes = line.split(",");
+                String ticketString = attributes[1];
+                String[] ticketList = ticketString.split(";");
 
-                int numberOfReviews = rating.size();
+                String ratingString = attributes[2];
+                String[] ratingList = ratingString.split(";");
+                int ratingSize = ratingList.length;
+                int[] ratingIntList = new int[ratingSize];
 
-                for (int i=0; i<numberOfReviews; i++) {
-                    Review review = new Review(rating.get(i), reviewDescription.get(i));
+                for (int i=0; i<ratingSize; i++) {
+                    ratingIntList[i] = Integer.parseInt(ratingList[i]);
+                }
+
+                String reviewDescString = attributes[3];
+                String[] reviewDescList = reviewDescString.split(";");
+
+                for (int i=0; i<ratingSize; i++) {
+                    Review review = new Review(ratingIntList[i], reviewDescList[i]);
                     reviewList.add(review); 
                 }
 
