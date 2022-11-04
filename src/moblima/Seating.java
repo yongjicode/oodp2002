@@ -10,6 +10,7 @@ public class Seating {
 
     public void printSeats() {
         //need make it beautiful
+
         for(int row = 0; row<10; row++){
             System.out.print("Row" + (row+1) + ": ");
             for(int col = 0; col<10; col++){

@@ -7,7 +7,6 @@ import moblima.Company;
 import java.util.Scanner;
 
 public class userSearchMovieCommand implements Command {
-	private Cineplex cineplex;
 	
 	public userSearchMovieCommand() {
 	}

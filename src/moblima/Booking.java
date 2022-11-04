@@ -20,6 +20,10 @@ public class Booking {
         this.totalPrice = 0;
     }
 
+    public String getCustomerName(){
+        return customerName;
+    }
+
     public void addTickets(MovieTicket ticket){
         tickets.add(ticket);
         // sum up the ticket prices
