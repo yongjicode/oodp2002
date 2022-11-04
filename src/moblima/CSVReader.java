@@ -84,8 +84,6 @@ public class CSVReader{
                 String ticketString = attributes[1];
                 String[] ticketList = ticketString.split(";");
 
-                int test = 0;
-
                 String ratingString = attributes[2];
                 String[] ratingList = ratingString.split(";");
                 int ratingSize = ratingList.length;
