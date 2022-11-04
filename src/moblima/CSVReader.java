@@ -122,7 +122,7 @@ public class CSVReader{
             while (line != null) { 
                 
                 String[] attributes = line.split(",");
-                String ttransactionId = attributes[0];
+                String transactionId = attributes[0];
                 String username = attributes[1];
                 String seatId = attributes[2];
                 String showId = attributes[3];
