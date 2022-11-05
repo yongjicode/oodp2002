@@ -44,13 +44,13 @@ public class Cineplex {
     }
     public void listCinema(){
         for(Cinema cinema:cinemas){
-            cinema.printDetails();
+            cinema.printCinemaDetails();
         }
     }
 
-    public Cinema searchCinema(int cinemaId){
+    public Cinema searchCinema(String cinemaId){
         for (Cinema cinema: cinemas){
-            if (cinema.getCinemaCode() == cinemaId){
+            if (cinemaId.equals(cinema.getCinemaCode())){
                 return cinema;
             }
         }

@@ -2,13 +2,13 @@ import command.userModule.*;
 import command.adminModule.*;
 import moblima.Cinema;
 import moblima.Cineplex;
+import moblima.CineplexAdminAccount;
 import moblima.Company;
+import moblima.CompanyAdminAccount;
 import moblima.Movie;
 import moblima.Show;
-import account.Account;
-import account.UserAccount;
-import account.CineplexAdminAccount;
-import account.CompanyAdminAccount;
+import moblima.UserAccount;
+import moblima.Account;
 import moblima.Booking;
 import moblima.MovieTicket;
 import moblima.ReviewList;
@@ -34,7 +34,11 @@ public class Application {
 
 
 	public void run() {
-		// TODO: ACCOUNT DB
+		// ACCOUNT DB
+		ArrayList<Account> accounts = CSVReader.readAccountsFromCSV("src\\database\\accountDB.csv");
+        // for (Account account : accounts) { 
+        //     System.out.println("Login ID: " + account.getLoginId());
+        // }
 		
 		// BOOKING
 		ArrayList<Booking> bookings = CSVReader.readBookingsFromCSV("src\\database\\bookingDB.csv");
@@ -58,183 +62,149 @@ public class Application {
 		// }
 		// SHOWS
 		ArrayList<Show> shows = CSVReader.readShowsFromCSV("src\\database\\showDB.csv");
-		for (Show show : shows) { 
-		    show.printShowDetails();
-		}
-		// TODO - MOVIE TICKETS
-		// ArrayList<MovieTicket> tickets = CSVReader.readTicketsFromCSV("src\\database\\ticketDB.csv");
+		// for (Show show : shows) { 
+		//     show.printShowDetails();
+		// }
+		// MOVIE TICKETS
+		ArrayList<MovieTicket> tickets = CSVReader.readTicketsFromCSV("src\\database\\ticketDB.csv");
 		// for (MovieTicket ticket : tickets) { 
 		//     ticket.printTicketDetails();
 		// }
 
 		//test cases below
-		Movie a = new Movie("a","b","c","d","e");
-		Movie b = new Movie("z","y","x","w","v");
-		Company.addMovie(a);
-		Company.addMovie(b);
-		Cineplex tempCine = new Cineplex("hello cinema","bedok");
-		Cineplex changiCine = new Cineplex("Golden Village","changi");
-		Cinema cn = new Cinema("gold class");
-		Cinema cn2 = new Cinema("Poor people");
-		tempCine.addCinema(cn);
-		tempCine.addCinema(cn2);
-		Cinema cn3 = new Cinema("Business Class");
-		Cinema cn4 = new Cinema("Economy");
-		changiCine.addCinema(cn3);
-		changiCine.addCinema(cn4);
-		tempCine.addShow(new Show(LocalDateTime.of(2015,
-				Month.JULY, 29, 19, 30), cn, a));
-		tempCine.addShow(new Show(LocalDateTime.of(2017,
-				Month.JULY, 29, 16, 20), cn2, a));
-		tempCine.addShow(new Show(LocalDateTime.of(2018,
-				Month.JULY, 29, 16, 20), cn2, b));
-		tempCine.addShow(new Show(LocalDateTime.of(2022,
-				Month.JULY, 29, 16, 20), cn, b));
-		changiCine.addShow(new Show(LocalDateTime.of(2026,
-				Month.JULY, 29, 16, 20), cn3, b));
-		changiCine.addShow(new Show(LocalDateTime.of(2026,
-				Month.JULY, 29, 16, 20), cn4, a));
 
-		Company.addCineplex(tempCine);
-		Company.addCineplex(changiCine);
-		Account[] accounts = new Account[4];
-		Account curAcc;
-		accounts[0] = new UserAccount("apple","sauce",0);
-		accounts[1] = new CineplexAdminAccount("orange","sauce",1, "999", "bedok");
-		accounts[2] = new CineplexAdminAccount("banana","sauce",1, "999", "changi");
-		accounts[3] = new CompanyAdminAccount("durian","sauce",2,"995");
-		Scanner scanner = new Scanner(System.in);
-		int userCh = 0;
-		int privilege;
+		// Scanner scanner = new Scanner(System.in);
+		// int userCh = 0;
+		// int privilege;
 		
-		greetUser();
-		while(true){
-			System.out.println("Login ID:");
-			String userLogin = scanner.nextLine();
-			System.out.println("Password:");
-			String password = scanner.nextLine();
-			curAcc = login(userLogin,password,accounts);
-			if (curAcc==null){
-				System.out.println("Invalid Details");
-				continue;
-			}
-			else{
-				privilege = curAcc.getPrivilege();
-				break;
-			}
-		}
+		// greetUser();
+		// while(true){
+		// 	System.out.println("Login ID:");
+		// 	String userLogin = scanner.nextLine();
+		// 	System.out.println("Password:");
+		// 	String password = scanner.nextLine();
+		// 	curAcc = login(userLogin,password,accounts);
+		// 	if (curAcc==null){
+		// 		System.out.println("Invalid Details");
+		// 		continue;
+		// 	}
+		// 	else{
+		// 		privilege = curAcc.getPrivilege();
+		// 		break;
+		// 	}
+		// }
 
-		if (privilege == 0){
-			UserAccount userAcc = (UserAccount) curAcc;
-			System.out.println("Logged in as user: " + curAcc.getLoginId());
-			Company.listLocations();
-			System.out.println("Enter Cinema Location: ");
-			String location = scanner.nextLine();
-			Cineplex userCineplex = Company.searchCineplexByLocation(location);
-			System.out.println(userCineplex.getLocation());
-			while (true) {
+		// if (privilege == 0){
+		// 	UserAccount userAcc = (UserAccount) curAcc;
+		// 	System.out.println("Logged in as user: " + curAcc.getLoginId());
+		// 	Company.listLocations();
+		// 	System.out.println("Enter Cinema Location: ");
+		// 	String location = scanner.nextLine();
+		// 	Cineplex userCineplex = Company.searchCineplexByLocation(location);
+		// 	System.out.println(userCineplex.getLocation());
+		// 	while (true) {
 
-				System.out.println("=================");
-				userMenu();
-				userCh = scanner.nextInt();
-				if (userCh == 9) break;
-				switch (userCh) {
-					case 1:
-						new userSearchMovieCommand().execute();
-						break;
-					case 2:
-						new userListMoviesCommand().execute();
-						break;
-					case 3:
-						new showSeatAvailabilityCommand(userCineplex).execute();
-						break;
-					case 4:
-						new bookTicketCommand(userCineplex, userAcc.getLoginId()).execute();
-						break;
-					case 5:
-						new viewBookingHistoryCommand(userAcc.getLoginId()).execute();
-						break;
+		// 		System.out.println("=================");
+		// 		userMenu();
+		// 		userCh = scanner.nextInt();
+		// 		if (userCh == 9) break;
+		// 		switch (userCh) {
+		// 			case 1:
+		// 				new userSearchMovieCommand().execute();
+		// 				break;
+		// 			case 2:
+		// 				new userListMoviesCommand().execute();
+		// 				break;
+		// 			case 3:
+		// 				new showSeatAvailabilityCommand(userCineplex).execute();
+		// 				break;
+		// 			case 4:
+		// 				new bookTicketCommand(userCineplex, userAcc.getLoginId()).execute();
+		// 				break;
+		// 			case 5:
+		// 				new viewBookingHistoryCommand(userAcc.getLoginId()).execute();
+		// 				break;
 
-					case 6:
-						//need to implement
-						//new reviewMovieCommand().execute();
-						break;
-					case 7:
-						new rankTicketSalesCommand().execute();
-						break;
-					case 8:
-						new rankReviewRatingsCommand().execute();
-						break;
-					default:
-						System.out.println("Invalid command.Command");
-						break;
-				}
-			}
+		// 			case 6:
+		// 				//need to implement
+		// 				//new reviewMovieCommand().execute();
+		// 				break;
+		// 			case 7:
+		// 				new rankTicketSalesCommand().execute();
+		// 				break;
+		// 			case 8:
+		// 				new rankReviewRatingsCommand().execute();
+		// 				break;
+		// 			default:
+		// 				System.out.println("Invalid command.Command");
+		// 				break;
+		// 		}
+		// 	}
 
-		}
-
-
-		else if (privilege==1){
-			CineplexAdminAccount cineplexAdmin = (CineplexAdminAccount) curAcc;
-			System.out.println("Logged in as Cineplex Admin: " + cineplexAdmin.getLoginId());
-			Cineplex cineplex = Company.searchCineplexByLocation(cineplexAdmin.getLocation());
-			while (true) {
-				System.out.println("=================");
-				cineplexAdminMenu();
-				userCh = scanner.nextInt();
-
-				if (userCh == 4) break;
-				switch (userCh){
-					case 1:
-						new createShowCommand(cineplex).execute();
-						cineplex.listShows();
-						break;
-					case 2:
-						//to implement
-						break;
-
-					case 3:
-						new deleteShowCommand(cineplex).execute();
-						tempCine.listShows();
-						break;
-
-					default:
-						System.out.println("Invalid Option");
-				}
-			}
+		// }
 
 
-		}
+		// else if (privilege==1){
+		// 	CineplexAdminAccount cineplexAdmin = (CineplexAdminAccount) curAcc;
+		// 	System.out.println("Logged in as Cineplex Admin: " + cineplexAdmin.getLoginId());
+		// 	Cineplex cineplex = Company.searchCineplexByLocation(cineplexAdmin.getLocation());
+		// 	while (true) {
+		// 		System.out.println("=================");
+		// 		cineplexAdminMenu();
+		// 		userCh = scanner.nextInt();
 
-		else if (privilege==2){
-			System.out.println("Logged in as Company Admin: " + curAcc.getLoginId());
-			while(true){
-				System.out.println("=================");
-				companyAdminMenu();
-				userCh = scanner.nextInt();
-				if (userCh == 5) break;
-				switch (userCh){
-					case 1:
-						new createMovieListingCommand().execute();
-						Company.listMovies();
-						break;
-					case 2:
-						//to implement editMovieListingCommand
-						break;
+		// 		if (userCh == 4) break;
+		// 		switch (userCh){
+		// 			case 1:
+		// 				new createShowCommand(cineplex).execute();
+		// 				cineplex.listShows();
+		// 				break;
+		// 			case 2:
+		// 				//to implement
+		// 				break;
 
-					case 3:
-						new deleteMovieListingCommand().execute();
-						Company.listMovies();
-						break;
+		// 			case 3:
+		// 				new deleteShowCommand(cineplex).execute();
+		// 				tempCine.listShows();
+		// 				break;
 
-					case 4:
-						break;
+		// 			default:
+		// 				System.out.println("Invalid Option");
+		// 		}
+		// 	}
 
-					default:
-						System.out.println("Invalid Option");
-				}
-			}
-		}
+
+		// }
+
+		// else if (privilege==2){
+		// 	System.out.println("Logged in as Company Admin: " + curAcc.getLoginId());
+		// 	while(true){
+		// 		System.out.println("=================");
+		// 		companyAdminMenu();
+		// 		userCh = scanner.nextInt();
+		// 		if (userCh == 5) break;
+		// 		switch (userCh){
+		// 			case 1:
+		// 				new createMovieListingCommand().execute();
+		// 				Company.listMovies();
+		// 				break;
+		// 			case 2:
+		// 				//to implement editMovieListingCommand
+		// 				break;
+
+		// 			case 3:
+		// 				new deleteMovieListingCommand().execute();
+		// 				Company.listMovies();
+		// 				break;
+
+		// 			case 4:
+		// 				break;
+
+		// 			default:
+		// 				System.out.println("Invalid Option");
+		// 		}
+		// 	}
+		// }
 
 		endProgram();
 	}

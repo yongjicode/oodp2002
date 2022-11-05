@@ -1,4 +1,4 @@
-package account;
+package moblima;
 import java.util.Scanner;
 
 public class CompanyAdminAccount extends Account{

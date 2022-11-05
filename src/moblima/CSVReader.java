@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,6 +15,45 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class CSVReader{
+
+    public static ArrayList<Account> readAccountsFromCSV(String fileName) {
+        
+        ArrayList<Account> accounts = new ArrayList<Account>(); 
+        Path pathToFile = Paths.get(fileName);
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) { 
+            
+            String line = br.readLine();
+            
+            while (line != null) { 
+                
+                String[] attributes = line.split(","); 
+                int privilege = Integer.parseInt(attributes[0]);
+                String loginId = attributes[1];
+                String password = attributes[2];
+                String mobileNumber = attributes[3];
+                String outlet = attributes[4];
+
+                if (privilege == 0) { // user
+                    // String loginId, String password, int privilege
+                    UserAccount userAccount = new UserAccount(loginId, password, privilege);
+                    accounts.add(userAccount); 
+                } else if (privilege == 1) { // cineplex admin
+                    // String loginId, String password, int privilege,String mobileNumber, String outlet
+                    CineplexAdminAccount cineplexAdminAccount = new CineplexAdminAccount(loginId, password, privilege, mobileNumber, outlet);
+                    accounts.add(cineplexAdminAccount); 
+                } else { // company admin
+                    // String loginId, String password, int privilege,String mobileNumber
+                    CompanyAdminAccount companyAdminAccount =  new CompanyAdminAccount(loginId, password, privilege, mobileNumber);
+                    accounts.add(companyAdminAccount); 
+                }
+                
+                line = br.readLine(); 
+            } 
+        } catch (IOException ioe) { 
+            ioe.printStackTrace(); 
+        } 
+        return accounts; 
+    }
 
     public static ArrayList<Booking> readBookingsFromCSV(String fileName) {
         
