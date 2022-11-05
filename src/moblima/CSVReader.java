@@ -111,7 +111,35 @@ public class CSVReader{
         return reviewLists; 
     }
 
-    public static ArrayList<MovieTicket> readTicketsFromCSV(String movieTicketFile, String showFile) {
+    public static ArrayList<Cinema> readCinemasFromCSV(String fileName) {
+        
+        ArrayList<Cinema> cinemas = new ArrayList<>(); 
+        Path pathToFile = Paths.get(fileName);
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) { 
+            
+            String line = br.readLine();
+            
+            while (line != null) { 
+                
+                // company,cineplexLocation,cinemaCode,classLevel,booking,showId
+                String[] attributes = line.split(",");
+                String company = attributes[0];
+                String cineplexLocation = attributes[1];
+                String cinemaCode = attributes[2];
+                String classLevel = attributes[3];
+                String showId = attributes[5];
+
+                Cinema cinema = new Cinema(classLevel, cineplexLocation);
+                cinemas.add(cinema); 
+                line = br.readLine(); 
+            } 
+        } catch (IOException ioe) { 
+            ioe.printStackTrace(); 
+        } 
+        return cinemas; 
+    }
+
+    public static ArrayList<MovieTicket> readTicketsFromCSV(String movieTicketFile) {
         
         ArrayList<MovieTicket> movieTickets = new ArrayList<>(); 
         Path pathToFile = Paths.get(movieTicketFile);
