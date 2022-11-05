@@ -10,6 +10,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class CSVReader{
 
@@ -111,7 +113,108 @@ public class CSVReader{
         return reviewLists; 
     }
 
-    public static ArrayList<MovieTicket> readTicketsFromCSV(String movieTicketFile, String showFile) {
+    public static ArrayList<Cinema> readCinemasFromCSV(String fileName) {
+        
+        ArrayList<Cinema> cinemas = new ArrayList<>(); 
+        Path pathToFile = Paths.get(fileName);
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) { 
+            
+            String line = br.readLine();
+            
+            while (line != null) { 
+                
+                // company,cineplexLocation,cinemaCode,classLevel,booking,showId
+                String[] attributes = line.split(",");
+                String company = attributes[0];
+                String cineplexLocation = attributes[1];
+                String cinemaCode = attributes[2];
+                String classLevel = attributes[3];
+                //int showId = Integer.parseInt(attributes[5]);
+
+                Cinema cinema = new Cinema(classLevel, cineplexLocation, cinemaCode);
+                cinemas.add(cinema); 
+                line = br.readLine(); 
+            } 
+        } catch (IOException ioe) { 
+            ioe.printStackTrace(); 
+        } 
+        return cinemas; 
+    }
+
+    public static Cinema filterCinemaFromCSV(String fileName, String cinemaCode) {
+        
+        ArrayList<Cinema> cinemas = readCinemasFromCSV(fileName);
+        int arrSize = cinemas.size();
+        for (int i=0; i<arrSize; i++) {
+            if (cinemaCode.equals(cinemas.get(i).getCinemaCode())) {
+                return cinemas.get(i);
+            }
+        }
+        System.out.println("No existing cinema found!");
+        Cinema cinema = new Cinema();    // no cinema found
+        return cinema;
+    }
+
+    public static Movie filterMovieFromCSV(String fileName, String movieTitle) {
+        
+        ArrayList<Movie> movies = readMoviesFromCSV(fileName);
+        int arrSize = movies.size();
+        for (int i=0; i<arrSize; i++) {
+            if (movieTitle.equals(movies.get(i).getTitle())) {
+                return movies.get(i);
+            }
+        }
+        System.out.println("No existing movie found!");
+        Movie movie = new Movie();    // no movie found
+        return movie;
+    }
+
+    public static ArrayList<Show> readShowsFromCSV(String fileName) {
+        
+        ArrayList<Show> shows = new ArrayList<>(); 
+        Path pathToFile = Paths.get(fileName);
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) { 
+            
+            String line = br.readLine();
+            
+            while (line != null) { 
+                
+                // currentId,showId,cinemaCode,movie,showTime,seating
+                String[] attributes = line.split(",");
+                //int showId = Integer.parseInt(attributes[1]);
+                String cinemaCode = attributes[3];
+                String movieTitle = attributes[4];
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime showTime = LocalDateTime.parse(attributes[5],formatter);
+
+                Cinema cinema = filterCinemaFromCSV("src\\database\\companyDB.csv", cinemaCode);
+                Movie movie = filterMovieFromCSV("src\\database\\movieDB.csv", movieTitle);
+
+                Show show = new Show(showTime, cinema, movie);
+                shows.add(show); 
+                line = br.readLine(); 
+            } 
+        } catch (IOException ioe) { 
+            ioe.printStackTrace(); 
+        } 
+        return shows; 
+    }
+
+    public static Show filterShowFromCSV(String fileName, int showId) {
+        
+        ArrayList<Show> shows = readShowsFromCSV(fileName);
+        int arrSize = shows.size();
+        for (int i=0; i<arrSize; i++) {
+            if (showId==shows.get(i).getShowId()) {
+                return shows.get(i);
+            }
+        }
+        System.out.println("No existing show found!");
+        Show show = new Show();    // no show found
+        return show;
+    }
+
+    public static ArrayList<MovieTicket> readTicketsFromCSV(String movieTicketFile) {
         
         ArrayList<MovieTicket> movieTickets = new ArrayList<>(); 
         Path pathToFile = Paths.get(movieTicketFile);
@@ -125,11 +228,13 @@ public class CSVReader{
                 String transactionId = attributes[0];
                 String username = attributes[1];
                 String seatId = attributes[2];
-                String showId = attributes[3];
-                String price = attributes[4];
+                int showId = Integer.parseInt(attributes[3]);
+                double price = Double.parseDouble(attributes[4]);
                 String age = attributes[5];
 
-                // TODO: required to have Show object to create MovieTicket
+                Show show = filterShowFromCSV("src\\database\\showDB.csv", showId);
+
+                // String seatId, Show show, double price, String age
                 MovieTicket movieTicket = new MovieTicket(seatId, show, price, age);
                 movieTickets.add(movieTicket); 
                 line = br.readLine(); 

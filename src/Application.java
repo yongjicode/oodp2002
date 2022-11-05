@@ -7,6 +7,7 @@ import moblima.MovieTicket;
 import moblima.ReviewList;
 import moblima.Review;
 import moblima.Movie;
+import moblima.Show;
 import moblima.CSVReader;
 
 import java.util.Scanner;
@@ -25,24 +26,39 @@ public class Application {
 		// TODO: ACCOUNT DB
 		
 		// BOOKING
-		// ArrayList<Booking> bookings = CSVReader.readBookingsFromCSV("src\\database\\bookingDB.csv");
+		ArrayList<Booking> bookings = CSVReader.readBookingsFromCSV("src\\database\\bookingDB.csv");
         // for (Booking booking : bookings) { 
         //     booking.printBookingDetails();
         // }
 		// REVIEW LISTS
-		// ArrayList<ReviewList> reviewLists = CSVReader.readReviewsFromCSV("src\\database\\reviewListDB.csv");
+		ArrayList<ReviewList> reviewLists = CSVReader.readReviewsFromCSV("src\\database\\reviewListDB.csv");
         // for (ReviewList reviewList : reviewLists) { 
         //     reviewList.listReviews();
         // }
 		// MOVIES 
-		// ArrayList<Movie> movies = CSVReader.readMoviesFromCSV("src\\database\\movieDB.csv");
+		ArrayList<Movie> movies = CSVReader.readMoviesFromCSV("src\\database\\movieDB.csv");
         // for (Movie movie : movies) { 
         //     movie.printMovieDetails();
         // }
+		// CINEMAS
+		ArrayList<Cinema> cinemas = CSVReader.readCinemasFromCSV("src\\database\\companyDB.csv");
+		// for (Cinema cinema : cinemas) { 
+		//     cinema.printCinemaDetails();
+		// }
+		// SHOWS
+		ArrayList<Show> shows = CSVReader.readShowsFromCSV("src\\database\\showDB.csv");
+		for (Show show : shows) { 
+		    show.printShowDetails();
+		}
+		// TODO - MOVIE TICKETS
+		// ArrayList<MovieTicket> tickets = CSVReader.readTicketsFromCSV("src\\database\\ticketDB.csv");
+		// for (MovieTicket ticket : tickets) { 
+		//     ticket.printTicketDetails();
+		// }
 
     	Company company = new Company();
     	Cineplex cineplex = new Cineplex();
-    	Cinema cinema = new Cinema("test1","test2");
+    	//Cinema cinema = new Cinema("test1","test2");
     	Scanner scanner = new Scanner(System.in);
         greetUser();
         mainMenu();
