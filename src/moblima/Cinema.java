@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Cinema {
 
     private static int currentCode=100;
-    private int cinemaCode;
+    private String cinemaCode;
     private String classLevel; // enum
 
     public Cinema(String classLevel,
@@ -13,4 +13,13 @@ public class Cinema {
         this.cinemaCode = currentCode++;
         this.classLevel = classLevel;
     }
+
+    public String getCinemaCode() {
+        return this.cinemaCode;
+    }
+
+    public String getClassLevel() {
+        return this.classLevel;
+    }
+    
 }
