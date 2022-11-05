@@ -35,7 +35,7 @@ public class createShowCommand implements Command{
         System.out.println("List of cinemas:");
         cineplex.listCinema();
         System.out.println("Enter Cinema Code: ");
-        int cinemaCode = scanner.nextInt();
+        String cinemaCode = scanner.nextLine();
         scanner.nextLine();
         Cinema cinema = cineplex.searchCinema(cinemaCode);
         //error handling

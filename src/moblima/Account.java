@@ -1,4 +1,4 @@
-package account;
+package moblima;
 
 public abstract class Account {
     private String loginId;
