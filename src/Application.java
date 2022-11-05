@@ -9,11 +9,19 @@ import account.Account;
 import account.UserAccount;
 import account.CineplexAdminAccount;
 import account.CompanyAdminAccount;
+import moblima.Booking;
+import moblima.MovieTicket;
+import moblima.ReviewList;
+import moblima.Review;
+import moblima.Movie;
+import moblima.Show;
+import moblima.CSVReader;
+
 
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Scanner;
-
+import java.util.ArrayList;
 
 public class Application {
 	/**
@@ -26,6 +34,40 @@ public class Application {
 
 
 	public void run() {
+		// TODO: ACCOUNT DB
+		
+		// BOOKING
+		ArrayList<Booking> bookings = CSVReader.readBookingsFromCSV("src\\database\\bookingDB.csv");
+        // for (Booking booking : bookings) { 
+        //     booking.printBookingDetails();
+        // }
+		// REVIEW LISTS
+		ArrayList<ReviewList> reviewLists = CSVReader.readReviewsFromCSV("src\\database\\reviewListDB.csv");
+        // for (ReviewList reviewList : reviewLists) { 
+        //     reviewList.listReviews();
+        // }
+		// MOVIES 
+		ArrayList<Movie> movies = CSVReader.readMoviesFromCSV("src\\database\\movieDB.csv");
+        // for (Movie movie : movies) { 
+        //     movie.printMovieDetails();
+        // }
+		// CINEMAS
+		ArrayList<Cinema> cinemas = CSVReader.readCinemasFromCSV("src\\database\\companyDB.csv");
+		// for (Cinema cinema : cinemas) { 
+		//     cinema.printCinemaDetails();
+		// }
+		// SHOWS
+		ArrayList<Show> shows = CSVReader.readShowsFromCSV("src\\database\\showDB.csv");
+		for (Show show : shows) { 
+		    show.printShowDetails();
+		}
+		// TODO - MOVIE TICKETS
+		// ArrayList<MovieTicket> tickets = CSVReader.readTicketsFromCSV("src\\database\\ticketDB.csv");
+		// for (MovieTicket ticket : tickets) { 
+		//     ticket.printTicketDetails();
+		// }
+
+		//test cases below
 		Movie a = new Movie("a","b","c","d","e");
 		Movie b = new Movie("z","y","x","w","v");
 		Company.addMovie(a);
@@ -64,6 +106,7 @@ public class Application {
 		Scanner scanner = new Scanner(System.in);
 		int userCh = 0;
 		int privilege;
+		
 		greetUser();
 		while(true){
 			System.out.println("Login ID:");
