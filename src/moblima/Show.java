@@ -48,10 +48,12 @@ public class Show {
     }
 
     public void printShowDetails(){
-        System.out.println("ShowId: " + getShowId());
-        System.out.println("moblima.Movie: " + getMovie());
-        System.out.println("moblima.Cinema: " + getCinema());
-        System.out.println("Day & Time: " + getShowTime());
+        System.out.println("ShowId: " + showId);
+        System.out.println("moblima.Movie: " + movie.getTitle());
+        System.out.println("moblima.Cinema: " + cinema.getCinemaCode());
+        System.out.println("moblima.Cinema Class: " + cinema.getClassLevel());
+        System.out.println("Day & Time: " + showTime);
+
     }
 
 
