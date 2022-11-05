@@ -9,6 +9,8 @@ public class Cinema {
     private String location;
     private String cinemaCode;
 
+    public Cinema(){}
+
     public Cinema(String classLevel,
                   String location,
                   String cinemaCode) {
@@ -29,6 +31,12 @@ public class Cinema {
         return this.cinemaCode;
     }
 
+    public void printCinemaDetails() {
+        System.out.println("Class Level: " + getClassLevel());
+        System.out.println("Location: " + getLocation());
+        System.out.println("Cinema Code: " + getCinemaCode());
+
+    }
     
     
 }

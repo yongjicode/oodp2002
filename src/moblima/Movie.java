@@ -24,6 +24,8 @@ public class Movie{
 
     private int rating;
 
+    public Movie(){}
+
     public Movie(String title,
                  String status,
                  String synopsis,
