@@ -111,12 +111,13 @@ public class CSVUpdater {
         }
     }
     // CompanyDB
-    public static void updateCompany(String filePath, Company company) throws IOException {
+    public static void updateCompany(String filePath, ArrayList<Cineplex> arrayName1, ArrayList<Cinema> arrayName2) throws IOException {
         File companyFile = new File(filePath);
         FileWriter outputFile = new FileWriter(companyFile);
         CSVWriter writer = new CSVWriter(outputFile);
 
-        ArrayList<Cineplex> = Company.getCineplexes();
+        numberCineplex = arrayName1.size();
+        numberCinema = arrayName2.size();
 
 
 
@@ -133,6 +134,27 @@ public class CSVUpdater {
         }
     }
     // Tickets
+    public static void updateTickets(String filePath, ArrayList<MovieTicket> arrayName){
+        File ticketFile = new File(filePath);
+        FileWriter outputFile = new FileWriter(companyFile);
+        CSVWriter writer = new CSVWriter(outputFile);
+        try {
+            for (MovieTicket movieTicket: arrayName){
+                String[] input = new String[6];
+                input[0] = "TransactionID"; //Not Done
+                input[1] = "Username";  //Not Done
+                input[2] = movieTicket.getSeatId();
+                input[3] = Integer.toString(movieTicket.getShow().getShowId());
+                input[4] = Double.toString(movieTicket.getPrice());
+                input[5] = movieTicket.getAge();
+                writer.writeNext(input);
+            }
+            writer.close();
+        }
+        catch (IOException e){
+            System.out.println("An error occurred");
+        }
+    }
 
 
 }
