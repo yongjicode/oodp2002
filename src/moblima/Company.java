@@ -8,7 +8,6 @@ import java.util.Comparator;
 public class Company {
 
     private static ArrayList<Cineplex> cineplexes = new ArrayList<>();
-
     private static ArrayList<Movie> movies = new ArrayList<>();
     private static ArrayList<Booking> bookings = new ArrayList<>();
 
