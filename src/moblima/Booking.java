@@ -23,6 +23,9 @@ public class Booking {
     public String getCustomerName(){
         return customerName;
     }
+    public String getTransactionId(){
+        return transactionId;
+    }
 
     public void addTickets(MovieTicket ticket){
         tickets.add(ticket);
