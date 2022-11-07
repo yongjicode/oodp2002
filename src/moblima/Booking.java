@@ -26,6 +26,15 @@ public class Booking {
     public String getTransactionId(){
         return transactionId;
     }
+    public String getMobileNumber(){
+        return mobileNumber;
+    }
+    public String getEmailAddress(){
+        return emailAddress;
+    }
+    public int getTotalPrice(){
+        return totalPrice;
+    }
 
     public void addTickets(MovieTicket ticket){
         tickets.add(ticket);
