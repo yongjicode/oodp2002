@@ -36,4 +36,8 @@ public class MovieTicket {
     public String getSeatId() {
         return seatId;
     }
+
+    public String getAge() {
+        return age;
+    }
 }
