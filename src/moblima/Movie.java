@@ -45,7 +45,21 @@ public class Movie{
     public String getTitle() {
         return title;
     }
-
+    public String getSynopsis(){
+        return synopsis;
+    }
+    public String getDirector(){
+        return cast;
+    }
+    public String getStatus(){
+        return status;
+    }
+    public String getCast(){
+        return cast;
+    }
+    public ReviewList getReviews(){
+        return reviews;
+    }
     public void setStatus(String status) {
         this.status = status;
     }
