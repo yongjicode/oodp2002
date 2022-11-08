@@ -1,4 +1,4 @@
-package moblima;
+package moblima.show.ticket;
 
 public enum CustomerAge {
     CHILD,

@@ -1,8 +1,8 @@
 package command.userModule;
 
 import command.Command;
-import moblima.Cineplex;
-import moblima.Show;
+import moblima.cineplex.Cineplex;
+import moblima.show.Show;
 
 import java.util.Scanner;
 public class showSeatAvailabilityCommand implements Command {

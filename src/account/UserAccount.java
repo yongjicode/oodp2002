@@ -1,11 +1,5 @@
 package account;
 
-import moblima.Movie;
-import moblima.MovieTicket;
-import moblima.Review;
-
-import java.util.ArrayList;
-
 public class UserAccount extends Account{
     public UserAccount(String loginId, String password, int privilege,String emailAddress, String phoneNo, String name){
         super(loginId, password,privilege,emailAddress,phoneNo,name);

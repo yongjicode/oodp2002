@@ -1,6 +1,6 @@
 package command.adminModule;
 import command.Command;
-import moblima.SystemSettings;
+import system.SystemSettings;
 
 public class disableTop5TicketSalesCommand implements Command{private SystemSettings ss;
     public disableTop5TicketSalesCommand(SystemSettings ss){

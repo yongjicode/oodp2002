@@ -1,6 +1,6 @@
 package command.adminModule;
 import command.Command;
-import moblima.Show;
+import moblima.show.Show;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

@@ -1,8 +1,7 @@
 package command.userModule;
 
 import command.Command;
-import moblima.Cineplex;
-import moblima.Company;
+import moblima.SilverVillage;
 
 import java.util.Scanner;
 
@@ -17,7 +16,7 @@ public class userSearchMovieCommand implements Command {
 		
 		System.out.print("Please enter the movie name: ");
 		movieName = scanner.nextLine();
-		Company.searchMovieTitle(movieName);
+		SilverVillage.getMovieList().searchMovieTitle(movieName);
 		// scanner.close();
 	}
 	

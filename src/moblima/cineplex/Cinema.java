@@ -1,14 +1,17 @@
-package moblima;
+package moblima.cineplex;
 
 public class Cinema {
 
     private static int currentCode=1;
-    private int cinemaCode;
+    private String cinemaCode;
     private CinemaClass classLevel; // enum
 
     public Cinema(CinemaClass classLevel) {
-        this.cinemaCode = currentCode++;
         this.classLevel = classLevel;
+    }
+
+    public void setCinemaCode(String cineplexCode) {
+        this.cinemaCode = cineplexCode.toUpperCase() + currentCode++;
     }
 
     public void printDetails(){
@@ -17,7 +20,7 @@ public class Cinema {
         System.out.println();
     }
     public CinemaClass getClassLevel(){return classLevel;}
-    public int getCinemaCode(){
+    public String getCinemaCode(){
         return cinemaCode;
     }
 

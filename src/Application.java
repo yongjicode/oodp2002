@@ -1,8 +1,16 @@
 import command.userModule.*;
 import command.adminModule.*;
-import moblima.*;
 
 import account.*;
+import moblima.SilverVillage;
+import moblima.cineplex.Cinema;
+import moblima.cineplex.CinemaClass;
+import moblima.cineplex.Cineplex;
+import moblima.movie.Movie;
+import moblima.movie.MovieStatus;
+import moblima.show.Show;
+import system.PublicHoliday;
+import system.SystemSettings;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -10,7 +18,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-import static moblima.Movie.convertToMovieStatus;
+import static moblima.movie.Movie.convertToMovieStatus;
 
 
 public class Application {
@@ -34,10 +42,10 @@ public class Application {
 		}
 
 
-		Movie a = new Movie("Lion King",MovieStatus.PREVIEW,"c","d","e", LocalDateTime.parse("2022-12-29 12:00", formatter));
+		Movie a = new Movie("Lion King", MovieStatus.PREVIEW,"c","d","e", LocalDateTime.parse("2022-12-29 12:00", formatter));
 		Movie b = new Movie("Toy Story",MovieStatus.NOW_SHOWING,"x","w","v", LocalDateTime.parse("2022-12-26 12:00", formatter));
-		Company.addMovie(a);
-		Company.addMovie(b);
+		SilverVillage.getMovieList().addMovie(a);
+		SilverVillage.getMovieList().addMovie(b);
 		Cineplex tempCine = new Cineplex("hello cinema","bedok");
 		Cineplex changiCine = new Cineplex("Golden Village","changi");
 		Cinema cn = new Cinema(CinemaClass.GOLD);
@@ -48,21 +56,21 @@ public class Application {
 		Cinema cn4 = new Cinema(CinemaClass.GOLD);
 		changiCine.addCinema(cn3);
 		changiCine.addCinema(cn4);
-		tempCine.addShow(new Show(LocalDateTime.of(2015,
+		tempCine.getShowList().addShow(new Show(LocalDateTime.of(2015,
 				Month.JULY, 29, 19, 30), cn, a));
-		tempCine.addShow(new Show(LocalDateTime.of(2017,
+		tempCine.getShowList().addShow(new Show(LocalDateTime.of(2017,
 				Month.JULY, 29, 16, 20), cn2, a));
-		tempCine.addShow(new Show(LocalDateTime.of(2018,
+		tempCine.getShowList().addShow(new Show(LocalDateTime.of(2018,
 				Month.JULY, 29, 16, 20), cn2, b));
-		tempCine.addShow(new Show(LocalDateTime.of(2022,
+		tempCine.getShowList().addShow(new Show(LocalDateTime.of(2022,
 				Month.JULY, 29, 16, 20), cn, b));
-		changiCine.addShow(new Show(LocalDateTime.of(2026,
+		changiCine.getShowList().addShow(new Show(LocalDateTime.of(2026,
 				Month.JULY, 29, 16, 20), cn3, b));
-		changiCine.addShow(new Show(LocalDateTime.of(2026,
+		changiCine.getShowList().addShow(new Show(LocalDateTime.of(2026,
 				Month.JULY, 29, 16, 20), cn4, a));
 
-		Company.addCineplex(tempCine);
-		Company.addCineplex(changiCine);
+		SilverVillage.getCineplexList().addCineplex(tempCine);
+		SilverVillage.getCineplexList().addCineplex(changiCine);
 		Account[] accounts = new Account[4];
 		accounts[0] = new UserAccount("apple","sauce",0,"123@gmail.com","999","peter");
 		accounts[1] = new CineplexAdminAccount("orange","sauce",1, tempCine,"abc@gmai.com","992","stacey");
@@ -75,30 +83,30 @@ public class Application {
 		// end of load in CSV
 
 		// Auto update expired movie status
-		Company.updateExpiredMovieStatus();
+		SilverVillage.getMovieList().updateExpiredMovieStatus();
 
 		Scanner scanner = new Scanner(System.in);
 		int userCh = 0;
 		int privilege;
 		Cineplex cineplex = null;
-		Company company;
 		Account curAcc = null;
 		greetUser();
 		System.out.println();
 		
 		while(true) {
-			Company.listLocations();
+			SilverVillage.getCineplexList().listLocations();
 			System.out.print("Please choose cinema location: ");
 			int locationCh = scanner.nextInt();
 			scanner.nextLine();
-			cineplex = Company.getCineplexByIndex(locationCh-1);
+			cineplex = SilverVillage.getCineplexList().getCineplexByIndex(locationCh-1);
 			if (cineplex!=null) break;
 			System.out.println("Invalid option");
 		}
 		
 		System.out.println();
 		System.out.println("The location you have chosen is: " + cineplex.getLocation());
-		
+
+		// TODO add more classes
 		while(true) {
 			if(curAcc == null || curAcc.getPrivilege() == 0) //guest or user accounts
 			{
@@ -135,7 +143,16 @@ public class Application {
 						break;
 
 					case 6:
-						new reviewMovieCommand(Company.getBookings(), Company.getMovies()).execute();
+						Scanner input = new Scanner(System.in);
+						System.out.println("Please input the ticket ID: ");
+						int ticketID = input.nextInt();
+						System.out.println("Please input the movie ID you with to rate: ");
+						int movieID = input.nextInt();
+						System.out.println("Please input your rating: ");
+						int reviewRating = input.nextInt();
+						System.out.println("Please input your review: ");
+						String reviewDesc = input.nextLine();
+						new reviewMovieCommand(ticketID, SilverVillage.getBookingHistory().getBookings(), reviewRating, reviewDesc, SilverVillage.getMovieList().getMovies(), movieID).execute();
 						break;
 					case 7:
 						if(ss.getTop5MovieTicketsBool() && ss.getTop5MovieRatingsBool()){
@@ -208,7 +225,12 @@ public class Application {
 						new createShowCommand(cineplexAdmin.getCineplex()).execute();
 						break;
 					case 2:
-						new updateShowCommand(cineplexAdmin.getCineplex().getShows()).execute();
+						Scanner input = new Scanner(System.in);
+						System.out.println("Please enter show ID: ");
+						int id = input.nextInt();
+						System.out.println("Please enter the new DateTime");
+						LocalDateTime newDateTime = LocalDateTime.parse(input.nextLine());
+						new updateShowCommand(cineplexAdmin.getCineplex().getShowList().getShows(), id, newDateTime).execute();
 						break;
 					case 3:
 						new deleteShowCommand(cineplexAdmin.getCineplex()).execute();
@@ -232,15 +254,20 @@ public class Application {
 				switch (userCh){
 					case 1:
 						new createMovieListingCommand().execute();
-						Company.listMovies();
+						SilverVillage.getMovieList().listMovies();
 						break;
 					case 2:
-						new updateMovieListingCommand(Company.getMovies()).execute();
+						Scanner input = new Scanner(System.in);
+						System.out.println("Please enter movie ID: ");
+						int id = input.nextInt();
+						System.out.println("Please enter new status");
+						String newStatus = input.nextLine();
+						new updateMovieListingCommand(SilverVillage.getMovieList().getMovies(), id, convertToMovieStatus(newStatus)).execute();
 						break;
 
 					case 3:
 						new deleteMovieListingCommand().execute();
-						Company.listMovies();
+						SilverVillage.getMovieList().listMovies();
 						break;
 						
 					case 4:

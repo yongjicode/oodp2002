@@ -1,4 +1,4 @@
-package moblima;
+package moblima.show;
 
 public class Seating {
 
