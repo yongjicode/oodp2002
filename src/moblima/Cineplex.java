@@ -66,4 +66,7 @@ public class Cineplex {
         return null;
     }
 
+    public ArrayList<Show> getShows() {
+        return shows;
+    }
 }
