@@ -2,7 +2,6 @@ import command.userModule.*;
 import command.adminModule.*;
 
 import account.*;
-import moblima.CSVReader;
 import moblima.SilverVillage;
 import moblima.booking.Booking;
 import moblima.booking.BookingHistory;
@@ -39,29 +38,29 @@ public class Application {
 
 	public void run() {
 
-		ShowList showList = CSVReader.readShowsFromCSV("src/database/showDB.csv");
-		ArrayList<Movie> arrayMovie = CSVReader.readMoviesFromCSV("src/database/movieDB.csv");
-		MovieList movieList = new MovieList();
-		for (Movie movie: arrayMovie){
-			movieList.addMovie(movie);
-		}
-
-		ArrayList<Booking> arrayBooking = CSVReader.readBookingsFromCSV("src/database/bookingDB.csv");
-		BookingHistory bookingHistory = new BookingHistory();
-		for (Booking booking: arrayBooking){
-			bookingHistory.addBooking(booking);
-		}
-
-		ArrayList<Cineplex> arrayCineplex = CSVReader.readCineplexFromCSV("src/database/companyDB.csv", showList.getShows());
-		CineplexList cineplexList = new CineplexList();
-		for (Cineplex cineplex: arrayCineplex){
-			cineplexList.addCineplex(cineplex);
-		}
-
-		ArrayList<ReviewList> arrayReview = CSVReader.readReviewsFromCSV("src/database/reviewListDB.csv");
-
-
-		ArrayList<Account> arrayAccount = CSVReader.readAccountsFromCSV("src/database/accountDB.csv", arrayCineplex);
+//		ShowList showList = CSVReader.readShowsFromCSV("src/database/showDB.csv");
+//		ArrayList<Movie> arrayMovie = CSVReader.readMoviesFromCSV("src/database/movieDB.csv");
+//		MovieList movieList = new MovieList();
+//		for (Movie movie: arrayMovie){
+//			movieList.addMovie(movie);
+//		}
+//
+//		ArrayList<Booking> arrayBooking = CSVReader.readBookingsFromCSV("src/database/bookingDB.csv");
+//		BookingHistory bookingHistory = new BookingHistory();
+//		for (Booking booking: arrayBooking){
+//			bookingHistory.addBooking(booking);
+//		}
+//
+//		ArrayList<Cineplex> arrayCineplex = CSVReader.readCineplexFromCSV("src/database/companyDB.csv", showList.getShows());
+//		CineplexList cineplexList = new CineplexList();
+//		for (Cineplex cineplex: arrayCineplex){
+//			cineplexList.addCineplex(cineplex);
+//		}
+//
+//		ArrayList<ReviewList> arrayReview = CSVReader.readReviewsFromCSV("src/database/reviewListDB.csv");
+//
+//
+//		ArrayList<Account> arrayAccount = CSVReader.readAccountsFromCSV("src/database/accountDB.csv", arrayCineplex);
 
 
 
