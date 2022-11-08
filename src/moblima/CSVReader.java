@@ -222,7 +222,7 @@ public class CSVReader{
                 String classLevel = attributes[3];
                 //int showId = Integer.parseInt(attributes[5]);
 
-                Cinema cinema = new Cinema(classLevel, cineplexLocation, cinemaCode);
+                Cinema cinema = new Cinema(classLevel);
                 cinemas.add(cinema);
                 line = br.readLine();
             }
@@ -242,8 +242,7 @@ public class CSVReader{
             }
         }
         System.out.println("No existing cinema found!");
-        Cinema cinema = new Cinema();    // no cinema found
-        return cinema;
+        return null;
     }
 
     public static Movie filterMovieFromCSV(String fileName, String movieTitle) {
@@ -301,8 +300,7 @@ public class CSVReader{
             }
         }
         System.out.println("No existing show found!");
-        Show show = new Show();    // no show found
-        return show;
+        return null;
     }
 
     public static ArrayList<MovieTicket> readTicketsFromCSV(String movieTicketFile) {
