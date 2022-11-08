@@ -1,5 +1,6 @@
 package moblima;
 
+import java.awt.print.Book;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
@@ -137,19 +138,57 @@ public class CSVUpdater {
         }
     }
     // Tickets
-    public static void updateTickets(String filePath, ArrayList<MovieTicket> arrayName) throws IOException {
+    public static void updateTickets(String filePath, ArrayList<Booking> arrayName) throws IOException {
         File ticketFile = new File(filePath);
         FileWriter outputFile = new FileWriter(ticketFile);
         CSVWriter writer = new CSVWriter(outputFile);
         try {
-            for (MovieTicket movieTicket: arrayName){
-                String[] input = new String[6];
-                input[0] = "TransactionID"; //Not Done
-                input[1] = "Username";  //Not Done
-                input[2] = movieTicket.getSeatId();
-                input[3] = Integer.toString(movieTicket.getShow().getShowId());
-                input[4] = Double.toString(movieTicket.getPrice());
-                input[5] = movieTicket.getAge();
+            for (Booking booking: arrayName){
+                for (int i=0; i<booking.getTickets().size(); i++){
+                    String[] input = new String[6];
+                    input[0] = booking.getTransactionId();
+                    input[1] = booking.getCustomerName();
+                    input[2] = booking.getTickets().get(i).getSeatId();
+                    input[3] = Integer.toString(booking.getTickets().get(i).getShow().getShowId());
+                    input[4] = Double.toString(booking.getTickets().get(i).getPrice());
+                    input[5] = booking.getTickets().get(i).getAge();
+                    writer.writeNext(input);
+                }
+            }
+            writer.close();
+        }
+        catch (IOException e){
+            System.out.println("An error occurred");
+        }
+    }
+
+    //ReviewList
+    public static void updateReviewList(String filePath, ArrayList<Movie> arrayName) throws IOException {
+        File reviewListFile = new File(filePath);
+        FileWriter outputFile = new FileWriter(reviewListFile);
+        CSVWriter writer = new CSVWriter(outputFile);
+        try {
+            for (Movie movie: arrayName){
+                String[] input = new String[5];
+                //Concatenating All reviewDescriptions into 1 string
+                String review = "";
+                for (int i=0; i<movie.getReviews().getReviews().size(); i++){
+                    if (i==0) review += movie.getReviews().getReviews().get(i).getReviewDescription();
+                    review += ";";
+                    review += movie.getReviews().getReviews().get(i).getReviewDescription();
+                }
+                //Concatenating all rating into 1 String
+                String rating = "";
+                for (int j=0; j<movie.getReviews().getReviews().size(); j++){
+                    if (j==0) rating += Integer.toString(movie.getReviews().getReviews().get(j).getRating());
+                    rating += ";";
+                    rating += Integer.toString(movie.getReviews().getReviews().get(j).getRating());
+                }
+                input[0] = movie.getReviews().toString();
+                input[1] = "NA";
+                input[2] = rating;
+                input[3] = review;
+                input[4] = Integer.toString(movie.getRating());
                 writer.writeNext(input);
             }
             writer.close();
@@ -159,7 +198,4 @@ public class CSVUpdater {
         }
     }
 
-
-
-    //ReviewList
 }
