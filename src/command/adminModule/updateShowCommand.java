@@ -15,13 +15,13 @@ public class updateShowCommand implements Command{
         this.showID=showID;
     }
     public void execute(){
-        Show showToBeUpdated;
+        Show showToBeUpdated = null;
         for (Show show: showArray){
             if (show.getShowId() == showID){
                 showToBeUpdated = show;
                 break;
             }
-            else System.out.println("Show not found...");;
+            else System.out.println("Show not found...");
         }
         showToBeUpdated.setShowTime(newDateTime);
         System.out.println("Show successfully updated...");

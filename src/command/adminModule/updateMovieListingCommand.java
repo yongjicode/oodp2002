@@ -14,7 +14,7 @@ public class updateMovieListingCommand implements Command {
         this.status=status;
     }
     public void execute(){
-        Movie movieToBeUpdated;
+        Movie movieToBeUpdated = null;
         for (Movie movie: movieArray){
             if (movie.getMovieId() == movieID){
                 movieToBeUpdated = movie;
