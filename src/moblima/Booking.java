@@ -8,7 +8,7 @@ public class Booking {
     private String emailAddress;
     private String transactionId;
 
-    private int totalPrice;
+    private double totalPrice;
 
     private ArrayList<MovieTicket> tickets = new ArrayList<>();
 
@@ -56,7 +56,7 @@ public class Booking {
         return tickets;
     }
 
-    public int getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 

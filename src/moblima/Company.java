@@ -1,10 +1,9 @@
 package moblima;
 
-import javax.sound.midi.Soundbank;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.time.LocalDateTime;
 
 public class Company {
 
@@ -107,10 +106,10 @@ public class Company {
         System.out.println("====== There are " + numOfResults + " search results! ======");
         
     }
-    public void addPublicHoliday(LocalDateTime date, String name){
-        this.recognisedPublicHolidays.add(new PublicHoliday(date,name));
+    public static void addPublicHoliday(LocalDateTime date, String name){
+        recognisedPublicHolidays.add(new PublicHoliday(date,name));
     }
-    public boolean isPublicHoliday(LocalDateTime date){
+    public static boolean isPublicHoliday(LocalDateTime date){
         for (PublicHoliday publicHoliday : recognisedPublicHolidays){
             if (publicHoliday.getDate().getDayOfYear() == date.getDayOfYear()){
                 return true;

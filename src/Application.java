@@ -1,11 +1,6 @@
 import command.userModule.*;
 import command.adminModule.*;
-import moblima.Cinema;
-import moblima.Cineplex;
-import moblima.Company;
-import moblima.Movie;
-import moblima.Show;
-import moblima.PublicHoliday;
+import moblima.*;
 import account.Account;
 import account.UserAccount;
 import account.CineplexAdminAccount;
@@ -44,12 +39,12 @@ public class Application {
 		Company.addMovie(b);
 		Cineplex tempCine = new Cineplex("hello cinema","bedok");
 		Cineplex changiCine = new Cineplex("Golden Village","changi");
-		Cinema cn = new Cinema("gold class");
-		Cinema cn2 = new Cinema("Poor people");
+		Cinema cn = new Cinema(CinemaClass.GOLD);
+		Cinema cn2 = new Cinema(CinemaClass.NORMAL);
 		tempCine.addCinema(cn);
 		tempCine.addCinema(cn2);
-		Cinema cn3 = new Cinema("Business Class");
-		Cinema cn4 = new Cinema("Economy");
+		Cinema cn3 = new Cinema(CinemaClass.PLATINUM);
+		Cinema cn4 = new Cinema(CinemaClass.GOLD);
 		changiCine.addCinema(cn3);
 		changiCine.addCinema(cn4);
 		tempCine.addShow(new Show(LocalDateTime.of(2015,
@@ -67,7 +62,7 @@ public class Application {
 
 		Company.addCineplex(tempCine);
 		Company.addCineplex(changiCine);
-		Company.add
+		//Company.add
 		Account[] accounts = new Account[4];
 		accounts[0] = new UserAccount("apple","sauce",0,"123@gmail.com","999","peter");
 		accounts[1] = new CineplexAdminAccount("orange","sauce",1, tempCine,"abc@gmai.com","992","stacey");
