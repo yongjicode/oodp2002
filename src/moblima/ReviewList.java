@@ -25,4 +25,8 @@ public class ReviewList {
     public int showAverageRating(){
        return totalRating/reviews.size();
     }
+
+    public ArrayList<Review> getReviews() {
+        return reviews;
+    }
 }

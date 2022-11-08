@@ -18,4 +18,8 @@ public class Review {
         System.out.println("Description: " + reviewDescription);
         System.out.println("Rating: " + rating);
     }
+
+    public String getReviewDescription() {
+        return reviewDescription;
+    }
 }

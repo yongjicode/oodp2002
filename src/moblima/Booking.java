@@ -36,6 +36,10 @@ public class Booking {
         return totalPrice;
     }
 
+    public ArrayList<MovieTicket> getTickets() {
+        return tickets;
+    }
+
     public void addTickets(MovieTicket ticket){
         tickets.add(ticket);
         // sum up the ticket prices
