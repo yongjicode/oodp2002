@@ -1,4 +1,7 @@
-package moblima;
+package moblima.show.ticket;
+
+import moblima.cineplex.CinemaClass;
+import system.SystemSettings;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
@@ -50,7 +53,7 @@ public class TicketPriceCalculator {
         }
 
         // Public Holiday and Weekend Surcharge of $3
-        if(Company.isPublicHoliday(date) || date.getDayOfWeek() == DayOfWeek.SATURDAY || date.getDayOfWeek() == DayOfWeek.SUNDAY){
+        if(SystemSettings.isPublicHoliday(date) || date.getDayOfWeek() == DayOfWeek.SATURDAY || date.getDayOfWeek() == DayOfWeek.SUNDAY){
             additionalCharge += 3.0;
         }
 

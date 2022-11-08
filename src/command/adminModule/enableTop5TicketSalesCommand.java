@@ -1,6 +1,6 @@
 package command.adminModule;
 import command.Command;
-import moblima.SystemSettings;
+import system.SystemSettings;
 
 public class enableTop5TicketSalesCommand implements Command{
 

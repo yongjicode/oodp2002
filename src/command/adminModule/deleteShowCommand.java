@@ -1,6 +1,6 @@
 package command.adminModule;
 import command.Command;
-import moblima.Cineplex;
+import moblima.cineplex.Cineplex;
 import java.util.Scanner;
 
 public class deleteShowCommand implements Command{

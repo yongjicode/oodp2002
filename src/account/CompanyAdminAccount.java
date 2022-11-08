@@ -1,8 +1,5 @@
 package account;
-import moblima.Cineplex;
-import moblima.Movie;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CompanyAdminAccount extends Account{

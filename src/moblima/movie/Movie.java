@@ -1,4 +1,7 @@
-package moblima;
+package moblima.movie;
+
+import moblima.movie.review.Review;
+import moblima.movie.review.ReviewList;
 
 import java.time.LocalDateTime;
 
@@ -55,7 +58,7 @@ public class Movie{
 
     public void printMovieDetails() {
     	System.out.println();
-        System.out.println("moblima.Movie ID: " + movieId);
+        System.out.println("moblima.movie.Movie ID: " + movieId);
         System.out.println("Title: " + title);
         System.out.println("Status: " + status);
         System.out.println("Synopsis: " + synopsis);

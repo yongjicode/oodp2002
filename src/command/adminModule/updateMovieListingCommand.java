@@ -1,7 +1,7 @@
 package command.adminModule;
 import command.Command;
-import moblima.Movie;
-import moblima.MovieStatus;
+import moblima.movie.Movie;
+import moblima.movie.MovieStatus;
 
 import java.util.ArrayList;
 

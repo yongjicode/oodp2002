@@ -1,4 +1,6 @@
-package moblima;
+package moblima.show.ticket;
+
+import moblima.show.Show;
 
 public class MovieTicket {
 

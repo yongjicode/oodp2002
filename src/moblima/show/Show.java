@@ -1,4 +1,7 @@
-package moblima;
+package moblima.show;
+
+import moblima.cineplex.Cinema;
+import moblima.movie.Movie;
 
 import java.time.LocalDateTime;
 
