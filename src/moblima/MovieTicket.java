@@ -17,13 +17,17 @@ public class MovieTicket {
     }
 
     public void printTicketDetails(){
-        show.printShowDetails();
-        System.out.println("__________________");
-        System.out.println("Seat: " + getSeatId());
-        System.out.println("Price: " + getPrice());
+        
+        System.out.println("Seat: " + seatId);
+        System.out.println("Price: " + price);
         System.out.println("Type: " + age);
+        show.printShowDetails();
+        System.out.println("_________________________________________");
+        //System.out.println();
     }
-
+    
+    
+    
     public Show getShow() {
         return show;
     }
@@ -35,5 +39,9 @@ public class MovieTicket {
 
     public String getSeatId() {
         return seatId;
+    }
+
+    public String getAge() {
+        return age;
     }
 }

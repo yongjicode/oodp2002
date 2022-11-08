@@ -7,9 +7,14 @@ import java.util.Comparator;
 public class Cineplex {
     private String name;
     private String location;
-    private static ArrayList<Cinema> cinemas = new ArrayList<>();
 
-    private static ArrayList<Show> shows = new ArrayList<>();
+    public Cineplex(String name, String location) {
+        this.name = name;
+        this.location = location;
+    }
+    private ArrayList<Cinema> cinemas = new ArrayList<>();
+
+    private ArrayList<Show> shows = new ArrayList<>();
 
     public void addCinema(Cinema cinema){
         cinemas.add(cinema);
@@ -24,16 +29,36 @@ public class Cineplex {
             if(show.getShowId()==showId){
                 shows.remove(show);
                 System.out.println("moblima.Show " + showId + " has been removed.");
+                
                 return;
             }
         }
         System.out.println("moblima.Show " + showId + " does not exist.");
     }
-
+    public String getLocation(){
+        return this.location;
+    }
     public void listShows(){
+    	System.out.println();
+    	System.out.println("========== Available Show List ==========");
         for(Show show: shows){
             show.printShowDetails();
         }
+        System.out.println("=========================================");
+    }
+    public void listCinema(){
+        for(Cinema cinema:cinemas){
+            cinema.printDetails();
+        }
+    }
+
+    public Cinema searchCinema(int cinemaId){
+        for (Cinema cinema: cinemas){
+            if (cinema.getCinemaCode() == cinemaId){
+                return cinema;
+            }
+        }
+        return null;
     }
 
     public Show searchShow(int showId){
@@ -45,4 +70,11 @@ public class Cineplex {
         return null;
     }
 
+    public ArrayList<Show> getShows() {
+        return shows;
+    }
+
+    public ArrayList<Cinema> getCinemas() {
+        return cinemas;
+    }
 }

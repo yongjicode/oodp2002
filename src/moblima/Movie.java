@@ -24,8 +24,6 @@ public class Movie{
 
     private int rating;
 
-    public Movie(){}
-
     public Movie(String title,
                  String status,
                  String synopsis,
@@ -55,14 +53,15 @@ public class Movie{
     }
 
     public void printMovieDetails() {
-        System.out.println("moblima.Movie ID:" + movieId);
+    	System.out.println();
+        System.out.println("moblima.Movie ID: " + movieId);
         System.out.println("Title: " + title);
         System.out.println("Status: " + status);
         System.out.println("Synopsis: " + synopsis);
         System.out.println("Director: " + director);
         System.out.println("Cast: " + cast);
         System.out.println("Rating: " + rating);
-        System.out.println("Reviews:");
+        System.out.print("Reviews: ");
         reviews.listReviews();
     }
 
@@ -79,4 +78,23 @@ public class Movie{
         return ticketSold;
     }
 
+    public String getCast() {
+        return cast;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public ReviewList getReviews() {
+        return reviews;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
 }

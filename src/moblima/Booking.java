@@ -20,6 +20,10 @@ public class Booking {
         this.totalPrice = 0;
     }
 
+    public String getCustomerName(){
+        return customerName;
+    }
+
     public void addTickets(MovieTicket ticket){
         tickets.add(ticket);
         // sum up the ticket prices
@@ -32,13 +36,39 @@ public class Booking {
 
 
     public void printBookingDetails() {
+    	System.out.println();
+    	System.out.println("Please check the booking details");
+        System.out.println("_________________________________________");
         System.out.println("Customer: " + customerName);
         System.out.println("Mobile Number: " + mobileNumber);
         System.out.println("Email: " + emailAddress);
-        System.out.println("Customer: " + customerName);
-        System.out.println("Tickets: ");
+        System.out.println();
+        //System.out.println("Customer: " + customerName);
+        
+        System.out.println("Please check the ticket details");
+        System.out.println("_________________________________________");
         for(MovieTicket ticket: tickets){
             ticket.printTicketDetails();
         }
+    }
+
+    public ArrayList<MovieTicket> getTickets() {
+        return tickets;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public String getTransactionId() {
+        return transactionId;
     }
 }
