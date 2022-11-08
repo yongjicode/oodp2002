@@ -72,10 +72,10 @@ public class Application {
 		SilverVillage.getCineplexList().addCineplex(tempCine);
 		SilverVillage.getCineplexList().addCineplex(changiCine);
 		Account[] accounts = new Account[4];
-		accounts[0] = new UserAccount("apple","sauce",0,"123@gmail.com","999","peter");
-		accounts[1] = new CineplexAdminAccount("orange","sauce",1, tempCine,"abc@gmai.com","992","stacey");
-		accounts[2] = new CineplexAdminAccount("banana","sauce",1,changiCine,"999@gmai.com","992","harold");
-		accounts[3] = new CompanyAdminAccount("durian","sauce",2,"999@gmai.com","992","june");
+		accounts[0] = new UserAccount("apple","sauce",Privilege.User,"123@gmail.com","999","peter");
+		accounts[1] = new CineplexAdminAccount("orange","sauce",Privilege.CinelexAdmin, tempCine,"abc@gmai.com","992","stacey");
+		accounts[2] = new CineplexAdminAccount("banana","sauce",Privilege.CinelexAdmin,changiCine,"999@gmai.com","992","harold");
+		accounts[3] = new CompanyAdminAccount("durian","sauce",Privilege.CompanyAdmin,"999@gmai.com","992","june");
 		// end of test cases
 
 		// load in CSV
@@ -87,7 +87,7 @@ public class Application {
 
 		Scanner scanner = new Scanner(System.in);
 		int userCh = 0;
-		int privilege;
+		Privilege privilege;
 		Cineplex cineplex = null;
 		Account curAcc = null;
 		greetUser();
@@ -108,7 +108,7 @@ public class Application {
 
 		// TODO add more classes
 		while(true) {
-			if(curAcc == null || curAcc.getPrivilege() == 0) //guest or user accounts
+			if(curAcc == null || curAcc.getPrivilege() == Privilege.User) //guest or user accounts
 			{
 				userMenu(curAcc,cineplex.getLocation());
 				System.out.print("Please enter the option number: ");
@@ -213,7 +213,7 @@ public class Application {
 				}
 				
 			}
-			else if (curAcc.getPrivilege() == 1) {
+			else if (curAcc.getPrivilege() == Privilege.CinelexAdmin) {
 				CineplexAdminAccount cineplexAdmin = (CineplexAdminAccount) curAcc;
 				cineplexAdminMenu(curAcc,cineplexAdmin.getCineplex().getLocation());
 				System.out.print("Please enter the option number: ");
@@ -240,7 +240,7 @@ public class Application {
 				
 			}
 			
-			else if (curAcc.getPrivilege() == 2) {
+			else if (curAcc.getPrivilege() == Privilege.CompanyAdmin) {
 				companyAdminMenu(curAcc);
 				System.out.print("Please enter the option number: ");
 				userCh = scanner.nextInt();
@@ -408,7 +408,7 @@ public class Application {
 	private static Account login(String loginId, String password, Account[] accounts){
 		for (int i = 0; i < accounts.length; i++){
 			if (accounts[i].getLoginId().equals(loginId)){
-				if(accounts[i].login(loginId,password)!=-1){
+				if(accounts[i].login(loginId,password)!=null){
 					return accounts[i];
 				}
 			}
