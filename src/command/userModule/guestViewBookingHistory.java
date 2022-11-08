@@ -1,6 +1,7 @@
 package command.userModule;
-import command.Command;
-import moblima.Company;
+
+import moblima.SilverVillage;
+
 import java.util.Scanner;
 
 public class guestViewBookingHistory {
@@ -10,7 +11,7 @@ public class guestViewBookingHistory {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Please enter your name:");
 		String name = scanner.nextLine();
-		Company.showUserBookingHistory(name);
+		SilverVillage.getBookingHistory().showUserBookingHistory(name);
 		
 	}
 }

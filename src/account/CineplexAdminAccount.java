@@ -1,10 +1,6 @@
 package account;
-import moblima.Cineplex;
-import moblima.Movie;
-import moblima.Show;
+import moblima.cineplex.Cineplex;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 

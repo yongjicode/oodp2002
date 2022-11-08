@@ -2,11 +2,15 @@ package command.userModule;
 
 import account.Account;
 import command.Command;
-import moblima.*;
+import moblima.SilverVillage;
+import moblima.booking.Booking;
+import moblima.show.ticket.MovieTicket;
+import moblima.cineplex.Cineplex;
+import moblima.show.Show;
 
 import java.util.Scanner;
 
-import static moblima.MovieTicket.checkCustomerAge;
+import static moblima.show.ticket.MovieTicket.checkCustomerAge;
 
 public class bookTicketCommand implements Command {
 	private Cineplex cineplex;
@@ -18,12 +22,12 @@ public class bookTicketCommand implements Command {
 	
 	public void execute() {
 		Scanner scanner = new Scanner(System.in);
-		cineplex.listShows();
+		cineplex.getShowList().listShows();
 		System.out.print("Please enter the movie's show ID: ");
 		// handle error later
 		int showID = scanner.nextInt();
 		scanner.nextLine();
-		Show show = this.cineplex.searchShow(showID);
+		Show show = this.cineplex.getShowList().searchShow(showID);
 		if (show == null) {
 			//TODO Error handling
 			System.out.println("======= Show ID " + showID + " does not exist! =======");
@@ -32,7 +36,7 @@ public class bookTicketCommand implements Command {
 		show.printShowDetails();
 		System.out.println();
 		//to implement transaction ID function
-		Booking booking = new Booking(curAcc.getName(),curAcc.getPhoneNo(),curAcc.getEmail(),"ABC123");
+		Booking booking = new Booking(curAcc.getName(),curAcc.getPhoneNo(),curAcc.getEmail());
 		System.out.print("Please enter the Number of tickets to be purchased: ");
 		int numTickets = scanner.nextInt();
 		scanner.nextLine();
@@ -54,7 +58,7 @@ public class bookTicketCommand implements Command {
 		}
 		
 		booking.printBookingDetails();
-		Company.addBooking(booking);
+		SilverVillage.getBookingHistory().addBooking(booking);
 		// scanner.close();
 	}
 

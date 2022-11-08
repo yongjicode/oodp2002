@@ -1,4 +1,5 @@
-package moblima;
+package system;
+
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 
@@ -6,7 +7,6 @@ public class SystemSettings {
     private boolean showTop5MovieRatings = true;
     private boolean showTop5MovieTickets = true;
     private static ArrayList<PublicHoliday> publicHolidays = new ArrayList<PublicHoliday>();
-
 
 
     public void printSettings(){
@@ -34,7 +34,7 @@ public class SystemSettings {
         publicHolidays.add(publicHoliday);
     }
 
-    public boolean isPublicHoliday(LocalDateTime date){
+    public static boolean isPublicHoliday(LocalDateTime date){
         for (PublicHoliday publicHoliday: publicHolidays){
             if (publicHoliday.getDate().getDayOfYear() == date.getDayOfYear()){
                 return true;

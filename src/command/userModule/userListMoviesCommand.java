@@ -1,14 +1,13 @@
 package command.userModule;
 
 import command.Command;
-import moblima.Cineplex;
-import moblima.Company;
+import moblima.SilverVillage;
 
 public class userListMoviesCommand implements Command {
 	public userListMoviesCommand() {
 	}
 	
 	public void execute() {
-		Company.listMovies();
+		SilverVillage.getMovieList().listMovies();
 	}
 }

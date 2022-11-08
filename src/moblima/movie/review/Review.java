@@ -1,4 +1,4 @@
-package moblima;
+package moblima.movie.review;
 
 public class Review {
 

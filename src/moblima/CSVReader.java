@@ -4,6 +4,14 @@ import account.Account;
 import account.CineplexAdminAccount;
 import account.CompanyAdminAccount;
 import account.UserAccount;
+import moblima.booking.Booking;
+import moblima.movie.review.Review;
+import moblima.movie.review.ReviewList;
+import moblima.show.ticket.MovieTicket;
+import moblima.cineplex.Cinema;
+import moblima.cineplex.Cineplex;
+import moblima.movie.Movie;
+import moblima.show.Show;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,9 +23,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import static moblima.Cinema.convertToCinemaClass;
-import static moblima.Movie.convertToMovieStatus;
-import static moblima.MovieTicket.checkCustomerAge;
+import static moblima.cineplex.Cinema.convertToCinemaClass;
+import static moblima.movie.Movie.convertToMovieStatus;
+import static moblima.show.ticket.MovieTicket.checkCustomerAge;
 public class CSVReader{
 
     public static ArrayList<Account> readAccountsFromCSV(String fileName, ArrayList<Cineplex> arrayCineplex) {
@@ -120,13 +128,14 @@ public class CSVReader{
             while (line != null) {
 
                 String[] attributes = line.split(",");
-                String transactionId = attributes[0];
+                // TODO remove transaction id from database
+                // String transactionId = attributes[0];
                 String customerName = attributes[1];
                 String mobileNumber = attributes[2];
                 String emailAddress = attributes[3];
 
                 // transactionId, customerName, mobileNumber, emailAddress, totalPrice
-                Booking booking = new Booking(customerName, mobileNumber, emailAddress, transactionId);
+                Booking booking = new Booking(customerName, mobileNumber, emailAddress);
                 bookings.add(booking);
                 line = br.readLine();
             }

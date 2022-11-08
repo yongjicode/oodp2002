@@ -1,10 +1,10 @@
 package command.userModule;
 
 import command.Command;
-import moblima.Booking;
-import moblima.Movie;
-import moblima.MovieTicket;
-import moblima.Review;
+import moblima.booking.Booking;
+import moblima.movie.Movie;
+import moblima.show.ticket.MovieTicket;
+import moblima.movie.review.Review;
 
 import java.util.ArrayList;
 

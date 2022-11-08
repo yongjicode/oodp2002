@@ -1,4 +1,4 @@
-package moblima;
+package moblima.movie;
 
 public enum MovieStatus {
 
@@ -11,5 +11,5 @@ public enum MovieStatus {
     private MovieStatus(String toString) {
         this.toString = toString;
     }
-    
+
 }

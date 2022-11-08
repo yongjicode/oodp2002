@@ -1,4 +1,4 @@
-package moblima;
+package moblima.cineplex;
 
 public enum CinemaClass {
     NORMAL,
