@@ -81,6 +81,7 @@ public class Application {
 		int userCh = 0;
 		int privilege;
 		Cineplex cineplex = null;
+		Company company;
 		Account curAcc = null;
 		greetUser();
 		System.out.println();
@@ -134,16 +135,7 @@ public class Application {
 						break;
 
 					case 6:
-						Scanner input = new Scanner(System.in);
-						System.out.println("Please input the ticket ID: ");
-						int ticketID = input.nextInt();
-						System.out.println("Please input the movie ID you with to rate: ");
-						int movieID = input.nextInt();
-						System.out.println("Please input your rating: ");
-						int reviewRating = input.nextInt();
-						System.out.println("Please input your review: ");
-						String reviewDesc = input.nextLine();
-						new reviewMovieCommand(ticketID, Company.getBookings(), reviewRating, reviewDesc, Company.getMovies(), movieID).execute();
+						new reviewMovieCommand(Company.getBookings(), Company.getMovies()).execute();
 						break;
 					case 7:
 						if(ss.getTop5MovieTicketsBool() && ss.getTop5MovieRatingsBool()){
@@ -216,12 +208,7 @@ public class Application {
 						new createShowCommand(cineplexAdmin.getCineplex()).execute();
 						break;
 					case 2:
-						Scanner input = new Scanner(System.in);
-						System.out.println("Please enter show ID: ");
-						int id = input.nextInt();
-						System.out.println("Please enter the new DateTime");
-						LocalDateTime newDateTime = LocalDateTime.parse(input.nextLine());
-						new updateShowCommand(cineplexAdmin.getCineplex().getShows(), id, newDateTime).execute();
+						new updateShowCommand(cineplexAdmin.getCineplex().getShows()).execute();
 						break;
 					case 3:
 						new deleteShowCommand(cineplexAdmin.getCineplex()).execute();
@@ -248,12 +235,7 @@ public class Application {
 						Company.listMovies();
 						break;
 					case 2:
-						Scanner input = new Scanner(System.in);
-						System.out.println("Please enter movie ID: ");
-						int id = input.nextInt();
-						System.out.println("Please enter new status");
-						String newStatus = input.nextLine();
-						new updateMovieListingCommand(Company.getMovies(), id, convertToMovieStatus(newStatus)).execute();
+						new updateMovieListingCommand(Company.getMovies()).execute();
 						break;
 
 					case 3:

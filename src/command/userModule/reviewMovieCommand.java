@@ -1,34 +1,32 @@
 package command.userModule;
 
 import command.Command;
-import moblima.Booking;
-import moblima.Movie;
-import moblima.MovieTicket;
-import moblima.Review;
+import moblima.*;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class reviewMovieCommand implements Command{
-    private int ticketID;
     private ArrayList<Booking> arrayBooking;
-    private int rating;
-    private String reviewDesc;
     private ArrayList<Movie> arrayMovie;
-    private int movieID;
-
-    public reviewMovieCommand(int ticketID, ArrayList<Booking> arrayBooking, int rating, String reviewDesc, ArrayList<Movie> arrayMovie, int movieID){
-        this.arrayMovie=arrayMovie;
-        this.arrayBooking=arrayBooking;
-        this.movieID=movieID;
-        this.ticketID=ticketID;
-        this.reviewDesc=reviewDesc;
-        this.rating=rating;
+    public reviewMovieCommand(ArrayList<Booking> arrayBooking, ArrayList<Movie> arrayMovie){
+        this.arrayBooking = arrayBooking;
+        this.arrayMovie = arrayMovie;
     }
     public void execute(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please input the ticket ID: ");
+        int ticketID = input.nextInt();
+        System.out.println("Please input the movie ID you with to rate: ");
+        int movieID = input.nextInt();
+        System.out.println("Please input your rating: ");
+        int reviewRating = input.nextInt();
+        System.out.println("Please input your review: ");
+        String reviewDesc = input.nextLine();
         for (Booking booking: arrayBooking){
             for (MovieTicket ticket: booking.getTickets()){
                 if (ticket.getTicketID() == ticketID){
-                    Review review = new Review(rating, reviewDesc);
+                    Review review = new Review(reviewRating, reviewDesc);
                     for (Movie movie: arrayMovie){
                         if (movie.getMovieId()==movieID){
                             movie.getReviews().add(review);
