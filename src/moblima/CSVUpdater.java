@@ -111,21 +111,24 @@ public class CSVUpdater {
         }
     }
     // CompanyDB
-    public static void updateCompany(String filePath, ArrayList<Cineplex> arrayName1, ArrayList<Cinema> arrayName2) throws IOException {
+    public static void updateCompany(String filePath, ArrayList<Cineplex> arrayName1, ArrayList<Cinema> arrayName2, ArrayList<Booking> arrayName3) throws IOException {
         File companyFile = new File(filePath);
         FileWriter outputFile = new FileWriter(companyFile);
         CSVWriter writer = new CSVWriter(outputFile);
 
-        numberCineplex = arrayName1.size();
-        numberCinema = arrayName2.size();
-
-
+        int numberCinema = arrayName2.size();
 
         try {
-            for (){
-                String[] input = new String[6];
-
-                writer.writeNext(input);
+            for (Cineplex cineplex : arrayName1) {
+                for (int j = 0; j < numberCinema; j++) {
+                    String[] input = new String[5];
+                    input[0] = "golden_village";
+                    input[1] = cineplex.getLocation(); //use name or use location?
+                    input[2] = arrayName2.get(j).getCinemaCode();
+                    input[3] = arrayName3.toString();
+                    input[4] = Integer.toString(cineplex.getShows().get(j).getShowId());
+                    writer.writeNext(input);
+                }
             }
             writer.close();
         }
@@ -134,9 +137,9 @@ public class CSVUpdater {
         }
     }
     // Tickets
-    public static void updateTickets(String filePath, ArrayList<MovieTicket> arrayName){
+    public static void updateTickets(String filePath, ArrayList<MovieTicket> arrayName) throws IOException {
         File ticketFile = new File(filePath);
-        FileWriter outputFile = new FileWriter(companyFile);
+        FileWriter outputFile = new FileWriter(ticketFile);
         CSVWriter writer = new CSVWriter(outputFile);
         try {
             for (MovieTicket movieTicket: arrayName){
@@ -157,4 +160,6 @@ public class CSVUpdater {
     }
 
 
+
+    //ReviewList
 }
