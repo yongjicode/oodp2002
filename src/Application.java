@@ -1,23 +1,11 @@
 import command.userModule.*;
 import command.adminModule.*;
-import moblima.Cinema;
-import moblima.Cineplex;
-import moblima.CineplexAdminAccount;
-import moblima.Company;
-import moblima.CompanyAdminAccount;
+import moblima.*;
 import moblima.Movie;
 import moblima.Show;
-import moblima.UserAccount;
-import moblima.Account;
-import moblima.Booking;
-import moblima.MovieTicket;
-import moblima.ReviewList;
-import moblima.Review;
-import moblima.Movie;
-import moblima.Show;
-import moblima.CSVReader;
 
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Scanner;
@@ -33,7 +21,7 @@ public class Application {
 
 
 
-	public void run() {
+	public void run() throws IOException {
 		// ACCOUNT DB
 		ArrayList<Account> accounts = CSVReader.readAccountsFromCSV("src\\database\\accountDB.csv");
         // for (Account account : accounts) { 
@@ -206,6 +194,15 @@ public class Application {
 		// 	}
 		// }
 
+
+		//Update Functions
+//		CSVUpdater.updateAccounts("src\\database\\accountDB.csv", accounts);
+//		CSVUpdater.updateBookings("src\\database\\bookingDB.csv", bookings);
+//		CSVUpdater.updateCompany("src\\database\\CompanyDB.csv", );
+		CSVUpdater.updateMovies("src\\database\\movieDB.csv", movies);
+		CSVUpdater.updateShows("src\\database\\showDB.csv", shows);
+		CSVUpdater.updateTickets("src\\database\\ticketDB.csv", bookings);
+		CSVUpdater.updateReviewList("src\\database\\reviewListDB.csv", movies);
 		endProgram();
 	}
 
