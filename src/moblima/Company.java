@@ -167,4 +167,8 @@ public class Company {
             }
         }
     }
+
+    public static ArrayList<Movie> getMovies() {
+        return movies;
+    }
 }
