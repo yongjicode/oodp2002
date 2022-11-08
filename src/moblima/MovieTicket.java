@@ -2,9 +2,9 @@ package moblima;
 
 public class MovieTicket {
     private static final double basePrice = 6;
-
     private String seatId;
-
+    private static int staticTicketID=1;
+    private int ticketID;
     private Show show;
     private double price;
     private String age; //enum adult, senior, child
@@ -14,6 +14,7 @@ public class MovieTicket {
         this.show = show;
         this.price = price;
         this.age = age;
+        this.ticketID = staticTicketID++;
     }
 
     public void printTicketDetails(){
@@ -43,5 +44,9 @@ public class MovieTicket {
 
     public String getAge() {
         return age;
+    }
+
+    public int getTicketID() {
+        return ticketID;
     }
 }
