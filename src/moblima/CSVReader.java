@@ -108,7 +108,7 @@ public class CSVReader{
             }
             for (Cineplex cine: cineplexes){
                 for (Show show: arrayName){
-                    cine.addShow(show);
+                    cine.getShowList().addShow(show);
                 }
             }
         } catch (IOException ioe) {

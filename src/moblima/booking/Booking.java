@@ -55,6 +55,7 @@ public class Booking {
         System.out.println("Mobile Number: " + mobileNumber);
         System.out.println("Email: " + emailAddress);
         System.out.println("Total Price: $" + totalPrice);
+        System.out.println("Transaction ID: " + transactionId);
         System.out.println();
 
         System.out.println("============ Ticket Details =============");

@@ -230,7 +230,7 @@ public class Application {
 						int id = input.nextInt();
 						System.out.println("Please enter the new DateTime");
 						LocalDateTime newDateTime = LocalDateTime.parse(input.nextLine());
-						new updateShowCommand(cineplexAdmin.getCineplex().getShowList().getShows(), id, newDateTime).execute();
+						new updateShowCommand(cineplexAdmin.getCineplex().getShowList().getShows()).execute();
 						break;
 					case 3:
 						new deleteShowCommand(cineplexAdmin.getCineplex()).execute();
@@ -262,7 +262,7 @@ public class Application {
 						int id = input.nextInt();
 						System.out.println("Please enter new status");
 						String newStatus = input.nextLine();
-						new updateMovieListingCommand(SilverVillage.getMovieList().getMovies(), id, convertToMovieStatus(newStatus)).execute();
+						new updateMovieListingCommand(SilverVillage.getMovieList().getMovies()).execute();
 						break;
 
 					case 3:
