@@ -7,15 +7,15 @@ import moblima.Movie;
 public class createMovieListingCommand implements Command {
     public void execute(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter movie title: ");
+        System.out.print("Enter movie title: ");
         String movieTitle = scanner.nextLine();
-        System.out.println("Enter movie status:");
+        System.out.print("Enter movie status: ");
         String movieStatus = scanner.nextLine();
-        System.out.println("Enter movie synopsis: ");
+        System.out.print("Enter movie synopsis: ");
         String movieSynopsis = scanner.nextLine();
-        System.out.println("Enter movie director: ");
+        System.out.print("Enter movie director: ");
         String movieDirector = scanner.nextLine();
-        System.out.println("Enter movie cast: ");
+        System.out.print("Enter movie cast: ");
         String movieCast = scanner.nextLine();
         Company.addMovie(new Movie(movieTitle,movieStatus,movieSynopsis,movieDirector,movieCast));
 

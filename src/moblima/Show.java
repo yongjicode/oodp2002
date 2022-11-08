@@ -18,8 +18,6 @@ public class Show {
 
     private Seating seating;
 
-    public Show(){}
-
     public Show(LocalDateTime showTime, Cinema cinema, Movie movie) {
         this.showId = currentId++;
         this.showTime = showTime;
@@ -40,21 +38,22 @@ public class Show {
     public void showSeating(){ //for user
         seating.printSeats();
     }
-    public Cinema getCinema() {
-        return cinema;
-    }
-    public LocalDateTime getShowTime() {
-        return showTime;
-    }
 
     public void printShowDetails(){
+    	System.out.println();
         System.out.println("ShowId: " + showId);
         System.out.println("moblima.Movie: " + movie.getTitle());
         System.out.println("moblima.Cinema: " + cinema.getCinemaCode());
         System.out.println("moblima.Cinema Class: " + cinema.getClassLevel());
         System.out.println("Day & Time: " + showTime);
-
     }
 
 
+    public Cinema getCinema() {
+        return cinema;
+    }
+
+    public LocalDateTime getShowTime() {
+        return showTime;
+    }
 }

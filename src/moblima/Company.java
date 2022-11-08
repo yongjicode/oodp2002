@@ -8,6 +8,7 @@ import java.util.Comparator;
 public class Company {
 
     private static ArrayList<Cineplex> cineplexes = new ArrayList<>();
+
     private static ArrayList<Movie> movies = new ArrayList<>();
     private static ArrayList<Booking> bookings = new ArrayList<>();
 
@@ -21,16 +22,24 @@ public class Company {
     }
 
     public static void showUserBookingHistory(String username){
-        System.out.println("User Booking History:");
+    	
+        System.out.println("User Booking History");
         int i = 1;
-        System.out.println("============");
+        boolean hasPastTransaction = false;
+        //System.out.println("=========================================");
         for(Booking booking: bookings){
-            if (booking.getCustomerName() == username){
-                System.out.println("Booking 1:");
+            if (booking.getCustomerName().equals(username)){
+            	hasPastTransaction = true;
+            	System.out.println("=========================================");
+                System.out.println("Booking " + i );
                 booking.printBookingDetails();
+                i++;
                 System.out.println();
             }
 
+        }
+        if (!hasPastTransaction) {
+        	System.out.println("===========No Booking History============");
         }
     }
 
@@ -67,24 +76,34 @@ public class Company {
 
     public static void listMovies(){
         int movieCount = 1;
-        System.out.println("List of Movies:");
-        for(Movie movie: movies){
-            System.out.println("===== Result No. " + movieCount++ + " =====");
+        System.out.println();
+		
+      
+        System.out.println("List of Movies");
+        System.out.println();
+        for(Movie movie: movies){ 
+            System.out.println("============= Result No. " + movieCount++ + " ==============");
             movie.printMovieDetails();
+            System.out.println();
         }
         System.out.println("===== There are " + movies.size() + " movies available! =====");
+        
     }
 
     public static void searchMovieTitle(String keyword){
         int numOfResults = 0;
-        System.out.println("Search Results for " + keyword + ":");
+        System.out.println();
+        System.out.println("Search Results for movie titled " + keyword);
+        System.out.println();
         for(Movie movie: movies){
             if(movie.getTitle().toLowerCase().contains(keyword.toLowerCase())){
-                System.out.println("===== Result No. " + ++numOfResults + " =====");
+                System.out.println("============= Result No. " + ++numOfResults + " ==============");
                 movie.printMovieDetails();
+                System.out.println();
             }
         }
-        System.out.println("===== There are " + numOfResults + " search results! =====");
+        System.out.println("====== There are " + numOfResults + " search results! ======");
+        
     }
 
     public static Movie searchMovieById(int movieId){
@@ -96,13 +115,11 @@ public class Company {
         return null;
     }
 
-    public static Cineplex searchCineplexByLocation(String location){
-        for(Cineplex cineplex: cineplexes){
-            if(cineplex.getLocation().equals(location)){
-                return cineplex;
-            }
+    public static Cineplex getCineplexByIndex(int index){
+        if (index < 0 || index >= cineplexes.size()) {
+        	return null;
         }
-        return null;
+        return cineplexes.get(index);
     }
 
     public void updateMovieStatus(int movieId, String status){
@@ -112,7 +129,7 @@ public class Company {
     public static void showTopRatingMovies(){
         //reversed cause highest should be at top
         Collections.sort(movies, Comparator.comparingInt(Movie::getRating).reversed());
-        System.out.println("Top 5 Movies by Ratings:");
+        System.out.println("Top 5 Movies by Ratings");
         if(movies.size()<=5){
             for(int i=0; i<movies.size(); i++){
                 movies.get(i).printMovieDetails();
@@ -126,7 +143,7 @@ public class Company {
 
     public static void showTopSaleMovies(){
         Collections.sort(movies, Comparator.comparingInt(Movie::getTicketSold).reversed());
-        System.out.println("Top 5 Movies by Ticket Sales:");
+        System.out.println("Top 5 Movies by Ticket Sales");
         if(movies.size()<=5){
             for(int i=0; i<movies.size(); i++){
                 movies.get(i).printMovieDetails();
@@ -136,17 +153,5 @@ public class Company {
                 movies.get(i).printMovieDetails();
             }
         }
-    }
-
-    public static ArrayList<Cineplex> getCineplexes() {
-        return cineplexes;
-    }
-
-    public static ArrayList<Movie> getMovies() {
-        return movies;
-    }
-
-    public static ArrayList<Booking> getBookings() {
-        return bookings;
     }
 }

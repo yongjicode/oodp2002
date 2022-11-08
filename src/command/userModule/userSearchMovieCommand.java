@@ -13,7 +13,9 @@ public class userSearchMovieCommand implements Command {
 	public void execute() {
 		Scanner scanner = new Scanner(System.in);
 		String movieName;
-		System.out.println("Enter movie name:");
+		System.out.println();
+		
+		System.out.print("Please enter the movie name: ");
 		movieName = scanner.nextLine();
 		Company.searchMovieTitle(movieName);
 		// scanner.close();

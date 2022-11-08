@@ -13,10 +13,14 @@ public class showSeatAvailabilityCommand implements Command {
 	public void execute() {
 		Scanner scanner = new Scanner(System.in);
 		cineplex.listShows();
-		System.out.println("Enter show ID:");
+		System.out.println();
+		
+		System.out.print("Enter show ID: ");
 		try {
 			int showId = scanner.nextInt();
 			Show curShow = cineplex.searchShow(showId);
+			//System.out.println();
+			
 			if (curShow == null) {
 				System.out.println("===== Show ID " + showId + " does not exist! =====");
 			} else {

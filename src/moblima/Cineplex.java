@@ -29,6 +29,7 @@ public class Cineplex {
             if(show.getShowId()==showId){
                 shows.remove(show);
                 System.out.println("moblima.Show " + showId + " has been removed.");
+                
                 return;
             }
         }
@@ -38,19 +39,22 @@ public class Cineplex {
         return this.location;
     }
     public void listShows(){
+    	System.out.println();
+    	System.out.println("========== Available Show List ==========");
         for(Show show: shows){
             show.printShowDetails();
         }
+        System.out.println("=========================================");
     }
     public void listCinema(){
         for(Cinema cinema:cinemas){
-            cinema.printCinemaDetails();
+            cinema.printDetails();
         }
     }
 
-    public Cinema searchCinema(String cinemaId){
+    public Cinema searchCinema(int cinemaId){
         for (Cinema cinema: cinemas){
-            if (cinemaId.equals(cinema.getCinemaCode())){
+            if (cinema.getCinemaCode() == cinemaId){
                 return cinema;
             }
         }
@@ -68,5 +72,9 @@ public class Cineplex {
 
     public ArrayList<Show> getShows() {
         return shows;
+    }
+
+    public ArrayList<Cinema> getCinemas() {
+        return cinemas;
     }
 }
