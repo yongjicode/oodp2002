@@ -1,10 +1,9 @@
 package moblima;
 
-import javax.sound.midi.Soundbank;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.time.LocalDateTime;
 
 public class Company {
 
@@ -42,6 +41,16 @@ public class Company {
         }
         if (!hasPastTransaction) {
         	System.out.println("===========No Booking History============");
+        }
+    }
+
+    public static void updateExpiredMovieStatus(){
+        for(Movie movie: movies){
+            if(movie.getExpiryDate().isAfter(LocalDateTime.now())){
+                if(movie.getStatus()!=MovieStatus.END_OF_SHOWING){
+                    movie.setStatus(MovieStatus.END_OF_SHOWING);
+                }
+            }
         }
     }
 
@@ -107,10 +116,10 @@ public class Company {
         System.out.println("====== There are " + numOfResults + " search results! ======");
         
     }
-    public void addPublicHoliday(LocalDateTime date, String name){
-        this.recognisedPublicHolidays.add(new PublicHoliday(date,name));
+    public static void addPublicHoliday(LocalDateTime date, String name){
+        recognisedPublicHolidays.add(new PublicHoliday(date,name));
     }
-    public boolean isPublicHoliday(LocalDateTime date){
+    public static boolean isPublicHoliday(LocalDateTime date){
         for (PublicHoliday publicHoliday : recognisedPublicHolidays){
             if (publicHoliday.getDate().getDayOfYear() == date.getDayOfYear()){
                 return true;
@@ -135,7 +144,7 @@ public class Company {
         return cineplexes.get(index);
     }
 
-    public void updateMovieStatus(int movieId, String status){
+    public void updateMovieStatus(int movieId, MovieStatus status){
         Company.searchMovieById(movieId).setStatus(status);
     }
 

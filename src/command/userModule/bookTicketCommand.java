@@ -1,9 +1,8 @@
 package command.userModule;
-import account.*;
 
+import account.Account;
 import command.Command;
 import moblima.*;
-import account.Account;
 
 import java.util.Scanner;
 public class bookTicketCommand implements Command {
@@ -48,12 +47,23 @@ public class bookTicketCommand implements Command {
 				continue;
 			};
 			
-			booking.addTickets(new MovieTicket(seatId,show,0,age));
+			booking.addTickets(new MovieTicket(seatId, show, checkCustomerAge(age)));
 		}
 		
 		booking.printBookingDetails();
 		Company.addBooking(booking);
 		// scanner.close();
+	}
+
+	public CustomerAge checkCustomerAge(String ageString){
+		int ageInt = Integer.parseInt(ageString);
+		if(ageInt<=12){
+			return CustomerAge.CHILD;
+		} else if(ageInt<=54){
+			return CustomerAge.ADULT;
+		} else{
+			return CustomerAge.SENIOR;
+		}
 	}
 
 }

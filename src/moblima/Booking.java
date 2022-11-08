@@ -8,7 +8,7 @@ public class Booking {
     private String emailAddress;
     private String transactionId;
 
-    private int totalPrice;
+    private double totalPrice;
 
     private ArrayList<MovieTicket> tickets = new ArrayList<>();
 
@@ -37,16 +37,14 @@ public class Booking {
 
     public void printBookingDetails() {
     	System.out.println();
-    	System.out.println("Please check the booking details");
-        System.out.println("_________________________________________");
+    	System.out.println("============ Booking Details ============");
         System.out.println("Customer: " + customerName);
         System.out.println("Mobile Number: " + mobileNumber);
         System.out.println("Email: " + emailAddress);
+        System.out.println("Total Price: $" + totalPrice);
         System.out.println();
-        //System.out.println("Customer: " + customerName);
-        
-        System.out.println("Please check the ticket details");
-        System.out.println("_________________________________________");
+
+        System.out.println("============ Ticket Details =============");
         for(MovieTicket ticket: tickets){
             ticket.printTicketDetails();
         }
@@ -56,7 +54,7 @@ public class Booking {
         return tickets;
     }
 
-    public int getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
