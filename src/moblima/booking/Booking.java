@@ -19,7 +19,7 @@ public class Booking {
         this.customerName = customerName;
         this.mobileNumber = mobileNumber;
         this.emailAddress = emailAddress;
-        // this.transactionId = generateTransactionId();
+//        this.transactionId = generateTransactionId();
         this.totalPrice = 0;
     }
 
