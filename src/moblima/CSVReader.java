@@ -61,6 +61,48 @@ public class CSVReader{
         return accounts;
     }
 
+    public static ArrayList<Cineplex> readCineplexFromCSV(String fileName, ArrayList<Show> arrayName){
+        Path pathToFile = Paths.get(fileName);
+        ArrayList<Cineplex> cineplexes = new ArrayList<>();
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
+
+            int count=0;
+            Cineplex cineplex;
+            String line = br.readLine();
+            while (line != null) {
+
+                // company,cineplexLocation,cinemaCode,classLevel,booking,showId
+                String[] attributes = line.split(",");
+                String company = attributes[0];
+                String cineplexLocation = attributes[1];
+                String cinemaCode = attributes[2];
+                String classLevel = attributes[3];
+                int showId = Integer.parseInt(attributes[5]);
+
+                if (count==0) {
+                    cineplex = new Cineplex(cineplexLocation, cineplexLocation);
+                    Cinema cinema = new Cinema(classLevel);
+                    cineplex.addCinema(cinema);
+                }
+                else if (cineplexLocation != cineplexes.get(count).getLocation()){
+                    count++;
+                    cineplexes.add(cineplex);
+                    cineplex = new Cineplex(cineplexLocation, cineplexLocation);
+                }
+                else{
+                    Cinema cinema = new Cinema(classLevel);
+                    cineplex.addCinema(cinema);
+                }
+
+
+                line = br.readLine();
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        return cineplexes;
+    }
+
     public static ArrayList<Booking> readBookingsFromCSV(String fileName) {
 
         ArrayList<Booking> bookings = new ArrayList<>();
