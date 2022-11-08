@@ -1,15 +1,8 @@
 import command.userModule.*;
 import command.adminModule.*;
-import moblima.Cinema;
-import moblima.Cineplex;
-import moblima.Company;
-import moblima.Movie;
-import moblima.Show;
-import moblima.PublicHoliday;
-import account.Account;
-import account.UserAccount;
-import account.CineplexAdminAccount;
-import account.CompanyAdminAccount;
+import moblima.*;
+
+import account.*;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -26,6 +19,7 @@ public class Application {
 	}
 
 	public void run() {
+		SystemSettings ss = new SystemSettings();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		LocalDateTime dateTime = LocalDateTime.parse("2022-12-25 00:00", formatter);
 		ArrayList<PublicHoliday> publicHolidays = new ArrayList<PublicHoliday>();
@@ -67,7 +61,6 @@ public class Application {
 
 		Company.addCineplex(tempCine);
 		Company.addCineplex(changiCine);
-		Company.add
 		Account[] accounts = new Account[4];
 		accounts[0] = new UserAccount("apple","sauce",0,"123@gmail.com","999","peter");
 		accounts[1] = new CineplexAdminAccount("orange","sauce",1, tempCine,"abc@gmai.com","992","stacey");
@@ -101,7 +94,7 @@ public class Application {
 				System.out.print("Please enter the option number: ");
 				userCh = scanner.nextInt();
 				scanner.nextLine();
-				if (userCh == 10) break;
+				if (userCh == 9) break;
 				switch (userCh) {
 					case 1:
 						new userSearchMovieCommand().execute();
@@ -135,13 +128,34 @@ public class Application {
 						//new reviewMovieCommand().execute();
 						break;
 					case 7:
-						new rankTicketSalesCommand().execute();
-						break;
-					case 8:
-						new rankReviewRatingsCommand().execute();
+						if(ss.getTop5MovieTicketsBool() && ss.getTop5MovieRatingsBool()){
+							showTop5Options();
+							System.out.println("Enter Choice:");
+							userCh = scanner.nextInt();
+							scanner.nextLine();
+							if (userCh != 1  && userCh!=2){
+								System.out.println("Invalid Entry");
+								break;
+							}
+							if (userCh == 1){
+								new rankTicketSalesCommand().execute();
+							}
+							else{
+								new rankReviewRatingsCommand().execute();
+							}
+						}
+						else if (ss.getTop5MovieRatingsBool()){
+							new rankReviewRatingsCommand().execute();
+						}
+						else if (ss.getTop5MovieTicketsBool()){
+							new rankTicketSalesCommand().execute();
+						}
+						else{
+							System.out.println("Data unavailable");
+						}
 						break;
 						
-					case 9:
+					case 8:
 						if(curAcc == null) {
 							while(true){
 								System.out.print("Please enter your Login ID: ");
@@ -186,6 +200,7 @@ public class Application {
 						break;
 					case 2:
 						//to implement
+
 						break;
 
 					case 3:
@@ -223,9 +238,46 @@ public class Application {
 						Company.listMovies();
 						break;
 						
+
 					case 4:
-						//systemConfig
+						ss.printSettings();
+						companySettingsMenu();
+						System.out.println("Enter Choice:");
+
+						userCh = scanner.nextInt();
+						scanner.nextLine();
+						switch(userCh){
+							case 1:
+								new enableTop5TicketSalesCommand(ss).execute();
+								System.out.println("Ranking Top 5 Ticket Sales enabled");
+								break;
+							case 2:
+								new disableTop5TicketSalesCommand(ss).execute();
+								System.out.println("Ranking Top 5 Ticket Sales disabled");
+								break;
+							case 3:
+								new enableTop5ReviewsCommand(ss).execute();
+								System.out.println("Ranking by Top 5 Movie Ratings enabled");
+								break;
+							case 4:
+								new disableTop5ReviewsCommand(ss).execute();
+								System.out.println("Ranking by Top 5 Movie Ratings disabled");
+								break;
+							case 5:
+								break;
+							case 6:
+								break;
+							case 7:
+								break;
+
+							default:
+								System.out.println("Invalid Entry");
+								break;
+						}
+						ss.printSettings();
 						break;
+
+
 
 					case 5:
 						curAcc = null;
@@ -268,12 +320,12 @@ public class Application {
 		System.out.println("6. Review Movie");
 		System.out.println("7. Top 5 Ranking");
 		if (curAccount==null) {
-			System.out.println("9. Login");
+			System.out.println("8. Login");
 		}
 		else {
-			System.out.println("9. Logout");
+			System.out.println("8. Logout");
 		}
-		System.out.println("10. Exit");
+		System.out.println("9. Exit");
 		System.out.println("=========================================");
 	}
 
@@ -311,19 +363,26 @@ public class Application {
 		System.out.println("=========================================");
 	}
 
-	private static void showTop5Options(boolean showTickets, boolean showReviews){
-		if (showTickets == false){
-			System.out.println("Showing Top 5 Movies by Reviews");
-		}
-		else if (showReviews == false){
+	private static void showTop5Options(){
+		System.out.println("=========================================");
+		System.out.println("1. Show Top 5 Movies by Ticket Sales");
+		System.out.println("2. Show Top 5 Movies by Reviews");
+		System.out.println("=========================================");
 
-		}
-		else{
-			System.out.println("1. Show Top 5 Movies by Ticket Sales");
-			System.out.println("2. Show Top 5 Movies by Reviews");
-		}
 	}
 
+	private static void companySettingsMenu(){
+		System.out.println("=========================================");
+		System.out.println("1. Enable Showing Top 5 Movie Based on Ticket Sales");
+		System.out.println("2. Disable Showing Top 5 Movie Based on Ticket Sales");
+		System.out.println("3. Enable Showing Top 5 Movie Based on Ratings");
+		System.out.println("4. Disable Showing Top 5 Movie Based on Ratings");
+		System.out.println("5. Add Public Holidays");
+		System.out.println("6. Remove Public Holidays");
+		System.out.println("7. Adjust ticket base price");
+		System.out.println("=========================================");
+
+	}
 	private static Account login(String loginId, String password, Account[] accounts){
 		for (int i = 0; i < accounts.length; i++){
 			if (accounts[i].getLoginId().equals(loginId)){
