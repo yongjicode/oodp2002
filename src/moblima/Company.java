@@ -171,4 +171,8 @@ public class Company {
     public static ArrayList<Movie> getMovies() {
         return movies;
     }
+
+    public static ArrayList<Booking> getBookings() {
+        return bookings;
+    }
 }

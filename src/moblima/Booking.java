@@ -71,4 +71,5 @@ public class Booking {
     public String getTransactionId() {
         return transactionId;
     }
+
 }
