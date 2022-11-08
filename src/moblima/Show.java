@@ -52,4 +52,8 @@ public class Show {
     public LocalDateTime getShowTime() {
         return showTime;
     }
+
+    public void setShowTime(LocalDateTime showTime) {
+        this.showTime = showTime;
+    }
 }

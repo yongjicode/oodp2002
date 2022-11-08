@@ -102,4 +102,18 @@ public class Movie{
     public String getSynopsis() {
         return synopsis;
     }
+
+    public static MovieStatus convertToMovieStatus(String movieStatus){
+        switch(movieStatus.toLowerCase()){
+        case "coming soon":
+            return MovieStatus.COMING_SOON;
+        case "preview":
+            return MovieStatus.PREVIEW;
+        case "now showing":
+            return MovieStatus.NOW_SHOWING;
+        case "end of showing":
+            return MovieStatus.END_OF_SHOWING;
+        }
+        return null;
+    }
 }

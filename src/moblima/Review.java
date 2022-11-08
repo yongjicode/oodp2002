@@ -3,14 +3,18 @@ package moblima;
 public class Review {
 
     private String ticketId;
+    private int rating;
     private String reviewDescription;
 
     public int getRating() {
         return rating;
     }
 
-    private int rating;
 
+    public Review(int rating, String reviewDescription){
+        this.rating = rating;
+        this.reviewDescription = reviewDescription;
+    }
     public void printReview() {
         System.out.println("Description: " + reviewDescription);
         System.out.println("Rating: " + rating);

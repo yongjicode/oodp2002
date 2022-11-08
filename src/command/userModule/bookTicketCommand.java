@@ -5,6 +5,9 @@ import command.Command;
 import moblima.*;
 
 import java.util.Scanner;
+
+import static moblima.MovieTicket.checkCustomerAge;
+
 public class bookTicketCommand implements Command {
 	private Cineplex cineplex;
 	private Account curAcc;
@@ -55,15 +58,6 @@ public class bookTicketCommand implements Command {
 		// scanner.close();
 	}
 
-	public CustomerAge checkCustomerAge(String ageString){
-		int ageInt = Integer.parseInt(ageString);
-		if(ageInt<=12){
-			return CustomerAge.CHILD;
-		} else if(ageInt<=54){
-			return CustomerAge.ADULT;
-		} else{
-			return CustomerAge.SENIOR;
-		}
-	}
+
 
 }

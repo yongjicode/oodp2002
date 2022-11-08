@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 public class TicketPriceCalculator {
 
-    private static final double basePrice = 6;
+    private static double basePrice = 6;
     CustomerAge customerAge;
     CinemaClass cinemaClass;
     LocalDateTime date;
@@ -14,6 +14,10 @@ public class TicketPriceCalculator {
         this.cinemaClass = cinemaClass;
         this.customerAge = customerAge;
         this.date = date;
+    }
+
+    public void updateBasePrice(double newBasePrice){
+        basePrice = newBasePrice;
     }
 
     public double calculatePrice(){

@@ -12,6 +12,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+import static moblima.Movie.convertToMovieStatus;
+
 
 public class Application {
 	
@@ -62,7 +64,6 @@ public class Application {
 
 		Company.addCineplex(tempCine);
 		Company.addCineplex(changiCine);
-		//Company.add
 		Account[] accounts = new Account[4];
 		accounts[0] = new UserAccount("apple","sauce",0,"123@gmail.com","999","peter");
 		accounts[1] = new CineplexAdminAccount("orange","sauce",1, tempCine,"abc@gmai.com","992","stacey");
@@ -123,7 +124,6 @@ public class Application {
 						else {
 							new bookTicketCommand(cineplex, curAcc).execute();
 						}
-						
 						break;
 					case 5:
 						if (curAcc == null) {
@@ -135,8 +135,16 @@ public class Application {
 						break;
 
 					case 6:
-						//need to implement
-						//new reviewMovieCommand().execute();
+						Scanner input = new Scanner(System.in);
+						System.out.println("Please input the ticket ID: ");
+						int ticketID = input.nextInt();
+						System.out.println("Please input the movie ID you with to rate: ");
+						int movieID = input.nextInt();
+						System.out.println("Please input your rating: ");
+						int reviewRating = input.nextInt();
+						System.out.println("Please input your review: ");
+						String reviewDesc = input.nextLine();
+						new reviewMovieCommand(ticketID, Company.getBookings(), reviewRating, reviewDesc, Company.getMovies(), movieID).execute();
 						break;
 					case 7:
 						new rankTicketSalesCommand().execute();
@@ -189,18 +197,20 @@ public class Application {
 						new createShowCommand(cineplexAdmin.getCineplex()).execute();
 						break;
 					case 2:
-						//to implement
+						Scanner input = new Scanner(System.in);
+						System.out.println("Please enter show ID: ");
+						int id = input.nextInt();
+						System.out.println("Please enter the new DateTime");
+						LocalDateTime newDateTime = LocalDateTime.parse(input.nextLine());
+						new updateShowCommand(cineplexAdmin.getCineplex().getShows(), id, newDateTime).execute();
 						break;
-
 					case 3:
 						new deleteShowCommand(cineplexAdmin.getCineplex()).execute();
 						break;
-						
 					case 4:
 						curAcc = null;
 						System.out.println("Logged out successfully...");
 						break;
-
 					default:
 						System.out.println("Invalid Option. Please try again.");
 				}
@@ -219,7 +229,12 @@ public class Application {
 						Company.listMovies();
 						break;
 					case 2:
-						//to implement editMovieListingCommand
+						Scanner input = new Scanner(System.in);
+						System.out.println("Please enter movie ID: ");
+						int id = input.nextInt();
+						System.out.println("Please enter new status");
+						String newStatus = input.nextLine();
+						new updateMovieListingCommand(Company.getMovies(), id, convertToMovieStatus(newStatus)).execute();
 						break;
 
 					case 3:
