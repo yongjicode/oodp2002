@@ -10,12 +10,12 @@ public class deleteShowCommand implements Command{
     }
     public void execute(){
         Scanner scanner = new Scanner(System.in);
-        cineplex.listShows();
+        cineplex.getShowList().listShows();
         System.out.println();
         System.out.print("Please enter the Show ID to delete: ");
         int showID = scanner.nextInt();
-        this.cineplex.removeShow(showID);
+        this.cineplex.getShowList().removeShow(showID);
         System.out.println("Show successfully deleted...");
-        this.cineplex.listShows();
+        this.cineplex.getShowList().listShows();
     }
 }

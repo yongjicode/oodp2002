@@ -4,27 +4,29 @@ import moblima.movie.Movie;
 import moblima.movie.MovieStatus;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class updateMovieListingCommand implements Command {
     private ArrayList<Movie> movieArray;
-    private int movieID;
-    private MovieStatus status;
-    public updateMovieListingCommand(ArrayList<Movie> movieArray, int movieID, MovieStatus status){
+    public updateMovieListingCommand(ArrayList<Movie> movieArray){
         this.movieArray=movieArray;
-        this.movieID=movieID;
-        this.status=status;
     }
     public void execute(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter movie ID: ");
+        int id = input.nextInt();
+        System.out.println("Please enter new status");
+        String newStatus = input.nextLine();
         Movie movieToBeUpdated = null;
         for (Movie movie: movieArray){
-            if (movie.getMovieId() == movieID){
+            if (movie.getMovieId() == id){
                 movieToBeUpdated = movie;
-                break;
+                movieToBeUpdated.setStatus(Movie.convertToMovieStatus(newStatus));
+                System.out.println("Movie successfully updated...");
+                return;
             }
-            else System.out.println("Movie not found...");
         }
-
-        movieToBeUpdated.setStatus(status);
-        System.out.println("Movie successfully updated...");
+        System.out.println("Movie not found...");
+        return;
     }
 }
