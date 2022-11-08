@@ -21,7 +21,7 @@ import java.time.format.DateTimeFormatter;
 
 public class CSVReader{
 
-    public static ArrayList<Account> readAccountsFromCSV(String fileName) {
+    public static ArrayList<Account> readAccountsFromCSV(String fileName, ArrayList<Cineplex> arrayCineplex) {
 
         ArrayList<Account> accounts = new ArrayList<Account>();
         Path pathToFile = Paths.get(fileName);
@@ -45,8 +45,12 @@ public class CSVReader{
                     accounts.add(userAccount);
                 } else if (privilege == 1) { // cineplex admin
                     // String loginId, String password, int privilege,String mobileNumber, String outlet
-                    CineplexAdminAccount cineplexAdminAccount = new CineplexAdminAccount(loginId, password, privilege, outlet, email, mobileNumber, loginId );
-                    accounts.add(cineplexAdminAccount);
+                    for (Cineplex cineplex: arrayCineplex){
+                        if (cineplex.getLocation() == outlet){
+                            CineplexAdminAccount cineplexAdminAccount = new CineplexAdminAccount(loginId, password, privilege, cineplex, email, mobileNumber, loginId );
+                            accounts.add(cineplexAdminAccount);
+                        }
+                    }
                 } else { // company admin
                     // String loginId, String password, int privilege,String mobileNumber
                     CompanyAdminAccount companyAdminAccount =  new CompanyAdminAccount(loginId, password, privilege, email, mobileNumber, loginId);
@@ -67,15 +71,15 @@ public class CSVReader{
         try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
 
             int count=0;
-            Cineplex cineplex;
+            Cineplex cineplex = null;
             String line = br.readLine();
             while (line != null) {
 
                 // company,cineplexLocation,cinemaCode,classLevel,booking,showId
                 String[] attributes = line.split(",");
-                String company = attributes[0];
+//                String company = attributes[0];
                 String cineplexLocation = attributes[1];
-                String cinemaCode = attributes[2];
+//                String cinemaCode = attributes[2];
                 String classLevel = attributes[3];
                 int showId = Integer.parseInt(attributes[5]);
 
@@ -255,7 +259,7 @@ public class CSVReader{
             }
         }
         System.out.println("No existing movie found!");
-        Movie movie = new Movie();    // no movie found
+        Movie movie = null;    // no movie found
         return movie;
     }
 
