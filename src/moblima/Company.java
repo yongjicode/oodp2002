@@ -4,6 +4,7 @@ import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.time.LocalDateTime;
 
 public class Company {
 
@@ -11,6 +12,7 @@ public class Company {
 
     private static ArrayList<Movie> movies = new ArrayList<>();
     private static ArrayList<Booking> bookings = new ArrayList<>();
+    private static ArrayList<PublicHoliday> recognisedPublicHolidays = new ArrayList<PublicHoliday>();
 
     //function might not be needed
     public static void showBookingHistory(){
@@ -105,7 +107,17 @@ public class Company {
         System.out.println("====== There are " + numOfResults + " search results! ======");
         
     }
-
+    public void addPublicHoliday(LocalDateTime date, String name){
+        this.recognisedPublicHolidays.add(new PublicHoliday(date,name));
+    }
+    public boolean isPublicHoliday(LocalDateTime date){
+        for (PublicHoliday publicHoliday : recognisedPublicHolidays){
+            if (publicHoliday.getDate().getDayOfYear() == date.getDayOfYear()){
+                return true;
+            }
+        }
+        return false;
+    }
     public static Movie searchMovieById(int movieId){
         for(Movie movie: movies){
             if(movie.getMovieId()==movieId){
@@ -114,6 +126,7 @@ public class Company {
         }
         return null;
     }
+
 
     public static Cineplex getCineplexByIndex(int index){
         if (index < 0 || index >= cineplexes.size()) {

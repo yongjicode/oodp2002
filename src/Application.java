@@ -5,6 +5,7 @@ import moblima.Cineplex;
 import moblima.Company;
 import moblima.Movie;
 import moblima.Show;
+import moblima.PublicHoliday;
 import account.Account;
 import account.UserAccount;
 import account.CineplexAdminAccount;
@@ -12,7 +13,9 @@ import account.CompanyAdminAccount;
 
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 
 public class Application {
@@ -22,9 +25,19 @@ public class Application {
 		new Application().run();
 	}
 
-
-
 	public void run() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		LocalDateTime dateTime = LocalDateTime.parse("2022-12-25 00:00", formatter);
+		ArrayList<PublicHoliday> publicHolidays = new ArrayList<PublicHoliday>();
+		publicHolidays.add(new PublicHoliday( LocalDateTime.parse("2022-12-25 00:00", formatter), "Christmas"));
+		publicHolidays.add(new PublicHoliday( LocalDateTime.parse("2022-10-31 00:00", formatter), "Halloween"));
+
+		for (int i =0; i < publicHolidays.size(); i++){
+			System.out.println(publicHolidays.get(i).getDate().getDayOfYear());
+			System.out.println(publicHolidays.get(i).getName());
+		}
+
+
 		Movie a = new Movie("Lion King","b","c","d","e");
 		Movie b = new Movie("Toy Story","y","x","w","v");
 		Company.addMovie(a);
@@ -54,6 +67,7 @@ public class Application {
 
 		Company.addCineplex(tempCine);
 		Company.addCineplex(changiCine);
+		Company.add
 		Account[] accounts = new Account[4];
 		accounts[0] = new UserAccount("apple","sauce",0,"123@gmail.com","999","peter");
 		accounts[1] = new CineplexAdminAccount("orange","sauce",1, tempCine,"abc@gmai.com","992","stacey");
@@ -252,8 +266,7 @@ public class Application {
 		System.out.println("4. Book Tickets");
 		System.out.println("5. View Booking History");
 		System.out.println("6. Review Movie");
-		System.out.println("7. Top 5 ranking by ticket sales");
-		System.out.println("8. Top 5 ranking by review ratings");
+		System.out.println("7. Top 5 Ranking");
 		if (curAccount==null) {
 			System.out.println("9. Login");
 		}
@@ -296,6 +309,19 @@ public class Application {
 		System.out.println("5. Logout");
 		System.out.println("6. Exit");
 		System.out.println("=========================================");
+	}
+
+	private static void showTop5Options(boolean showTickets, boolean showReviews){
+		if (showTickets == false){
+			System.out.println("Showing Top 5 Movies by Reviews");
+		}
+		else if (showReviews == false){
+
+		}
+		else{
+			System.out.println("1. Show Top 5 Movies by Ticket Sales");
+			System.out.println("2. Show Top 5 Movies by Reviews");
+		}
 	}
 
 	private static Account login(String loginId, String password, Account[] accounts){
