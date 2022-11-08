@@ -17,4 +17,8 @@ public class PublicHoliday {
     public LocalDateTime getDate(){
         return date;
     }
+
+    public String toStr(){
+        return name +" : "+ date.getDayOfWeek() + "/" + date.getDayOfMonth() + "/" + date.getDayOfYear();
+    }
 }

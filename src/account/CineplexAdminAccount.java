@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class CineplexAdminAccount extends Account{
     private Cineplex cineplex;
     public CineplexAdminAccount(String loginId, String password, int privilege, Cineplex cineplex, String emailAddress, String phoneNo, String name){

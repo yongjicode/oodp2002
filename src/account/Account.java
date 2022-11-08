@@ -1,6 +1,6 @@
 package account;
 
-public abstract class Account {
+public abstract class Account{
 	private String email;
 	private String name;
 	private String phoneNo;
