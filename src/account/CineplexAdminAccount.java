@@ -1,5 +1,10 @@
 package account;
 import moblima.Cineplex;
+import moblima.Movie;
+import moblima.Show;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CineplexAdminAccount extends Account{
@@ -21,5 +26,19 @@ public class CineplexAdminAccount extends Account{
             return this.getPrivilege();
         }
         return -1;
+    }
+
+    public int updateShow(ArrayList<Show> showArray, int showID,  LocalDateTime newDateTime){
+        Show showToBeUpdated;
+        for (Show show: showArray){
+            if (show.getShowId() == showID){
+                showToBeUpdated = show;
+                break;
+            }
+            else return -1;
+        }
+
+        showToBeUpdated.setShowTime(newDateTime);
+        return 1;
     }
 }
