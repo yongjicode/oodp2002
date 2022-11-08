@@ -225,11 +225,6 @@ public class Application {
 						new createShowCommand(cineplexAdmin.getCineplex()).execute();
 						break;
 					case 2:
-						Scanner input = new Scanner(System.in);
-						System.out.println("Please enter show ID: ");
-						int id = input.nextInt();
-						System.out.println("Please enter the new DateTime");
-						LocalDateTime newDateTime = LocalDateTime.parse(input.nextLine());
 						new updateShowCommand(cineplexAdmin.getCineplex().getShowList().getShows()).execute();
 						break;
 					case 3:
@@ -257,11 +252,6 @@ public class Application {
 						SilverVillage.getMovieList().listMovies();
 						break;
 					case 2:
-						Scanner input = new Scanner(System.in);
-						System.out.println("Please enter movie ID: ");
-						int id = input.nextInt();
-						System.out.println("Please enter new status");
-						String newStatus = input.nextLine();
 						new updateMovieListingCommand(SilverVillage.getMovieList().getMovies()).execute();
 						break;
 
