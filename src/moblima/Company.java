@@ -12,7 +12,7 @@ public class Company {
 
     private static ArrayList<Movie> movies = new ArrayList<>();
     private static ArrayList<Booking> bookings = new ArrayList<>();
-    private static ArrayList<PublicHoliday> recognisedPublicHolidays = new ArrayList<PublicHoliday>();
+    private static ArrayList<PublicHoliday> recognisedPublicHolidays = new ArrayList<>();
 
     //function might not be needed
     public static void showBookingHistory(){
