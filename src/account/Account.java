@@ -6,10 +6,10 @@ public abstract class Account{
 	private String phoneNo;
     private String loginId;
     private String password;
-    private int privilege;
+    private Privilege privilege;
     //0 for user, 1 for cineplexAdmin, 2 for companyAdmin
 
-    public Account(String loginId, String password, int privilege, String emailAddress, String phoneNo, String name){
+    public Account(String loginId, String password, Privilege privilege, String emailAddress, String phoneNo, String name){
 
         this.loginId = loginId;
         this.password = password;
@@ -27,7 +27,7 @@ public abstract class Account{
         return password;
     }
 
-    public int getPrivilege(){
+    public Privilege getPrivilege(){
         return privilege;
     }
     
@@ -41,5 +41,5 @@ public abstract class Account{
     public String getPhoneNo(){
     	return phoneNo;
     }
-    public abstract int login(String loginId, String password);
+    public abstract Privilege login(String loginId, String password);
 }

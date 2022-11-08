@@ -35,19 +35,33 @@ public class MovieList {
         System.out.println("moblima.movie.Movie " + movieId + " does not exist.");
     }
 
-    public void listMovies(){
+    public void listMovies(int privilege){
         int movieCount = 1;
         System.out.println();
-
-
-        System.out.println("List of Movies");
-        System.out.println();
-        for(Movie movie: movies){
-            System.out.println("============= Result No. " + movieCount++ + " ==============");
-            movie.printMovieDetails();
+        // For User
+        if (privilege == 0){
+            System.out.println("List of Movies");
             System.out.println();
+            for(Movie movie: movies){
+                if (movie.getStatus() != MovieStatus.END_OF_SHOWING){
+                    System.out.println("============= Result No. " + movieCount++ + " ==============");
+                    movie.printMovieDetails();
+                    System.out.println();
+                }
+            }
+            System.out.println("===== There are " + movies.size() + " movies available! =====");
         }
-        System.out.println("===== There are " + movies.size() + " movies available! =====");
+        // For Admin
+        else if (privilege != 0){
+            System.out.println("List of Movies");
+            System.out.println();
+            for(Movie movie: movies){
+                System.out.println("============= Result No. " + movieCount++ + " ==============");
+                movie.printMovieDetails();
+                System.out.println();
+            }
+            System.out.println("===== There are " + movies.size() + " movies available! =====");
+        }
     }
 
     public void searchMovieTitle(String keyword){

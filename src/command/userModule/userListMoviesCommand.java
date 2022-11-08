@@ -8,6 +8,6 @@ public class userListMoviesCommand implements Command {
 	}
 	
 	public void execute() {
-		SilverVillage.getMovieList().listMovies();
+		SilverVillage.getMovieList().listMovies(0);
 	}
 }
