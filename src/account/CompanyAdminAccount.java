@@ -1,4 +1,7 @@
 package account;
+import moblima.Movie;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CompanyAdminAccount extends Account{
@@ -16,5 +19,19 @@ public class CompanyAdminAccount extends Account{
             return this.getPrivilege();
         }
         return -1;
+    }
+
+    public int updateMovie(ArrayList<Movie> movieArray, int movieID, String status){
+        Movie movieToBeUpdated;
+        for (Movie movie: movieArray){
+            if (movie.getMovieId() == movieID){
+                movieToBeUpdated = movie;
+                break;
+            }
+            else return -1;
+        }
+
+        movieToBeUpdated.setStatus(status);
+        return 1;
     }
 }
