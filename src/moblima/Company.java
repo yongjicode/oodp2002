@@ -11,7 +11,7 @@ public class Company {
 
     private static ArrayList<Movie> movies = new ArrayList<>();
     private static ArrayList<Booking> bookings = new ArrayList<>();
-    private static ArrayList<PublicHoliday> recognisedPublicHolidays = new ArrayList<PublicHoliday>();
+    private static ArrayList<PublicHoliday> recognisedPublicHolidays = new ArrayList<>();
 
     //function might not be needed
     public static void showBookingHistory(){
@@ -175,5 +175,13 @@ public class Company {
                 movies.get(i).printMovieDetails();
             }
         }
+    }
+
+    public static ArrayList<Movie> getMovies() {
+        return movies;
+    }
+
+    public static ArrayList<Booking> getBookings() {
+        return bookings;
     }
 }

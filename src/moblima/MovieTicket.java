@@ -3,7 +3,8 @@ package moblima;
 public class MovieTicket {
 
     private String seatId;
-
+    private static int staticTicketID=1;
+    private int ticketID;
     private Show show;
     private double price;
     private CustomerAge age;
@@ -13,6 +14,7 @@ public class MovieTicket {
         this.show = show;
         this.age = age;
         this.price = calculatePrice(show, age);
+        this.ticketID = staticTicketID++;
     }
 
     public void printTicketDetails(){
@@ -24,9 +26,7 @@ public class MovieTicket {
         System.out.println("_________________________________________");
         //System.out.println();
     }
-    
-    
-    
+
     public Show getShow() {
         return show;
     }
@@ -46,5 +46,19 @@ public class MovieTicket {
 
     public double getPrice() {
         return price;
+    }
+    public int getTicketID() {
+        return ticketID;
+    }
+
+    public static CustomerAge checkCustomerAge(String ageString){
+        int ageInt = Integer.parseInt(ageString);
+        if(ageInt<=12){
+            return CustomerAge.CHILD;
+        } else if(ageInt<=54){
+            return CustomerAge.ADULT;
+        } else{
+            return CustomerAge.SENIOR;
+        }
     }
 }
