@@ -36,19 +36,20 @@ public class CSVReader{
                 String loginId = attributes[1];
                 String password = attributes[2];
                 String mobileNumber = attributes[3];
-                String outlet = attributes[4];
+                String email = attributes[4];
+                String outlet = attributes[5];
 
                 if (privilege == 0) { // user
                     // String loginId, String password, int privilege
-                    UserAccount userAccount = new UserAccount(loginId, password, privilege);
+                    UserAccount userAccount = new UserAccount(loginId, password, privilege, email, mobileNumber, loginId);
                     accounts.add(userAccount);
                 } else if (privilege == 1) { // cineplex admin
                     // String loginId, String password, int privilege,String mobileNumber, String outlet
-                    CineplexAdminAccount cineplexAdminAccount = new CineplexAdminAccount(loginId, password, privilege, mobileNumber, outlet);
+                    CineplexAdminAccount cineplexAdminAccount = new CineplexAdminAccount(loginId, password, privilege, outlet, email, mobileNumber, loginId );
                     accounts.add(cineplexAdminAccount);
                 } else { // company admin
                     // String loginId, String password, int privilege,String mobileNumber
-                    CompanyAdminAccount companyAdminAccount =  new CompanyAdminAccount(loginId, password, privilege, mobileNumber);
+                    CompanyAdminAccount companyAdminAccount =  new CompanyAdminAccount(loginId, password, privilege, email, mobileNumber, loginId);
                     accounts.add(companyAdminAccount);
                 }
 
