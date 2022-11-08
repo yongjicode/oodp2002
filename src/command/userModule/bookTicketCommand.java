@@ -1,11 +1,13 @@
 package command.userModule;
-import account.*;
 
+import account.Account;
 import command.Command;
 import moblima.*;
-import account.Account;
 
 import java.util.Scanner;
+
+import static moblima.MovieTicket.checkCustomerAge;
+
 public class bookTicketCommand implements Command {
 	private Cineplex cineplex;
 	private Account curAcc;
@@ -48,12 +50,14 @@ public class bookTicketCommand implements Command {
 				continue;
 			};
 			
-			booking.addTickets(new MovieTicket(seatId,show,0,age));
+			booking.addTickets(new MovieTicket(seatId, show, checkCustomerAge(age)));
 		}
 		
 		booking.printBookingDetails();
 		Company.addBooking(booking);
 		// scanner.close();
 	}
+
+
 
 }

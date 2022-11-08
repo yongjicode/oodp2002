@@ -6,19 +6,18 @@ import account.CompanyAdminAccount;
 import account.UserAccount;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
+import static moblima.Cinema.convertToCinemaClass;
+import static moblima.Movie.convertToMovieStatus;
+import static moblima.MovieTicket.checkCustomerAge;
 public class CSVReader{
 
     public static ArrayList<Account> readAccountsFromCSV(String fileName, ArrayList<Cineplex> arrayCineplex) {
@@ -85,7 +84,7 @@ public class CSVReader{
 
                 if (count==0) {
                     cineplex = new Cineplex(cineplexLocation, cineplexLocation);
-                    Cinema cinema = new Cinema(classLevel);
+                    Cinema cinema = new Cinema(convertToCinemaClass(classLevel));
                     cineplex.addCinema(cinema);
                 }
                 else if (cineplexLocation != cineplexes.get(count).getLocation()){
@@ -94,7 +93,7 @@ public class CSVReader{
                     cineplex = new Cineplex(cineplexLocation, cineplexLocation);
                 }
                 else{
-                    Cinema cinema = new Cinema(classLevel);
+                    Cinema cinema = new Cinema(convertToCinemaClass(classLevel));
                     cineplex.addCinema(cinema);
                 }
                 line = br.readLine();
@@ -138,7 +137,7 @@ public class CSVReader{
     }
 
     public static ArrayList<Movie> readMoviesFromCSV(String fileName) {
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         ArrayList<Movie> movies = new ArrayList<>();
         Path pathToFile = Paths.get(fileName);
         try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
@@ -153,8 +152,10 @@ public class CSVReader{
                 String synopsis = attributes[4];
                 String director = attributes[5];
                 String cast = attributes[6];
-
-                Movie movie = new Movie(title, status, synopsis, director, cast);
+                // TODO add expiry date attribute
+                // String expiryDate = attributes[7];
+                String expiryDate = "2022-12-25 00:00";
+                Movie movie = new Movie(title, convertToMovieStatus(status), synopsis, director, cast, LocalDateTime.parse(expiryDate, formatter));
                 movies.add(movie);
                 line = br.readLine();
             }
@@ -226,7 +227,7 @@ public class CSVReader{
                 String classLevel = attributes[3];
                 //int showId = Integer.parseInt(attributes[5]);
 
-                Cinema cinema = new Cinema(classLevel);
+                Cinema cinema = new Cinema(convertToCinemaClass(classLevel));
                 cinemas.add(cinema);
                 line = br.readLine();
             }
@@ -328,7 +329,7 @@ public class CSVReader{
                 Show show = filterShowFromCSV("src\\database\\showDB.csv", showId);
 
                 // String seatId, Show show, double price, String age
-                MovieTicket movieTicket = new MovieTicket(seatId, show, price, age);
+                MovieTicket movieTicket = new MovieTicket(seatId, show, checkCustomerAge(age));
                 movieTickets.add(movieTicket);
                 line = br.readLine();
             }

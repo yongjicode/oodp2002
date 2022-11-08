@@ -1,12 +1,11 @@
 package command.userModule;
-import java.util.Scanner;
 
 import command.Command;
-import moblima.Booking;
-import moblima.Cineplex;
-import moblima.Company;
-import moblima.MovieTicket;
-import moblima.Show;
+import moblima.*;
+
+import java.util.Scanner;
+
+import static moblima.MovieTicket.checkCustomerAge;
 
 public class guestBookTicketCommand implements Command{
 	
@@ -56,11 +55,12 @@ public class guestBookTicketCommand implements Command{
 				i-=1;
 				continue;
 			};
-			booking.addTickets(new MovieTicket(seatId,show,0,age));
+			booking.addTickets(new MovieTicket(seatId,show,checkCustomerAge(age)));
 		}
 		
 		booking.printBookingDetails();
 		Company.addBooking(booking);
 	}
+
 
 }

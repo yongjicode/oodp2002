@@ -1,14 +1,12 @@
 package moblima;
 
-import java.util.ArrayList;
-
 public class Cinema {
 
-    private static int currentCode=100;
+    private static int currentCode=1;
     private int cinemaCode;
-    private String classLevel; // enum
+    private CinemaClass classLevel; // enum
 
-    public Cinema(String classLevel) {
+    public Cinema(CinemaClass classLevel) {
         this.cinemaCode = currentCode++;
         this.classLevel = classLevel;
     }
@@ -18,9 +16,21 @@ public class Cinema {
         System.out.println("Class Level: " + classLevel);
         System.out.println();
     }
-    public String getClassLevel(){return classLevel;}
+    public CinemaClass getClassLevel(){return classLevel;}
     public int getCinemaCode(){
         return cinemaCode;
+    }
+
+    public static CinemaClass convertToCinemaClass(String classLevel){
+        switch(classLevel.toLowerCase()){
+        case "normal":
+            return CinemaClass.NORMAL;
+        case "gold":
+            return CinemaClass.GOLD;
+        case "platinum":
+            return CinemaClass.PLATINUM;
+        }
+        return null;
     }
 
 }

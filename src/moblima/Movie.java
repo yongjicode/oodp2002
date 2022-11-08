@@ -1,7 +1,6 @@
 package moblima;
 
-import moblima.Review;
-import moblima.ReviewList;
+import java.time.LocalDateTime;
 
 public class Movie{
 
@@ -13,28 +12,30 @@ public class Movie{
 
     private int movieId;
     private String title;
-
-    private String status; //should be enum
     private String synopsis;
     private String director;
     private String cast; //need change to list of casts
     private ReviewList reviews;
+    private MovieStatus status;
+    private LocalDateTime expiryDate;
 
     private int ticketSold;
 
     private int rating;
 
     public Movie(String title,
-                 String status,
+                 MovieStatus status,
                  String synopsis,
                  String director,
-                 String cast) {
+                 String cast,
+                 LocalDateTime expiryDate) {
         this.movieId = currentId++;
         this.title = title;
         this.status = status;
         this.synopsis = synopsis;
         this.director = director;
         this.cast = cast;
+        this.expiryDate = expiryDate;
         this.reviews = new ReviewList();
         this.ticketSold = 0;
         this.rating = 0;
@@ -44,7 +45,7 @@ public class Movie{
         return title;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(MovieStatus status) {
         this.status = status;
     }
 
@@ -78,6 +79,10 @@ public class Movie{
         return ticketSold;
     }
 
+    public LocalDateTime getExpiryDate() {
+        return expiryDate;
+    }
+
     public String getCast() {
         return cast;
     }
@@ -86,7 +91,7 @@ public class Movie{
         return director;
     }
 
-    public String getStatus() {
+    public MovieStatus getStatus() {
         return status;
     }
 
@@ -96,5 +101,19 @@ public class Movie{
 
     public String getSynopsis() {
         return synopsis;
+    }
+
+    public static MovieStatus convertToMovieStatus(String movieStatus){
+        switch(movieStatus.toLowerCase()){
+        case "coming soon":
+            return MovieStatus.COMING_SOON;
+        case "preview":
+            return MovieStatus.PREVIEW;
+        case "now showing":
+            return MovieStatus.NOW_SHOWING;
+        case "end of showing":
+            return MovieStatus.END_OF_SHOWING;
+        }
+        return null;
     }
 }

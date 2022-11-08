@@ -1,14 +1,15 @@
 package command.adminModule;
 import command.Command;
 import moblima.Movie;
+import moblima.MovieStatus;
 
 import java.util.ArrayList;
 
 public class updateMovieListingCommand implements Command {
     private ArrayList<Movie> movieArray;
     private int movieID;
-    private String status;
-    public updateMovieListingCommand(ArrayList<Movie> movieArray, int movieID, String status){
+    private MovieStatus status;
+    public updateMovieListingCommand(ArrayList<Movie> movieArray, int movieID, MovieStatus status){
         this.movieArray=movieArray;
         this.movieID=movieID;
         this.status=status;
