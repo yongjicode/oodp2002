@@ -129,8 +129,14 @@ public class Application {
 						break;
 
 					case 6:
-						//need to implement
-						//new reviewMovieCommand().execute();
+						Scanner input = new Scanner(System.in);
+						System.out.println("Please input the ticket ID");
+						int ticketID = input.nextInt();
+						System.out.println("Please input your rating");
+						int reviewRating = input.nextInt();
+						System.out.println("Please input your review");
+						String reviewDesc = input.nextLine();
+						new reviewMovieCommand()
 						break;
 					case 7:
 						new rankTicketSalesCommand().execute();

@@ -20,7 +20,7 @@ public class updateMovieListingCommand implements Command {
                 movieToBeUpdated = movie;
                 break;
             }
-            else System.out.println("Movie not found...upda");
+            else System.out.println("Movie not found...");
         }
 
         movieToBeUpdated.setStatus(status);
