@@ -129,14 +129,16 @@ public class Application {
 						break;
 
 					case 6:
-//						Scanner input = new Scanner(System.in);
-//						System.out.println("Please input the ticket ID");
-//						int ticketID = input.nextInt();
-//						System.out.println("Please input your rating");
-//						int reviewRating = input.nextInt();
-//						System.out.println("Please input your review");
-//						String reviewDesc = input.nextLine();
-//						new reviewMovieCommand(ticketID, Company.getBookings().)
+						Scanner input = new Scanner(System.in);
+						System.out.println("Please input the ticket ID: ");
+						int ticketID = input.nextInt();
+						System.out.println("Please input the movie ID you with to rate: ");
+						int movieID = input.nextInt();
+						System.out.println("Please input your rating: ");
+						int reviewRating = input.nextInt();
+						System.out.println("Please input your review: ");
+						String reviewDesc = input.nextLine();
+						new reviewMovieCommand(ticketID, Company.getBookings(), reviewRating, reviewDesc, Company.getMovies(), movieID).execute();
 						break;
 					case 7:
 						new rankTicketSalesCommand().execute();
