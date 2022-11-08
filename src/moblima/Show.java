@@ -1,9 +1,5 @@
 package moblima;
 
-import moblima.Cinema;
-import moblima.Movie;
-import moblima.Seating;
-
 import java.time.LocalDateTime;
 
 public class Show {
@@ -42,9 +38,9 @@ public class Show {
     public void printShowDetails(){
     	System.out.println();
         System.out.println("ShowId: " + showId);
-        System.out.println("moblima.Movie: " + movie.getTitle());
-        System.out.println("moblima.Cinema: " + cinema.getCinemaCode());
-        System.out.println("moblima.Cinema Class: " + cinema.getClassLevel());
+        System.out.println("Movie Title: " + movie.getTitle());
+        System.out.println("Cinema Hall: " + cinema.getCinemaCode());
+        System.out.println("Cinema Class: " + cinema.getClassLevel());
         System.out.println("Day & Time: " + showTime);
     }
 

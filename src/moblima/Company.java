@@ -44,6 +44,16 @@ public class Company {
         }
     }
 
+    public static void updateExpiredMovieStatus(){
+        for(Movie movie: movies){
+            if(movie.getExpiryDate().isAfter(LocalDateTime.now())){
+                if(movie.getStatus()!=MovieStatus.END_OF_SHOWING){
+                    movie.setStatus(MovieStatus.END_OF_SHOWING);
+                }
+            }
+        }
+    }
+
     public static void addBooking(Booking booking){
         bookings.add(booking);
     }
@@ -134,7 +144,7 @@ public class Company {
         return cineplexes.get(index);
     }
 
-    public void updateMovieStatus(int movieId, String status){
+    public void updateMovieStatus(int movieId, MovieStatus status){
         Company.searchMovieById(movieId).setStatus(status);
     }
 

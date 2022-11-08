@@ -18,7 +18,7 @@ public class MovieTicket {
     public void printTicketDetails(){
         
         System.out.println("Seat: " + seatId);
-        System.out.println("Price: " + price);
+        System.out.println("Price: $" + price);
         System.out.println("Type: " + age);
         show.printShowDetails();
         System.out.println("_________________________________________");

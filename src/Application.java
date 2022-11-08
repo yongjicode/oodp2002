@@ -33,8 +33,8 @@ public class Application {
 		}
 
 
-		Movie a = new Movie("Lion King","b","c","d","e");
-		Movie b = new Movie("Toy Story","y","x","w","v");
+		Movie a = new Movie("Lion King",MovieStatus.PREVIEW,"c","d","e", LocalDateTime.parse("2022-12-29 12:00", formatter));
+		Movie b = new Movie("Toy Story",MovieStatus.NOW_SHOWING,"x","w","v", LocalDateTime.parse("2022-12-26 12:00", formatter));
 		Company.addMovie(a);
 		Company.addMovie(b);
 		Cineplex tempCine = new Cineplex("hello cinema","bedok");
@@ -68,6 +68,15 @@ public class Application {
 		accounts[1] = new CineplexAdminAccount("orange","sauce",1, tempCine,"abc@gmai.com","992","stacey");
 		accounts[2] = new CineplexAdminAccount("banana","sauce",1,changiCine,"999@gmai.com","992","harold");
 		accounts[3] = new CompanyAdminAccount("durian","sauce",2,"999@gmai.com","992","june");
+		// end of test cases
+
+		// load in CSV
+
+		// end of load in CSV
+
+		// Auto update expired movie status
+		Company.updateExpiredMovieStatus();
+
 		Scanner scanner = new Scanner(System.in);
 		int userCh = 0;
 		int privilege;
@@ -246,15 +255,17 @@ public class Application {
 	private static void userMenu(Account curAccount, String loc) {
 		System.out.println();
 		System.out.println("=========================================");
+
 		if (curAccount != null) {
-			System.out.println("Currently logged in as: " + curAccount.getLoginId());
+			System.out.println("Logged in as User: " + curAccount.getLoginId());
 		}
 		else {
-			System.out.println("Currently viewing as guest");
+			System.out.println("Viewing as: Guest");
 		}
 		if (loc.length() != 0) {
-			System.out.println("Currently Viewing branch:"+ loc);
+			System.out.println("Cineplex Branch: "+ loc);
 		}
+		System.out.println("============== User Menu ================");
 		System.out.println("1. Search Movie");
 		System.out.println("2. List Movies");
 		System.out.println("3. View Seat Availability");
@@ -276,11 +287,12 @@ public class Application {
 		System.out.println();
 		System.out.println("=========================================");
 		if (curAccount != null) {
-			System.out.println("Currently logged in as cineplex admin: " + curAccount.getLoginId());
+			System.out.println("Logged in as Cineplex Admin: " + curAccount.getLoginId());
 		}
 		if (location.length() != 0) {
-			System.out.println("Currently Viewing branch:"+ location);
+			System.out.println("Cineplex Branch: "+ location);
 		}
+		System.out.println("========== Cineplex Admin Menu ==========");
 		System.out.println("1. Create cinema showtimes");
 		System.out.println("2. Update cinema showtimes");
 		System.out.println("3. Remove cinema showtimes");
@@ -292,11 +304,11 @@ public class Application {
 
 	private static void companyAdminMenu(Account curAccount){
 		System.out.println();
-		System.out.println("========== Company Admin Menu ===========");
+		System.out.println("=========================================");
 		if (curAccount != null) {
-			System.out.println("Currently logged in as company admin: " + curAccount.getLoginId());
+			System.out.println("Logged in as Company Admin: " + curAccount.getLoginId());
 		}
-
+		System.out.println("========== Company Admin Menu ===========");
 		System.out.println("1. Create movie listing");
 		System.out.println("2. Update movie listing");
 		System.out.println("3. Remove movie listing");

@@ -2,7 +2,7 @@ package moblima;
 
 public class Cinema {
 
-    private static int currentCode=100;
+    private static int currentCode=1;
     private int cinemaCode;
     private CinemaClass classLevel; // enum
 

@@ -1,5 +1,6 @@
 package moblima;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
 public class TicketPriceCalculator {
@@ -44,8 +45,8 @@ public class TicketPriceCalculator {
             break;
         }
 
-        // Public Holiday Surcharge of $3
-        if(Company.isPublicHoliday(date)){
+        // Public Holiday and Weekend Surcharge of $3
+        if(Company.isPublicHoliday(date) || date.getDayOfWeek() == DayOfWeek.SATURDAY || date.getDayOfWeek() == DayOfWeek.SUNDAY){
             additionalCharge += 3.0;
         }
 
