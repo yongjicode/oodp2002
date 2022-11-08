@@ -8,7 +8,7 @@ public class updateMovieListingCommand implements Command {
     private ArrayList<Movie> movieArray;
     private int movieID;
     private String status;
-    updateMovieListingCommand(ArrayList<Movie> movieArray, int movieID, String status){
+    public updateMovieListingCommand(ArrayList<Movie> movieArray, int movieID, String status){
         this.movieArray=movieArray;
         this.movieID=movieID;
         this.status=status;

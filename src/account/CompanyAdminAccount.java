@@ -1,11 +1,11 @@
 package account;
+import moblima.Cineplex;
 import moblima.Movie;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CompanyAdminAccount extends Account{
-
     public CompanyAdminAccount(String loginId, String password, int privilege,String emailAddress, String phoneNo, String name){
         super(loginId, password,privilege,emailAddress,phoneNo,name);
     

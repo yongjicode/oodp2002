@@ -67,7 +67,6 @@ public class Application {
 
 		Company.addCineplex(tempCine);
 		Company.addCineplex(changiCine);
-		Company.add
 		Account[] accounts = new Account[4];
 		accounts[0] = new UserAccount("apple","sauce",0,"123@gmail.com","999","peter");
 		accounts[1] = new CineplexAdminAccount("orange","sauce",1, tempCine,"abc@gmai.com","992","stacey");
@@ -119,7 +118,6 @@ public class Application {
 						else {
 							new bookTicketCommand(cineplex, curAcc).execute();
 						}
-						
 						break;
 					case 5:
 						if (curAcc == null) {
@@ -185,18 +183,20 @@ public class Application {
 						new createShowCommand(cineplexAdmin.getCineplex()).execute();
 						break;
 					case 2:
-						//to implement
+						Scanner input = new Scanner(System.in);
+						System.out.println("Please enter show ID: ");
+						int id = input.nextInt();
+						System.out.println("Please enter the new DateTime");
+						LocalDateTime newDateTime = LocalDateTime.parse(input.nextLine());
+						new updateShowCommand(cineplexAdmin.getCineplex().getShows(), id, newDateTime).execute();
 						break;
-
 					case 3:
 						new deleteShowCommand(cineplexAdmin.getCineplex()).execute();
 						break;
-						
 					case 4:
 						curAcc = null;
 						System.out.println("Logged out successfully...");
 						break;
-
 					default:
 						System.out.println("Invalid Option. Please try again.");
 				}
@@ -215,7 +215,12 @@ public class Application {
 						Company.listMovies();
 						break;
 					case 2:
-						//to implement editMovieListingCommand
+						Scanner input = new Scanner(System.in);
+						System.out.println("Please enter movie ID: ");
+						int id = input.nextInt();
+						System.out.println("Please enter new status");
+						String newStatus = input.nextLine();
+						new updateMovieListingCommand(Company.getMovies(), id, newStatus).execute();
 						break;
 
 					case 3:
