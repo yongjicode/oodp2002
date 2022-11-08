@@ -93,9 +93,12 @@ public class CSVReader{
                     Cinema cinema = new Cinema(classLevel);
                     cineplex.addCinema(cinema);
                 }
-
-
                 line = br.readLine();
+            }
+            for (Cineplex cine: cineplexes){
+                for (Show show: arrayName){
+                    cine.addShow(show);
+                }
             }
         } catch (IOException ioe) {
             ioe.printStackTrace();
