@@ -249,7 +249,7 @@ public class Application {
 				switch (userCh){
 					case 1:
 						new createMovieListingCommand().execute();
-						SilverVillage.getMovieList().listMovies();
+						SilverVillage.getMovieList().listMovies(2);
 						break;
 					case 2:
 						new updateMovieListingCommand(SilverVillage.getMovieList().getMovies()).execute();
@@ -257,7 +257,7 @@ public class Application {
 
 					case 3:
 						new deleteMovieListingCommand().execute();
-						SilverVillage.getMovieList().listMovies();
+						SilverVillage.getMovieList().listMovies(2);
 						break;
 						
 					case 4:
