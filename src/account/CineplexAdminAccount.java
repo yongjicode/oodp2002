@@ -28,17 +28,4 @@ public class CineplexAdminAccount extends Account{
         return -1;
     }
 
-    public int updateShow(ArrayList<Show> showArray, int showID,  LocalDateTime newDateTime){
-        Show showToBeUpdated;
-        for (Show show: showArray){
-            if (show.getShowId() == showID){
-                showToBeUpdated = show;
-                break;
-            }
-            else return -1;
-        }
-
-        showToBeUpdated.setShowTime(newDateTime);
-        return 1;
-    }
 }

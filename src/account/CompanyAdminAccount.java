@@ -20,18 +20,4 @@ public class CompanyAdminAccount extends Account{
         }
         return -1;
     }
-
-    public int updateMovie(ArrayList<Movie> movieArray, int movieID, String status){
-        Movie movieToBeUpdated;
-        for (Movie movie: movieArray){
-            if (movie.getMovieId() == movieID){
-                movieToBeUpdated = movie;
-                break;
-            }
-            else return -1;
-        }
-
-        movieToBeUpdated.setStatus(status);
-        return 1;
-    }
 }
