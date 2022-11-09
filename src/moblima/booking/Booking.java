@@ -19,18 +19,18 @@ public class Booking {
         this.customerName = customerName;
         this.mobileNumber = mobileNumber;
         this.emailAddress = emailAddress;
-        // this.transactionId = generateTransactionId();
+        //this.transactionId = generateTransactionId(cinemaCode);
         this.totalPrice = 0;
     }
 
-    public String generateTransactionId(String cinemaCode) {
+    public void generateTransactionId(String cinemaCode) {
         LocalDateTime currentDateTime = LocalDateTime.now();
         String yearCode = String.valueOf(currentDateTime.getYear());
         String monthCode = String.valueOf(currentDateTime.getMonthValue());
         String dayCode = String.valueOf(currentDateTime.getDayOfMonth());
         String hourCode = String.valueOf(currentDateTime.getHour());
         String minuteCode = String.valueOf(currentDateTime.getMinute());
-        return yearCode + monthCode + dayCode + hourCode + minuteCode + cinemaCode;
+        transactionId = yearCode + monthCode + dayCode + hourCode + minuteCode + cinemaCode;
     }
 
     public String getCustomerName(){
