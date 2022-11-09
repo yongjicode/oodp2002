@@ -19,6 +19,9 @@ public class PublicHoliday {
     }
 
     public String toStr(){
-        return name +" : "+ date.getDayOfWeek() + "/" + date.getDayOfMonth() + "/" + date.getDayOfYear();
+        return name +" : "+ date.getDayOfWeek() + "-" + date.getDayOfMonth() + "/" + date.getMonth() + "/" + date.getYear();
     }
+
+
+
 }

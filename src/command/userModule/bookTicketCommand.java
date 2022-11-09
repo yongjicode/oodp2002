@@ -48,17 +48,23 @@ public class bookTicketCommand implements Command {
 			String age = scanner.nextLine();
 			//can add error handling
 			show.getMovie().incrementTicketSold();
-			if(show.getSeating().bookSeat(seatId) == 0) {
+			int book = show.getSeating().bookSeat(seatId);
+			if(book == 0) {
 				System.out.println("Seat already booked!");
 				i-=1;
 				continue;
-			};
+			}
+
+			else if(book==-1){
+				System.out.println("Invalid Entry!");
+				i-=1;
+				continue;
+			}
 			
 			booking.addTickets(new MovieTicket(seatId, show, checkCustomerAge(age)));
 		}
 		SilverVillage.getBookingHistory().addBooking(booking);
 		booking.printBookingDetails();
-		// scanner.close();
 	}
 
 

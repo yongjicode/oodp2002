@@ -23,13 +23,14 @@ public class createShowCommand implements Command{
         System.out.println();
         System.out.print("Enter Movie ID: ");
         int movieId = scanner.nextInt();
+        scanner.nextLine();
         Movie movie = SilverVillage.getMovieList().searchMovieById(movieId);
         if (movie == null){
             //handle error
             System.out.println("Movie does not exist");
         }
         System.out.print("Enter Time (YYYY-MM-DD HH:MM): ");
-        scanner.nextLine();
+
         String str = scanner.nextLine();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
