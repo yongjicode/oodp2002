@@ -37,6 +37,7 @@ public class Seating {
         char alphabet = seatId.charAt(0);
         int row = alphabet - 'A';
         int col = Integer.parseInt(seatId.substring(1)) - 1;
+        if(row >= 10 || col >= 10 || row<0 || col < 0) return -1;
         if (seats[row][col] == 'X') return 0;
         seats[row][col] = 'X';
         return 1;

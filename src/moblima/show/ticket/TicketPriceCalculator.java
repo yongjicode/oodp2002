@@ -19,8 +19,12 @@ public class TicketPriceCalculator {
         this.date = date;
     }
 
-    public void updateBasePrice(double newBasePrice){
+    public static void updateBasePrice(double newBasePrice){
         basePrice = newBasePrice;
+    }
+
+    public static double getBasePrice(){
+        return basePrice;
     }
 
     public double calculatePrice(){
