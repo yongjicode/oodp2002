@@ -1,15 +1,15 @@
 package command.adminModule;
-import moblima.Cineplex;
-import moblima.Company;
-import java.util.Scanner;
+
 import command.Command;
-import moblima.Cinema;
-import moblima.Movie;
-import moblima.Show;
+import moblima.SilverVillage;
+import moblima.cineplex.Cinema;
+import moblima.cineplex.Cineplex;
+import moblima.movie.Movie;
+import moblima.show.Show;
 
-
-import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 public class createShowCommand implements Command{
     private Cineplex cineplex;
@@ -18,28 +18,34 @@ public class createShowCommand implements Command{
     }
     public void execute(){
         Scanner scanner = new Scanner(System.in);
-        Company.listMovies();
+        SilverVillage.getMovieList().listMovies(1);
         //error handling req for index
-        System.out.println("Enter Movie ID:");
+        System.out.println();
+        System.out.print("Enter Movie ID: ");
         int movieId = scanner.nextInt();
-        Movie movie = Company.searchMovieById(movieId);
+        scanner.nextLine();
+        Movie movie = SilverVillage.getMovieList().searchMovieById(movieId);
         if (movie == null){
             //handle error
             System.out.println("Movie does not exist");
         }
-        System.out.println("Enter Time (YYYY-MM-DD HH:MM):");
-        scanner.nextLine();
+        System.out.print("Enter Time (YYYY-MM-DD HH:MM): ");
+
         String str = scanner.nextLine();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
-        System.out.println("List of cinemas:");
+        System.out.println();
+       
+        System.out.println("============ List of cinemas ============");
         cineplex.listCinema();
-        System.out.println("Enter Cinema Code: ");
+        System.out.print("Enter Cinema Code: ");
         String cinemaCode = scanner.nextLine();
         scanner.nextLine();
         Cinema cinema = cineplex.searchCinema(cinemaCode);
         //error handling
-        cineplex.addShow(new Show(dateTime,cinema,movie));
+        cineplex.getShowList().addShow(new Show(dateTime,cinema,movie));
+        System.out.println("Show successfully added");
+        cineplex.getShowList().listShows();
 
     }
 }

@@ -1,56 +1,72 @@
 package command.userModule;
 
+import account.Account;
 import command.Command;
-import moblima.*;
+import moblima.SilverVillage;
+import moblima.booking.Booking;
+import moblima.show.ticket.MovieTicket;
+import moblima.cineplex.Cineplex;
+import moblima.show.Show;
 
 import java.util.Scanner;
+
+import static moblima.show.ticket.MovieTicket.checkCustomerAge;
+
 public class bookTicketCommand implements Command {
 	private Cineplex cineplex;
-	private String loginId;
-
-	public bookTicketCommand(Cineplex cineplex, String loginId) {
+	private Account curAcc;
+	public bookTicketCommand(Cineplex cineplex, Account curAcc) {
 		this.cineplex = cineplex;
-		this.loginId = loginId;
+		this.curAcc = curAcc;
 	}
 	
 	public void execute() {
 		Scanner scanner = new Scanner(System.in);
-		
-		System.out.println("Enter moblima.Show ID:");
+		cineplex.getShowList().listShows();
+		System.out.print("Please enter the movie's show ID: ");
 		// handle error later
 		int showID = scanner.nextInt();
 		scanner.nextLine();
-		Show show = this.cineplex.searchShow(showID);
+		Show show = this.cineplex.getShowList().searchShow(showID);
 		if (show == null) {
 			//TODO Error handling
-			System.out.println("===== Show ID " + showID + " does not exist! =====");
+			System.out.println("======= Show ID " + showID + " does not exist! =======");
 			return;
 		}
 		show.printShowDetails();
-		System.out.println("Mobile Number: ");
-		String mobileNumber = scanner.nextLine();
-		System.out.println("Email Address: ");
-		String emailAddress = scanner.nextLine();
+		System.out.println();
 		//to implement transaction ID function
-		Booking booking = new Booking(this.loginId,mobileNumber,emailAddress,"ABC123");
-		System.out.println("Number of tickets:");
+		Booking booking = new Booking(curAcc.getName(),curAcc.getPhoneNo(),curAcc.getEmail());
+		System.out.print("Please enter the Number of tickets to be purchased: ");
 		int numTickets = scanner.nextInt();
 		scanner.nextLine();
 		for (int i = 0; i<numTickets;i++) {
 			show.showSeating();
-			System.out.println("Enter seat ID:");
+			System.out.print("Please enter the seat ID in this format (eg. B6): ");
 			String seatId = scanner.nextLine();
-			System.out.println("Enter age:");
+			System.out.print("Please enter the age of movie goer: ");
 			String age = scanner.nextLine();
 			//can add error handling
 			show.getMovie().incrementTicketSold();
-			show.getSeating().bookSeat(seatId);
-			booking.addTickets(new MovieTicket(seatId,show,0,age));
+			int book = show.getSeating().bookSeat(seatId);
+			if(book == 0) {
+				System.out.println("Seat already booked!");
+				i-=1;
+				continue;
+			}
+
+			else if(book==-1){
+				System.out.println("Invalid Entry!");
+				i-=1;
+				continue;
+			}
+			
+			booking.addTickets(new MovieTicket(seatId, show, checkCustomerAge(age)));
 		}
-		System.out.println();
+		SilverVillage.getBookingHistory().addBooking(booking);
 		booking.printBookingDetails();
-		Company.addBooking(booking);
-		// scanner.close();
-;	}
+	}
+
+
 
 }

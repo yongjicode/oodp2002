@@ -1,8 +1,7 @@
 package command.userModule;
 
 import command.Command;
-import moblima.Cineplex;
-import moblima.Company;
+import moblima.SilverVillage;
 
 public class rankTicketSalesCommand implements Command {
 
@@ -10,7 +9,7 @@ public class rankTicketSalesCommand implements Command {
 	}
 	
 	public void execute() {
-		Company.showTopSaleMovies();
+		SilverVillage.getMovieList().showTopSaleMovies();
 	}
 
 }

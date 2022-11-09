@@ -1,8 +1,8 @@
 package command.userModule;
 
 import command.Command;
-import moblima.Cineplex;
-import moblima.Show;
+import moblima.cineplex.Cineplex;
+import moblima.show.Show;
 
 import java.util.Scanner;
 public class showSeatAvailabilityCommand implements Command {
@@ -12,11 +12,15 @@ public class showSeatAvailabilityCommand implements Command {
 	}
 	public void execute() {
 		Scanner scanner = new Scanner(System.in);
-		cineplex.listShows();
-		System.out.println("Enter show ID:");
+		cineplex.getShowList().listShows();
+		System.out.println();
+		
+		System.out.print("Enter show ID: ");
 		try {
 			int showId = scanner.nextInt();
-			Show curShow = cineplex.searchShow(showId);
+			Show curShow = cineplex.getShowList().searchShow(showId);
+			//System.out.println();
+			
 			if (curShow == null) {
 				System.out.println("===== Show ID " + showId + " does not exist! =====");
 			} else {

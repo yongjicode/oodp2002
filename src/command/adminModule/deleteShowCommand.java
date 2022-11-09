@@ -1,6 +1,6 @@
 package command.adminModule;
 import command.Command;
-import moblima.Cineplex;
+import moblima.cineplex.Cineplex;
 import java.util.Scanner;
 
 public class deleteShowCommand implements Command{
@@ -10,9 +10,12 @@ public class deleteShowCommand implements Command{
     }
     public void execute(){
         Scanner scanner = new Scanner(System.in);
-        cineplex.listShows();
-        System.out.println("Enter Show ID to delete:");
+        cineplex.getShowList().listShows();
+        System.out.println();
+        System.out.print("Please enter the Show ID to delete: ");
         int showID = scanner.nextInt();
-        this.cineplex.removeShow(showID);
+        this.cineplex.getShowList().removeShow(showID);
+        System.out.println("Show successfully deleted...");
+        this.cineplex.getShowList().listShows();
     }
 }
