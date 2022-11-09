@@ -61,9 +61,8 @@ public class guestBookTicketCommand implements Command{
 			};
 			booking.addTickets(new MovieTicket(seatId,show,checkCustomerAge(age)));
 		}
-		
-		booking.printBookingDetails();
 		SilverVillage.getBookingHistory().addBooking(booking);
+		booking.printBookingDetails();
 	}
 
 
