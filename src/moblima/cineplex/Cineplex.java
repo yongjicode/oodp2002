@@ -28,6 +28,10 @@ public class Cineplex {
         cinemas.add(cinema);
     }
 
+    public void removeShowById(int movieId){
+        showList.removeShowById(movieId);
+    }
+
     public void printCineplexDetails(){
         System.out.print("Branch: " + branchName + ", Address: " + branchAddress);
     }

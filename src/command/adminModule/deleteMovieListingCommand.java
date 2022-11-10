@@ -4,6 +4,7 @@ import command.Command;
 import exceptions.moblimaExceptions.invalidInputException;
 import moblima.SilverVillage;
 
+
 import java.util.Scanner;
 
 public class deleteMovieListingCommand implements Command{
@@ -20,17 +21,8 @@ public class deleteMovieListingCommand implements Command{
                     throw new invalidInputException("Movie ID");
                 }
                 int movieID = scanner.nextInt();
-                // TODO MK fix
-//                ArrayList<Cineplex> arrayCineplex = SilverVillage.getCineplexList().getCineplexes();
-//                for (Cineplex cineplex: arrayCineplex){
-//                    for (Show show: cineplex.getShowList().getShows()){
-//                        if (show.getMovie().getMovieId() == movieID){
-//                            show.getMovie().setStatus(Movie.convertToMovieStatus("not showing"));
-//                            cineplex.getShowList().removeShowById(show.getShowId());
-//                        }
-//                    }
-//                }
-                SilverVillage.getMovieList().removeMovieById(movieID);
+                SilverVillage.getCineplexList().removeShowsByMovieId(movieID);
+                SilverVillage.getMovieList().delistMovie(movieID);
                 break;
             }
             catch (invalidInputException e) {

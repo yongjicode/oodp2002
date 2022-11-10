@@ -405,7 +405,7 @@ public class Application {
 						break;
 					case 2:
 						// TODO MK fix
-						// new updateMovieListingCommand(SilverVillage.getMovieList().getMovies()).execute();
+						new updateMovieListingCommand().execute();
 						break;
 
 					case 3:

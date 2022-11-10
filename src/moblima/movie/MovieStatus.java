@@ -11,5 +11,19 @@ public enum MovieStatus {
     private MovieStatus(String toString) {
         this.toString = toString;
     }
+    public  static MovieStatus intToEnum(int num){
+        switch(num){
+            case 1:
+                return COMING_SOON;
+            case 2:
+                return PREVIEW;
+            case 3:
+                return NOW_SHOWING;
+
+            default:
+                return END_OF_SHOWING;
+        }
+
+    }
 
 }
