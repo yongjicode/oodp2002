@@ -24,7 +24,7 @@ public class deleteShowCommand implements Command{
                 int showID = scanner.nextInt();
                 scanner.nextLine();
 
-                this.cineplex.getShowList().removeShow(showID);
+                this.cineplex.getShowList().removeShowById(showID);
 
                 this.cineplex.getShowList().listShows();
                 break;

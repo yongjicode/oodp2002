@@ -1,23 +1,24 @@
+import account.*;
+import command.adminModule.*;
 import command.userModule.*;
 import exceptions.moblimaExceptions.invalidInputException;
-import command.adminModule.*;
-
-import account.*;
+import gui.*;
 import moblima.SilverVillage;
+import moblima.cineplex.Cineplex;
 import moblima.cineplex.cinema.Cinema;
 import moblima.cineplex.cinema.CinemaClass;
-import moblima.cineplex.Cineplex;
 import moblima.movie.Movie;
 import moblima.movie.MovieStatus;
 import moblima.show.Show;
 import system.PublicHoliday;
 import system.SystemSettings;
-import gui.*;
+
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 
 public class Application {
@@ -71,8 +72,8 @@ public class Application {
 		//}
 
 
-		Movie a = new Movie("Lion King", MovieStatus.PREVIEW,"c","d","e", LocalDateTime.parse("2022-12-29 12:00", formatter));
-		Movie b = new Movie("Toy Story",MovieStatus.NOW_SHOWING,"x","w","v", LocalDateTime.parse("2022-12-26 12:00", formatter));
+		Movie a = new Movie("Lion King", MovieStatus.PREVIEW,"c","d", Arrays.asList("guy1", "guy2", "woman1"), LocalDateTime.parse("2022-12-29 12:00", formatter));
+		Movie b = new Movie("Toy Story",MovieStatus.NOW_SHOWING,"x","w",Arrays.asList("guy1", "woman2", "woman3"), LocalDateTime.parse("2022-12-26 12:00", formatter));
 		SilverVillage.getMovieList().addMovie(a);
 		SilverVillage.getMovieList().addMovie(b);
 		Cineplex tempCine = new Cineplex("hello cinema","bedok");
@@ -121,7 +122,7 @@ public class Application {
 		Account curAcc = null;
 		new greetUserMenu().display();
 		System.out.println();
-		SilverVillage.getCineplexList().listLocations();
+		SilverVillage.getCineplexList().listCineplexes();
 
 		while(true) {
 
@@ -141,10 +142,10 @@ public class Application {
 		}
 
 		System.out.println();
-		System.out.println("The location you have chosen is: " + cineplex.getLocation());
+		System.out.println("The location you have chosen is: " + cineplex.getBranchName());
 		//System.out.println();
 
-		// TODO add more classes
+		// TODO nicky add more classes
 		while(true) {
 			if(curAcc == null || curAcc.getPrivilege() == Privilege.User) //guest or user accounts
 			{
@@ -230,7 +231,8 @@ public class Application {
 												System.out.print("Please enter your review: ");
 												input.next();
 												String reviewDesc = input.nextLine();
-												new reviewMovieCommand(ticketID, SilverVillage.getBookingHistory().getBookings(), reviewRating, reviewDesc, SilverVillage.getMovieList().getMovies(), movieID).execute();
+												// TODO MK FIX
+												//new reviewMovieCommand(ticketID, SilverVillage.getBookingHistory().getBookings(), reviewRating, reviewDesc, SilverVillage.getMovieList().getMovies(), movieID).execute();
 												break;
 											}
 											catch (invalidInputException e) {
@@ -402,7 +404,8 @@ public class Application {
 						SilverVillage.getMovieList().listMovies(2);
 						break;
 					case 2:
-						new updateMovieListingCommand(SilverVillage.getMovieList().getMovies()).execute();
+						// TODO MK fix
+						// new updateMovieListingCommand(SilverVillage.getMovieList().getMovies()).execute();
 						break;
 
 					case 3:

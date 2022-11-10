@@ -11,7 +11,7 @@ import moblima.show.Show;
 
 import java.util.Scanner;
 
-import static moblima.booking.ticket.MovieTicket.checkCustomerAge;
+import static moblima.booking.ticket.MovieTicket.convertToCustomerAge;
 
 public class bookTicketCommand implements Command {
 	private Cineplex cineplex;
@@ -33,7 +33,7 @@ public class bookTicketCommand implements Command {
 				}
 				int showID = scanner.nextInt();
 				scanner.nextLine();
-				Show show = this.cineplex.getShowList().searchShow(showID);
+				Show show = this.cineplex.getShowList().searchShowById(showID);
 				if (show == null) {
 					System.out.println();
 					System.out.println("======= Show ID " + showID + " does not exist! =======");
@@ -124,7 +124,7 @@ public class bookTicketCommand implements Command {
 							}
 
 							show.getMovie().incrementTicketSold();
-							booking.addTickets(new MovieTicket(seatId,show,checkCustomerAge(age)));
+							booking.addTickets(new MovieTicket(seatId,show,convertToCustomerAge(age)));
 						}
 						SilverVillage.getBookingHistory().addBooking(booking);
 						booking.printBookingDetails();

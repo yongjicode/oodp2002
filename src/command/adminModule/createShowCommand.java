@@ -60,7 +60,7 @@ public class createShowCommand implements Command{
                             System.out.println();
 
                             System.out.println("============ List of cinemas ============");
-                            cineplex.listCinema();
+                            cineplex.listCinemas();
                             System.out.print("Please enter the Cinema Code: ");
 
 
@@ -70,7 +70,7 @@ public class createShowCommand implements Command{
 
                                     String cinemaCode = scanner.nextLine();
                                     //scanner.nextLine();
-                                    Cinema cinema = cineplex.searchCinema(cinemaCode);
+                                    Cinema cinema = cineplex.searchCinemaById(cinemaCode);
 
 
                                     if (cinema == null) {

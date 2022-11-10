@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class MovieList {
-    private ArrayList<Movie> movies = new ArrayList<>();
+    private final ArrayList<Movie> movies = new ArrayList<>();
 
     public void updateExpiredMovieStatus(){
         for(Movie movie: movies){
@@ -24,7 +24,7 @@ public class MovieList {
         movies.add(movie);
     }
 
-    public void removeMovie(int movieId){
+    public void removeMovieById(int movieId){
         for(Movie movie: movies){
             if(movie.getMovieId() == movieId){
                 movies.remove(movie);
@@ -37,7 +37,7 @@ public class MovieList {
         System.out.println("Movie \"" + movieId + "\" does not exist. No movie removed.");
     }
 
-    public void listMovies(int privilege){
+    public void listMovies(int privilege){ // TODO MK privilege outside of listMovies
         int movieCount = 1;
         System.out.println();
         // For User
@@ -66,7 +66,7 @@ public class MovieList {
         }
     }
 
-    public void searchMovieTitle(String keyword){
+    public void searchMovieByKeyword(String keyword){
         int numOfResults = 0;
         System.out.println();
         System.out.println("Search Results for movie titled \"" + keyword + "\"");
@@ -95,7 +95,7 @@ public class MovieList {
         SilverVillage.getMovieList().searchMovieById(movieId).setStatus(status);
     }
 
-    public void showTopRatingMovies(){
+    public void showTopMoviesByRating(){
         //reversed cause highest should be at top
         Collections.sort(movies, Comparator.comparingInt(Movie::getRating).reversed());
         System.out.println("Top 5 Movies by Ratings");
@@ -110,7 +110,7 @@ public class MovieList {
         }
     }
 
-    public void showTopSaleMovies(){
+    public void showTopMoviesBySale(){
         Collections.sort(movies, Comparator.comparingInt(Movie::getTicketSold).reversed());
         System.out.println("Top 5 Movies by Ticket Sales");
         if(movies.size()<=5){
@@ -124,8 +124,8 @@ public class MovieList {
         }
     }
 
-    public ArrayList<Movie> getMovies() {
-        return movies;
-    }
+//    public ArrayList<Movie> getMovies() {
+//        return movies;
+//    }
 
 }

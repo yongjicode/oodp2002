@@ -8,7 +8,7 @@ public class rankReviewRatingsCommand implements Command {
 	}
 
 	public void execute() {
-		SilverVillage.getMovieList().showTopRatingMovies();
+		SilverVillage.getMovieList().showTopMoviesByRating();
 	}
 
 }

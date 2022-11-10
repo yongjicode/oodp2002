@@ -9,7 +9,7 @@ public class rankTicketSalesCommand implements Command {
 	}
 
 	public void execute() {
-		SilverVillage.getMovieList().showTopSaleMovies();
+		SilverVillage.getMovieList().showTopMoviesBySale();
 	}
 
 }

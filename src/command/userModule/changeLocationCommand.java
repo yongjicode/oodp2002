@@ -12,7 +12,7 @@ public class changeLocationCommand implements Command{
     }
     public void execute(){
         Scanner scanner = new Scanner(System.in);
-        SilverVillage.getCineplexList().listLocations();
+        SilverVillage.getCineplexList().listCineplexes();
         while (true){
             System.out.println();
             System.out.print("Please enter the cinema location number: ");
