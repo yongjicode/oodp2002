@@ -1,7 +1,2 @@
-AAA202211031014,MengKiat,91112222,mk@gmail.com,12
-AAA202211031015,Nicky,92223333,nicky@gmail.com,12
-AAA202211031016,YongJie,93334444,yj@gmail.com,12
-AAA202211031017,JinKai,95556666,jk@gmail.com,12
-AAA202211031018,Sahana,97778888,sahana@gmail.com,12
-AAA202211031019,Xavier,98880000,xavier@gmail.com,12
-AAA202211031020,Tharun,90001111,tharun@gmail.com,18
+ticketId,customerName,mobileNumber,emailAddress,totalPrice
+1;2,Jin Kai,91115555,jinkai@gmail.com,12
