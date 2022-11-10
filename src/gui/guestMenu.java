@@ -6,9 +6,13 @@ public class guestMenu implements menu{
         this.cineplex = cineplex;
     }
     public void display(){
-        System.out.println("============== User Menu ================");
+        System.out.println();
+        System.out.println("============== Guest Menu ===============");
+        System.out.println();
         System.out.println("Viewing as: Guest");
+        System.out.println();
         System.out.println("Cineplex Branch: " + cineplex.getLocation());
+        System.out.println();
         System.out.println("1. Search Movie");
         System.out.println("2. List Movies");
         System.out.println("3. View Seat Availability");
@@ -19,6 +23,7 @@ public class guestMenu implements menu{
         System.out.println("8. Login");
         System.out.println("9. Exit");
         System.out.println("=========================================");
+        System.out.println();
         System.out.print("Please enter the option number: ");
     }
 }

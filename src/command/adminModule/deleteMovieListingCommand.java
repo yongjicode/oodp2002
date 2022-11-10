@@ -1,6 +1,7 @@
 package command.adminModule;
 
 import command.Command;
+import exceptions.moblimaExceptions.invalidInputException;
 import moblima.SilverVillage;
 
 import java.util.Scanner;
@@ -11,8 +12,28 @@ public class deleteMovieListingCommand implements Command{
         Scanner scanner = new Scanner(System.in);
         SilverVillage.getMovieList().listMovies(2);
         System.out.println();
-        System.out.print("Enter Movie ID to delete: ");
-        int movieID = scanner.nextInt();
-        SilverVillage.getMovieList().removeMovie(movieID);
+        System.out.print("Please enter the Movie ID to delete: ");
+
+        while(true) {
+            try {
+                if(scanner.hasNextInt() == false) {
+                    throw new invalidInputException("Movie ID");
+                }
+
+                int movieID = scanner.nextInt();
+
+                SilverVillage.getMovieList().removeMovie(movieID);
+                break;
+            }
+            catch (invalidInputException e) {
+                System.out.println(e.getMessage());
+            }
+            System.out.println();
+            System.out.print("Please enter the Movie ID again: ");
+            scanner.next();
+            continue;
+
+
+        }
     }
 }

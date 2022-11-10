@@ -6,7 +6,7 @@ import moblima.SilverVillage;
 public class rankReviewRatingsCommand implements Command {
 	public rankReviewRatingsCommand() {
 	}
-	
+
 	public void execute() {
 		SilverVillage.getMovieList().showTopRatingMovies();
 	}

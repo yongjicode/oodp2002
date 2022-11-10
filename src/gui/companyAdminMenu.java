@@ -7,8 +7,13 @@ public class companyAdminMenu implements menu{
         this.curAcc = curAcc;
     }
     public void display(){
-        System.out.println("Currently logged in as company admin: " + curAcc.getLoginId());
-        System.out.println("=========== Company Admin Menu ==========");
+        System.out.println();
+        System.out.println("========== Cineplex Admin Menu ==========");
+
+
+        System.out.println();
+        System.out.println("Logged in as Company admin: " + curAcc.getLoginId());
+        System.out.println();
         System.out.println("1. Create movie listing");
         System.out.println("2. Update movie listing");
         System.out.println("3. Remove movie listing");
@@ -16,6 +21,7 @@ public class companyAdminMenu implements menu{
         System.out.println("5. Logout");
         System.out.println("6. Exit");
         System.out.println("=========================================");
+        System.out.println();
         System.out.print("Please enter the option number: ");
     };
 }

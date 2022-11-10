@@ -36,6 +36,9 @@ public class Show {
         return showId;
     }
     public void showSeating(){ //for user
+        System.out.println();
+        System.out.println("X means it is occupied, [_] means it is available");
+
         seating.printSeats();
     }
 

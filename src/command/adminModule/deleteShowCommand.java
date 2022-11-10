@@ -1,5 +1,6 @@
 package command.adminModule;
 import command.Command;
+import exceptions.moblimaExceptions.invalidInputException;
 import moblima.cineplex.Cineplex;
 import java.util.Scanner;
 
@@ -13,9 +14,31 @@ public class deleteShowCommand implements Command{
         cineplex.getShowList().listShows();
         System.out.println();
         System.out.print("Please enter the Show ID to delete: ");
-        int showID = scanner.nextInt();
-        this.cineplex.getShowList().removeShow(showID);
-        System.out.println("Show successfully deleted...");
-        this.cineplex.getShowList().listShows();
+
+        while(true) {
+            try {
+                if(scanner.hasNextInt() == false) {
+                    throw new invalidInputException("Show ID");
+                }
+
+                int showID = scanner.nextInt();
+                scanner.nextLine();
+
+                this.cineplex.getShowList().removeShow(showID);
+
+                this.cineplex.getShowList().listShows();
+                break;
+            }
+            catch (invalidInputException e) {
+                System.out.println(e.getMessage());
+            }
+            System.out.println();
+            System.out.print("Please enter the Show ID again: ");
+            scanner.next();
+            continue;
+
+
+        }
     }
 }
+
