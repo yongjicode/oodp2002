@@ -3,6 +3,7 @@ package moblima.cineplex;
 import moblima.show.ShowList;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Cineplex {
     private String name;
@@ -21,7 +22,7 @@ public class Cineplex {
     }
 
     public void addCinema(Cinema cinema){
-        cinema.setCinemaCode(location.substring(0,1));
+        cinema.setCinemaCode(location.substring(0,2));
         cinemas.add(cinema);
     }
 
@@ -37,7 +38,7 @@ public class Cineplex {
 
     public Cinema searchCinema(String cinemaId){
         for (Cinema cinema: cinemas){
-            if (cinema.getCinemaCode() == cinemaId){
+            if (Objects.equals(cinema.getCinemaCode(), cinemaId)){
                 return cinema;
             }
         }

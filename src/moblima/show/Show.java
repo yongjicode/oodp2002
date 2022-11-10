@@ -4,6 +4,7 @@ import moblima.cineplex.Cinema;
 import moblima.movie.Movie;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Show {
 
@@ -35,16 +36,20 @@ public class Show {
         return showId;
     }
     public void showSeating(){ //for user
+        System.out.println();
+        System.out.println("X means it is occupied, [_] means it is available");
+
         seating.printSeats();
     }
 
     public void printShowDetails(){
-    	System.out.println();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        System.out.println();
         System.out.println("ShowId: " + showId);
         System.out.println("Movie Title: " + movie.getTitle());
         System.out.println("Cinema Hall: " + cinema.getCinemaCode());
         System.out.println("Cinema Class: " + cinema.getClassLevel());
-        System.out.println("Day & Time: " + showTime);
+        System.out.println("Day & Time: " + showTime.format(formatter));
     }
 
 

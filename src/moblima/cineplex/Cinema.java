@@ -26,12 +26,12 @@ public class Cinema {
 
     public static CinemaClass convertToCinemaClass(String classLevel){
         switch(classLevel.toLowerCase()){
-        case "normal":
-            return CinemaClass.NORMAL;
-        case "gold":
-            return CinemaClass.GOLD;
-        case "platinum":
-            return CinemaClass.PLATINUM;
+            case "normal":
+                return CinemaClass.NORMAL;
+            case "gold":
+                return CinemaClass.GOLD;
+            case "platinum":
+                return CinemaClass.PLATINUM;
         }
         return null;
     }

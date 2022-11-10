@@ -6,27 +6,42 @@ import moblima.movie.Movie;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 import static moblima.movie.Movie.convertToMovieStatus;
 
 public class createMovieListingCommand implements Command {
     public void execute(){
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter movie title: ");
+        System.out.println();
+        System.out.print("Please enter the movie title: ");
         String movieTitle = scanner.nextLine();
-        System.out.print("Enter movie status (Coming Soon, Preview, Now Showing, End of Showing): ");
+        System.out.print("Please enter the movie status: ");
         String movieStatus = scanner.nextLine();
-        System.out.print("Enter movie synopsis: ");
+        System.out.print("Please enter the movie synopsis: ");
         String movieSynopsis = scanner.nextLine();
-        System.out.print("Enter movie director: ");
+        System.out.print("Please enter the movie director: ");
         String movieDirector = scanner.nextLine();
-        System.out.print("Enter movie cast: ");
+        System.out.print("Please enter the movie cast: ");
         String movieCast = scanner.nextLine();
-        System.out.print("Enter expiry date (yyyy-MM-dd HH:mm): ");
-        String expiryDate = scanner.nextLine();
-        SilverVillage.getMovieList().addMovie(new Movie(movieTitle,convertToMovieStatus(movieStatus),movieSynopsis,movieDirector,movieCast, LocalDateTime.parse(expiryDate, formatter)));
+        System.out.print("Please enter expiry date (yyyy-MM-dd HH:mm): ");
+        while(true) {
+            try {
+                String expiryDate = scanner.nextLine();
+                SilverVillage.getMovieList().addMovie(new Movie(movieTitle,convertToMovieStatus(movieStatus),movieSynopsis,movieDirector,movieCast, LocalDateTime.parse(expiryDate, formatter)));
+                break;
+            }
+            catch (DateTimeParseException e) {
+                System.out.println("Invalid format for Date and Time");
+                System.out.println();
+                System.out.print("Please enter the Time (YYYY-MM-DD HH:MM) again: ");
+
+                continue;
+            }
+        }
     }
 
 }

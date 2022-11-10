@@ -1,4 +1,5 @@
 import command.userModule.*;
+import exceptions.moblimaExceptions.invalidInputException;
 import command.adminModule.*;
 
 import account.*;
@@ -18,6 +19,7 @@ import moblima.show.ShowList;
 import moblima.show.ticket.MovieTicket;
 import system.PublicHoliday;
 import system.SystemSettings;
+import gui.*;
 
 import java.lang.reflect.Array;
 import java.time.LocalDateTime;
@@ -30,7 +32,7 @@ import static moblima.movie.Movie.convertToMovieStatus;
 
 
 public class Application {
-	
+
 
 	public static void main(String[] args) {
 		new Application().run();
@@ -74,10 +76,10 @@ public class Application {
 		publicHolidays.add(new PublicHoliday( LocalDateTime.parse("2022-12-25 00:00", formatter), "Christmas"));
 		publicHolidays.add(new PublicHoliday( LocalDateTime.parse("2022-10-31 00:00", formatter), "Halloween"));
 
-		for (int i =0; i < publicHolidays.size(); i++){
-			System.out.println(publicHolidays.get(i).getDate().getDayOfYear());
-			System.out.println(publicHolidays.get(i).getName());
-		}
+		//for (int i =0; i < publicHolidays.size(); i++){
+		//	System.out.println(publicHolidays.get(i).getDate().getDayOfYear());
+		//	System.out.println(publicHolidays.get(i).getName());
+		//}
 
 
 		Movie a = new Movie("Lion King", MovieStatus.PREVIEW,"c","d","e", LocalDateTime.parse("2022-12-29 12:00", formatter));
@@ -128,31 +130,56 @@ public class Application {
 		Privilege privilege;
 		Cineplex cineplex = null;
 		Account curAcc = null;
-		greetUser();
+		new greetUserMenu().display();
 		System.out.println();
-		
+		SilverVillage.getCineplexList().listLocations();
+
 		while(true) {
-			SilverVillage.getCineplexList().listLocations();
-			System.out.print("Please choose cinema location: ");
+
+			System.out.println();
+			System.out.print("Please enter the cinema location number: ");
+
+			if(scanner.hasNextInt() == false) {
+				System.out.println("Invalid input format for location number. Please try again.");
+
+				scanner.next();
+				continue;
+			}
 			int locationCh = scanner.nextInt();
 			scanner.nextLine();
 			cineplex = SilverVillage.getCineplexList().getCineplexByIndex(locationCh-1);
 			if (cineplex!=null) break;
 			System.out.println("Invalid option");
 		}
-		
+
 		System.out.println();
 		System.out.println("The location you have chosen is: " + cineplex.getLocation());
+		//System.out.println();
 
 		// TODO add more classes
 		while(true) {
 			if(curAcc == null || curAcc.getPrivilege() == Privilege.User) //guest or user accounts
 			{
-				userMenu(curAcc,cineplex.getLocation());
-				System.out.print("Please enter the option number: ");
+				if(curAcc == null){
+					new gui.guestMenu(cineplex).display();
+				}
+				else{
+					new gui.userMenu(cineplex,curAcc).display();
+				}
+
+
 				userCh = scanner.nextInt();
 				scanner.nextLine();
-				if (userCh == 9) break;
+				System.out.println();
+				System.out.println("=========================================");
+
+				if (userCh == 9) {
+					System.out.println();
+					System.out.println("Thank you for using MOBLIMA. Have a nice day!");
+					System.out.println();
+					System.out.println("=========================================");
+					break;
+				}
 				switch (userCh) {
 					case 1:
 						new userSearchMovieCommand().execute();
@@ -164,6 +191,7 @@ public class Application {
 						new showSeatAvailabilityCommand(cineplex).execute();
 						break;
 					case 4:
+
 						if(curAcc == null) {
 							new guestBookTicketCommand(cineplex).execute();
 						}
@@ -182,20 +210,87 @@ public class Application {
 
 					case 6:
 						Scanner input = new Scanner(System.in);
-						System.out.println("Please input the ticket ID: ");
-						int ticketID = input.nextInt();
-						System.out.println("Please input the movie ID you with to rate: ");
-						int movieID = input.nextInt();
-						System.out.println("Please input your rating: ");
-						int reviewRating = input.nextInt();
-						System.out.println("Please input your review: ");
-						String reviewDesc = input.nextLine();
-						new reviewMovieCommand(ticketID, SilverVillage.getBookingHistory().getBookings(), reviewRating, reviewDesc, SilverVillage.getMovieList().getMovies(), movieID).execute();
+						System.out.println();
+						System.out.print("Please enter the ticket ID: ");
+						while(true) {
+							try {
+								if(input.hasNextInt() == false) {
+									throw new invalidInputException("ticket ID");
+								}
+
+								int ticketID = input.nextInt();
+
+								System.out.println();
+
+								System.out.print("Please enter the movie ID you wish to rate: ");
+
+								while(true) {
+									try {
+										if(input.hasNextInt() == false) {
+											throw new invalidInputException("movie ID");
+										}
+										int movieID = input.nextInt();
+										System.out.println();
+										System.out.print("Please enter your rating: ");
+
+										while(true) {
+											try {
+												if(input.hasNextInt() == false) {
+													throw new invalidInputException("rating");
+												}
+												int reviewRating = input.nextInt();
+
+
+												System.out.println();
+												System.out.print("Please enter your review: ");
+												input.next();
+												String reviewDesc = input.nextLine();
+												new reviewMovieCommand(ticketID, SilverVillage.getBookingHistory().getBookings(), reviewRating, reviewDesc, SilverVillage.getMovieList().getMovies(), movieID).execute();
+												break;
+											}
+											catch (invalidInputException e) {
+												System.out.println(e.getMessage());
+
+											}
+											System.out.println();
+											System.out.print("Please enter your rating again: ");
+											input.next();
+											continue;
+										}
+
+										break;
+									}
+									catch (invalidInputException e) {
+										System.out.println(e.getMessage());
+
+									}
+									System.out.println();
+									System.out.print("Please enter the movie ID you wish to rate again: ");
+									input.next();
+									continue;
+								}
+
+								break;
+							}
+							catch (invalidInputException e) {
+								System.out.println(e.getMessage());
+
+							}
+							System.out.println();
+							System.out.print("Please input the ticket ID again: ");
+							input.next();
+							continue;
+						}
+
+
+
+
 						break;
 					case 7:
 						if(ss.getTop5MovieTicketsBool() && ss.getTop5MovieRatingsBool()){
-							showTop5Options();
-							System.out.println("Enter Choice:");
+							new showTop5OptionsMenu().display();
+
+							System.out.print("Please enter option number: ");
 							userCh = scanner.nextInt();
 							scanner.nextLine();
 							if (userCh != 1  && userCh!=2){
@@ -222,6 +317,7 @@ public class Application {
 					case 8:
 						if(curAcc == null) {
 							while(true){
+								System.out.println();
 								System.out.print("Please enter your Login ID: ");
 								String userLogin = scanner.nextLine();
 								System.out.print("Please enter your Password: ");
@@ -236,28 +332,42 @@ public class Application {
 									break;
 								}
 							}
+							System.out.println();
 							System.out.println("Logged in successfully");
-							
+
 						}
 						else {
 							curAcc = null;
+							System.out.println();
 							System.out.println("Logged out successfully");
 						}
 						break;
-						
+
+
+
 					default:
+						System.out.println();
 						System.out.println("Invalid option. Please try again.");
 						break;
 				}
-				
+
 			}
 			else if (curAcc.getPrivilege() == Privilege.CinelexAdmin) {
 				CineplexAdminAccount cineplexAdmin = (CineplexAdminAccount) curAcc;
-				cineplexAdminMenu(curAcc,cineplexAdmin.getCineplex().getLocation());
-				System.out.print("Please enter the option number: ");
+				new cineplexAdminMenu(cineplexAdmin).display();
+
 				userCh = scanner.nextInt();
 				scanner.nextLine();
-				if (userCh == 5) break;
+				System.out.println();
+				System.out.println("=========================================");
+
+				if (userCh == 5) {
+					System.out.println();
+					System.out.println("Thank you for using MOBLIMA. Have a nice day!");
+					System.out.println();
+					System.out.println("=========================================");
+					break;
+				}
 				switch (userCh){
 					case 1:
 						new createShowCommand(cineplexAdmin.getCineplex()).execute();
@@ -270,20 +380,31 @@ public class Application {
 						break;
 					case 4:
 						curAcc = null;
+						System.out.println();
 						System.out.println("Logged out successfully...");
 						break;
 					default:
+						System.out.println();
 						System.out.println("Invalid Option. Please try again.");
+						break;
 				}
-				
+
 			}
-			
+
 			else if (curAcc.getPrivilege() == Privilege.CompanyAdmin) {
-				companyAdminMenu(curAcc);
-				System.out.print("Please enter the option number: ");
+				new companyAdminMenu(curAcc).display();
 				userCh = scanner.nextInt();
 				scanner.nextLine();
-				if (userCh == 6) break;
+				System.out.println();
+				System.out.println("=========================================");
+
+				if (userCh == 6) {
+					System.out.println();
+					System.out.println("Thank you for using MOBLIMA. Have a nice day!");
+					System.out.println();
+					System.out.println("=========================================");
+					break;
+				}
 				switch (userCh){
 					case 1:
 						new createMovieListingCommand().execute();
@@ -297,10 +418,10 @@ public class Application {
 						new deleteMovieListingCommand().execute();
 						SilverVillage.getMovieList().listMovies(2);
 						break;
-						
+
 					case 4:
 						ss.printSettings();
-						companySettingsMenu();
+						new companySettingsMenu().display();
 						System.out.println("Enter Choice:");
 
 						userCh = scanner.nextInt();
@@ -323,10 +444,13 @@ public class Application {
 								System.out.println("Ranking by Top 5 Movie Ratings disabled");
 								break;
 							case 5:
+								new addPublicHolidayCommand(ss).execute();
 								break;
 							case 6:
+								new removePublicHolidayCommand(ss).execute();
 								break;
 							case 7:
+								new adjustTicketBasePriceCommand().execute();
 								break;
 
 							default:
@@ -343,106 +467,18 @@ public class Application {
 
 					default:
 						System.out.println("Invalid Option. Please try again.");
+						break;
 				}
 			}
-			
+
+
 		}
 
-		endProgram();
+		new greetUserMenu();
 	}
 
-	private static void greetUser(){
-		System.out.println("Hello I'm MOBLIMA");
-		System.out.println("I am a movie booking & listing management application!");
-	}
-	
 
-	private static void userMenu(Account curAccount, String loc) {
-		System.out.println();
-		System.out.println("=========================================");
 
-		if (curAccount != null) {
-			System.out.println("Logged in as User: " + curAccount.getLoginId());
-		}
-		else {
-			System.out.println("Viewing as: Guest");
-		}
-		if (loc.length() != 0) {
-			System.out.println("Cineplex Branch: "+ loc);
-		}
-		System.out.println("============== User Menu ================");
-		System.out.println("1. Search Movie");
-		System.out.println("2. List Movies");
-		System.out.println("3. View Seat Availability");
-		System.out.println("4. Book Tickets");
-		System.out.println("5. View Booking History");
-		System.out.println("6. Review Movie");
-		System.out.println("7. Top 5 Ranking");
-		if (curAccount==null) {
-			System.out.println("8. Login");
-		}
-		else {
-			System.out.println("8. Logout");
-		}
-		System.out.println("9. Exit");
-		System.out.println("=========================================");
-	}
-
-	private static void cineplexAdminMenu(Account curAccount, String location){
-		System.out.println();
-		System.out.println("=========================================");
-		if (curAccount != null) {
-			System.out.println("Logged in as Cineplex Admin: " + curAccount.getLoginId());
-		}
-		if (location.length() != 0) {
-			System.out.println("Cineplex Branch: "+ location);
-		}
-		System.out.println("========== Cineplex Admin Menu ==========");
-		System.out.println("1. Create cinema showtimes");
-		System.out.println("2. Update cinema showtimes");
-		System.out.println("3. Remove cinema showtimes");
-		System.out.println("4. Logout");
-		System.out.println("5. Exit");
-		System.out.println("=========================================");
-
-	}
-
-	private static void companyAdminMenu(Account curAccount){
-		System.out.println();
-		System.out.println("========== Company Admin Menu ===========");
-		if (curAccount != null) {
-			System.out.println("Currently logged in as company admin: " + curAccount.getLoginId());
-		}
-
-		System.out.println("1. Create movie listing");
-		System.out.println("2. Update movie listing");
-		System.out.println("3. Remove movie listing");
-		System.out.println("4. Configure system settings");
-		System.out.println("5. Logout");
-		System.out.println("6. Exit");
-		System.out.println("=========================================");
-	}
-
-	private static void showTop5Options(){
-		System.out.println("=========================================");
-		System.out.println("1. Show Top 5 Movies by Ticket Sales");
-		System.out.println("2. Show Top 5 Movies by Reviews");
-		System.out.println("=========================================");
-
-	}
-
-	private static void companySettingsMenu(){
-		System.out.println("=========================================");
-		System.out.println("1. Enable Showing Top 5 Movie Based on Ticket Sales");
-		System.out.println("2. Disable Showing Top 5 Movie Based on Ticket Sales");
-		System.out.println("3. Enable Showing Top 5 Movie Based on Ratings");
-		System.out.println("4. Disable Showing Top 5 Movie Based on Ratings");
-		System.out.println("5. Add Public Holidays");
-		System.out.println("6. Remove Public Holidays");
-		System.out.println("7. Adjust ticket base price");
-		System.out.println("=========================================");
-
-	}
 	private static Account login(String loginId, String password, Account[] accounts){
 		for (int i = 0; i < accounts.length; i++){
 			if (accounts[i].getLoginId().equals(loginId)){
@@ -452,13 +488,5 @@ public class Application {
 			}
 		}
 		return null; //account not found
-	}
-
-	private static void showLine(){
-		System.out.println("____________________________");
-	}
-
-	private static void endProgram(){
-		System.out.println("Bye!");
 	}
 }
