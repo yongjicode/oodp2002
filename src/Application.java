@@ -4,16 +4,24 @@ import command.adminModule.*;
 
 import account.*;
 import moblima.SilverVillage;
+import moblima.booking.Booking;
+import moblima.booking.BookingHistory;
 import moblima.cineplex.Cinema;
 import moblima.cineplex.CinemaClass;
 import moblima.cineplex.Cineplex;
+import moblima.cineplex.CineplexList;
 import moblima.movie.Movie;
+import moblima.movie.MovieList;
 import moblima.movie.MovieStatus;
+import moblima.movie.review.ReviewList;
 import moblima.show.Show;
+import moblima.show.ShowList;
+import moblima.show.ticket.MovieTicket;
 import system.PublicHoliday;
 import system.SystemSettings;
 import gui.*;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
@@ -31,6 +39,36 @@ public class Application {
 	}
 
 	public void run() {
+
+//		ShowList showList = CSVReader.readShowsFromCSV("src/database/showDB.csv");
+//		ArrayList<Movie> arrayMovie = CSVReader.readMoviesFromCSV("src/database/movieDB.csv");
+//		MovieList movieList = new MovieList();
+//		for (Movie movie: arrayMovie){
+//			movieList.addMovie(movie);
+//		}
+//
+//		ArrayList<Booking> arrayBooking = CSVReader.readBookingsFromCSV("src/database/bookingDB.csv");
+//		BookingHistory bookingHistory = new BookingHistory();
+//		for (Booking booking: arrayBooking){
+//			bookingHistory.addBooking(booking);
+//		}
+//
+//		ArrayList<Cineplex> arrayCineplex = CSVReader.readCineplexFromCSV("src/database/companyDB.csv", showList.getShows());
+//		CineplexList cineplexList = new CineplexList();
+//		for (Cineplex cineplex: arrayCineplex){
+//			cineplexList.addCineplex(cineplex);
+//		}
+//
+//		ArrayList<ReviewList> arrayReview = CSVReader.readReviewsFromCSV("src/database/reviewListDB.csv");
+//
+//
+//		ArrayList<Account> arrayAccount = CSVReader.readAccountsFromCSV("src/database/accountDB.csv", arrayCineplex);
+
+
+
+
+
+
 		SystemSettings ss = new SystemSettings();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		LocalDateTime dateTime = LocalDateTime.parse("2022-12-25 00:00", formatter);

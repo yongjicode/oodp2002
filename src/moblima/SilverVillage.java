@@ -18,7 +18,6 @@ public class SilverVillage {
     public static MovieList getMovieList() {
         return movieList;
     }
-
     public static CineplexList getCineplexList() {
         return cineplexList;
     }
