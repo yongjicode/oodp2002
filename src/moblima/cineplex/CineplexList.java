@@ -24,4 +24,8 @@ public class CineplexList {
             System.out.println((i++) + ". " + cineplex.getLocation());
         }
     }
+
+    public ArrayList<Cineplex> getCineplexes() {
+        return cineplexes;
+    }
 }

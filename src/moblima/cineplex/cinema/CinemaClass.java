@@ -4,6 +4,4 @@ public enum CinemaClass {
     NORMAL,
     GOLD,
     PLATINUM;
-
-
 }

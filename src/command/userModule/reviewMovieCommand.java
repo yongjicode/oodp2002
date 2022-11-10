@@ -33,6 +33,7 @@ public class reviewMovieCommand implements Command{
                         if (movie.getMovieId()==movieID){
                             movie.getReviews().add(review);
                             System.out.println("Review created...");
+                            return;
                         }
                     }
                 }
