@@ -41,5 +41,15 @@ public abstract class Account{
     public String getPhoneNo(){
     	return phoneNo;
     }
+    public static Privilege convertIntToPrivilege(int i){
+        switch(i){
+            case 0:
+                return Privilege.User;
+            case 1:
+                return Privilege.CinelexAdmin;
+            default:
+                return Privilege.CompanyAdmin;
+        }
+    }
     public abstract Privilege login(String loginId, String password);
 }

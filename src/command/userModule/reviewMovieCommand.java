@@ -3,7 +3,7 @@ package command.userModule;
 import command.Command;
 import moblima.booking.Booking;
 import moblima.movie.Movie;
-import moblima.show.ticket.MovieTicket;
+import moblima.booking.ticket.MovieTicket;
 import moblima.movie.review.Review;
 
 import java.util.ArrayList;
@@ -32,13 +32,15 @@ public class reviewMovieCommand implements Command{
                     for (Movie movie: arrayMovie){
                         if (movie.getMovieId()==movieID){
                             movie.getReviews().add(review);
-                            System.out.println("Review Created...");
+                            System.out.println("Review created...");
+                            return;
                         }
                     }
                 }
             }
         }
-        System.out.println("ticket ID cannot be found...");
+        System.out.println();
+        System.out.println("Ticket ID cannot be found. No review created.");
     }
 }
 

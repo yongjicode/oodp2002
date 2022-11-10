@@ -1,5 +1,6 @@
 package moblima.cineplex;
 
+import moblima.cineplex.cinema.Cinema;
 import moblima.show.ShowList;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ public class Cineplex {
     private String location;
     private ArrayList<Cinema> cinemas = new ArrayList<>();
 
-    private static ShowList showList = new ShowList();
+    private ShowList showList = new ShowList();
 
     public Cineplex(String name, String location) {
         this.name = name;

@@ -1,6 +1,7 @@
 package command.userModule;
 
 import command.Command;
+import exceptions.moblimaExceptions.invalidInputException;
 import moblima.cineplex.Cineplex;
 import moblima.show.Show;
 
@@ -14,20 +15,39 @@ public class showSeatAvailabilityCommand implements Command {
 		Scanner scanner = new Scanner(System.in);
 		cineplex.getShowList().listShows();
 		System.out.println();
-		
-		System.out.print("Enter show ID: ");
-		try {
-			int showId = scanner.nextInt();
-			Show curShow = cineplex.getShowList().searchShow(showId);
-			//System.out.println();
-			
-			if (curShow == null) {
-				System.out.println("===== Show ID " + showId + " does not exist! =====");
-			} else {
-				curShow.showSeating();
+
+		System.out.print("Please enter the show ID: ");
+		while(true) {
+			try {
+				if(scanner.hasNextInt() == false) {
+					throw new invalidInputException("Show ID");
+				}
+
+				int showId = scanner.nextInt();
+				Show curShow = cineplex.getShowList().searchShow(showId);
+				if (curShow == null) {
+					System.out.println();
+					System.out.println("======= Show ID " + showId + " does not exist! =======");
+					return;
+				}
+				else if(curShow != (Show)curShow) {
+					throw new invalidInputException("Show ID");
+				}
+
+				else {
+					curShow.showSeating();
+				}
+				break;
 			}
-		} catch (Exception e) {
-			System.out.println("Invalid Show ID! Please try again.");
+			catch (invalidInputException e) {
+				System.out.println(e.getMessage());
+
+			}
+			System.out.println();
+			System.out.print("Please enter the movie's Show ID again: ");
+			scanner.next();
+			continue;
+
 		}
 
 

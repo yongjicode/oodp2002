@@ -2,11 +2,8 @@ package command.adminModule;
 import command.Command;
 import system.SystemSettings;
 
-public class disableTop5TicketSalesCommand implements Command{private SystemSettings ss;
-    public disableTop5TicketSalesCommand(SystemSettings ss){
-        this.ss = ss;
-    }
+public class disableTop5TicketSalesCommand implements Command{
     public void execute(){
-        ss.disableTop5MovieTickets();
+        SystemSettings.disableTop5MovieTickets();
     }
 }

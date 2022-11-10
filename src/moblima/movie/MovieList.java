@@ -12,7 +12,7 @@ public class MovieList {
 
     public void updateExpiredMovieStatus(){
         for(Movie movie: movies){
-            if(movie.getExpiryDate().isAfter(LocalDateTime.now())){
+            if(movie.getExpiryDate().isBefore(LocalDateTime.now())){
                 if(movie.getStatus()!= MovieStatus.END_OF_SHOWING){
                     movie.setStatus(MovieStatus.END_OF_SHOWING);
                 }
@@ -28,11 +28,13 @@ public class MovieList {
         for(Movie movie: movies){
             if(movie.getMovieId() == movieId){
                 movies.remove(movie);
-                System.out.println("moblima.movie.Movie " + movieId + " has been removed.");
+                System.out.println();
+                System.out.println("Movie \"" + movieId + "\" has been removed.");
                 return;
             }
         }
-        System.out.println("moblima.movie.Movie " + movieId + " does not exist.");
+        System.out.println();
+        System.out.println("Movie \"" + movieId + "\" does not exist. No movie removed.");
     }
 
     public void listMovies(int privilege){
@@ -49,7 +51,7 @@ public class MovieList {
                     System.out.println();
                 }
             }
-            System.out.println("===== There are " + movies.size() + " movies available! =====");
+            System.out.println("===== There are " + (movieCount-1) + " movies available! =====");
         }
         // For Admin
         else if (privilege != 0){
@@ -67,7 +69,7 @@ public class MovieList {
     public void searchMovieTitle(String keyword){
         int numOfResults = 0;
         System.out.println();
-        System.out.println("Search Results for movie titled " + keyword);
+        System.out.println("Search Results for movie titled \"" + keyword + "\"");
         System.out.println();
         for(Movie movie: movies){
             if(movie.getTitle().toLowerCase().contains(keyword.toLowerCase())){

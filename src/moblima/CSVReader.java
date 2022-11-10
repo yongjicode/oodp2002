@@ -2,13 +2,15 @@
 //
 //import account.*;
 //import moblima.booking.Booking;
-//import moblima.movie.review.Review;
-//import moblima.movie.review.ReviewList;
-//import moblima.show.ticket.MovieTicket;
 //import moblima.cineplex.Cinema;
 //import moblima.cineplex.Cineplex;
 //import moblima.movie.Movie;
+//import moblima.movie.review.Review;
+//import moblima.movie.review.ReviewList;
 //import moblima.show.Show;
+//import moblima.show.ShowList;
+//import moblima.show.ticket.MovieTicket;
+//
 //
 //import java.io.BufferedReader;
 //import java.io.IOException;
@@ -36,7 +38,7 @@
 //            while (line != null) {
 //
 //                String[] attributes = line.split(",");
-//                int privilege = Integer.parseInt(attributes[0]);
+//                Privilege privilege = Account.convertIntToPrivilege(Integer.parseInt(attributes[0]));
 //                String loginId = attributes[1];
 //                String password = attributes[2];
 //                String mobileNumber = attributes[3];
@@ -270,9 +272,9 @@
 //        return movie;
 //    }
 //
-//    public static ArrayList<Show> readShowsFromCSV(String fileName) {
+//    public static ShowList readShowsFromCSV(String fileName) {
 //
-//        ArrayList<Show> shows = new ArrayList<>();
+//        ShowList showlist = new ShowList();
 //        Path pathToFile = Paths.get(fileName);
 //        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
 //
@@ -282,7 +284,7 @@
 //
 //                // currentId,showId,cinemaCode,movie,showTime,seating
 //                String[] attributes = line.split(",");
-//                //int showId = Integer.parseInt(attributes[1]);
+//                // int showId = Integer.parseInt(attributes[1]);
 //                String cinemaCode = attributes[3];
 //                String movieTitle = attributes[4];
 //                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -292,18 +294,18 @@
 //                Movie movie = filterMovieFromCSV("src\\database\\movieDB.csv", movieTitle);
 //
 //                Show show = new Show(showTime, cinema, movie);
-//                shows.add(show);
+//                showlist.addShow(show);
 //                line = br.readLine();
 //            }
 //        } catch (IOException ioe) {
 //            ioe.printStackTrace();
 //        }
-//        return shows;
+//        return showlist;
 //    }
 //
 //    public static Show filterShowFromCSV(String fileName, int showId) {
 //
-//        ArrayList<Show> shows = readShowsFromCSV(fileName);
+//        ArrayList<Show> shows = readShowsFromCSV(fileName).getShows();
 //        int arrSize = shows.size();
 //        for (int i=0; i<arrSize; i++) {
 //            if (showId==shows.get(i).getShowId()) {

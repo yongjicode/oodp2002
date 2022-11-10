@@ -1,4 +1,4 @@
-package moblima.show.ticket;
+package moblima.booking.ticket;
 
 import moblima.show.Show;
 
@@ -24,6 +24,7 @@ public class MovieTicket {
         System.out.println("Seat: " + seatId);
         System.out.println("Price: $" + price);
         System.out.println("Type: " + age);
+        System.out.println("Ticket ID: " + ticketID);
         show.printShowDetails();
         System.out.println("_________________________________________");
         //System.out.println();
