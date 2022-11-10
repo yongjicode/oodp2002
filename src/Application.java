@@ -1,6 +1,6 @@
 import account.*;
-import command.adminModule.*;
-import command.userModule.*;
+import command.admin.*;
+import command.user.*;
 import exceptions.moblimaExceptions.invalidInputException;
 import gui.*;
 import moblima.SilverVillage;
@@ -195,81 +195,7 @@ public class Application {
 						break;
 
 					case 7:
-						Scanner input = new Scanner(System.in);
-						System.out.println();
-						System.out.print("Please enter the ticket ID: ");
-						while(true) {
-							try {
-								if(input.hasNextInt() == false) {
-									throw new invalidInputException("ticket ID");
-								}
-
-								int ticketID = input.nextInt();
-
-								System.out.println();
-
-								System.out.print("Please enter the movie ID you wish to rate: ");
-
-								while(true) {
-									try {
-										if(input.hasNextInt() == false) {
-											throw new invalidInputException("movie ID");
-										}
-										int movieID = input.nextInt();
-										System.out.println();
-										System.out.print("Please enter your rating: ");
-
-										while(true) {
-											try {
-												if(input.hasNextInt() == false) {
-													throw new invalidInputException("rating");
-												}
-												int reviewRating = input.nextInt();
-
-
-												System.out.println();
-												System.out.print("Please enter your review: ");
-												input.next();
-												String reviewDesc = input.nextLine();
-												// TODO MK FIX
-												//new reviewMovieCommand(ticketID, SilverVillage.getBookingHistory().getBookings(), reviewRating, reviewDesc, SilverVillage.getMovieList().getMovies(), movieID).execute();
-												break;
-											}
-											catch (invalidInputException e) {
-												System.out.println(e.getMessage());
-
-											}
-											System.out.println();
-											System.out.print("Please enter your rating again: ");
-											input.next();
-											continue;
-										}
-
-										break;
-									}
-									catch (invalidInputException e) {
-										System.out.println(e.getMessage());
-
-									}
-									System.out.println();
-									System.out.print("Please enter the movie ID you wish to rate again: ");
-									input.next();
-									continue;
-								}
-
-								break;
-							}
-							catch (invalidInputException e) {
-								System.out.println(e.getMessage());
-
-							}
-							System.out.println();
-							System.out.print("Please input the ticket ID again: ");
-							input.next();
-							continue;
-						}
-
-
+						new reviewMovieCommand().execute();
 						break;
 					case 8:
 						if(ss.getTop5MovieTicketsBool() && ss.getTop5MovieRatingsBool()){

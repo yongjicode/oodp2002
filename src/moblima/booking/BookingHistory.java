@@ -1,5 +1,7 @@
 package moblima.booking;
 
+import moblima.booking.ticket.MovieTicket;
+
 import java.util.ArrayList;
 
 public class BookingHistory {
@@ -26,6 +28,14 @@ public class BookingHistory {
         }
     }
 
+    public MovieTicket searchTicketByTicketId(int ticketId){
+        for (Booking booking:bookings){
+            MovieTicket tempTicket = booking.getTicket(ticketId);
+            if(tempTicket != null)
+                return tempTicket;
+        }
+        return null;
+    }
     public void addBooking(Booking booking){
         booking.generateTransactionId(booking.getTickets().get(0).getShow().getCinema().getCinemaCode());
         bookings.add(booking);

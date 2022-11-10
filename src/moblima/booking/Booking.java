@@ -59,6 +59,15 @@ public class Booking {
         }
     }
 
+    public MovieTicket getTicket(int ticketId){
+        for (MovieTicket ticket: tickets){
+            if(ticket.getTicketID() == ticketId){
+                return ticket;
+            }
+        }
+        return null;
+    }
+
     public ArrayList<MovieTicket> getTickets() {
         return tickets;
     }

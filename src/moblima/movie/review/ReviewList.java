@@ -21,6 +21,7 @@ public class ReviewList {
     }
 
     public int showAverageRating(){
+       if (reviews.size() == 0) return 0;
        return totalRating/reviews.size();
     }
 

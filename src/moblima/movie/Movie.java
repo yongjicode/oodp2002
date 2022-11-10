@@ -47,7 +47,7 @@ public class Movie{
     }
 
     public int getRating() {
-        return rating;
+        return reviews.showAverageRating();
     }
 
     public int getTicketSold() {
@@ -94,6 +94,7 @@ public class Movie{
         System.out.print("\n");
         System.out.println("Rating: " + rating);
         System.out.print("Reviews: ");
+        System.out.println();
         reviews.listReviews();
     }
 
