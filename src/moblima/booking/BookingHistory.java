@@ -5,14 +5,6 @@ import java.util.ArrayList;
 public class BookingHistory {
     private ArrayList<Booking> bookings = new ArrayList<>();
 
-    public void showBookingHistory(){
-        System.out.println("Booking History:");
-        for(Booking booking: bookings){
-            booking.printBookingDetails();
-        }
-        System.out.println("===== There are " + bookings.size() + " in the booking history! =====");
-    }
-
     public void showUserBookingHistory(String username){
         System.out.println("User Booking History");
         int i = 1;

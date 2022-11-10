@@ -12,7 +12,7 @@ public class MovieList {
 
     public void updateExpiredMovieStatus(){
         for(Movie movie: movies){
-            if(movie.getExpiryDate().isAfter(LocalDateTime.now())){
+            if(movie.getExpiryDate().isBefore(LocalDateTime.now())){
                 if(movie.getStatus()!= MovieStatus.END_OF_SHOWING){
                     movie.setStatus(MovieStatus.END_OF_SHOWING);
                 }
@@ -51,7 +51,7 @@ public class MovieList {
                     System.out.println();
                 }
             }
-            System.out.println("===== There are " + movies.size() + " movies available! =====");
+            System.out.println("===== There are " + (movieCount-1) + " movies available! =====");
         }
         // For Admin
         else if (privilege != 0){

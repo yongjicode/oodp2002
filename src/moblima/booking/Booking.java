@@ -1,5 +1,5 @@
 package moblima.booking;
-import moblima.show.ticket.MovieTicket;
+import moblima.booking.ticket.MovieTicket;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

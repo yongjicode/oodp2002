@@ -1,4 +1,4 @@
-package moblima.cineplex;
+package moblima.cineplex.cinema;
 
 public class Cinema {
 

@@ -3,7 +3,7 @@ package command.adminModule;
 import command.Command;
 import exceptions.moblimaExceptions.invalidInputException;
 import moblima.SilverVillage;
-import moblima.cineplex.Cinema;
+import moblima.cineplex.cinema.Cinema;
 import moblima.cineplex.Cineplex;
 import moblima.movie.Movie;
 import moblima.show.Show;

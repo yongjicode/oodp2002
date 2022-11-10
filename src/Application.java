@@ -4,31 +4,20 @@ import command.adminModule.*;
 
 import account.*;
 import moblima.SilverVillage;
-import moblima.booking.Booking;
-import moblima.booking.BookingHistory;
-import moblima.cineplex.Cinema;
-import moblima.cineplex.CinemaClass;
+import moblima.cineplex.cinema.Cinema;
+import moblima.cineplex.cinema.CinemaClass;
 import moblima.cineplex.Cineplex;
-import moblima.cineplex.CineplexList;
 import moblima.movie.Movie;
-import moblima.movie.MovieList;
 import moblima.movie.MovieStatus;
-import moblima.movie.review.ReviewList;
 import moblima.show.Show;
-import moblima.show.ShowList;
-import moblima.show.ticket.MovieTicket;
 import system.PublicHoliday;
 import system.SystemSettings;
 import gui.*;
-
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.ArrayList;
-
-import static moblima.movie.Movie.convertToMovieStatus;
 
 
 public class Application {
@@ -141,7 +130,6 @@ public class Application {
 
 			if(scanner.hasNextInt() == false) {
 				System.out.println("Invalid input format for location number. Please try again.");
-
 				scanner.next();
 				continue;
 			}
@@ -160,20 +148,14 @@ public class Application {
 		while(true) {
 			if(curAcc == null || curAcc.getPrivilege() == Privilege.User) //guest or user accounts
 			{
-				if(curAcc == null){
-					new gui.guestMenu(cineplex).display();
-				}
-				else{
-					new gui.userMenu(cineplex,curAcc).display();
-				}
-
-
+				if(curAcc == null) new gui.guestMenu(cineplex).display();
+				else new gui.userMenu(cineplex,curAcc).display();
 				userCh = scanner.nextInt();
 				scanner.nextLine();
 				System.out.println();
 				System.out.println("=========================================");
 
-				if (userCh == 9) {
+				if (userCh == 11) {
 					System.out.println();
 					System.out.println("Thank you for using MOBLIMA. Have a nice day!");
 					System.out.println();
@@ -188,9 +170,12 @@ public class Application {
 						new userListMoviesCommand().execute();
 						break;
 					case 3:
-						new showSeatAvailabilityCommand(cineplex).execute();
+						new listShowsCommand(cineplex).execute();
 						break;
 					case 4:
+						new showSeatAvailabilityCommand(cineplex).execute();
+						break;
+					case 5:
 
 						if(curAcc == null) {
 							new guestBookTicketCommand(cineplex).execute();
@@ -199,16 +184,16 @@ public class Application {
 							new bookTicketCommand(cineplex, curAcc).execute();
 						}
 						break;
-					case 5:
+					case 6:
 						if (curAcc == null) {
-							new guestViewBookingHistory().execute();
+							new guestViewBookingHistoryCommand().execute();
 						}
 						else {
 							new viewBookingHistoryCommand(curAcc.getName()).execute();
 						}
 						break;
 
-					case 6:
+					case 7:
 						Scanner input = new Scanner(System.in);
 						System.out.println();
 						System.out.print("Please enter the ticket ID: ");
@@ -286,7 +271,7 @@ public class Application {
 
 
 						break;
-					case 7:
+					case 8:
 						if(ss.getTop5MovieTicketsBool() && ss.getTop5MovieRatingsBool()){
 							new showTop5OptionsMenu().display();
 
@@ -314,7 +299,13 @@ public class Application {
 							System.out.println("Data unavailable");
 						}
 						break;
-					case 8:
+
+					case 9:
+						changeLocationCommand CLC = new changeLocationCommand(cineplex);
+						CLC.execute();
+						cineplex = CLC.getCineplex();
+						break;
+					case 10:
 						if(curAcc == null) {
 							while(true){
 								System.out.println();
@@ -373,7 +364,7 @@ public class Application {
 						new createShowCommand(cineplexAdmin.getCineplex()).execute();
 						break;
 					case 2:
-						new updateShowCommand(cineplexAdmin.getCineplex().getShowList().getShows()).execute();
+						new updateShowCommand(cineplexAdmin.getCineplex()).execute();
 						break;
 					case 3:
 						new deleteShowCommand(cineplexAdmin.getCineplex()).execute();
@@ -428,26 +419,26 @@ public class Application {
 						scanner.nextLine();
 						switch(userCh){
 							case 1:
-								new enableTop5TicketSalesCommand(ss).execute();
+								new enableTop5TicketSalesCommand().execute();
 								System.out.println("Ranking Top 5 Ticket Sales enabled");
 								break;
 							case 2:
-								new disableTop5TicketSalesCommand(ss).execute();
+								new disableTop5TicketSalesCommand().execute();
 								System.out.println("Ranking Top 5 Ticket Sales disabled");
 								break;
 							case 3:
-								new enableTop5ReviewsCommand(ss).execute();
+								new enableTop5ReviewsCommand().execute();
 								System.out.println("Ranking by Top 5 Movie Ratings enabled");
 								break;
 							case 4:
-								new disableTop5ReviewsCommand(ss).execute();
+								new disableTop5ReviewsCommand().execute();
 								System.out.println("Ranking by Top 5 Movie Ratings disabled");
 								break;
 							case 5:
-								new addPublicHolidayCommand(ss).execute();
+								new addPublicHolidayCommand().execute();
 								break;
 							case 6:
-								new removePublicHolidayCommand(ss).execute();
+								new removePublicHolidayCommand().execute();
 								break;
 							case 7:
 								new adjustTicketBasePriceCommand().execute();

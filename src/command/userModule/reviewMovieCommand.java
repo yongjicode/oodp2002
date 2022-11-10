@@ -3,7 +3,7 @@ package command.userModule;
 import command.Command;
 import moblima.booking.Booking;
 import moblima.movie.Movie;
-import moblima.show.ticket.MovieTicket;
+import moblima.booking.ticket.MovieTicket;
 import moblima.movie.review.Review;
 
 import java.util.ArrayList;

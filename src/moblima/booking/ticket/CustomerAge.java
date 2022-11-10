@@ -1,4 +1,4 @@
-package moblima.show.ticket;
+package moblima.booking.ticket;
 
 public enum CustomerAge {
     CHILD,
