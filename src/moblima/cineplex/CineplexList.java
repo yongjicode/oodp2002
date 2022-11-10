@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class CineplexList {
 
-    private ArrayList<Cineplex> cineplexes = new ArrayList<>();
+    private final ArrayList<Cineplex> cineplexes = new ArrayList<>();
 
     public Cineplex getCineplexByIndex(int index){
         if (index < 0 || index >= cineplexes.size()) {
@@ -17,15 +17,17 @@ public class CineplexList {
         cineplexes.add(cineplex);
     }
 
-    public void listLocations(){
+    public void listCineplexes(){
         int i = 1;
-        System.out.println("Locations:");
+        System.out.println("Cineplexes:");
         for (Cineplex cineplex: cineplexes){
-            System.out.println((i++) + ". " + cineplex.getLocation());
+            System.out.print((i++) + ". ");
+            cineplex.printCineplexDetails();
+            System.out.println("\n");
         }
     }
 
-    public ArrayList<Cineplex> getCineplexes() {
-        return cineplexes;
-    }
+//    public ArrayList<Cineplex> getCineplexes() {
+//        return cineplexes;
+//    }
 }

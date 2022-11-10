@@ -24,7 +24,7 @@ public class reviewMovieCommand implements Command{
         this.reviewDesc=reviewDesc;
         this.rating=rating;
     }
-    public void execute(){
+    public void execute(){ // TODO MK create functions in respective class, dont pass in and access whole array
         for (Booking booking: arrayBooking){
             for (MovieTicket ticket: booking.getTickets()){
                 if (ticket.getTicketID() == ticketID){

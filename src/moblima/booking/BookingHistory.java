@@ -30,9 +30,10 @@ public class BookingHistory {
         booking.generateTransactionId(booking.getTickets().get(0).getShow().getCinema().getCinemaCode());
         bookings.add(booking);
     }
-    public ArrayList<Booking> getBookings() {
-        return bookings;
-    }
+
+//    public ArrayList<Booking> getBookings() {
+//        return bookings;
+//    }
 
 
 }

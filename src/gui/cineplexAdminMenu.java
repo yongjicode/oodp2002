@@ -12,7 +12,7 @@ public class cineplexAdminMenu implements menu{
         System.out.println();
         System.out.println("Logged in as Cineplex Admin: " + cineplexAcc.getLoginId());
         System.out.println();
-        System.out.println("Cineplex Branch: "+ cineplexAcc.getCineplex().getLocation());
+        System.out.println("Cineplex Branch: "+ cineplexAcc.getCineplex().getBranchName());
         System.out.println();
         System.out.println("1. Create cinema showtimes");
         System.out.println("2. Update cinema showtimes");

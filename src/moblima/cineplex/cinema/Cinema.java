@@ -10,7 +10,7 @@ public class Cinema {
         this.classLevel = classLevel;
     }
 
-    public void setCinemaCode(String cineplexCode) {
+    public void generateCinemaCode(String cineplexCode) {
         this.cinemaCode = cineplexCode.toUpperCase() + currentCode++;
     }
 

@@ -24,7 +24,7 @@ public class showSeatAvailabilityCommand implements Command {
 				}
 
 				int showId = scanner.nextInt();
-				Show curShow = cineplex.getShowList().searchShow(showId);
+				Show curShow = cineplex.getShowList().searchShowById(showId);
 				if (curShow == null) {
 					System.out.println();
 					System.out.println("======= Show ID " + showId + " does not exist! =======");
