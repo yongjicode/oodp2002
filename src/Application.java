@@ -1,25 +1,24 @@
+import account.*;
+import command.adminModule.*;
 import command.userModule.*;
 import exceptions.moblimaExceptions.invalidInputException;
-import command.adminModule.*;
-
-import account.*;
+import gui.*;
 import moblima.SilverVillage;
-import moblima.CSVReader;
-import moblima.cineplex.*;
-import moblima.cineplex.cinema.*;
-import moblima.movie.*;
-import moblima.movie.review.*;
-import moblima.show.*;
-import moblima.booking.*;
-import moblima.booking.ticket.*;
+import moblima.cineplex.Cineplex;
+import moblima.cineplex.cinema.Cinema;
+import moblima.cineplex.cinema.CinemaClass;
+import moblima.movie.Movie;
+import moblima.movie.MovieStatus;
+import moblima.show.Show;
 import system.PublicHoliday;
 import system.SystemSettings;
-import gui.*;
+
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 
 public class Application {
