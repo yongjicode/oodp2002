@@ -46,7 +46,7 @@ public abstract class Account{
             case 0:
                 return Privilege.User;
             case 1:
-                return Privilege.CinelexAdmin;
+                return Privilege.CineplexAdmin;
             default:
                 return Privilege.CompanyAdmin;
         }

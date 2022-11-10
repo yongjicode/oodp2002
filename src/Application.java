@@ -4,12 +4,14 @@ import command.adminModule.*;
 
 import account.*;
 import moblima.SilverVillage;
-import moblima.cineplex.cinema.Cinema;
-import moblima.cineplex.cinema.CinemaClass;
-import moblima.cineplex.Cineplex;
-import moblima.movie.Movie;
-import moblima.movie.MovieStatus;
-import moblima.show.Show;
+import moblima.CSVReader;
+import moblima.cineplex.*;
+import moblima.cineplex.cinema.*;
+import moblima.movie.*;
+import moblima.movie.review.*;
+import moblima.show.*;
+import moblima.booking.*;
+import moblima.booking.ticket.*;
 import system.PublicHoliday;
 import system.SystemSettings;
 import gui.*;
@@ -29,30 +31,47 @@ public class Application {
 
 	public void run() {
 
-//		ShowList showList = CSVReader.readShowsFromCSV("src/database/showDB.csv");
-//		ArrayList<Movie> arrayMovie = CSVReader.readMoviesFromCSV("src/database/movieDB.csv");
-//		MovieList movieList = new MovieList();
-//		for (Movie movie: arrayMovie){
-//			movieList.addMovie(movie);
-//		}
-//
-//		ArrayList<Booking> arrayBooking = CSVReader.readBookingsFromCSV("src/database/bookingDB.csv");
-//		BookingHistory bookingHistory = new BookingHistory();
-//		for (Booking booking: arrayBooking){
-//			bookingHistory.addBooking(booking);
-//		}
-//
-//		ArrayList<Cineplex> arrayCineplex = CSVReader.readCineplexFromCSV("src/database/companyDB.csv", showList.getShows());
-//		CineplexList cineplexList = new CineplexList();
-//		for (Cineplex cineplex: arrayCineplex){
-//			cineplexList.addCineplex(cineplex);
-//		}
-//
-//		ArrayList<ReviewList> arrayReview = CSVReader.readReviewsFromCSV("src/database/reviewListDB.csv");
-//
-//
-//		ArrayList<Account> arrayAccount = CSVReader.readAccountsFromCSV("src/database/accountDB.csv", arrayCineplex);
+		
 
+		// ArrayList<Movie> arrayMovie = CSVReader.readMoviesFromCSV("src/database/MovieDB.csv");
+		// MovieList movieList = new MovieList();
+		// for (Movie movie: arrayMovie){
+		// 	movieList.addMovie(movie);
+		// }
+		// movieList.listMovies(2);
+
+		// ShowList showList = CSVReader.readShowsFromCSV("src/database/ShowDB.csv");
+		// showList.listShows();
+
+		// ArrayList<Cineplex> arrayCineplex = CSVReader.readCineplexFromCSV("src/database/CineplexDB.csv", showList.getShows());
+		// CineplexList cineplexList = new CineplexList();
+		// for (Cineplex cineplex: arrayCineplex){
+		// 	cineplexList.addCineplex(cineplex);
+		// }
+		// cineplexList.listLocations();
+
+		// ArrayList<Booking> arrayBooking = CSVReader.readBookingsFromCSV("src/database/BookingDB.csv");
+		// BookingHistory bookingHistory = new BookingHistory();
+		// for (Booking booking: arrayBooking){
+		// 	bookingHistory.addBooking(booking);
+		// }
+		// bookingHistory.showUserBookingHistory("Jin Kai");
+
+
+		// ArrayList<ReviewList> arrayReview = CSVReader.readReviewsFromCSV("src/database/ReviewListDB.csv");
+		// for (ReviewList reviewList: arrayReview){
+		// 	reviewList.listReviews();
+		// }
+
+		// ArrayList<Account> arrayAccount = CSVReader.readAccountsFromCSV("src\\database\\AccountDB.csv", arrayCineplex);
+		// for (Account acc: arrayAccount){
+		// 	System.out.println("account name: " + acc.getName());
+		// }
+
+		// ArrayList<MovieTicket> arrayMovieTicket = CSVReader.readTicketsFromCSV("src\\database\\MovieTicketDB.csv");
+		// for (MovieTicket mt: arrayMovieTicket){
+		// 	mt.printTicketDetails();
+		// }
 
 
 
@@ -102,8 +121,8 @@ public class Application {
 		SilverVillage.getCineplexList().addCineplex(changiCine);
 		Account[] accounts = new Account[4];
 		accounts[0] = new UserAccount("apple","sauce",Privilege.User,"123@gmail.com","999","peter");
-		accounts[1] = new CineplexAdminAccount("orange","sauce",Privilege.CinelexAdmin, tempCine,"abc@gmai.com","992","stacey");
-		accounts[2] = new CineplexAdminAccount("banana","sauce",Privilege.CinelexAdmin,changiCine,"999@gmai.com","992","harold");
+		accounts[1] = new CineplexAdminAccount("orange","sauce",Privilege.CineplexAdmin, tempCine,"abc@gmai.com","992","stacey");
+		accounts[2] = new CineplexAdminAccount("banana","sauce",Privilege.CineplexAdmin,changiCine,"999@gmai.com","992","harold");
 		accounts[3] = new CompanyAdminAccount("durian","sauce",Privilege.CompanyAdmin,"999@gmai.com","992","june");
 		// end of test cases
 
@@ -343,7 +362,7 @@ public class Application {
 				}
 
 			}
-			else if (curAcc.getPrivilege() == Privilege.CinelexAdmin) {
+			else if (curAcc.getPrivilege() == Privilege.CineplexAdmin) {
 				CineplexAdminAccount cineplexAdmin = (CineplexAdminAccount) curAcc;
 				new cineplexAdminMenu(cineplexAdmin).display();
 
