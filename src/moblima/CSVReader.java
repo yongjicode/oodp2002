@@ -4,8 +4,8 @@
 //import moblima.booking.Booking;
 //import moblima.movie.review.Review;
 //import moblima.movie.review.ReviewList;
-//import moblima.show.ticket.MovieTicket;
-//import moblima.cineplex.Cinema;
+//import moblima.booking.ticket.MovieTicket;
+//import moblima.cineplex.cinema.Cinema;
 //import moblima.cineplex.Cineplex;
 //import moblima.movie.Movie;
 //import moblima.show.Show;
@@ -20,9 +20,9 @@
 //import java.time.format.DateTimeFormatter;
 //import java.util.ArrayList;
 //
-//import static moblima.cineplex.Cinema.convertToCinemaClass;
+//import static moblima.cineplex.cinema.Cinema.convertToCinemaClass;
 //import static moblima.movie.Movie.convertToMovieStatus;
-//import static moblima.show.ticket.MovieTicket.checkCustomerAge;
+//import static moblima.booking.ticket.MovieTicket.checkCustomerAge;
 //public class CSVReader{
 //
 //    public static ArrayList<Account> readAccountsFromCSV(String fileName, ArrayList<Cineplex> arrayCineplex) {

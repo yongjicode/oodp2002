@@ -4,13 +4,13 @@ import command.Command;
 import exceptions.moblimaExceptions.invalidInputException;
 import moblima.SilverVillage;
 import moblima.booking.Booking;
-import moblima.show.ticket.MovieTicket;
+import moblima.booking.ticket.MovieTicket;
 import moblima.cineplex.Cineplex;
 import moblima.show.Show;
 
 import java.util.Scanner;
 
-import static moblima.show.ticket.MovieTicket.checkCustomerAge;
+import static moblima.booking.ticket.MovieTicket.checkCustomerAge;
 
 public class guestBookTicketCommand implements Command{
 

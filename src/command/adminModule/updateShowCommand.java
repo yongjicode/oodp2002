@@ -2,7 +2,7 @@ package command.adminModule;
 import command.Command;
 import exceptions.moblimaExceptions.invalidInputException;
 import moblima.show.Show;
-
+import moblima.cineplex.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -10,12 +10,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class updateShowCommand implements Command{
-    private ArrayList<Show> showArray;
-    public updateShowCommand(ArrayList<Show> showArray){
-        this.showArray=showArray;
+    private Cineplex cineplex;
+    public updateShowCommand(Cineplex cineplex){
+        this.cineplex=cineplex;
     }
     public void execute(){
         Scanner input = new Scanner(System.in);
+        cineplex.getShowList().listShows();
         System.out.println();
         System.out.print("Please enter show ID: ");
 
@@ -27,16 +28,15 @@ public class updateShowCommand implements Command{
 
 
                 int id = input.nextInt();
-
+                input.nextLine();
                 System.out.print("Please enter the new Time (YYYY-MM-DD HH:MM): ");
-                input.next();
 
                 while(true) {
                     try {
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                         LocalDateTime newDateTime = LocalDateTime.parse(input.nextLine(),formatter);
                         Show showToBeUpdated = null;
-                        for (Show show: showArray){
+                        for (Show show: cineplex.getShowList().getShows()){
                             if (show.getShowId() == id){
                                 showToBeUpdated = show;
                                 showToBeUpdated.setShowTime(newDateTime);

@@ -2,13 +2,12 @@ package system;
 
 import java.util.ArrayList;
 import java.time.LocalDateTime;
-import moblima.show.ticket.*;
 
 public class SystemSettings {
-    private boolean showTop5MovieRatings = true;
-    private boolean showTop5MovieTickets = true;
+    private static boolean showTop5MovieRatings = true;
+    private static boolean showTop5MovieTickets = true;
     private static ArrayList<PublicHoliday> publicHolidays = new ArrayList<PublicHoliday>();
-    private static float basePrice;
+    private static double basePrice = 6;
 
 
     public void printSettings(){
@@ -17,13 +16,18 @@ public class SystemSettings {
         System.out.println("Rank Top 5 Based on Movie Ratings: " + showTop5MovieRatings);
         System.out.println("Public Holidays: ");
         printPublicHolidays();
-        System.out.println("Tickets base price: " + TicketPriceCalculator.getBasePrice());
+        System.out.println("Tickets base price: " + basePrice);
         System.out.println("=========================================");
 
     }
 
+    public static void updateBasePrice(double newPrice){
+        basePrice = newPrice;
+    }
 
-
+    public static double getBasePrice(){
+        return basePrice;
+    }
     public static void printPublicHolidays(){
         int index = 1;
         for (PublicHoliday publicHoliday: publicHolidays){
@@ -31,17 +35,17 @@ public class SystemSettings {
             index+=1;
         }
     }
-    public void addPublicHoliday(LocalDateTime date, String name){
+    public static void addPublicHoliday(LocalDateTime date, String name){
         publicHolidays.add(new PublicHoliday(date,name));
         System.out.println(name + " has been added.");
     }
 
-    public void removePublicHoliday(int index){
+    public static void removePublicHoliday(int index){
         PublicHoliday temp = publicHolidays.get(index-1);
         publicHolidays.remove(index-1);
         System.out.println(temp.getName() + " has been removed.");
     }
-    public boolean getTop5MovieRatingsBool(){
+    public static boolean getTop5MovieRatingsBool(){
         return showTop5MovieRatings;
     }
 
@@ -55,23 +59,23 @@ public class SystemSettings {
         return false;
 
     }
-    public boolean getTop5MovieTicketsBool(){
+    public static boolean getTop5MovieTicketsBool(){
         return showTop5MovieTickets;
     }
 
-    public void enableTop5MovieTickets(){
-        this.showTop5MovieTickets = true;
+    public static void enableTop5MovieTickets(){
+        showTop5MovieTickets = true;
     }
 
-    public void disableTop5MovieTickets(){
-        this.showTop5MovieTickets = false;
+    public static void disableTop5MovieTickets(){
+        showTop5MovieTickets = false;
     }
 
-    public void enableTop5MovieRatings(){
-        this.showTop5MovieRatings = true;
+    public static void enableTop5MovieRatings(){
+        showTop5MovieRatings = true;
     }
 
-    public void disableTop5MovieRatings(){
-        this.showTop5MovieRatings = false;
+    public static void disableTop5MovieRatings(){
+        showTop5MovieRatings = false;
     }
 }

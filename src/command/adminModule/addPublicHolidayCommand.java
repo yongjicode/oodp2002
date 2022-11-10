@@ -7,10 +7,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class addPublicHolidayCommand implements Command{
-    private SystemSettings ss;
-    public addPublicHolidayCommand(SystemSettings ss){
-        this.ss = ss;
-    }
 
     public void execute(){
         Scanner scanner = new Scanner(System.in);
@@ -21,7 +17,7 @@ public class addPublicHolidayCommand implements Command{
         String dateStr = scanner.nextLine();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(dateStr, formatter);
-        ss.addPublicHoliday(dateTime,holidayName);
+        SystemSettings.addPublicHoliday(dateTime,holidayName);
     }
 }
 

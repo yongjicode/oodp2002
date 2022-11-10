@@ -1,6 +1,6 @@
-package moblima.show.ticket;
+package moblima.booking.ticket;
 
-import moblima.cineplex.CinemaClass;
+import moblima.cineplex.cinema.CinemaClass;
 import system.SystemSettings;
 
 import java.time.DayOfWeek;
@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 public class TicketPriceCalculator {
 
-    private static double basePrice = 6;
+    private double basePrice = 6;
     CustomerAge customerAge;
     CinemaClass cinemaClass;
     LocalDateTime date;
@@ -17,15 +17,10 @@ public class TicketPriceCalculator {
         this.cinemaClass = cinemaClass;
         this.customerAge = customerAge;
         this.date = date;
+        this.basePrice = SystemSettings.getBasePrice();
     }
 
-    public static void updateBasePrice(double newBasePrice){
-        basePrice = newBasePrice;
-    }
 
-    public static double getBasePrice(){
-        return basePrice;
-    }
 
     public double calculatePrice(){
         double additionalCharge = 0;
