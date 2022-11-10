@@ -10,9 +10,13 @@ public class userMenu implements menu{
         this.cineplex = cineplex;
     }
     public void display(){
+        System.out.println();
         System.out.println("============== User Menu ================");
+        System.out.println();
         System.out.println("Logged in as User: " + curAcc.getLoginId());
+        System.out.println();
         System.out.println("Cineplex Branch: " + cineplex.getLocation());
+        System.out.println();
         System.out.println("1. Search Movie");
         System.out.println("2. List Movies");
         System.out.println("3. View Seat Availability");
@@ -23,6 +27,7 @@ public class userMenu implements menu{
         System.out.println("8. Logout");
         System.out.println("9. Exit");
         System.out.println("=========================================");
+        System.out.println();
         System.out.print("Please enter the option number: ");
     }
 }

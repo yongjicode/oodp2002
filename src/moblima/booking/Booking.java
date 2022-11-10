@@ -1,5 +1,4 @@
 package moblima.booking;
-
 import moblima.show.ticket.MovieTicket;
 
 import java.time.LocalDateTime;
@@ -49,8 +48,8 @@ public class Booking {
 
 
     public void printBookingDetails() {
-    	System.out.println();
-    	System.out.println("============ Booking Details ============");
+        System.out.println();
+        System.out.println("============ Booking Details ============");
         System.out.println("Customer: " + customerName);
         System.out.println("Mobile Number: " + mobileNumber);
         System.out.println("Email: " + emailAddress);

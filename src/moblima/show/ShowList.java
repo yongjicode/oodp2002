@@ -13,12 +13,17 @@ public class ShowList {
         for(Show show : shows){
             if(show.getShowId()==showId){
                 shows.remove(show);
+                System.out.println();
                 System.out.println("Show " + showId + " has been removed.");
+                System.out.println();
+                System.out.println("Show successfully deleted.");
 
                 return;
             }
         }
+        System.out.println();
         System.out.println("Show " + showId + " does not exist.");
+
     }
 
     public void listShows(){

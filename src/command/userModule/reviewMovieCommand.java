@@ -32,13 +32,14 @@ public class reviewMovieCommand implements Command{
                     for (Movie movie: arrayMovie){
                         if (movie.getMovieId()==movieID){
                             movie.getReviews().add(review);
-                            System.out.println("Review Created...");
+                            System.out.println("Review created...");
                         }
                     }
                 }
             }
         }
-        System.out.println("ticket ID cannot be found...");
+        System.out.println();
+        System.out.println("Ticket ID cannot be found. No review created.");
     }
 }
 

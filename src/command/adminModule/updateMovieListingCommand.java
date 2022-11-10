@@ -1,5 +1,6 @@
 package command.adminModule;
 import command.Command;
+import exceptions.moblimaExceptions.invalidInputException;
 import moblima.movie.Movie;
 import moblima.movie.MovieStatus;
 
@@ -13,20 +14,42 @@ public class updateMovieListingCommand implements Command {
     }
     public void execute(){
         Scanner input = new Scanner(System.in);
-        System.out.println("Please enter movie ID: ");
-        int id = input.nextInt();
-        System.out.println("Please enter new status");
-        String newStatus = input.nextLine();
-        Movie movieToBeUpdated = null;
-        for (Movie movie: movieArray){
-            if (movie.getMovieId() == id){
-                movieToBeUpdated = movie;
-                movieToBeUpdated.setStatus(Movie.convertToMovieStatus(newStatus));
-                System.out.println("Movie successfully updated...");
+        System.out.println();
+        System.out.print("Please enter movie ID: ");
+        while(true) {
+            try {
+                if(input.hasNextInt() == false) {
+                    throw new invalidInputException("Movie ID");
+                }
+
+
+
+                int id = input.nextInt();
+
+                System.out.print("Please enter new status: ");
+                input.next();
+                String newStatus = input.nextLine();
+                Movie movieToBeUpdated = null;
+                for (Movie movie: movieArray){
+                    if (movie.getMovieId() == id){
+                        movieToBeUpdated = movie;
+                        movieToBeUpdated.setStatus(Movie.convertToMovieStatus(newStatus));
+                        System.out.println();
+                        System.out.println("Movie successfully updated...");
+                        return;
+                    }
+                }
+                System.out.println();
+                System.out.println("Movie not found...");
                 return;
             }
+            catch (invalidInputException e) {
+                System.out.println(e.getMessage());
+                System.out.println();
+                System.out.print("Please enter the movie's Movie ID again: ");
+                input.next();
+                continue;
+            }
         }
-        System.out.println("Movie not found...");
-        return;
     }
 }
