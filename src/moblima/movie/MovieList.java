@@ -41,33 +41,31 @@ public class MovieList {
         this.updateMovieStatus(movieId,MovieStatus.END_OF_SHOWING);
     }
 
-    public void listMovies(int privilege){ // TODO MK privilege outside of listMovies
+    public void listMoviesForUser() {
         int movieCount = 1;
         System.out.println();
-        // For User
-        if (privilege == 0){
-            System.out.println("List of Movies");
-            System.out.println();
-            for(Movie movie: movies){
-                if (movie.getStatus() != MovieStatus.END_OF_SHOWING){
-                    System.out.println("============= Result No. " + movieCount++ + " ==============");
-                    movie.printMovieDetails();
-                    System.out.println();
-                }
-            }
-            System.out.println("===== There are " + (movieCount-1) + " movies available! =====");
-        }
-        // For Admin
-        else if (privilege != 0){
-            System.out.println("List of Movies");
-            System.out.println();
-            for(Movie movie: movies){
+        System.out.println("List of Movies");
+        System.out.println();
+        for (Movie movie : movies) {
+            if (movie.getStatus() != MovieStatus.END_OF_SHOWING) {
                 System.out.println("============= Result No. " + movieCount++ + " ==============");
                 movie.printMovieDetails();
                 System.out.println();
             }
-            System.out.println("===== There are " + movies.size() + " movies available! =====");
+            System.out.println("===== There are " + (movieCount - 1) + " movies available! =====");
         }
+    }
+    // For Admin
+    public void listMoviesForAdmin(){
+        int movieCount = 1;
+        System.out.println("List of Movies");
+        System.out.println();
+        for(Movie movie: movies){
+            System.out.println("============= Result No. " + movieCount++ + " ==============");
+            movie.printMovieDetails();
+            System.out.println();
+        }
+        System.out.println("===== There are " + movies.size() + " movies available! =====");
     }
 
     public void searchMovieByKeyword(String keyword){

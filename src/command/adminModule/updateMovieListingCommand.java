@@ -12,7 +12,7 @@ public class updateMovieListingCommand implements Command {
     public void execute(){
         Scanner input = new Scanner(System.in);
         System.out.println();
-        SilverVillage.getMovieList().listMovies(2);
+        SilverVillage.getMovieList().listMoviesForAdmin();
         System.out.print("Please enter movie ID: ");
         while(true) {
             try {
@@ -32,7 +32,7 @@ public class updateMovieListingCommand implements Command {
                 input.nextLine();
                 SilverVillage.getMovieList().updateMovieStatus(movieID,MovieStatus.intToEnum(newStatus));
                 System.out.println("Movie has been updated successfully.");
-                SilverVillage.getMovieList().listMovies(2);
+                SilverVillage.getMovieList().listMoviesForAdmin();
 
                 return;
             }

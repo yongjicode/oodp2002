@@ -11,7 +11,7 @@ public class deleteMovieListingCommand implements Command{
     //
     public void execute(){
         Scanner scanner = new Scanner(System.in);
-        SilverVillage.getMovieList().listMovies(2);
+        SilverVillage.getMovieList().listMoviesForAdmin();
         System.out.println();
         System.out.print("Please enter the Movie ID to delete: ");
 

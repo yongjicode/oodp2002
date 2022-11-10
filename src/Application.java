@@ -270,8 +270,6 @@ public class Application {
 						}
 
 
-
-
 						break;
 					case 8:
 						if(ss.getTop5MovieTicketsBool() && ss.getTop5MovieRatingsBool()){
@@ -401,7 +399,7 @@ public class Application {
 				switch (userCh){
 					case 1:
 						new createMovieListingCommand().execute();
-						SilverVillage.getMovieList().listMovies(2);
+						SilverVillage.getMovieList().listMoviesForAdmin();
 						break;
 					case 2:
 						// TODO MK fix
@@ -410,7 +408,7 @@ public class Application {
 
 					case 3:
 						new deleteMovieListingCommand().execute();
-						SilverVillage.getMovieList().listMovies(2);
+						SilverVillage.getMovieList().listMoviesForAdmin();
 						break;
 
 					case 4:

@@ -20,7 +20,7 @@ public class createShowCommand implements Command{
     }
     public void execute(){
         Scanner scanner = new Scanner(System.in);
-        SilverVillage.getMovieList().listMovies(1);
+        SilverVillage.getMovieList().listMoviesForAdmin();
         //error handling req for index
         System.out.println();
         System.out.print("Please enter the Movie ID: ");

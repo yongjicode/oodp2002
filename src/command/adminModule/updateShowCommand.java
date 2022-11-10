@@ -27,7 +27,7 @@ public class updateShowCommand implements Command{
                 }
 
 
-                int id = input.nextInt();
+                int showId = input.nextInt();
                 input.nextLine();
                 System.out.print("Please enter the new Time (YYYY-MM-DD HH:MM): ");
 
@@ -35,15 +35,8 @@ public class updateShowCommand implements Command{
                     try {
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                         LocalDateTime newDateTime = LocalDateTime.parse(input.nextLine(),formatter);
-                        Show showToBeUpdated = null;
-                        for (Show show: cineplex.getShowList().getShows()){
-                            if (show.getShowId() == id){
-                                showToBeUpdated = show;
-                                showToBeUpdated.setShowTime(newDateTime);
-                                System.out.println("Show successfully updated...");
-                                return;
-                            }
-                        }
+                        Show showToBeUpdated = cineplex.getShowList().searchShowById(showId);
+                        showToBeUpdated.setShowTime(newDateTime);
                         return;
 
                     }
