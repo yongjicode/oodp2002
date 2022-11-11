@@ -13,6 +13,7 @@ import java.util.List;
 import account.*;
 import com.opencsv.CSVWriter;
 import moblima.booking.Booking;
+import moblima.booking.ticket.MovieTicket;
 import moblima.cineplex.Cineplex;
 import moblima.cineplex.cinema.Cinema;
 import moblima.movie.Movie;
@@ -174,23 +175,32 @@ public class CSVUpdater {
     }
     // TODO
     // Tickets
-//    public static void updateTickets(String filePath) throws IOException {
-//        File ticketFile = new File(filePath);
-//        FileWriter outputFile = new FileWriter(ticketFile);
-//        CSVWriter writer = new CSVWriter(outputFile);
-//        int count=0;
-//        try {
-//            while (SilverVillage.getBookingHistory().getBookingByIndex(count) != null){
-//                Booking booking = SilverVillage.getBookingHistory().getBookingByIndex(count++);
-//                String[] input = new String[5];
-//                input[0] = Integer.toString()
-//            }
-//            writer.close();
-//        }
-//        catch (IOException e){
-//            System.out.println("An error occurred");
-//        }
-//    }
+    public static void updateTickets(String filePath) throws IOException {
+        File ticketFile = new File(filePath);
+        FileWriter outputFile = new FileWriter(ticketFile);
+        CSVWriter writer = new CSVWriter(outputFile);
+        int count=0;
+        try {
+            while (SilverVillage.getBookingHistory().getBookingByIndex(count) != null){
+                Booking booking = SilverVillage.getBookingHistory().getBookingByIndex(count++);
+                int ticketCount=0;
+                while (booking.getTicket(ticketCount) != null){
+                    MovieTicket ticket = booking.getTicket(ticketCount++);
+                    String[] input = new String[5];
+                    input[0] = Integer.toString(ticket.getShow().getShowId());
+                    input[1] = ticket.getSeatId();
+                    input[2] = Integer.toString(ticket.getTicketID());
+                    input[3] = Double.toString(ticket.getPrice());
+                    input[4] = MovieTicket.convertCustomerAgeToString(ticket.getAge());
+                    writer.writeNext(input);
+                }
+            }
+            writer.close();
+        }
+        catch (IOException e){
+            System.out.println("An error occurred");
+        }
+    }
 //
 //    //ReviewList
 //    public static void updateReviewList(String filePath, ArrayList<Movie> arrayName) throws IOException {

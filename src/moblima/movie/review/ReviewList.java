@@ -24,10 +24,4 @@ public class ReviewList {
        if (reviews.size() == 0) return 0;
        return totalRating/reviews.size();
     }
-
-    public ArrayList<Review> getReviews() {
-        return reviews;
-    }
-
-
 }
