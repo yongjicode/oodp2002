@@ -148,21 +148,22 @@ public class CSVUpdater {
             System.out.println("An error occurred");
         }
     }
+
+
     // ShowDB
-    public static void updateShows(String filePath, ArrayList<Show> arrayName) throws IOException {
+    public static void updateShows(String filePath) throws IOException {
         File showFile = new File(filePath);
         FileWriter outputFile = new FileWriter(showFile);
         CSVWriter writer = new CSVWriter(outputFile);
-
+        int count=0;
         try {
-            for (Show show: arrayName){
-                String[] input = new String[6];
+            for (Show show: SilverVillage.getCineplexList().getCineplexByIndex(count).getShowList().getShows()){
+                String[] input = new String[5];
                 input[0] = Integer.toString(show.getShowId());
-                input[1] = Integer.toString(show.getShowId());
-                input[2] = show.getCinema().toString();
-                input[3] = show.getMovie().toString();
-                input[4] = show.getShowTime().toString();
-                input[5] = show.getSeating().toString();
+                input[1] = show.getShowTime().toString();
+                input[2] = show.getCinema().getCinemaCode();
+                input[3] = Integer.toString(show.getMovie().getMovieId());
+                input[4] = "NA"; // TODO getSeating()
                 writer.writeNext(input);
             }
             writer.close();
@@ -171,32 +172,7 @@ public class CSVUpdater {
             System.out.println("An error occurred");
         }
     }
-    // CompanyDB
-    public static void updateCompany(String filePath, ArrayList<Cineplex> arrayName1, ArrayList<Cinema> arrayName2, ArrayList<Booking> arrayName3) throws IOException {
-        File companyFile = new File(filePath);
-        FileWriter outputFile = new FileWriter(companyFile);
-        CSVWriter writer = new CSVWriter(outputFile);
 
-        int numberCinema = arrayName2.size();
-
-        try {
-            for (Cineplex cineplex : arrayName1) {
-                for (int j = 0; j < numberCinema; j++) {
-                    String[] input = new String[5];
-                    input[0] = "golden_village";
-                    input[1] = cineplex.getLocation(); //use name or use location?
-                    input[2] = arrayName2.get(j).getCinemaCode();
-                    input[3] = arrayName3.toString();
-                    input[4] = Integer.toString(cineplex.getShows().get(j).getShowId());
-                    writer.writeNext(input);
-                }
-            }
-            writer.close();
-        }
-        catch (IOException e){
-            System.out.println("An error occurred");
-        }
-    }
     // Tickets
     public static void updateTickets(String filePath, ArrayList<Booking> arrayName) throws IOException {
         File ticketFile = new File(filePath);
