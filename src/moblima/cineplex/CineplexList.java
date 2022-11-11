@@ -19,7 +19,9 @@ public class CineplexList {
 
     public void listCineplexes(){
         int i = 1;
-        System.out.println("Cineplexes:");
+        System.out.println();
+        System.out.println("Cineplexes");
+        System.out.println();
         for (Cineplex cineplex: cineplexes){
             System.out.print((i++) + ". ");
             cineplex.printCineplexDetails();

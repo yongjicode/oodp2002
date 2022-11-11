@@ -83,19 +83,26 @@ public class Movie{
     }
 
     public void printMovieDetails() {
+    	String commaCasts = casts.toString();
+        commaCasts = commaCasts.replace(" ", " ");
         System.out.println();
         System.out.println("Movie ID: " + movieId);
         System.out.println("Title: " + title);
         System.out.println("Status: " + status);
         System.out.println("Synopsis: " + synopsis);
         System.out.println("Director: " + director);
-        System.out.print("Cast(s): ");
-        casts.forEach(System.out::print);
+        System.out.print("Cast(s): " + commaCasts);
+       
         System.out.print("\n");
-        System.out.println("Rating: " + rating);
-        System.out.print("Reviews: ");
+        System.out.println("Average Rating: " + rating);
+        System.out.println("-----------------------------------------");
+        System.out.println("                 Reviews                 ");
+        System.out.println("-----------------------------------------");
         System.out.println();
         reviews.listReviews();
+        System.out.println();
+        System.out.println("-----------------------------------------");
+        
     }
 
     public void addReview(Review review){

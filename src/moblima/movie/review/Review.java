@@ -16,8 +16,10 @@ public class Review {
         this.reviewDescription = reviewDescription;
     }
     public void printReview() {
-        System.out.println("Description: " + reviewDescription);
-        System.out.println("Rating: " + rating);
+    	
+        System.out.println("Review Description: " + reviewDescription);
+        System.out.println("Review Rating: " + rating);
+        System.out.println();
     }
 
     public String getReviewDescription() {
