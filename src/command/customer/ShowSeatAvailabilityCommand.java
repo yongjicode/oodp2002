@@ -1,4 +1,4 @@
-package command.user;
+package command.customer;
 
 import command.Command;
 import exceptions.moblimaExceptions.invalidInputException;
@@ -6,9 +6,9 @@ import moblima.cineplex.Cineplex;
 import moblima.show.Show;
 
 import java.util.Scanner;
-public class showSeatAvailabilityCommand implements Command {
+public class ShowSeatAvailabilityCommand implements Command {
 	private Cineplex cineplex;
-	public showSeatAvailabilityCommand(Cineplex cineplex) {
+	public ShowSeatAvailabilityCommand(Cineplex cineplex) {
 		this.cineplex = cineplex;
 	}
 	public void execute() {

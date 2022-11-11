@@ -7,7 +7,7 @@ import moblima.SilverVillage;
 
 import java.util.Scanner;
 
-public class deleteMovieListingCommand implements Command{
+public class DeleteMovieListingCommand implements Command{
     //
     public void execute(){
         Scanner scanner = new Scanner(System.in);

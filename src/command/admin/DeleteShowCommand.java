@@ -4,9 +4,9 @@ import exceptions.moblimaExceptions.invalidInputException;
 import moblima.cineplex.Cineplex;
 import java.util.Scanner;
 
-public class deleteShowCommand implements Command{
+public class DeleteShowCommand implements Command{
     private Cineplex cineplex;
-    public deleteShowCommand(Cineplex cineplex){
+    public DeleteShowCommand(Cineplex cineplex){
         this.cineplex = cineplex;
     }
     public void execute(){

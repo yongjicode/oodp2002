@@ -6,7 +6,7 @@ import moblima.movie.MovieStatus;
 
 import java.util.Scanner;
 
-public class updateMovieListingCommand implements Command {
+public class UpdateMovieListingCommand implements Command {
     public void execute(){
         Scanner input = new Scanner(System.in);
         System.out.println();

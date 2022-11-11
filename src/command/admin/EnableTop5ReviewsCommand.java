@@ -2,8 +2,10 @@ package command.admin;
 import command.Command;
 import system.SystemSettings;
 
-public class disableTop5ReviewsCommand implements Command{
+public class EnableTop5ReviewsCommand implements Command{
+
     public void execute(){
-        SystemSettings.disableTop5MovieRatings();
+        SystemSettings.enableTop5MovieRatings();
     }
+
 }

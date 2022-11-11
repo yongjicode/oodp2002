@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 import static moblima.movie.Movie.convertToMovieStatus;
 
-public class createMovieListingCommand implements Command {
+public class CreateMovieListingCommand implements Command {
     public void execute(){
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");

@@ -1,10 +1,10 @@
-package command.user;
+package command.customer;
 
 import command.Command;
 import moblima.SilverVillage;
 
-public class rankReviewRatingsCommand implements Command {
-	public rankReviewRatingsCommand() {
+public class RankReviewRatingsCommand implements Command {
+	public RankReviewRatingsCommand() {
 	}
 
 	public void execute() {

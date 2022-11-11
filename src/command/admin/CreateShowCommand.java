@@ -13,9 +13,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
-public class createShowCommand implements Command{
+public class CreateShowCommand implements Command{
     private Cineplex cineplex;
-    public createShowCommand(Cineplex cineplex){
+    public CreateShowCommand(Cineplex cineplex){
         this.cineplex = cineplex;
     }
     public void execute(){

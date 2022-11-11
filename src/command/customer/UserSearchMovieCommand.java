@@ -1,13 +1,13 @@
-package command.user;
+package command.customer;
 
 import command.Command;
 import moblima.SilverVillage;
 
 import java.util.Scanner;
 
-public class userSearchMovieCommand implements Command {
+public class UserSearchMovieCommand implements Command {
 	
-	public userSearchMovieCommand() {
+	public UserSearchMovieCommand() {
 	}
 	public void execute() {
 		Scanner scanner = new Scanner(System.in);

@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class addPublicHolidayCommand implements Command{
+public class AddPublicHolidayCommand implements Command{
 
     public void execute(){
         Scanner scanner = new Scanner(System.in);

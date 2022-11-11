@@ -8,9 +8,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
-public class updateShowCommand implements Command{
+public class UpdateShowCommand implements Command{
     private Cineplex cineplex;
-    public updateShowCommand(Cineplex cineplex){
+    public UpdateShowCommand(Cineplex cineplex){
         this.cineplex=cineplex;
     }
     public void execute(){

@@ -1,13 +1,13 @@
-package command.user;
+package command.customer;
 import command.Command;
 import moblima.cineplex.*;
 import moblima.SilverVillage;
 import java.util.Scanner;
 
 
-public class changeLocationCommand implements Command{
+public class ChangeLocationCommand implements Command{
     private Cineplex cineplex;
-    public changeLocationCommand(Cineplex cineplex){
+    public ChangeLocationCommand(Cineplex cineplex){
         this.cineplex = cineplex;
     }
     public void execute(){

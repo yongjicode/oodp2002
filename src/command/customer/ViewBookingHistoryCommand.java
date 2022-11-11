@@ -1,11 +1,11 @@
-package command.user;
+package command.customer;
 
 import command.Command;
 import moblima.SilverVillage;
 
-public class viewBookingHistoryCommand implements Command {
+public class ViewBookingHistoryCommand implements Command {
 	private String name;
-	public viewBookingHistoryCommand(String name) {
+	public ViewBookingHistoryCommand(String name) {
 		this.name = name;
 	}
 	

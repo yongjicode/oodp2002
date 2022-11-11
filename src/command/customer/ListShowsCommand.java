@@ -1,9 +1,9 @@
-package command.user;
+package command.customer;
 import moblima.cineplex.*;
 
-public class listShowsCommand {
+public class ListShowsCommand {
     private Cineplex cineplex;
-    public listShowsCommand(Cineplex cineplex){
+    public ListShowsCommand(Cineplex cineplex){
         this.cineplex = cineplex;
     }
     public void execute(){

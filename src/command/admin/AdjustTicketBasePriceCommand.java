@@ -2,7 +2,7 @@ package command.admin;
 import command.Command;
 import system.SystemSettings;
 import java.util.Scanner;
-public class adjustTicketBasePriceCommand implements Command{
+public class AdjustTicketBasePriceCommand implements Command{
 
     public void execute(){
         Scanner scanner = new Scanner(System.in);

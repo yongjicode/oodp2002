@@ -1,6 +1,5 @@
-package command.user;
+package command.customer;
 
-import account.Account;
 import command.Command;
 import exceptions.moblimaExceptions.invalidInputException;
 import moblima.SilverVillage;
@@ -13,19 +12,21 @@ import java.util.Scanner;
 
 import static moblima.booking.ticket.MovieTicket.convertToCustomerAge;
 
-public class bookTicketCommand implements Command {
+public class GuestBookTicketCommand implements Command{
+
 	private Cineplex cineplex;
-	private Account curAcc;
-	public bookTicketCommand(Cineplex cineplex, Account curAcc) {
+
+	public GuestBookTicketCommand(Cineplex cineplex) {
 		this.cineplex = cineplex;
-		this.curAcc = curAcc;
 	}
+
 
 	public void execute() {
 		Scanner scanner = new Scanner(System.in);
 		cineplex.getShowList().listShows();
 		System.out.println();
 		System.out.print("Please enter the movie's show ID: ");
+		// handle error later
 		while(true) {
 			try {
 				if(scanner.hasNextInt() == false) {
@@ -45,13 +46,65 @@ public class bookTicketCommand implements Command {
 				else {
 					show.printShowDetails();
 					System.out.println();
+					System.out.print("Please enter your Name: ");
+					String name = scanner.nextLine();
+					System.out.print("Please enter your Mobile Number: ");
+					String mobileNumber = scanner.nextLine();
+					System.out.print("Please enter your Email Address: ");
+					String emailAddress = scanner.nextLine();
+
+
+					//error handling: when mobile number is not numerical and email address doesn't have @ symbol
+					while(true) {
+						try {
+
+							if (!mobileNumber.matches("[0-9]+") || mobileNumber.length() <= 2) {
+								//mobile wrong email wrong
+								if(emailAddress.contains("@") == false) {
+									throw new invalidInputException("Mobile Number and Email Address");
+
+								}
+								//mobile wrong email correct
+								else {
+									throw new invalidInputException("Mobile Number");
+								}
+
+
+							}
+							// mobile correct email wrong
+							else if(mobileNumber.matches("[0-9]+") && mobileNumber.length() > 2) {
+								if(emailAddress.contains("@") == false) {
+
+									throw new invalidInputException("Email Address");
+								}
+
+							}
+
+
+							break;
+
+						}
+						catch (invalidInputException e) {
+							System.out.println(e.getMessage());
+
+						}
+						System.out.println();
+						System.out.print("Please enter your Mobile Number again: ");
+						mobileNumber = scanner.nextLine();
+						System.out.print("Please enter your Email Address again: ");
+						emailAddress = scanner.nextLine();
+						continue;
+					}
+
 					//to implement transaction ID function
-					Booking booking = new Booking(curAcc.getName(),curAcc.getPhoneNo(),curAcc.getEmail());
-					System.out.print("Please enter the number of tickets to be purchased: ");
+					System.out.println();
+					System.out.print("Please enter the Number of tickets to be purchased: ");
 					int numTickets = scanner.nextInt();
 					scanner.nextLine();
 
 					if(numTickets > 0) {
+						Booking booking = new Booking(name,mobileNumber,emailAddress);
+
 						for (int i = 0; i<numTickets;i++) {
 							show.showSeating();
 							System.out.print("Please enter the seat ID in this format (eg. B6): ");
@@ -134,6 +187,7 @@ public class bookTicketCommand implements Command {
 						System.out.println("No tickets purchased.");
 					}
 
+
 				}
 
 				break;
@@ -148,6 +202,6 @@ public class bookTicketCommand implements Command {
 			continue;
 		}
 
-	}
+		;	}
 
 }

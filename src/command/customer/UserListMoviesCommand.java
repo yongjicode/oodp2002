@@ -1,10 +1,10 @@
-package command.user;
+package command.customer;
 
 import command.Command;
 import moblima.SilverVillage;
 
-public class userListMoviesCommand implements Command {
-	public userListMoviesCommand() {
+public class UserListMoviesCommand implements Command {
+	public UserListMoviesCommand() {
 	}
 	
 	public void execute() {

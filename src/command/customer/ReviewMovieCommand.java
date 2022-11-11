@@ -1,27 +1,14 @@
-package command.user;
+package command.customer;
 
 import command.Command;
 import exceptions.moblimaExceptions;
 import moblima.SilverVillage;
-import moblima.booking.Booking;
-import moblima.movie.Movie;
 import moblima.booking.ticket.MovieTicket;
 import moblima.movie.review.Review;
 
 import java.util.Scanner;
 
-public class reviewMovieCommand implements Command{
-
-//    private int ticketID;
-//    private int rating;
-//    private String reviewDescription;
-
-    public reviewMovieCommand(){
-//        this.ticketID = ticketID;
-//        this.rating = rating;
-//        this.reviewDescription = reviewDescription;
-    }
-
+public class ReviewMovieCommand implements Command{
 
     public void execute(){
         Scanner input = new Scanner(System.in);

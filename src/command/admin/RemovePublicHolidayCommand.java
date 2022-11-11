@@ -3,7 +3,7 @@ import command.Command;
 import system.SystemSettings;
 import java.util.Scanner;
 
-public class removePublicHolidayCommand implements Command{
+public class RemovePublicHolidayCommand implements Command{
     public void execute(){
         Scanner scanner = new Scanner(System.in);
         SystemSettings.printPublicHolidays();
