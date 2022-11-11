@@ -23,20 +23,6 @@ public class MovieList {
     public void addMovie(Movie movie){
         movies.add(movie);
     }
-    /*
-    public void delistMovieById(int movieId){
-        for(Movie movie: movies){
-            if(movie.getMovieId() == movieId){
-                movie
-                System.out.println();
-                System.out.println("Movie \"" + movieId + "\" has been removed.");
-                return;
-            }
-        }
-        System.out.println();
-        System.out.println("Movie \"" + movieId + "\" does not exist. No movie removed.");
-    }
-    */
     public void delistMovie(int movieId){
         this.updateMovieStatus(movieId,MovieStatus.END_OF_SHOWING);
     }
@@ -52,8 +38,8 @@ public class MovieList {
                 movie.printMovieDetails();
                 System.out.println();
             }
-            System.out.println("===== There are " + (movieCount - 1) + " movies available! =====");
         }
+        System.out.println("===== There are " + (movieCount - 1) + " movies available! =====");
     }
     // For Admin
     public void listMoviesForAdmin(){

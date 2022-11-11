@@ -2,6 +2,7 @@ package moblima.show;
 
 import moblima.cineplex.cinema.Cinema;
 import moblima.movie.Movie;
+import moblima.movie.MovieStatus;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,6 +22,13 @@ public class Show {
         this.cinema = cinema;
         this.movie = movie;
         this.seating = new Seating();
+    }
+
+    public boolean isShowing(){
+        if (movie.getStatus() == MovieStatus.END_OF_SHOWING){
+            return false;
+        }
+        return true;
     }
 
     public Movie getMovie() {

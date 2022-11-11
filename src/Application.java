@@ -1,5 +1,4 @@
 import account.*;
-import command.admin.*;
 import gui.*;
 import moblima.SilverVillage;
 import moblima.cineplex.Cineplex;
@@ -152,18 +151,16 @@ public class Application {
 				curAcc = guestGUI.getAccount();
 				cineplex = guestGUI.getCineplex();
 			} else if (curAcc.getPrivilege() == Privilege.User) {
-				UserGUI userGUI = new UserGUI(cineplex, curAcc);
-				userGUI.display();
-				if (userGUI.execute() == 0) {
+				CustomerGUI customerGUI = new CustomerGUI(cineplex, curAcc);
+				customerGUI.display();
+				if (customerGUI.execute() == 0) {
 					break;
 				}
-				curAcc = userGUI.getAccount();
-				cineplex = userGUI.getCineplex();
+				curAcc = customerGUI.getAccount();
+				cineplex = customerGUI.getCineplex();
 			} else if (curAcc.getPrivilege() == Privilege.CineplexAdmin) {
 				CineplexAdminAccount cineplexAdmin = (CineplexAdminAccount) curAcc;
-				System.out.println("yo");
 				CineplexAdminGUI cineplexAdminGUI = new CineplexAdminGUI(cineplexAdmin);
-				System.out.println("test");
 				cineplexAdminGUI.display();
 				if(cineplexAdminGUI.execute()==0){
 					break;

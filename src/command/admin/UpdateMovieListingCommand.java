@@ -24,7 +24,7 @@ public class UpdateMovieListingCommand implements Command {
                     return;
                 }
                 input.nextLine();
-                System.out.print("Please enter new status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing: ");
+                System.out.print("Please enter new status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing): ");
                 //error handling to ensure only can pick 1 to 4
                 int newStatus = input.nextInt();
                 input.nextLine();
