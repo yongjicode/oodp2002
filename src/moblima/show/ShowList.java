@@ -29,7 +29,9 @@ public class ShowList {
         System.out.println();
         System.out.println("========== Available Show List ==========");
         for(Show show: shows){
-            show.printShowDetails();
+            if(show.isShowing()){
+                show.printShowDetails();
+            }
         }
         System.out.println("=========================================");
     }

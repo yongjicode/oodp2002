@@ -6,10 +6,10 @@ import system.SystemSettings;
 
 import java.util.Scanner;
 
-public class UserGUI implements Menu, Logout,GetCommand {
+public class CustomerGUI implements Menu, Logout,GetCommand {
     private Account curAcc;
     private Cineplex cineplex;
-    public UserGUI(Cineplex cineplex, Account curAcc){
+    public CustomerGUI(Cineplex cineplex, Account curAcc){
         this.curAcc = curAcc;
         this.cineplex = cineplex;
     }
@@ -34,7 +34,6 @@ public class UserGUI implements Menu, Logout,GetCommand {
         System.out.println("11. Exit");
         System.out.println("=========================================");
         System.out.println();
-        System.out.print("Please enter the option number: ");
     }
 
     public int execute(){
