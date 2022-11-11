@@ -48,6 +48,7 @@ public class CSVUpdater {
         }
     }
 
+
     //CinemaDB
     public void updateCinema(String filePath) throws IOException{
         File cinemaDb = new File(filePath);
@@ -58,12 +59,10 @@ public class CSVUpdater {
             while (SilverVillage.getCineplexList().getCineplexByIndex(count) != null){
                 for (Cinema cinema: SilverVillage.getCineplexList().getCineplexByIndex(count).getCinemas()){
                     String[] input = new String[2];
-                    input[0] = cinema.getCinemaCode();
-                    
+                    input[0] = cinema.convertCinemaCodeToCurrentCode();
+                    input[1] = cinema.getClassLevel().toString();
                     writer.writeNext(input);
                 }
-
-
             }
             writer.close();
         }
@@ -71,20 +70,24 @@ public class CSVUpdater {
             System.out.println("An error occurred");
         }
     }
-    // AccountsDB
-    public static void updateAccounts(String filePath, ArrayList<Account> arrayName) throws IOException {
-        File accountsFile = new File(filePath);
-        FileWriter outputFile = new FileWriter(accountsFile);
-        CSVWriter writer = new CSVWriter(outputFile);
 
+
+    //BookingDB
+    public void updateBooking(String filePath) throws IOException{
+        File bookingDb = new File(filePath);
+        FileWriter outputFile = new FileWriter(bookingDb);
+        CSVWriter writer = new CSVWriter(outputFile);
+        int count=0;
         try {
-            for (Account account: arrayName){
-                String[] input = new String[5];
-                input[0] = Integer.toString(account.getPrivilege());
-                input[1] = account.getLoginId();
-                input[2] = account.getPassword();
-                input[3] = "NA";
-                input[4] = "NA";
+            while (SilverVillage.getBookingHistory().getBookingById(count) != null){
+                Booking booking = SilverVillage.getBookingHistory().getBookingById(count);
+                String[] input = new String[6];
+                input[0] = booking.convertTicketsToString();
+                input[1] = booking.getCustomerName();
+                input[2] = booking.getMobileNumber();
+                input[3] = booking.getEmailAddress();
+                input[4] = booking.getTransactionId();
+                input[5] = Double.toString(booking.getTotalPrice());
                 writer.writeNext(input);
             }
             writer.close();
@@ -93,20 +96,22 @@ public class CSVUpdater {
             System.out.println("An error occurred");
         }
     }
-    // BookingsDB
-    public static void updateBookings(String filePath, ArrayList<Booking> arrayName) throws IOException {
-        File bookingFile = new File(filePath);
-        FileWriter outputFile = new FileWriter(bookingFile);
+
+
+    // AccountsDB
+    public static void updateAccounts(String filePath) throws IOException {
+        File accountsFile = new File(filePath);
+        FileWriter outputFile = new FileWriter(accountsFile);
         CSVWriter writer = new CSVWriter(outputFile);
 
         try {
-            for (Booking booking: arrayName){
+            for (Account account: arrayName){
                 String[] input = new String[5];
-                input[0] = booking.getTransactionId();
-                input[1] = booking.getCustomerName();
-                input[2] = booking.getMobileNumber();
-                input[3] = booking.getEmailAddress();
-                input[4] = Integer.toString(booking.getTotalPrice());
+                input[0] = Integer.toString(account);
+                input[1] = account.getLoginId();
+                input[2] = account.getPassword();
+                input[3] = "NA";
+                input[4] = "NA";
                 writer.writeNext(input);
             }
             writer.close();
