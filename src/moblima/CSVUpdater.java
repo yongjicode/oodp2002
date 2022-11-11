@@ -201,41 +201,28 @@ public class CSVUpdater {
             System.out.println("An error occurred");
         }
     }
-//
-//    //ReviewList
-//    public static void updateReviewList(String filePath, ArrayList<Movie> arrayName) throws IOException {
-//        File reviewListFile = new File(filePath);
-//        FileWriter outputFile = new FileWriter(reviewListFile);
-//        CSVWriter writer = new CSVWriter(outputFile);
-//        try {
-//            for (Movie movie: arrayName){
-//                String[] input = new String[5];
-//                //Concatenating All reviewDescriptions into 1 string
-//                String review = "";
-//                for (int i=0; i<movie.getReviews().getReviews().size(); i++){
-//                    if (i==0) review += movie.getReviews().getReviews().get(i).getReviewDescription();
-//                    review += ";";
-//                    review += movie.getReviews().getReviews().get(i).getReviewDescription();
-//                }
-//                //Concatenating all rating into 1 String
-//                String rating = "";
-//                for (int j=0; j<movie.getReviews().getReviews().size(); j++){
-//                    if (j==0) rating += Integer.toString(movie.getReviews().getReviews().get(j).getRating());
-//                    rating += ";";
-//                    rating += Integer.toString(movie.getReviews().getReviews().get(j).getRating());
-//                }
-//                input[0] = movie.getReviews().toString();
-//                input[1] = "NA";
-//                input[2] = rating;
-//                input[3] = review;
-//                input[4] = Integer.toString(movie.getRating());
-//                writer.writeNext(input);
-//            }
-//            writer.close();
-//        }
-//        catch (IOException e){
-//            System.out.println("An error occurred");
-//        }
-//    }
+
+    //ReviewList
+    public static void updateReviewList(String filePath) throws IOException {
+        File reviewListFile = new File(filePath);
+        FileWriter outputFile = new FileWriter(reviewListFile);
+        CSVWriter writer = new CSVWriter(outputFile);
+        try {
+            int count=0;
+            while (SilverVillage.getMovieList().getMovieByIndex(count) != null){
+                Movie movie = SilverVillage.getMovieList().getMovieByIndex(count++);
+                String[] input = new String[5];
+                input[0] = Integer.toString(movie.getMovieId()); // TODO remove ticketID from database
+                input[2] = movie.getReviews().convertRatingsToString();
+                input[3] = movie.getReviews().convertDescriptionToString();
+                input[4] = Integer.toString(movie.getReviews().showAverageRating());
+                writer.writeNext(input);
+            }
+            writer.close();
+        }
+        catch (IOException e){
+            System.out.println("An error occurred");
+        }
+    }
 
 }
