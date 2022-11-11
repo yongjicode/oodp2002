@@ -146,7 +146,8 @@
                  input[4] = movie.getCasts(); //  movie.getCast();
                  input[5] = movie.getReviews().toString();
                  input[6] = movie.convertMovieStatusToString(movie.getStatus());
-                 input[7] = Movie.convertDateTimeToString(movie.getExpiryDate().toString());
+                 String date = movie.getExpiryDate().toString();
+                 input[7] = date.substring(0,10) + " " + date.substring(11);
                  input[8] = Integer.toString(movie.getTicketSold());
                  input[9] = Integer.toString(movie.getRating());
                  writer.writeNext(input);
