@@ -1,6 +1,7 @@
 import account.*;
 import gui.*;
 import gui.GreetUserMenu;
+import moblima.CSVReader;
 import moblima.SilverVillage;
 import moblima.booking.ticket.MovieTicket;
 import moblima.cineplex.Cineplex;
@@ -17,14 +18,20 @@ import moblima.show.Show;
 import moblima.show.ShowList;
 import system.PublicHoliday;
 import system.SystemSettings;
-import moblima.CSVReader;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.lang.reflect.Array;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -50,8 +57,8 @@ public class Application {
 		//}
 
 
-		// Movie a = new Movie("Lion King", MovieStatus.PREVIEW, "c", "d", Arrays.asList("guy1", "guy2", "woman1"), LocalDateTime.parse("2022-12-29 12:00", formatter));
-		// Movie b = new Movie("Toy Story", MovieStatus.NOW_SHOWING, "x", "w", Arrays.asList("guy1", "woman2", "woman3"), LocalDateTime.parse("2022-12-26 12:00", formatter));
+//		 Movie a = new Movie("Lion King", MovieStatus.PREVIEW, "c", "d", Arrays.asList("guy1", "guy2", "woman1"), LocalDateTime.parse("2022-12-29 12:00", formatter));
+//		 Movie b = new Movie("Toy Story", MovieStatus.NOW_SHOWING, "x", "w", Arrays.asList("guy1", "woman2", "woman3"), LocalDateTime.parse("2022-12-26 12:00", formatter));
 		// SilverVillage.getMovieList().addMovie(a);
 		// SilverVillage.getMovieList().addMovie(b);
 		// Cineplex tempCine = new Cineplex("hello cinema", "bedok");
@@ -92,12 +99,14 @@ public class Application {
 		// end of test cases
 
 		CSVReader.readMoviesFromCSV("src/database/movieDB.csv");
-		SilverVillage.getMovieList().listMoviesForAdmin();
+		CSVReader.readCineplexFromCSV("src/database/CineplexDB.csv");
 		CSVReader.readReviewFromCsv("src/database/reviewListDB.csv");
 		CSVReader.readCinemasFromCSV("src/database/CinemaDB.csv");
-		CSVReader.readCineplexFromCSV("src/database/CineplexDB.csv");
+		SilverVillage.getCineplexList().getCineplexByName("Bedok Branch").listCinemas();
+
 		CSVReader.readAccountsFromCSV("src/database/accountDB.csv", SilverVillage.getCineplexList());
 		CSVReader.readShowsFromCSV("src/database/showDB.csv");
+		SilverVillage.getCineplexList().getCineplexByName("Bedok Branch").getShowList().listShows();
 		ArrayList<MovieTicket> movieTicketArrayList =  CSVReader.readTicketsFromCSV("src/database/MovieTicketDB.csv");
 		CSVReader.readBookingsFromCSV("src/database/bookingDB.csv", movieTicketArrayList);
 

@@ -1,6 +1,7 @@
 package moblima;
 
 import account.*;
+import com.opencsv.CSVWriter;
 import moblima.booking.Booking;
 import moblima.cineplex.CineplexList;
 import moblima.cineplex.cinema.Cinema;
@@ -20,8 +21,10 @@ import moblima.booking.BookingHistory;
 import system.SystemSettings;
 import moblima.SilverVillage;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.FileReader;
+
+
+import java.io.*;
 import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -30,6 +33,7 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 //import static moblima.cineplex.Cinema.convertToCinemaClass;
@@ -37,14 +41,15 @@ import static moblima.movie.Movie.convertToMovieStatus;
 //import static moblima.show.ticket.MovieTicket.checkCustomerAge;
 
 public class CSVReader{
+
    public static void readMoviesFromCSV(String fileName) {
        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
        Path pathToFile = Paths.get(fileName);
        MovieList movieList = SilverVillage.getMovieList();
-       try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_16)) {
-
-           br.readLine();
+       try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
+            br.readLine();
            String line = br.readLine();
+
 
            while (line != null) {
                //movieId,title,synopsis,director,casts,reviews,status,expiryDate,ticketSold,rating
@@ -55,28 +60,48 @@ public class CSVReader{
                String director = attributes[3];
                String castString = attributes[4]; // to change to list
                String[] casts = castString.split(";");
-               ArrayList<String> castList = new ArrayList<>();
-               for (String string: casts){
-                   castList.add(string);
-               }
+               List<String> castList = Arrays.asList(casts);
                MovieStatus status = Movie.convertToMovieStatus(attributes[6]);
                LocalDateTime expiryDate = LocalDateTime.parse(attributes[7],formatter);
-               // String title,MovieStatus status,String synopsis,String director,String cast,LocalDateTime expiryDate
+
                Movie movie = new Movie(title, status, synopsis, director, castList, expiryDate);
 
                movieList.addMovie(movie);
-               System.out.println("Movie is added");
                line = br.readLine();
            }
+
        } catch (IOException ioe) {
            ioe.printStackTrace();
        }
    }
 
+    public static void readCinemasFromCSV(String fileName) {
+
+        CineplexList cineplexList = SilverVillage.getCineplexList();
+        Path pathToFile = Paths.get(fileName);
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
+            br.readLine();
+            String line = br.readLine();
+            while (line != null) {
+                // branchName,cinemaCode,classLevel
+                String[] attributes = line.split(",");
+                String branchName = attributes[0];
+                //String cinemaCode = attributes[1];
+                String classLevel = attributes[2];
+                Cineplex cineplex = cineplexList.getCineplexByName(branchName);
+                Cinema cinema = new Cinema(Cinema.convertToCinemaClass(classLevel));
+                cineplex.addCinema(cinema);
+                line = br.readLine();
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
    public static void readReviewFromCsv(String fileName){
        Path pathToFile = Paths.get(fileName);
 
-       try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
+       try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
 
            br.readLine();
            String line = br.readLine();
@@ -94,7 +119,6 @@ public class CSVReader{
                int len = ratings.length;
                for (int i=0; i<len; i++){
                    Review review = new Review(Integer.parseInt(ratings[i]), reviewDescriptions[i]);
-                   if (movie == null) System.out.println("null");
                    movie.addReview(review);
                }
                line = br.readLine();
@@ -111,7 +135,7 @@ public class CSVReader{
 
        ArrayList<Account> accounts = SystemSettings.getAccounts();
        Path pathToFile = Paths.get(fileName);
-       try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
+       try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
 
            br.readLine();
            String line = br.readLine();
@@ -151,7 +175,7 @@ public class CSVReader{
     public static void readCineplexFromCSV(String fileName){
         Path pathToFile = Paths.get(fileName);
         CineplexList cineplexList = SilverVillage.getCineplexList();
-        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
             br.readLine();
             String line = br.readLine();
             while (line != null) {
@@ -169,39 +193,14 @@ public class CSVReader{
         }
     }
 
-    public static void readCinemasFromCSV(String fileName) {
 
-        CineplexList cineplexList = SilverVillage.getCineplexList();
-        Path pathToFile = Paths.get(fileName);
-        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
-
-            br.readLine();
-            String line = br.readLine();
-
-            while (line != null) {
-
-                // branchName,cinemaCode,classLevel
-                String[] attributes = line.split(",");
-                String branchName = attributes[0];
-                //String cinemaCode = attributes[1];
-                String classLevel = attributes[2];
-
-                Cineplex cineplex = cineplexList.getCineplexByName(branchName);
-                Cinema cinema = new Cinema(Cinema.convertToCinemaClass(classLevel));
-                cineplex.addCinema(cinema);
-                line = br.readLine();
-            }
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
-    }
 
     public static void readShowsFromCSV(String fileName) {
 
 
         CineplexList cineplexList = SilverVillage.getCineplexList();
         Path pathToFile = Paths.get(fileName);
-        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
 
             br.readLine();
             String line = br.readLine();
@@ -236,7 +235,7 @@ public class CSVReader{
         CineplexList cineplexList = SilverVillage.getCineplexList();
         ArrayList<MovieTicket> movieTickets = new ArrayList<MovieTicket>();
         Path pathToFile = Paths.get(movieTicketFile);
-        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
 
             br.readLine();
             String line = br.readLine();
@@ -251,7 +250,9 @@ public class CSVReader{
                 String age = attributes[4];
                 // String seatId, Show show, double price, String age
                 Cineplex cineplex = cineplexList.getCineplexByShow(showId);
+                System.out.println(showId);
                 Show show = cineplex.getShowList().searchShowById(showId);
+
                 MovieTicket movieTicket = new MovieTicket(seatId, show, MovieTicket.convertStringToCustomerAge(age));
                 show.getSeating().bookSeat(seatId);
                 movieTickets.add(movieTicket);
@@ -267,7 +268,7 @@ public class CSVReader{
 
         BookingHistory bookingHistory = SilverVillage.getBookingHistory();
         Path pathToFile = Paths.get(fileName);
-        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
 
             br.readLine();
             String line = br.readLine();
@@ -283,7 +284,7 @@ public class CSVReader{
                 double totalPrice = Double.parseDouble(attributes[4]);
 
                 Booking booking = new Booking(customerName, mobileNumber, emailAddress);
-                bookingHistory.addBooking(booking);
+
 
                 for (MovieTicket ticket: arrayTicket){
                     if (index == ticketIdList.length) break;
@@ -292,6 +293,7 @@ public class CSVReader{
                         index++;
                     }
                 }
+                bookingHistory.addBooking(booking);
                 line = br.readLine();
             }
         } catch (IOException ioe) {
