@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class ReviewMovieCommand implements Command{
 
     public void execute(){
+
         Scanner input = new Scanner(System.in);
         System.out.println();
         System.out.print("Please enter the ticket ID: ");
