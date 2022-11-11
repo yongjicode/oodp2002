@@ -2,15 +2,29 @@ package system;
 
 import java.util.ArrayList;
 import java.time.LocalDateTime;
+import account.*;
 
 public class SystemSettings {
     private static boolean showTop5MovieRatings = true;
     private static boolean showTop5MovieTickets = true;
     private static ArrayList<PublicHoliday> publicHolidays = new ArrayList<PublicHoliday>();
     private static double basePrice = 6;
+    private static ArrayList<Account> accounts = new ArrayList<Account>();
 
+    public static void addAccount(Account account){
+        accounts.add(account);
+    }
 
-    public void printSettings(){
+    public static Account login(String loginId, String password){
+        for (Account account: accounts){
+            if (account.getLoginId().equals(loginId) && account.login(loginId,password) != null){
+                return account;
+            }
+        }
+        return null; //account not found
+    }
+
+    public static void printSettings(){
         System.out.println("=================Settings================");
         System.out.println("Rank Top 5 Based on Movie Tickets: " + showTop5MovieTickets);
         System.out.println("Rank Top 5 Based on Movie Ratings: " + showTop5MovieRatings);
