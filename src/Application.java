@@ -1,6 +1,6 @@
 import account.*;
-import command.admin.*;
-import command.user.*;
+import command.adminModule.*;
+import command.userModule.*;
 import exceptions.moblimaExceptions.invalidInputException;
 import gui.*;
 import moblima.SilverVillage;
