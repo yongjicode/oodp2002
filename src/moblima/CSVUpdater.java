@@ -1,5 +1,5 @@
 // package moblima;
-
+//
 // import java.awt.print.Book;
 // import java.io.BufferedReader;
 // import java.io.File;
@@ -9,7 +9,7 @@
 // import java.util.ArrayList;
 // import java.util.Arrays;
 // import java.util.List;
-
+//
 // import account.*;
 // import com.opencsv.CSVWriter;
 // import moblima.booking.Booking;
@@ -20,19 +20,19 @@
 // import moblima.show.Show;
 // import moblima.SilverVillage;
 // import system.SystemSettings;
-
+//
 // import java.nio.charset.StandardCharsets;
 // import java.nio.file.Files;
 // import java.nio.file.Path;
 // import java.nio.file.Paths;
 // import java.time.LocalDateTime;
 // import java.time.format.DateTimeFormatter;
-
+//
 // import static system.SystemSettings.getAccounts;
-
-
+//
+//
 // public class CSVUpdater {
-
+//
 //     //CineplexDB
 //     public void updateCineplex(String filePath) throws IOException{
 //         File cineplexDb = new File(filePath);
@@ -52,8 +52,8 @@
 //             System.out.println("An error occurred");
 //         }
 //     }
-
-
+//
+//
 //     //CinemaDB
 //     public void updateCinema(String filePath) throws IOException{
 //         File cinemaDb = new File(filePath);
@@ -75,8 +75,8 @@
 //             System.out.println("An error occurred");
 //         }
 //     }
-
-
+//
+//
 //     //BookingDB
 //     public void updateBooking(String filePath) throws IOException{
 //         File bookingDb = new File(filePath);
@@ -101,14 +101,14 @@
 //             System.out.println("An error occurred");
 //         }
 //     }
-
-
+//
+//
 //     // AccountsDB TODO UpdateAccounts
 //     public static void updateAccounts(String filePath) throws IOException {
 //         File accountsFile = new File(filePath);
 //         FileWriter outputFile = new FileWriter(accountsFile);
 //         CSVWriter writer = new CSVWriter(outputFile);
-
+//
 //         try {
 //             for (Account account: SystemSettings.getAccounts()){
 //                 CineplexAdminAccount cineplexAdmin = (CineplexAdminAccount)account;
@@ -157,8 +157,8 @@
 //             System.out.println("An error occurred");
 //         }
 //     }
-
-
+//
+//
 //     // ShowDB
 //     public static void updateShows(String filePath) throws IOException {
 //         File showFile = new File(filePath);
@@ -180,7 +180,7 @@
 //             System.out.println("An error occurred");
 //         }
 //     }
-
+//
 //     public static void updateTickets(String filePath) throws IOException {
 //         File ticketFile = new File(filePath);
 //         FileWriter outputFile = new FileWriter(ticketFile);
@@ -207,7 +207,7 @@
 //             System.out.println("An error occurred");
 //         }
 //     }
-
+//
 //     //ReviewList
 //     public static void updateReviewList(String filePath) throws IOException {
 //         File reviewListFile = new File(filePath);
@@ -230,5 +230,5 @@
 //             System.out.println("An error occurred");
 //         }
 //     }
-
+//
 // }
