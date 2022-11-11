@@ -40,6 +40,10 @@ public class Cineplex {
         return this.branchName;
     }
 
+    public String getBranchAddress() {
+        return branchAddress;
+    }
+
     public void listCinemas(){
         for(Cinema cinema:cinemas){
             cinema.printDetails();
@@ -54,5 +58,4 @@ public class Cineplex {
         }
         return null;
     }
-
 }

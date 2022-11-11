@@ -1,5 +1,7 @@
 package moblima.movie.review;
 
+import moblima.booking.ticket.MovieTicket;
+
 import java.util.ArrayList;
 
 public class ReviewList {
@@ -27,10 +29,33 @@ public class ReviewList {
        if (reviews.size() == 0) return 0;
        return totalRating/reviews.size();
     }
-
-    public ArrayList<Review> getReviews() {
-        return reviews;
+    public String convertRatingsToString(){
+        String output = "";
+        int count=0;
+        for (Review review: reviews){
+            if (count++ ==0) output += Integer.toString(review.getRating());
+            else{
+                output += ";";
+                output += Integer.toString(review.getRating());
+            }
+        }
+        return output;
     }
+
+    public String convertDescriptionToString(){
+        String output = "";
+        int count = 0;
+        for (Review review: reviews){
+            if (count++ ==0) output+= review.getReviewDescription();
+            else{
+                output += ";";
+                output += review.getReviewDescription();
+            }
+        }
+        return output;
+    }
+
+
 
 
 }

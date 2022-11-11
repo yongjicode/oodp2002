@@ -63,4 +63,17 @@ public class MovieTicket {
             return CustomerAge.SENIOR;
         }
     }
-}
+
+    public static String convertCustomerAgeToString(CustomerAge customerAge){
+        if (customerAge == CustomerAge.CHILD) return "CHILD";
+        else if (customerAge == CustomerAge.ADULT) return "ADULT";
+        else return "SENIOR";
+        }
+
+    public static CustomerAge convertStringToCustomerAge(String string){
+        if (string.equals("CHILD")) return CustomerAge.CHILD;
+        else if (string.equals("ADULT")) return CustomerAge.ADULT;
+        else return CustomerAge.SENIOR;
+    }
+    }
+

@@ -23,7 +23,11 @@ public class Cinema {
     public String getCinemaCode(){
         return cinemaCode;
     }
+    public String convertCinemaCodeToCurrentCode(){
+        String output = cinemaCode.substring(2);
+        return output;
 
+    }
     public static CinemaClass convertToCinemaClass(String classLevel){
         switch(classLevel.toLowerCase()){
             case "normal":
@@ -34,6 +38,12 @@ public class Cinema {
                 return CinemaClass.PLATINUM;
         }
         return null;
+    }
+
+    public static String convertCinemaClassToString(CinemaClass classLevel){
+        if (classLevel == CinemaClass.GOLD) return "GOLD";
+        else if (classLevel == CinemaClass.NORMAL) return "NORMAL";
+        else return "PLATINUM";
     }
 
 }
