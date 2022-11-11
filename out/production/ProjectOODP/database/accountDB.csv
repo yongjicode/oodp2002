@@ -1,9 +1,12 @@
-0,MengKiat,password123,111,mengkiat@gmail.com,NA
-0,Nicky,password123,222,nicky@gmail.com,NA
-0,YongJie,password124,333,yongjie@gmail.com,NA
-0,JinKai,password125,444,jinkai@gmail.com,NA
-0,Sahana,password126,555,sahana@gmail.com,NA
-0,Xavier,password127,666,xavier@gmail.com,NA
-0,Tharun,password128,777,tharun@gmail.com,NA
-1,ZhangLeittier,sad1102,90001102,lettier@gmail.com,Bedok
-2,DrLoke,sc1007,90001007,loke@gmail.com,NA
+privilege,loginId,password,emailAddress,mobileNumber,name,cineplexLocation
+0,mengkiat,password123,mengkiat@gmail.com,91112222,Meng Kiat,
+0,nicky,password123,nicky@gmail.com,91113333,Nicky,
+0,yongjie,password124,yongjie@gmail.com,91114444,Yong Jie,
+0,jinkai,password125,jinkai@gmail.com,91115555,Jin Kai,
+0,sahana,password126,sahana@gmail.com,91116666,Sahana,
+0,xavier,password127,xavier@gmail.com,91117777,Xavier,
+0,tharun,password128,tharun@gmail.com,91118888,Tharun,
+1,zhanglettier,ad1102,zhangl@gmail.com,90001102,Zhang Lettier,Tampines
+1,lokeyr,sc1007a,loke@gmail.com,90001007,Loke,Bedok
+1,sourav,sc1015,sourav@gmail.com,90001015,Sourav,Simei
+2,lifang,sc2002,lifang@gmail.com,90002002,Li Fang,
