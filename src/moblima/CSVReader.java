@@ -1,7 +1,6 @@
 package moblima;
 
 import account.*;
-import com.opencsv.CSVWriter;
 import moblima.booking.Booking;
 import moblima.cineplex.CineplexList;
 import moblima.cineplex.cinema.Cinema;
