@@ -1,6 +1,7 @@
 import account.*;
 import command.admin.*;
 import gui.*;
+import gui.GreetUserMenu;
 import moblima.SilverVillage;
 import moblima.cineplex.Cineplex;
 import moblima.cineplex.cinema.Cinema;
