@@ -125,6 +125,12 @@ public class MovieList {
             }
         }
     }
+    public Movie getMovieByIndex(int index){
+        if (index<0 || index>= movies.size()){
+            return null;
+        }
+        return movies.get(index);
+    }
 
 //    public ArrayList<Movie> getMovies() {
 //        return movies;

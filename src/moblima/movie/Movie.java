@@ -116,4 +116,10 @@ public class Movie{
         }
         return null;
     }
+    public static String convertMovieStatusToString(MovieStatus movieStatus){
+        if (movieStatus == MovieStatus.COMING_SOON) return "coming soon";
+        else if (movieStatus == MovieStatus.PREVIEW) return "preview";
+        else if (movieStatus == MovieStatus.NOW_SHOWING) return "now showing";
+        else return "end of showing";
+    }
 }

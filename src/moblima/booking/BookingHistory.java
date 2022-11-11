@@ -41,7 +41,7 @@ public class BookingHistory {
         bookings.add(booking);
     }
 
-    public Booking getBookingById(int index){
+    public Booking getBookingByIndex(int index){
         if (index<0 || index>= bookings.size()){
             return null;
         }

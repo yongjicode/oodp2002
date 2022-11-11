@@ -57,7 +57,7 @@ public class CSVUpdater {
         int count=0;
         try {
             while (SilverVillage.getCineplexList().getCineplexByIndex(count) != null){
-                for (Cinema cinema: SilverVillage.getCineplexList().getCineplexByIndex(count).getCinemas()){
+                for (Cinema cinema: SilverVillage.getCineplexList().getCineplexByIndex(count++).getCinemas()){
                     String[] input = new String[2];
                     input[0] = cinema.convertCinemaCodeToCurrentCode();
                     input[1] = cinema.getClassLevel().toString();
@@ -79,8 +79,8 @@ public class CSVUpdater {
         CSVWriter writer = new CSVWriter(outputFile);
         int count=0;
         try {
-            while (SilverVillage.getBookingHistory().getBookingById(count) != null){
-                Booking booking = SilverVillage.getBookingHistory().getBookingById(count);
+            while (SilverVillage.getBookingHistory().getBookingByIndex(count) != null){
+                Booking booking = SilverVillage.getBookingHistory().getBookingByIndex(count);
                 String[] input = new String[6];
                 input[0] = booking.convertTicketsToString();
                 input[1] = booking.getCustomerName();
@@ -98,45 +98,48 @@ public class CSVUpdater {
     }
 
 
-    // AccountsDB
-    public static void updateAccounts(String filePath) throws IOException {
-        File accountsFile = new File(filePath);
-        FileWriter outputFile = new FileWriter(accountsFile);
-        CSVWriter writer = new CSVWriter(outputFile);
-
-        try {
-            for (Account account: arrayName){
-                String[] input = new String[5];
-                input[0] = Integer.toString(account);
-                input[1] = account.getLoginId();
-                input[2] = account.getPassword();
-                input[3] = "NA";
-                input[4] = "NA";
-                writer.writeNext(input);
-            }
-            writer.close();
-        }
-        catch (IOException e){
-            System.out.println("An error occurred");
-        }
-    }
+    // AccountsDB TODO UpdateAccounts
+//    public static void updateAccounts(String filePath) throws IOException {
+//        File accountsFile = new File(filePath);
+//        FileWriter outputFile = new FileWriter(accountsFile);
+//        CSVWriter writer = new CSVWriter(outputFile);
+//
+//        try {
+//            for (Account account: arrayName){
+//                String[] input = new String[5];
+//                input[0] = Integer.toString(account);
+//                input[1] = account.getLoginId();
+//                input[2] = account.getPassword();
+//                input[3] = "NA";
+//                input[4] = "NA";
+//                writer.writeNext(input);
+//            }
+//            writer.close();
+//        }
+//        catch (IOException e){
+//            System.out.println("An error occurred");
+//        }
+//    }
     // MoviesDB
-    public static void updateMovies(String filePath, ArrayList<Movie> arrayName) throws IOException {
+    public static void updateMovies(String filePath) throws IOException {
         File movieFile = new File(filePath);
         FileWriter outputFile = new FileWriter(movieFile);
         CSVWriter writer = new CSVWriter(outputFile);
-
+        int count=0;
         try {
-            for (Movie movie: arrayName){
-                String[] input = new String[8];
-                input[0] = movie.getTitle();
-                input[1] = Integer.toString(movie.getMovieId());
-                input[2] = movie.getTitle();
-                input[3] = movie.getStatus();
-                input[4] = movie.getSynopsis();
-                input[5] = movie.getDirector();
-                input[6] = movie.getCast();
-                input[7] = movie.getReviews().toString();
+            while (SilverVillage.getMovieList().getMovieByIndex(count) != null){
+                Movie movie = SilverVillage.getMovieList().getMovieByIndex(count++);
+                String[] input = new String{10};
+                input[0] = Integer.toString(movie.getMovieId());
+                input[1] = movie.getTitle();
+                input[2] = movie.getSynopsis();
+                input[3] = movie.getDirector();
+                input[4] = "NA"; // TODO movie.getCast();
+                input[5] = movie.getReviews().toString();
+                input[6] = movie.convertMovieStatusToString(movie.getStatus());
+                input[7] = movie.getExpiryDate().toString();
+                input[8] = Integer.toString(movie.getTicketSold());
+                input[9] = Integer.toString(movie.getRating());
                 writer.writeNext(input);
             }
             writer.close();
