@@ -1,6 +1,6 @@
 import account.*;
-import command.adminModule.*;
-import command.userModule.*;
+import command.admin.*;
+import command.customer.*;
 import exceptions.moblimaExceptions.invalidInputException;
 import gui.*;
 import moblima.SilverVillage;
@@ -189,37 +189,37 @@ public class Application {
 				}
 				switch (userCh) {
 					case 1:
-						new userSearchMovieCommand().execute();
+						new UserSearchMovieCommand().execute();
 						break;
 					case 2:
-						new userListMoviesCommand().execute();
+						new UserListMoviesCommand().execute();
 						break;
 					case 3:
-						new listShowsCommand(cineplex).execute();
+						new ListShowsCommand(cineplex).execute();
 						break;
 					case 4:
-						new showSeatAvailabilityCommand(cineplex).execute();
+						new ShowSeatAvailabilityCommand(cineplex).execute();
 						break;
 					case 5:
 
 						if(curAcc == null) {
-							new guestBookTicketCommand(cineplex).execute();
+							new GuestBookTicketCommand(cineplex).execute();
 						}
 						else {
-							new bookTicketCommand(cineplex, curAcc).execute();
+							new BookTicketCommand(cineplex, curAcc).execute();
 						}
 						break;
 					case 6:
 						if (curAcc == null) {
-							new guestViewBookingHistoryCommand().execute();
+							new GuestViewBookingHistoryCommand().execute();
 						}
 						else {
-							new viewBookingHistoryCommand(curAcc.getName()).execute();
+							new ViewBookingHistoryCommand(curAcc.getName()).execute();
 						}
 						break;
 
 					case 7:
-						new reviewMovieCommand().execute();
+						new ReviewMovieCommand().execute();
 						break;
 					case 8:
 						if(ss.getTop5MovieTicketsBool() && ss.getTop5MovieRatingsBool()){
@@ -233,17 +233,17 @@ public class Application {
 								break;
 							}
 							if (userCh == 1){
-								new rankTicketSalesCommand().execute();
+								new RankTicketSalesCommand().execute();
 							}
 							else{
-								new rankReviewRatingsCommand().execute();
+								new RankReviewRatingsCommand().execute();
 							}
 						}
 						else if (ss.getTop5MovieRatingsBool()){
-							new rankReviewRatingsCommand().execute();
+							new RankReviewRatingsCommand().execute();
 						}
 						else if (ss.getTop5MovieTicketsBool()){
-							new rankTicketSalesCommand().execute();
+							new RankTicketSalesCommand().execute();
 						}
 						else{
 							System.out.println("Data unavailable");
@@ -251,7 +251,7 @@ public class Application {
 						break;
 
 					case 9:
-						changeLocationCommand CLC = new changeLocationCommand(cineplex);
+						ChangeLocationCommand CLC = new ChangeLocationCommand(cineplex);
 						CLC.execute();
 						cineplex = CLC.getCineplex();
 						break;
@@ -311,13 +311,13 @@ public class Application {
 				}
 				switch (userCh){
 					case 1:
-						new createShowCommand(cineplexAdmin.getCineplex()).execute();
+						new CreateShowCommand(cineplexAdmin.getCineplex()).execute();
 						break;
 					case 2:
-						new updateShowCommand(cineplexAdmin.getCineplex()).execute();
+						new UpdateShowCommand(cineplexAdmin.getCineplex()).execute();
 						break;
 					case 3:
-						new deleteShowCommand(cineplexAdmin.getCineplex()).execute();
+						new DeleteShowCommand(cineplexAdmin.getCineplex()).execute();
 						break;
 					case 4:
 						curAcc = null;
@@ -348,16 +348,16 @@ public class Application {
 				}
 				switch (userCh){
 					case 1:
-						new createMovieListingCommand().execute();
+						new CreateMovieListingCommand().execute();
 						SilverVillage.getMovieList().listMoviesForAdmin();
 						break;
 					case 2:
 						// TODO MK fix
-						new updateMovieListingCommand().execute();
+						new UpdateMovieListingCommand().execute();
 						break;
 
 					case 3:
-						new deleteMovieListingCommand().execute();
+						new DeleteMovieListingCommand().execute();
 						SilverVillage.getMovieList().listMoviesForAdmin();
 						break;
 
@@ -370,29 +370,29 @@ public class Application {
 						scanner.nextLine();
 						switch(userCh){
 							case 1:
-								new enableTop5TicketSalesCommand().execute();
+								new EnableTop5TicketSalesCommand().execute();
 								System.out.println("Ranking Top 5 Ticket Sales enabled");
 								break;
 							case 2:
-								new disableTop5TicketSalesCommand().execute();
+								new DisableTop5TicketSalesCommand().execute();
 								System.out.println("Ranking Top 5 Ticket Sales disabled");
 								break;
 							case 3:
-								new enableTop5ReviewsCommand().execute();
+								new EnableTop5ReviewsCommand().execute();
 								System.out.println("Ranking by Top 5 Movie Ratings enabled");
 								break;
 							case 4:
-								new disableTop5ReviewsCommand().execute();
+								new DisableTop5ReviewsCommand().execute();
 								System.out.println("Ranking by Top 5 Movie Ratings disabled");
 								break;
 							case 5:
-								new addPublicHolidayCommand().execute();
+								new AddPublicHolidayCommand().execute();
 								break;
 							case 6:
-								new removePublicHolidayCommand().execute();
+								new RemovePublicHolidayCommand().execute();
 								break;
 							case 7:
-								new adjustTicketBasePriceCommand().execute();
+								new AdjustTicketBasePriceCommand().execute();
 								break;
 
 							default:
