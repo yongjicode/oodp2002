@@ -143,7 +143,7 @@ public class CSVUpdater {
                 input[1] = movie.getTitle();
                 input[2] = movie.getSynopsis();
                 input[3] = movie.getDirector();
-                input[4] = "NA"; // TODO movie.getCast();
+                input[4] = movie.getCasts(); //  movie.getCast();
                 input[5] = movie.getReviews().toString();
                 input[6] = movie.convertMovieStatusToString(movie.getStatus());
                 input[7] = movie.getExpiryDate().toString();

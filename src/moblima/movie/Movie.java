@@ -58,8 +58,18 @@ public class Movie{
         return expiryDate;
     }
 
-    public List<String> getCasts() {
-        return casts;
+    public String getCasts() {
+        String output = "";
+        int count=0;
+        for (String cast: casts){
+            if (count++ == 0) output+=cast;
+            else {
+                output+=';';
+                output+=cast;
+            }
+        }
+
+        return output;
     }
 
     public String getDirector() {
