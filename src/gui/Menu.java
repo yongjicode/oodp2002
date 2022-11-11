@@ -1,5 +1,6 @@
 package gui;
 
-public interface menu {
+public interface Menu {
     void display();
+
 }
