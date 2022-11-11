@@ -4,6 +4,7 @@ import moblima.movie.review.Review;
 import moblima.movie.review.ReviewList;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Movie{

@@ -40,4 +40,10 @@ public class Cinema {
         return null;
     }
 
+    public static String convertCinemaClassToString(CinemaClass classLevel){
+        if (classLevel == CinemaClass.GOLD) return "GOLD";
+        else if (classLevel == CinemaClass.NORMAL) return "NORMAL";
+        else return "PLATINUM";
+    }
+
 }
