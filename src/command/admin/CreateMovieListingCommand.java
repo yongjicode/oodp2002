@@ -3,6 +3,7 @@ package command.admin;
 import command.Command;
 import moblima.SilverVillage;
 import moblima.movie.Movie;
+import moblima.movie.MovieStatus;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,14 +22,17 @@ public class CreateMovieListingCommand implements Command {
         System.out.println();
         System.out.print("Please enter the movie title: ");
         String movieTitle = scanner.nextLine();
-        System.out.print("Please enter the movie status: ");
-        String movieStatus = scanner.nextLine();
+        System.out.print("Please enter the movie status(1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing): ");
+        int movieStatusInt = scanner.nextInt();
+        scanner.nextLine();
+        MovieStatus movieStatus = MovieStatus.intToEnum(movieStatusInt);
         System.out.print("Please enter the movie synopsis: ");
         String movieSynopsis = scanner.nextLine();
         System.out.print("Please enter the movie director: ");
         String movieDirector = scanner.nextLine();
         System.out.print("Please enter the number of movie cast(s): ");
         int numOfCast = scanner.nextInt();
+        scanner.nextLine();
         List<String> movieCasts = new ArrayList<>();
         for(int i=0; i<numOfCast; i++){
             System.out.print("Cast " + (i+1) + " Name: ");
@@ -39,7 +43,7 @@ public class CreateMovieListingCommand implements Command {
         while(true) {
             try {
                 String expiryDate = scanner.nextLine();
-                SilverVillage.getMovieList().addMovie(new Movie(movieTitle,convertToMovieStatus(movieStatus),movieSynopsis,movieDirector,movieCasts, LocalDateTime.parse(expiryDate, formatter)));
+                SilverVillage.getMovieList().addMovie(new Movie(movieTitle,movieStatus,movieSynopsis,movieDirector,movieCasts, LocalDateTime.parse(expiryDate, formatter)));
                 break;
             }
             catch (DateTimeParseException e) {
