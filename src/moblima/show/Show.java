@@ -53,7 +53,7 @@ public class Show {
         System.out.println("ShowId: " + showId);
         System.out.println("Movie Title: " + movie.getTitle());
         System.out.println("Cinema Hall: " + cinema.getCinemaCode());
-        System.out.println("Cinema Class: " + cinema.getClassLevel());
+        System.out.println("Cinema Class: " + Cinema.convertCinemaClassToString(cinema.getClassLevel()));
         System.out.println("Day & Time: " + showTime.format(formatter));
     }
 

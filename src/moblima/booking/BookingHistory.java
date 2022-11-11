@@ -41,6 +41,14 @@ public class BookingHistory {
         bookings.add(booking);
     }
 
+    public Booking getBookingByIndex(int index){
+        if (index<0 || index>= bookings.size()){
+            return null;
+        }
+        return bookings.get(index);
+
+    }
+
 //    public ArrayList<Booking> getBookings() {
 //        return bookings;
 //    }
