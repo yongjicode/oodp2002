@@ -133,4 +133,9 @@ public class Movie{
         else if (movieStatus == MovieStatus.NOW_SHOWING) return "now showing";
         else return "end of showing";
     }
+
+    public static String convertDateTimeToString(String expiry){
+        String output = expiry.substring(0,10) + " " + expiry.substring(11);
+        return output;
+    }
 }

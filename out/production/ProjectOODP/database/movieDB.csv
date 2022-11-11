@@ -1,3 +1,2 @@
-movieId,title,synopsis,director,casts,reviews,status,expiryDate,ticketSold,rating
-1,Thor,Thor fights his brother Loki in Asgard,Taika Waititi,Chris Hemsworth;Anthony Hopkins;Tom Hiddleston,reviewList_1,NOW_SHOWING,2022-11-11 00:00,2,0
-2,Frozen,Anna and Kristoff bravely push onward in a race to save their kingdom from winters cold grip.,Jennifer Lee,Kristen Bell;Jonathan Groff;Idina Menzel;Josh Gad,reviewList_2,NOW_SHOWING,2022-11-11 01:00,0,0
+"1","Thor","Thor fights his brother Loki in Asgard","Taika Waititi","Chris Hemsworth;Anthony Hopkins;Tom Hiddleston","moblima.movie.review.ReviewList@34c4973","end of showing","2022-11-11 00:00","2","4"
+"2","Frozen","Anna and Kristoff bravely push onward in a race to save their kingdom from winters cold grip.","Jennifer Lee","Kristen Bell;Jonathan Groff;Idina Menzel;Josh Gad","moblima.movie.review.ReviewList@52feb982","end of showing","2022-11-11 01:00","0","0"

@@ -34,7 +34,7 @@
  public class CSVUpdater {
 
      //CineplexDB
-     public void updateCineplex(String filePath) throws IOException{
+     public static void updateCineplex(String filePath) throws IOException{
          File cineplexDb = new File(filePath);
          FileWriter outputFile = new FileWriter(cineplexDb);
          CSVWriter writer = new CSVWriter(outputFile);
@@ -43,7 +43,7 @@
              while (SilverVillage.getCineplexList().getCineplexByIndex(count) != null){
                  String[] input = new String[2];
                  input[0] = SilverVillage.getCineplexList().getCineplexByIndex(count).getBranchName();
-                 input[1] = SilverVillage.getCineplexList().getCineplexByIndex(count).getBranchAddress();
+                 input[1] = SilverVillage.getCineplexList().getCineplexByIndex(count++).getBranchAddress();
                  writer.writeNext(input);
              }
              writer.close();
@@ -55,17 +55,18 @@
 
 
      //CinemaDB
-     public void updateCinema(String filePath) throws IOException{
+     public static void updateCinema(String filePath) throws IOException{
          File cinemaDb = new File(filePath);
          FileWriter outputFile = new FileWriter(cinemaDb);
          CSVWriter writer = new CSVWriter(outputFile);
          int count=0;
          try {
              while (SilverVillage.getCineplexList().getCineplexByIndex(count) != null){
-                 for (Cinema cinema: SilverVillage.getCineplexList().getCineplexByIndex(count++).getCinemas()){
-                     String[] input = new String[2];
-                     input[0] = cinema.convertCinemaCodeToCurrentCode();
-                     input[1] = cinema.getClassLevel().toString();
+                 for (Cinema cinema: SilverVillage.getCineplexList().getCineplexByIndex(count).getCinemas()){
+                     String[] input = new String[3];
+                     input[0] = SilverVillage.getCineplexList().getCineplexByIndex(count++).getBranchName();
+                     input[1] = cinema.convertCinemaCodeToCurrentCode();
+                     input[2] = cinema.getClassLevel().toString();
                      writer.writeNext(input);
                  }
              }
@@ -78,21 +79,20 @@
 
 
      //BookingDB
-     public void updateBooking(String filePath) throws IOException{
+     public static void updateBooking(String filePath) throws IOException{
          File bookingDb = new File(filePath);
          FileWriter outputFile = new FileWriter(bookingDb);
          CSVWriter writer = new CSVWriter(outputFile);
          int count=0;
          try {
              while (SilverVillage.getBookingHistory().getBookingByIndex(count) != null){
-                 Booking booking = SilverVillage.getBookingHistory().getBookingByIndex(count);
-                 String[] input = new String[6];
+                 Booking booking = SilverVillage.getBookingHistory().getBookingByIndex(count++);
+                 String[] input = new String[5];
                  input[0] = booking.convertTicketsToString();
                  input[1] = booking.getCustomerName();
                  input[2] = booking.getMobileNumber();
                  input[3] = booking.getEmailAddress();
-                 input[4] = booking.getTransactionId();
-                 input[5] = Double.toString(booking.getTotalPrice());
+                 input[4] = Double.toString(booking.getTotalPrice());
                  writer.writeNext(input);
              }
              writer.close();
@@ -119,7 +119,7 @@
                  input[3] = account.getEmail();
                  input[4] = account.getPhoneNo();
                  input[5] = account.getName();
-                 if (Account.convertPrivilegeToInt(account.getPrivilege()) == 0) input[6] = "";
+                 if (Account.convertPrivilegeToInt(account.getPrivilege()) == 0) input[6] = "NA";
                  else input[6] = cineplexAdmin.getCineplex().getBranchName();
                  writer.writeNext(input);
              }
@@ -146,7 +146,7 @@
                  input[4] = movie.getCasts(); //  movie.getCast();
                  input[5] = movie.getReviews().toString();
                  input[6] = movie.convertMovieStatusToString(movie.getStatus());
-                 input[7] = movie.getExpiryDate().toString();
+                 input[7] = Movie.convertDateTimeToString(movie.getExpiryDate().toString());
                  input[8] = Integer.toString(movie.getTicketSold());
                  input[9] = Integer.toString(movie.getRating());
                  writer.writeNext(input);
@@ -170,8 +170,9 @@
                  String[] input = new String[5];
                  input[0] = Integer.toString(show.getShowId());
                  input[1] = show.getShowTime().toString();
-                 input[2] = show.getCinema().getCinemaCode();
-                 input[3] = Integer.toString(show.getMovie().getMovieId());
+                 input[2] = SilverVillage.getCineplexList().getCineplexByIndex(count++).getBranchName();
+                 input[3] = show.getCinema().getCinemaCode();
+                 input[4] = Integer.toString(show.getMovie().getMovieId());
                  writer.writeNext(input);
              }
              writer.close();
