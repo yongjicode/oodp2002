@@ -21,6 +21,7 @@ public class MovieList {
     }
 
     public void addMovie(Movie movie){
+        System.out.println("testtest");
         movies.add(movie);
     }
     public void delistMovie(int movieId){

@@ -58,8 +58,4 @@ public class Cineplex {
         }
         return null;
     }
-
-    public ArrayList<Cinema> getCinemas() {
-        return cinemas;
-    }
 }

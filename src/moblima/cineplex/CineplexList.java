@@ -1,5 +1,7 @@
 package moblima.cineplex;
 
+import moblima.cineplex.cinema.Cinema;
+
 import java.util.ArrayList;
 
 public class CineplexList {
@@ -31,6 +33,22 @@ public class CineplexList {
         for (Cineplex cineplex: cineplexes){
             cineplex.removeShowById(movieId);
         }
+    }
+
+    public Cineplex getCineplexByName(String branchName){
+        for (Cineplex cineplex: cineplexes){
+            if (branchName.equals(cineplex.getBranchName())){
+                return cineplex;
+            }
+        }
+        return null;
+    }
+
+    public Cineplex getCineplexByShow(int showId){
+        for (Cineplex cineplex: cineplexes){
+            if (cineplex.getShowList().searchShowById(showId) != null) return cineplex;
+        }
+        return null;
     }
 
 }

@@ -2,6 +2,7 @@ import account.*;
 import gui.*;
 import gui.GreetUserMenu;
 import moblima.SilverVillage;
+import moblima.booking.ticket.MovieTicket;
 import moblima.cineplex.Cineplex;
 import moblima.cineplex.cinema.Cinema;
 import moblima.cineplex.cinema.CinemaClass;
@@ -18,6 +19,7 @@ import system.PublicHoliday;
 import system.SystemSettings;
 import moblima.CSVReader;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
@@ -89,29 +91,16 @@ public class Application {
 
 		// end of test cases
 
-		ShowList showList = CSVReader.readShowsFromCSV("src/database/showDB.csv");
-		ArrayList<Movie> arrayMovie = CSVReader.readMoviesFromCSV("src/database/movieDB.csv");
-		MovieList movieList = new MovieList();
-		for (Movie movie: arrayMovie){
-			movieList.addMovie(movie);
-		}
+		CSVReader.readMoviesFromCSV("src/database/movieDB.csv");
+		SilverVillage.getMovieList().listMoviesForAdmin();
+		CSVReader.readReviewFromCsv("src/database/reviewListDB.csv");
+		CSVReader.readCinemasFromCSV("src/database/CinemaDB.csv");
+		CSVReader.readCineplexFromCSV("src/database/CineplexDB.csv");
+		CSVReader.readAccountsFromCSV("src/database/accountDB.csv", SilverVillage.getCineplexList());
+		CSVReader.readShowsFromCSV("src/database/showDB.csv");
+		ArrayList<MovieTicket> movieTicketArrayList =  CSVReader.readTicketsFromCSV("src/database/MovieTicketDB.csv");
+		CSVReader.readBookingsFromCSV("src/database/bookingDB.csv", movieTicketArrayList);
 
-		ArrayList<Booking> arrayBooking = CSVReader.readBookingsFromCSV("src/database/bookingDB.csv");
-		BookingHistory bookingHistory = new BookingHistory();
-		for (Booking booking: arrayBooking){
-			bookingHistory.addBooking(booking);
-		}
-
-		ArrayList<Cineplex> arrayCineplex = CSVReader.readCineplexFromCSV("src/database/companyDB.csv", showList.getShows());
-		CineplexList cineplexList = new CineplexList();
-		for (Cineplex cineplex: arrayCineplex){
-			cineplexList.addCineplex(cineplex);
-		}
-
-		ArrayList<ReviewList> arrayReview = CSVReader.readReviewsFromCSV("src/database/reviewListDB.csv");
-
-
-		ArrayList<Account> arrayAccount = CSVReader.readAccountsFromCSV("src/database/accountDB.csv", arrayCineplex);
 
 		// load in CSV
 
