@@ -92,4 +92,8 @@ public class SystemSettings {
     public static void disableTop5MovieRatings(){
         showTop5MovieRatings = false;
     }
+
+    public static ArrayList<Account> getAccounts() {
+        return accounts;
+    }
 }

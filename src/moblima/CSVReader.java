@@ -23,11 +23,79 @@
 //import java.time.LocalDateTime;
 //import java.time.format.DateTimeFormatter;
 //import java.util.ArrayList;
+//import java.util.List;
 //
 ////import static moblima.cineplex.Cinema.convertToCinemaClass;
 //import static moblima.movie.Movie.convertToMovieStatus;
 ////import static moblima.show.ticket.MovieTicket.checkCustomerAge;
 //public class CSVReader{
+//    public static ArrayList<Movie> readMoviesFromCSV(String fileName) {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//        ArrayList<Movie> movies = new ArrayList<>();
+//        Path pathToFile = Paths.get(fileName);
+//        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
+//
+//            br.readLine();
+//            String line = br.readLine();
+//
+//            while (line != null) {
+//                //movieId,title,synopsis,director,casts,reviews,status,expiryDate,ticketSold,rating
+//                String[] attributes = line.split(",");
+//                //String movieId = attributes[0];
+//                String title = attributes[1];
+//                String synopsis = attributes[2];
+//                String director = attributes[3];
+//                String castString = attributes[4]; // to change to list
+//                String[] casts = castString.split(";");
+//                ArrayList<String> castList = new ArrayList<>();
+//                for (String string: casts){
+//                    castList.add(string);
+//                }
+//                MovieStatus status = Movie.convertToMovieStatus(attributes[6]);
+//                LocalDateTime expiryDate = LocalDateTime.parse(attributes[7],formatter);
+//                // String title,MovieStatus status,String synopsis,String director,String cast,LocalDateTime expiryDate
+//                Movie movie = new Movie(title, status, synopsis, director, castList, expiryDate);
+//                movies.add(movie);
+//                line = br.readLine();
+//            }
+//        } catch (IOException ioe) {
+//            ioe.printStackTrace();
+//        }
+//        return movies;
+//    }
+//
+//    public static void readReviewFromCsv(String fileName){
+//        Path pathToFile = Paths.get(fileName);
+//
+//        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
+//
+//            br.readLine();
+//            String line = br.readLine();
+//
+//            while (line != null) {
+//                //movieId,rating,reviewDescription,totalRating
+//                String[] attributes = line.split(",");
+//                String movieId = attributes[0];
+//                String rating = attributes[1];
+//                String reviewDesc = attributes[2];
+//                String totalRating = attributes[3];
+//                Movie movie = SilverVillage.getMovieList().searchMovieById(Integer.parseInt(movieId));
+//                String[] ratings = rating.split(";");
+//                String[] reviewDescriptions = reviewDesc.split(";");
+//                int len = ratings.length;
+//                for (int i=0; i<len; i++){
+//                    Review review = new Review(Integer.parseInt(ratings[i]), reviewDescriptions[i]);
+//                    movie.addReview(review);
+//                }
+//                line = br.readLine();
+//            }
+//        } catch (IOException ioe) {
+//            ioe.printStackTrace();
+//        }
+//    }
+//
+//
+//
 //
 //public static ArrayList<Account> readAccountsFromCSV(String fileName, ArrayList<Cineplex> arrayCineplex) {
 //
@@ -147,37 +215,7 @@
 //    return bookings;
 //}
 //
-//public static ArrayList<Movie> readMoviesFromCSV(String fileName) {
-//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-//    ArrayList<Movie> movies = new ArrayList<>();
-//    Path pathToFile = Paths.get(fileName);
-//    try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
 //
-//        br.readLine();
-//        String line = br.readLine();
-//
-//        while (line != null) {
-//            // movieId, title, synopsis, director, casts, reviews, status, expiryDate, ticketSold, rating
-//            String[] attributes = line.split(",");
-//            //String movieId = attributes[0];
-//            String title = attributes[1];
-//            String synopsis = attributes[2];
-//            String director = attributes[3];
-//            String castString = attributes[4]; // to change to list
-//            String[] casts = castString.split(";");
-//            MovieStatus status = Movie.convertToMovieStatus(attributes[6]);
-//            LocalDateTime expiryDate = LocalDateTime.parse(attributes[7],formatter);
-//
-//            // String title,MovieStatus status,String synopsis,String director,String cast,LocalDateTime expiryDate
-//            Movie movie = new Movie(title, status, synopsis, director, castString, expiryDate);
-//            movies.add(movie);
-//            line = br.readLine();
-//        }
-//    } catch (IOException ioe) {
-//        ioe.printStackTrace();
-//    }
-//    return movies;
-//}
 //
 //public static ArrayList<ReviewList> readReviewsFromCSV(String fileName) {
 //

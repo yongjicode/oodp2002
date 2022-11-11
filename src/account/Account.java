@@ -51,5 +51,10 @@ public abstract class Account{
                 return Privilege.CompanyAdmin;
         }
     }
+    public static int convertPrivilegeToInt(Privilege privilege){
+        if (privilege == Privilege.User) return 0;
+        else if (privilege == Privilege.CineplexAdmin) return 1;
+        else return 0;
+    }
     public abstract Privilege login(String loginId, String password);
 }

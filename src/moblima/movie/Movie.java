@@ -58,8 +58,18 @@ public class Movie{
         return expiryDate;
     }
 
-    public List<String> getCasts() {
-        return casts;
+    public String getCasts() {
+        String output = "";
+        int count=0;
+        for (String cast: casts){
+            if (count++ == 0) output+=cast;
+            else {
+                output+=';';
+                output+=cast;
+            }
+        }
+
+        return output;
     }
 
     public String getDirector() {
@@ -115,5 +125,11 @@ public class Movie{
             return MovieStatus.END_OF_SHOWING;
         }
         return null;
+    }
+    public static String convertMovieStatusToString(MovieStatus movieStatus){
+        if (movieStatus == MovieStatus.COMING_SOON) return "coming soon";
+        else if (movieStatus == MovieStatus.PREVIEW) return "preview";
+        else if (movieStatus == MovieStatus.NOW_SHOWING) return "now showing";
+        else return "end of showing";
     }
 }

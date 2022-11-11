@@ -67,7 +67,16 @@ public class Booking {
         }
         return null;
     }
-
+    public String convertTicketsToString(){
+        String output = "";
+        int count=0;
+        for (MovieTicket ticket: tickets){
+            if (count++ ==0) output += Integer.toString(ticket.getTicketID());
+            output += ";";
+            output += Integer.toString(ticket.getTicketID());
+        }
+        return output;
+    }
     public ArrayList<MovieTicket> getTickets() {
         return tickets;
     }

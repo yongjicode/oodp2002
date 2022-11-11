@@ -23,7 +23,11 @@ public class Cinema {
     public String getCinemaCode(){
         return cinemaCode;
     }
+    public String convertCinemaCodeToCurrentCode(){
+        String output = cinemaCode.substring(2);
+        return output;
 
+    }
     public static CinemaClass convertToCinemaClass(String classLevel){
         switch(classLevel.toLowerCase()){
             case "normal":
