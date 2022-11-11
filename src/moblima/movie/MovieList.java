@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class MovieList {
-    private ArrayList<Movie> movies = new ArrayList<>();
+    private final ArrayList<Movie> movies = new ArrayList<>();
 
     public void updateExpiredMovieStatus(){
         for(Movie movie: movies){
@@ -23,50 +23,38 @@ public class MovieList {
     public void addMovie(Movie movie){
         movies.add(movie);
     }
-
-    public void removeMovie(int movieId){
-        for(Movie movie: movies){
-            if(movie.getMovieId() == movieId){
-                movies.remove(movie);
-                System.out.println();
-                System.out.println("Movie \"" + movieId + "\" has been removed.");
-                return;
-            }
-        }
-        System.out.println();
-        System.out.println("Movie \"" + movieId + "\" does not exist. No movie removed.");
+    public void delistMovie(int movieId){
+        this.updateMovieStatus(movieId,MovieStatus.END_OF_SHOWING);
     }
 
-    public void listMovies(int privilege){
+    public void listMoviesForUser() {
         int movieCount = 1;
         System.out.println();
-        // For User
-        if (privilege == 0){
-            System.out.println("List of Movies");
-            System.out.println();
-            for(Movie movie: movies){
-                if (movie.getStatus() != MovieStatus.END_OF_SHOWING){
-                    System.out.println("============= Result No. " + movieCount++ + " ==============");
-                    movie.printMovieDetails();
-                    System.out.println();
-                }
-            }
-            System.out.println("===== There are " + (movieCount-1) + " movies available! =====");
-        }
-        // For Admin
-        else if (privilege != 0){
-            System.out.println("List of Movies");
-            System.out.println();
-            for(Movie movie: movies){
+        System.out.println("List of Movies");
+        System.out.println();
+        for (Movie movie : movies) {
+            if (movie.getStatus() != MovieStatus.END_OF_SHOWING) {
                 System.out.println("============= Result No. " + movieCount++ + " ==============");
                 movie.printMovieDetails();
                 System.out.println();
             }
-            System.out.println("===== There are " + movies.size() + " movies available! =====");
         }
+        System.out.println("===== There are " + (movieCount - 1) + " movies available! =====");
+    }
+    // For Admin
+    public void listMoviesForAdmin(){
+        int movieCount = 1;
+        System.out.println("List of Movies");
+        System.out.println();
+        for(Movie movie: movies){
+            System.out.println("============= Result No. " + movieCount++ + " ==============");
+            movie.printMovieDetails();
+            System.out.println();
+        }
+        System.out.println("===== There are " + movies.size() + " movies available! =====");
     }
 
-    public void searchMovieTitle(String keyword){
+    public void searchMovieByKeyword(String keyword){
         int numOfResults = 0;
         System.out.println();
         System.out.println("Search Results for movie titled \"" + keyword + "\"");
@@ -95,7 +83,7 @@ public class MovieList {
         SilverVillage.getMovieList().searchMovieById(movieId).setStatus(status);
     }
 
-    public void showTopRatingMovies(){
+    public void showTopMoviesByRating(){
         //reversed cause highest should be at top
         Collections.sort(movies, Comparator.comparingInt(Movie::getRating).reversed());
         System.out.println("Top 5 Movies by Ratings");
@@ -110,7 +98,7 @@ public class MovieList {
         }
     }
 
-    public void showTopSaleMovies(){
+    public void showTopMoviesBySale(){
         Collections.sort(movies, Comparator.comparingInt(Movie::getTicketSold).reversed());
         System.out.println("Top 5 Movies by Ticket Sales");
         if(movies.size()<=5){
@@ -123,9 +111,15 @@ public class MovieList {
             }
         }
     }
-
-    public ArrayList<Movie> getMovies() {
-        return movies;
+    public Movie getMovieByIndex(int index){
+        if (index<0 || index>= movies.size()){
+            return null;
+        }
+        return movies.get(index);
     }
+
+//    public ArrayList<Movie> getMovies() {
+//        return movies;
+//    }
 
 }

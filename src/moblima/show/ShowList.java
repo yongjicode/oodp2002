@@ -9,7 +9,7 @@ public class ShowList {
         shows.add(show);
     }
 
-    public void removeShow(int showId){
+    public void removeShowById(int showId){
         for(Show show : shows){
             if(show.getShowId()==showId){
                 shows.remove(show);
@@ -17,7 +17,6 @@ public class ShowList {
                 System.out.println("Show " + showId + " has been removed.");
                 System.out.println();
                 System.out.println("Show successfully deleted.");
-
                 return;
             }
         }
@@ -30,12 +29,14 @@ public class ShowList {
         System.out.println();
         System.out.println("========== Available Show List ==========");
         for(Show show: shows){
-            show.printShowDetails();
+            if(show.isShowing()){
+                show.printShowDetails();
+            }
         }
         System.out.println("=========================================");
     }
 
-    public Show searchShow(int showId){
+    public Show searchShowById(int showId){
         for(Show show: shows){
             if(show.getShowId()==showId){
                 return show;

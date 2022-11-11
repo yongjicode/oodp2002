@@ -9,7 +9,6 @@ public class Seating {
     } //instantiate all to 0
 
     public void printSeats() {
-        //need make it beautiful
         System.out.println();
 
         System.out.printf("%-8s", "");

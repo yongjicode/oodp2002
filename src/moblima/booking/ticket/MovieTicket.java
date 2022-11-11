@@ -15,12 +15,11 @@ public class MovieTicket {
         this.seatId = seatId;
         this.show = show;
         this.age = age;
-        this.price = calculatePrice(show, age);
+        this.price = calculateTicketPrice(show, age);
         this.ticketID = staticTicketID++;
     }
 
     public void printTicketDetails(){
-        
         System.out.println("Seat: " + seatId);
         System.out.println("Price: $" + price);
         System.out.println("Type: " + age);
@@ -34,7 +33,7 @@ public class MovieTicket {
         return show;
     }
 
-    public double calculatePrice(Show show, CustomerAge age){
+    public double calculateTicketPrice(Show show, CustomerAge age){
         TicketPriceCalculator ticketPriceCalculator = new TicketPriceCalculator(age, show.getCinema().getClassLevel(), show.getShowTime());
         return ticketPriceCalculator.calculatePrice();
     }
@@ -54,7 +53,7 @@ public class MovieTicket {
         return ticketID;
     }
 
-    public static CustomerAge checkCustomerAge(String ageString){
+    public static CustomerAge convertToCustomerAge(String ageString){
         int ageInt = Integer.parseInt(ageString);
         if(ageInt<=12){
             return CustomerAge.CHILD;
@@ -64,4 +63,11 @@ public class MovieTicket {
             return CustomerAge.SENIOR;
         }
     }
-}
+
+    public static String convertCustomerAgeToString(CustomerAge customerAge){
+        if (customerAge == CustomerAge.CHILD) return "CHILD";
+        else if (customerAge == CustomerAge.ADULT) return "ADULT";
+        else return "SENIOR";
+        }
+    }
+

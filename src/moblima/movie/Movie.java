@@ -4,44 +4,38 @@ import moblima.movie.review.Review;
 import moblima.movie.review.ReviewList;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Movie{
 
     private static int currentId=1;
-
-    public int getMovieId() {
-        return movieId;
-    }
-
     private int movieId;
     private String title;
     private String synopsis;
     private String director;
-    private String cast; //need change to list of casts
-    private ReviewList reviews;
+    private List<String> casts;
     private MovieStatus status;
     private LocalDateTime expiryDate;
-
-    private int ticketSold;
-
-    private int rating;
+    private int ticketSold = 0;
+    private int rating = 0;
+    private ReviewList reviews = new ReviewList();
 
     public Movie(String title,
                  MovieStatus status,
                  String synopsis,
                  String director,
-                 String cast,
+                 List<String> casts,
                  LocalDateTime expiryDate) {
         this.movieId = currentId++;
         this.title = title;
         this.status = status;
         this.synopsis = synopsis;
         this.director = director;
-        this.cast = cast;
+        this.casts = casts;
         this.expiryDate = expiryDate;
-        this.reviews = new ReviewList();
-        this.ticketSold = 0;
-        this.rating = 0;
+    }
+    public int getMovieId() {
+        return movieId;
     }
 
     public String getTitle() {
@@ -52,30 +46,8 @@ public class Movie{
         this.status = status;
     }
 
-    public void incrementTicketSold(){
-        this.ticketSold++;
-    }
-
-    public void printMovieDetails() {
-    	System.out.println();
-        System.out.println("moblima.movie.Movie ID: " + movieId);
-        System.out.println("Title: " + title);
-        System.out.println("Status: " + status);
-        System.out.println("Synopsis: " + synopsis);
-        System.out.println("Director: " + director);
-        System.out.println("Cast: " + cast);
-        System.out.println("Rating: " + rating);
-        System.out.print("Reviews: ");
-        reviews.listReviews();
-    }
-
-    public void addReview(Review review){
-        reviews.add(review);
-        rating = reviews.showAverageRating();
-    }
-
     public int getRating() {
-        return rating;
+        return reviews.showAverageRating();
     }
 
     public int getTicketSold() {
@@ -86,8 +58,18 @@ public class Movie{
         return expiryDate;
     }
 
-    public String getCast() {
-        return cast;
+    public String getCasts() {
+        String output = "";
+        int count=0;
+        for (String cast: casts){
+            if (count++ == 0) output+=cast;
+            else {
+                output+=';';
+                output+=cast;
+            }
+        }
+
+        return output;
     }
 
     public String getDirector() {
@@ -106,6 +88,31 @@ public class Movie{
         return synopsis;
     }
 
+    public void incrementTicketSold(){
+        this.ticketSold++;
+    }
+
+    public void printMovieDetails() {
+        System.out.println();
+        System.out.println("Movie ID: " + movieId);
+        System.out.println("Title: " + title);
+        System.out.println("Status: " + status);
+        System.out.println("Synopsis: " + synopsis);
+        System.out.println("Director: " + director);
+        System.out.print("Cast(s): ");
+        casts.forEach(System.out::print);
+        System.out.print("\n");
+        System.out.println("Rating: " + rating);
+        System.out.print("Reviews: ");
+        System.out.println();
+        reviews.listReviews();
+    }
+
+    public void addReview(Review review){
+        reviews.add(review);
+        rating = reviews.showAverageRating();
+    }
+
     public static MovieStatus convertToMovieStatus(String movieStatus){
         switch(movieStatus.toLowerCase()){
         case "coming soon":
@@ -118,5 +125,11 @@ public class Movie{
             return MovieStatus.END_OF_SHOWING;
         }
         return null;
+    }
+    public static String convertMovieStatusToString(MovieStatus movieStatus){
+        if (movieStatus == MovieStatus.COMING_SOON) return "coming soon";
+        else if (movieStatus == MovieStatus.PREVIEW) return "preview";
+        else if (movieStatus == MovieStatus.NOW_SHOWING) return "now showing";
+        else return "end of showing";
     }
 }
