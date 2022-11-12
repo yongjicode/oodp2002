@@ -3,11 +3,23 @@ import account.*;
 import java.util.Scanner;
 import command.admin.*;
 
+/**
+ *
+ */
 public class CineplexAdminGUI implements Menu,Logout,GetCommand{
     private CineplexAdminAccount cineplexAdmin;
+
+    /**
+     *
+     * @param cineplexAdmin
+     */
     public CineplexAdminGUI(CineplexAdminAccount cineplexAdmin){
         this.cineplexAdmin = cineplexAdmin;
     }
+
+    /**
+     *
+     */
     public void display(){
     	System.out.println();
         //System.out.println("-----------------------------------------");
@@ -29,6 +41,11 @@ public class CineplexAdminGUI implements Menu,Logout,GetCommand{
         System.out.println();
 
     };
+
+    /**
+     *
+     * @return
+     */
     public int execute(){
         System.out.print("Please enter the option number: ");
         Scanner scanner = new Scanner(System.in);
@@ -73,11 +90,17 @@ public class CineplexAdminGUI implements Menu,Logout,GetCommand{
        }
     }
 
-
+    /**
+     *
+     */
     public void logout(){
         cineplexAdmin = null;
     }
 
+    /**
+     *
+     * @return
+     */
     public Account getAccount(){
         return this.cineplexAdmin;
     }

@@ -29,7 +29,7 @@ public class BookTicketCommand implements Command {
 		this.curAcc = curAcc;
 	}
 	/**
-	 * Gets input from the user to book specific seats for a show and generates receipt
+	 * Gets input from the Customer to book specific seats for a show and generates receipt
 	 */
 	public void execute() {
 		Scanner scanner = new Scanner(System.in);

@@ -12,16 +12,24 @@ import moblima.show.Show;
 import java.util.Scanner;
 
 import static moblima.booking.ticket.MovieTicket.convertToCustomerAge;
-
+/**
+ * Represents a command for Guests to select and book tickets for a show
+ */
 public class GuestBookTicketCommand implements Command{
 
 	private Cineplex cineplex;
 
+	/**
+	 * Creates a GuestBookTicketCommand with given Cineplex
+	 * @param cineplex which is the current Cineplex Guest is viewing
+	 */
 	public GuestBookTicketCommand(Cineplex cineplex) {
 		this.cineplex = cineplex;
 	}
 
-
+	/**
+	 * Gets input from the Guest to book specific seats for a show and generates receipt
+	 */
 	public void execute() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println();
