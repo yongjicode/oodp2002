@@ -14,8 +14,12 @@ public class CustomerGUI implements Menu, Logout,GetCommand {
         this.cineplex = cineplex;
     }
     public void display(){
-        System.out.println();
-        System.out.println("============== User Menu ================");
+    	System.out.println();
+        //System.out.println("-----------------------------------------");
+        System.out.println("=========================================");
+        System.out.println("               Customer Menu             ");
+        System.out.println("=========================================");
+        //System.out.println("-----------------------------------------");
         System.out.println();
         System.out.println("Logged in as User: " + curAcc.getLoginId());
         System.out.println();
@@ -39,13 +43,26 @@ public class CustomerGUI implements Menu, Logout,GetCommand {
     public int execute(){
         Scanner scanner = new Scanner(System.in);
         System.out.print("Please enter the option number: ");
-        int userCh = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println();
-        System.out.println("=========================================");
-        if (userCh == 11) {
-            return 0;
-        }
+      //Error handling for invalid input 
+        while(true)	{
+        	System.out.print("Please enter the option number: ");
+	        if(scanner.hasNextInt() == false) {
+				
+				System.out.println("Invalid input format for option number. Please try again.");
+				scanner.nextLine();
+				System.out.println();
+				continue;
+			}
+		
+	        int userCh = scanner.nextInt();
+	        scanner.nextLine();
+	        System.out.println();
+	        System.out.println("=========================================");
+	        
+	        if (userCh == 11) {
+	            return 0;
+	        }
+
         switch (userCh) {
             case 1:
                 new UserSearchMovieCommand().execute();
@@ -54,6 +71,8 @@ public class CustomerGUI implements Menu, Logout,GetCommand {
                 new UserListMoviesCommand().execute();
                 break;
             case 3:
+            	System.out.println();
+        		System.out.println("For cineplex location: " + cineplex.getBranchName());
                 new ListShowsCommand(cineplex).execute();
                 break;
             case 4:
@@ -72,11 +91,21 @@ public class CustomerGUI implements Menu, Logout,GetCommand {
             case 8:
                 if(SystemSettings.getTop5MovieTicketsBool() && SystemSettings.getTop5MovieRatingsBool()){
                     showTop5OptionsMenu();
-                    System.out.print("Please enter option number: ");
+                    while(true) {
+	                    System.out.print("Please enter option number: ");
+	                    if(scanner.hasNextInt() == false) {
+	        				
+	        				System.out.println("Invalid input format for option number. Please try again.");
+	        				scanner.nextLine();
+	        				System.out.println();
+	        				continue;
+	        			}
+	                    break;
+                    }
                     userCh = scanner.nextInt();
                     scanner.nextLine();
                     if (userCh != 1  && userCh!=2){
-                        System.out.println("Invalid Entry");
+                    	System.out.println("Option number out of range. Please try again.");
                         break;
                     }
                     if (userCh == 1){
@@ -93,7 +122,7 @@ public class CustomerGUI implements Menu, Logout,GetCommand {
                     new RankTicketSalesCommand().execute();
                 }
                 else{
-                    System.out.println("Data unavailable");
+                    System.out.println("Data unavailable.");
                 }
                 break;
 
@@ -105,15 +134,16 @@ public class CustomerGUI implements Menu, Logout,GetCommand {
             case 10:
                 logout();
                 System.out.println();
-                System.out.println("Logged out successfully");
+                System.out.println("Logged out successfully.");
                 break;
 
             default:
                 System.out.println();
-                System.out.println("Invalid option. Please try again.");
+                System.out.println("Option number out of range. Please try again.");
                 break;
         }
         return 1;
+       }
     }
 
     public void showTop5OptionsMenu(){

@@ -2,6 +2,7 @@ package command.admin;
 import command.Command;
 import exceptions.moblimaExceptions.invalidInputException;
 import moblima.show.Show;
+import moblima.SilverVillage;
 import moblima.cineplex.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -17,7 +18,7 @@ public class UpdateShowCommand implements Command{
         Scanner input = new Scanner(System.in);
         cineplex.getShowList().listShows();
         System.out.println();
-        System.out.print("Please enter show ID: ");
+        System.out.print("Please the enter show ID: ");
 
         while(true) {
             try {
@@ -27,7 +28,13 @@ public class UpdateShowCommand implements Command{
 
 
                 int showId = input.nextInt();
+                if (SilverVillage.getMovieList().searchMovieById(showId) == null){
+                    System.out.println();
+                    System.out.println("Show ID not found. No Shows updated.");
+                    return;
+                }
                 input.nextLine();
+                System.out.println();
                 System.out.print("Please enter the new Time (YYYY-MM-DD HH:MM): ");
 
                 while(true) {
@@ -36,7 +43,8 @@ public class UpdateShowCommand implements Command{
                         LocalDateTime newDateTime = LocalDateTime.parse(input.nextLine(),formatter);
                         Show showToBeUpdated = cineplex.getShowList().searchShowById(showId);
                         showToBeUpdated.setShowTime(newDateTime);
-                        System.out.println("Show has been updated");
+                        System.out.println();
+                        System.out.println("Show has been updated.");
                         cineplex.getShowList().listShows();
                         return;
 
