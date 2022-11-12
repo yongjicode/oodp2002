@@ -26,7 +26,7 @@ public class ChangeLocationCommand implements Command{
             scanner.nextLine();
             cineplex = SilverVillage.getCineplexList().getCineplexByIndex(locationCh-1);
             if (cineplex!=null) break;
-            System.out.println("Invalid option");
+            System.out.println("Option number out of range. Please try again.");
         }
         this.cineplex = cineplex;
     }

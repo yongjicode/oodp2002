@@ -32,11 +32,10 @@ public class GuestGUI implements Menu, Login, GetCommand {
         System.out.println("4. View Seat Availability");
         System.out.println("5. Book Tickets");
         System.out.println("6. View Booking History");
-        System.out.println("7. Review Movie");
-        System.out.println("8. Top 5 Ranking");
-        System.out.println("9. Change Location");
-        System.out.println("10. Login");
-        System.out.println("11. Exit");
+        System.out.println("7. Top 5 Ranking");
+        System.out.println("8. Change Location");
+        System.out.println("9. Login");
+        System.out.println("10. Exit");
         System.out.println("=========================================");
         //System.out.println("-----------------------------------------");
         System.out.println();
@@ -61,7 +60,7 @@ public class GuestGUI implements Menu, Login, GetCommand {
 	        System.out.println();
 	        System.out.println("=========================================");
 	        
-	        if (userCh == 11) {
+	        if (userCh == 10) {
 	            return 0;
 	        }
 	        switch (userCh) {
@@ -86,18 +85,25 @@ public class GuestGUI implements Menu, Login, GetCommand {
 	                new GuestViewBookingHistoryCommand().execute();
 	                break;
 	
+	            
 	            case 7:
-	                new ReviewMovieCommand().execute();
-	                break;
-	            case 8:
 	                if(SystemSettings.getTop5MovieTicketsBool() && SystemSettings.getTop5MovieRatingsBool()){
 	                    showTop5OptionsMenu();
-	
-	                    System.out.print("Please enter option number: ");
+	                    while(true) {
+		                    System.out.print("Please enter option number: ");
+		                    if(scanner.hasNextInt() == false) {
+		        				
+		        				System.out.println("Invalid input format for option number. Please try again.");
+		        				scanner.nextLine();
+		        				System.out.println();
+		        				continue;
+		        			}
+		                    break;
+	                    }
 	                    userCh = scanner.nextInt();
 	                    scanner.nextLine();
 	                    if (userCh != 1  && userCh!=2){
-	                        System.out.println("Invalid Entry");
+	                    	System.out.println("Option number out of range. Please try again.");
 	                        break;
 	                    }
 	                    if (userCh == 1){
@@ -114,16 +120,16 @@ public class GuestGUI implements Menu, Login, GetCommand {
 	                    new RankTicketSalesCommand().execute();
 	                }
 	                else{
-	                    System.out.println("Data unavailable");
+	                    System.out.println("Data unavailable.");
 	                }
 	                break;
 	
-	            case 9:
+	            case 8:
 	                ChangeLocationCommand CLC = new ChangeLocationCommand(cineplex);
 	                CLC.execute();
 	                cineplex = CLC.getCineplex();
 	                break;
-	            case 10:
+	            case 9:
 	                while(true){
 	                    System.out.println();
 	                    System.out.print("Please enter your Login ID: ");

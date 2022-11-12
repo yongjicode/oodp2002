@@ -12,8 +12,12 @@ public class CompanyAdminGUI implements Menu,Logout,GetCommand {
         this.curAcc = curAcc;
     }
     public void display(){
-        System.out.println();
-        System.out.println("========== Cineplex Admin Menu ==========");
+    	System.out.println();
+        //System.out.println("-----------------------------------------");
+        System.out.println("=========================================");
+        System.out.println("           Company Admin Menu            ");
+        System.out.println("=========================================");
+        //System.out.println("-----------------------------------------");
         System.out.println();
         System.out.println("Logged in as Company admin: " + curAcc.getLoginId());
         System.out.println();
@@ -28,12 +32,22 @@ public class CompanyAdminGUI implements Menu,Logout,GetCommand {
     };
     public int execute(){
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Please enter the option number: ");
-        int userCh = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println();
-        System.out.println("=========================================");
-
+      //Error handling for invalid input 
+        while(true)	{
+        	System.out.print("Please enter the option number: ");
+	        if(scanner.hasNextInt() == false) {
+				
+				System.out.println("Invalid input format for option number. Please try again.");
+				scanner.nextLine();
+				System.out.println();
+				continue;
+			}
+		
+	        int userCh = scanner.nextInt();
+	        scanner.nextLine();
+	        System.out.println();
+	        System.out.println("=========================================");
+	        
         if (userCh == 6) {
             return 0;
         }
@@ -49,9 +63,11 @@ public class CompanyAdminGUI implements Menu,Logout,GetCommand {
             case 3:
                 new DeleteMovieListingCommand().execute();
                 SilverVillage.getMovieList().listMoviesForAdmin();
+                
                 break;
 
             case 4:
+            	System.out.println();
                 SystemSettings.printSettings();
                 CompanySettingsGUI companySettingsGUI = new CompanySettingsGUI();
                 companySettingsGUI.display();
@@ -60,14 +76,16 @@ public class CompanyAdminGUI implements Menu,Logout,GetCommand {
 
             case 5:
                 curAcc = null;
-                System.out.println("Logged out successfully...");
+                System.out.println("Logged out successfully.");
                 break;
 
             default:
-                System.out.println("Invalid Option. Please try again.");
+            	System.out.println();
+                System.out.println("Option number out of range. Please try again.");
                 break;
         }
         return 1;
+       }
     }
 
     public void logout(){
