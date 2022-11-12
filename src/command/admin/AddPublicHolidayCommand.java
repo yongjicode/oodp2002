@@ -15,6 +15,7 @@ public class AddPublicHolidayCommand implements Command{
         System.out.print("Please enter the holiday name: ");
         String holidayName = scanner.nextLine();
         //need to change parser
+        System.out.println();
         System.out.print("Please enter the Date (YYYY-MM-DD HH:MM): ");
       //Error handling: when datetime is in the wrong format
         while(true) {
