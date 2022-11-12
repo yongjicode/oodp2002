@@ -17,7 +17,7 @@ public class CustomerGUI implements Menu, Logout,GetCommand {
     	System.out.println();
         //System.out.println("-----------------------------------------");
         System.out.println("=========================================");
-        System.out.println("               	User Menu                ");
+        System.out.println("               Customer Menu             ");
         System.out.println("=========================================");
         //System.out.println("-----------------------------------------");
         System.out.println();
