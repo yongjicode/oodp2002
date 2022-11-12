@@ -62,7 +62,7 @@ public class CompanyAdminGUI implements Menu,Logout,GetCommand {
 
             case 3:
                 new DeleteMovieListingCommand().execute();
-                SilverVillage.getMovieList().listMoviesForAdmin();
+                
                 
                 break;
 

@@ -16,7 +16,7 @@ public class Cinema {
 
     public void printDetails(){
         System.out.println("Cinema Code: " + cinemaCode);
-        System.out.println("Class Level: " + classLevel);
+        System.out.println("Cinema Class: " + classLevel);
         System.out.println();
     }
     public CinemaClass getClassLevel(){return classLevel;}

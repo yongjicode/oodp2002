@@ -13,7 +13,7 @@ public class UpdateMovieListingCommand implements Command {
         System.out.println();
         SilverVillage.getMovieList().listMoviesForAdmin();
         System.out.println();
-        System.out.print("Please enter movie ID: ");
+        System.out.print("Please enter the movie ID: ");
         while(true) {
             try {
                 if(input.hasNextInt() == false) {
@@ -27,7 +27,7 @@ public class UpdateMovieListingCommand implements Command {
                 }
                 input.nextLine();
                 System.out.println();
-                System.out.print("Please enter new status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing): ");
+                System.out.print("Please enter the new status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing): ");
                 //error handling to ensure only can pick 1 to 4
              
                 //Error handling for invalid input 
@@ -58,6 +58,7 @@ public class UpdateMovieListingCommand implements Command {
                 
                 input.nextLine();
                 SilverVillage.getMovieList().updateMovieStatus(movieID,MovieStatus.intToEnum(newStatus));
+                System.out.println();
                 System.out.println("Movie has been updated successfully.");
                 SilverVillage.getMovieList().listMoviesForAdmin();
 
@@ -66,7 +67,7 @@ public class UpdateMovieListingCommand implements Command {
             catch (invalidInputException e) {
                 System.out.println(e.getMessage());
                 System.out.println();
-                System.out.print("Please enter the movie's Movie ID again: ");
+                System.out.print("Please enter the Movie ID again: ");
                 input.next();
                 continue;
             }

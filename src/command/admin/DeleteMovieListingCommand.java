@@ -35,6 +35,7 @@ public class DeleteMovieListingCommand implements Command{
                 
                 SilverVillage.getCineplexList().removeShowsByMovieId(movieID);
                 SilverVillage.getMovieList().delistMovie(movieID);
+                SilverVillage.getMovieList().listMoviesForAdmin();
                 break;
                 }
             }

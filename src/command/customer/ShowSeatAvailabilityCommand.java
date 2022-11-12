@@ -18,7 +18,7 @@ public class ShowSeatAvailabilityCommand implements Command {
 		cineplex.getShowList().listShows();
 		System.out.println();
 
-		System.out.print("Please enter the show ID: ");
+		System.out.print("Please enter the Show ID: ");
 		while(true) {
 			try {
 				if(scanner.hasNextInt() == false) {

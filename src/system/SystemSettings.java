@@ -51,7 +51,7 @@ public class SystemSettings {
     	int index = 1;
         
         if(publicHolidays.isEmpty()) {
-        	System.out.println();
+        	
         	System.out.println("Public Holidays: No public holidays have been added.");
         	
         	return -1;

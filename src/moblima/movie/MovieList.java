@@ -115,6 +115,7 @@ public class MovieList {
 
     public void showTopMoviesBySale(){
         Collections.sort(movies, Comparator.comparingInt(Movie::getTicketSold).reversed());
+        System.out.println();
         System.out.println("Top 5 Movies by Ticket Sales");
         if(movies.size()<=5){
             for(int i=0; i<movies.size(); i++){

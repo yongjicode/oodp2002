@@ -117,7 +117,7 @@ public class GuestBookTicketCommand implements Command{
 						
 					}
 					int numTickets = scanner.nextInt();
-					scanner.nextLine();
+					//scanner.nextLine();
 					
 					while(true) {
 						if(numTickets <= 0) {
@@ -138,7 +138,7 @@ public class GuestBookTicketCommand implements Command{
 							continue;
 						}
 					
-						
+						scanner.nextLine();
 						break;
 						
 					}

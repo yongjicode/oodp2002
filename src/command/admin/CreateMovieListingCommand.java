@@ -79,7 +79,7 @@ public class CreateMovieListingCommand implements Command {
             movieCasts.add(movieCast);
         }
         System.out.println();
-        System.out.print("Please enter expiry date (yyyy-MM-dd HH:mm): ");
+        System.out.print("Please enter expiry date (YYYY-MM-DD HH:MM): ");
         while(true) {
             try {
                 String expiryDate = scanner.nextLine();
