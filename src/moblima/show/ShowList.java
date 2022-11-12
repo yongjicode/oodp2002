@@ -33,8 +33,8 @@ public class ShowList {
             }
         }
         this.shows.removeAll(foundShows);
-    }
-    
+    } 
+
     public void listShows(){
         System.out.println();
         
