@@ -110,6 +110,7 @@ public class Application {
 
 
 		SilverVillage.getBookingHistory().showUserBookingHistory("Jin Kai");
+		SilverVillage.getBookingHistory().getBookingByIndex(0).printBookingDetails();
 
 
 		// load in CSV

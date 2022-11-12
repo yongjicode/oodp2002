@@ -74,6 +74,11 @@ public class Booking {
         }
         return null;
     }
+
+    public MovieTicket getTicketByIndex(int index){
+        if (index==0 || tickets.size()<index) return null;
+        else return tickets.get(index);
+    }
     public String convertTicketsToString(){
         String output = "";
         int count=0;

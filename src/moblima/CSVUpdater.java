@@ -191,10 +191,10 @@
          int count=0;
          try {
              while (SilverVillage.getBookingHistory().getBookingByIndex(count) != null){
-                 Booking booking = SilverVillage.getBookingHistory().getBookingByIndex(count++);
+                 Booking booking = SilverVillage.getBookingHistory().getBookingByIndex(count);
                  int ticketCount=0;
-                 while (booking.getTicket(ticketCount) != null){
-                     MovieTicket ticket = booking.getTicket(ticketCount++);
+                 while (booking.getTicketByIndex(ticketCount) != null){
+                     MovieTicket ticket = booking.getTicketByIndex(ticketCount);
                      String[] input = new String[5];
                      input[0] = Integer.toString(ticket.getShow().getShowId());
                      input[1] = ticket.getSeatId();
@@ -202,7 +202,9 @@
                      input[3] = Double.toString(ticket.getPrice());
                      input[4] = MovieTicket.convertCustomerAgeToString(ticket.getAge());
                      writer.writeNext(input);
+                     ticketCount++;
                  }
+                 count++;
              }
              writer.close();
          }
