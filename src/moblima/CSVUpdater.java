@@ -37,7 +37,7 @@
      public static void updateCineplex(String filePath) throws IOException{
          File cineplexDb = new File(filePath);
          FileWriter outputFile = new FileWriter(cineplexDb);
-         CSVWriter writer = new CSVWriter(outputFile);
+         CSVWriter writer = new CSVWriter(outputFile, ',', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
          int count=0;
          try {
              while (SilverVillage.getCineplexList().getCineplexByIndex(count) != null){
@@ -58,17 +58,18 @@
      public static void updateCinema(String filePath) throws IOException{
          File cinemaDb = new File(filePath);
          FileWriter outputFile = new FileWriter(cinemaDb);
-         CSVWriter writer = new CSVWriter(outputFile);
+         CSVWriter writer = new CSVWriter(outputFile, ',', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
          int count=0;
          try {
              while (SilverVillage.getCineplexList().getCineplexByIndex(count) != null){
-                 for (Cinema cinema: SilverVillage.getCineplexList().getCineplexByIndex(count).getCinemas()){
+                 for (Cinema cinema: SilverVillage.getCineplexList().getCineplexByIndex(count).getCinemaList()){
                      String[] input = new String[3];
-                     input[0] = SilverVillage.getCineplexList().getCineplexByIndex(count++).getBranchName();
+                     input[0] = SilverVillage.getCineplexList().getCineplexByIndex(count).getBranchName();
                      input[1] = cinema.convertCinemaCodeToCurrentCode();
                      input[2] = cinema.getClassLevel().toString();
                      writer.writeNext(input);
                  }
+                 count++;
              }
              writer.close();
          }
@@ -82,7 +83,7 @@
      public static void updateBooking(String filePath) throws IOException{
          File bookingDb = new File(filePath);
          FileWriter outputFile = new FileWriter(bookingDb);
-         CSVWriter writer = new CSVWriter(outputFile);
+         CSVWriter writer = new CSVWriter(outputFile, ',', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
          int count=0;
          try {
              while (SilverVillage.getBookingHistory().getBookingByIndex(count) != null){
@@ -103,15 +104,16 @@
      }
 
 
-     // AccountsDB TODO UpdateAccounts
+     // AccountsDB TODO ERROR
      public static void updateAccounts(String filePath) throws IOException {
          File accountsFile = new File(filePath);
          FileWriter outputFile = new FileWriter(accountsFile);
-         CSVWriter writer = new CSVWriter(outputFile);
+         CSVWriter writer = new CSVWriter(outputFile, ',', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
 
          try {
              for (Account account: SystemSettings.getAccounts()){
-                 CineplexAdminAccount cineplexAdmin = (CineplexAdminAccount)account;
+                 CineplexAdminAccount cineplexAdmin = null;
+                 if (Account.convertPrivilegeToInt(account.getPrivilege()) == 1) cineplexAdmin = (CineplexAdminAccount) account;
                  String[] input = new String[7];
                  input[0] = Integer.toString(Account.convertPrivilegeToInt(account.getPrivilege()));
                  input[1] = account.getLoginId();
@@ -119,9 +121,10 @@
                  input[3] = account.getEmail();
                  input[4] = account.getPhoneNo();
                  input[5] = account.getName();
-                 if (Account.convertPrivilegeToInt(account.getPrivilege()) == 0) input[6] = "NA";
+                 if (Account.convertPrivilegeToInt(account.getPrivilege()) != 1) input[6] = "NA";
                  else input[6] = cineplexAdmin.getCineplex().getBranchName();
                  writer.writeNext(input);
+
              }
              writer.close();
          }
@@ -133,23 +136,20 @@
      public static void updateMovies(String filePath) throws IOException {
          File movieFile = new File(filePath);
          FileWriter outputFile = new FileWriter(movieFile);
-         CSVWriter writer = new CSVWriter(outputFile);
+         CSVWriter writer = new CSVWriter(outputFile, ',', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
          int count=0;
          try {
              while (SilverVillage.getMovieList().getMovieByIndex(count) != null){
                  Movie movie = SilverVillage.getMovieList().getMovieByIndex(count++);
-                 String[] input = new String[10];
+                 String[] input = new String[7];
                  input[0] = Integer.toString(movie.getMovieId());
                  input[1] = movie.getTitle();
                  input[2] = movie.getSynopsis();
                  input[3] = movie.getDirector();
                  input[4] = movie.getCasts(); //  movie.getCast();
-                 input[5] = movie.getReviews().toString();
-                 input[6] = movie.convertMovieStatusToString(movie.getStatus());
+                 input[5] = Movie.convertMovieStatusToString(movie.getStatus());
                  String date = movie.getExpiryDate().toString();
-                 input[7] = date.substring(0,10) + " " + date.substring(11);
-                 input[8] = Integer.toString(movie.getTicketSold());
-                 input[9] = Integer.toString(movie.getRating());
+                 input[6] = date.substring(0,10) + " " + date.substring(11);
                  writer.writeNext(input);
              }
              writer.close();
@@ -164,13 +164,14 @@
      public static void updateShows(String filePath) throws IOException {
          File showFile = new File(filePath);
          FileWriter outputFile = new FileWriter(showFile);
-         CSVWriter writer = new CSVWriter(outputFile);
+         CSVWriter writer = new CSVWriter(outputFile, ',', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
          int count=0;
          try {
              for (Show show: SilverVillage.getCineplexList().getCineplexByIndex(count).getShowList().getShows()){
                  String[] input = new String[5];
                  input[0] = Integer.toString(show.getShowId());
-                 input[1] = show.getShowTime().toString();
+                 String time = show.getShowTime().toString();
+                 input[1] = time.substring(0,10) + " " + time.substring(11);
                  input[2] = SilverVillage.getCineplexList().getCineplexByIndex(count++).getBranchName();
                  input[3] = show.getCinema().getCinemaCode();
                  input[4] = Integer.toString(show.getMovie().getMovieId());
@@ -186,7 +187,7 @@
      public static void updateTickets(String filePath) throws IOException {
          File ticketFile = new File(filePath);
          FileWriter outputFile = new FileWriter(ticketFile);
-         CSVWriter writer = new CSVWriter(outputFile);
+         CSVWriter writer = new CSVWriter(outputFile, ',', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
          int count=0;
          try {
              while (SilverVillage.getBookingHistory().getBookingByIndex(count) != null){
@@ -214,15 +215,15 @@
      public static void updateReviewList(String filePath) throws IOException {
          File reviewListFile = new File(filePath);
          FileWriter outputFile = new FileWriter(reviewListFile);
-         CSVWriter writer = new CSVWriter(outputFile);
+         CSVWriter writer = new CSVWriter(outputFile, ',', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
          try {
              int count=0;
              while (SilverVillage.getMovieList().getMovieByIndex(count) != null){
                  Movie movie = SilverVillage.getMovieList().getMovieByIndex(count++);
                  String[] input = new String[4];
                  input[0] = Integer.toString(movie.getMovieId());
-                 input[1] = movie.getReviews().convertRatingsToString();
-                 input[2] = movie.getReviews().convertDescriptionToString();
+                 input[1] = (movie.getReviews().convertRatingsToString() != null) ? movie.getReviews().convertRatingsToString() : "NA";
+                 input[2] = (movie.getReviews().convertDescriptionToString() != null) ? movie.getReviews().convertDescriptionToString() : "NA";
                  input[3] = Integer.toString(movie.getReviews().showAverageRating());
                  writer.writeNext(input);
              }

@@ -109,6 +109,8 @@ public class Application {
 		CSVReader.readBookingsFromCSV("src/database/bookingDB.csv", movieTicketArrayList);
 
 
+		SilverVillage.getBookingHistory().showUserBookingHistory("Jin Kai");
+
 
 		// load in CSV
 
@@ -191,7 +193,6 @@ public class Application {
 		CSVUpdater.updateShows("src/database/showDB.csv");
 		CSVUpdater.updateTickets("src/database/MovieTicketDB.csv");
 		CSVUpdater.updateBooking("src/database/bookingDB.csv");
-
 	}
 
 
