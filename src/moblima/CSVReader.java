@@ -152,7 +152,7 @@ public class CSVReader{
                    UserAccount userAccount = new UserAccount(loginId, password, privilege, email, mobile, name);
                    accounts.add(userAccount);
                } else if (privilege == Privilege.CineplexAdmin) { // cineplex admin
-                   Cineplex cineplex = cineplexList.getCineplexByName(branchName);
+                   Cineplex cineplex = cineplexList.getCineplexByName(branchName );
                    //String loginId, String password, Privilege privilege, Cineplex cineplex, String emailAddress, String phoneNo, String name
                    CineplexAdminAccount cineplexAdminAccount = new CineplexAdminAccount(loginId, password, privilege, cineplex, email, mobile, name );
                    accounts.add(cineplexAdminAccount);
