@@ -3,10 +3,13 @@ package command.customer;
 import command.Command;
 import moblima.SilverVillage;
 
+/**
+ * Represents a command which lists all available movies (excluding END_OF_SHOWING)
+ */
 public class UserListMoviesCommand implements Command {
-	public UserListMoviesCommand() {
-	}
-	
+	/**
+	 * Prints list of all available movies (excluding END_OF_SHOWING)
+	 */
 	public void execute() {
 		
 		SilverVillage.getMovieList().listMoviesForUser();

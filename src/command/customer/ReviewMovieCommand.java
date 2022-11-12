@@ -8,8 +8,13 @@ import moblima.movie.review.Review;
 
 import java.util.Scanner;
 
+/**
+ * Represents a command for Customer to create a review for a specific movie
+ */
 public class ReviewMovieCommand implements Command{
-
+    /**
+     * Get input from user to create a Review Object for a Movie and appends it to the ReviewList in Movie
+     */
     public void execute(){
 
         Scanner input = new Scanner(System.in);
