@@ -33,7 +33,7 @@ public class CreateMovieListingCommand implements Command {
         System.out.print("Please enter the number of movie cast(s): ");
         int numOfCast = scanner.nextInt();
         scanner.nextLine();
-        ArrayList<String> movieCasts = new ArrayList<>();
+        List<String> movieCasts = new ArrayList<>();
         for(int i=0; i<numOfCast; i++){
             System.out.print("Cast " + (i+1) + " Name: ");
             String movieCast = scanner.nextLine();
