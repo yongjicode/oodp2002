@@ -104,7 +104,7 @@
      }
 
 
-     // AccountsDB TODO ERROR
+     // AccountsDB
      public static void updateAccounts(String filePath) throws IOException {
          File accountsFile = new File(filePath);
          FileWriter outputFile = new FileWriter(accountsFile);
