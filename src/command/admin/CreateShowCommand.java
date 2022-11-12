@@ -39,7 +39,7 @@ public class CreateShowCommand implements Command{
                 if (movie == null){
                     //handle error
                     System.out.println();
-                    System.out.println("Movie with movie ID " + movieId + " does not exist");
+                    System.out.println("Movie with Movie ID " + movieId + " does not exist");
                     return;
                 }
                 else if(movie != (Movie)movie) {
@@ -47,6 +47,7 @@ public class CreateShowCommand implements Command{
                 }
 
                 else {
+                	System.out.println();
                     System.out.print("Please enter the Time (YYYY-MM-DD HH:MM): ");
                     //scanner.nextLine();
                     String str = scanner.nextLine();
@@ -117,7 +118,7 @@ public class CreateShowCommand implements Command{
             catch (invalidInputException e) {
                 System.out.println(e.getMessage());
                 System.out.println();
-                System.out.print("Please enter the movie's Movie ID again: ");
+                System.out.print("Please enter the Movie's Movie ID again: ");
                 scanner.next();
                 continue;
             }

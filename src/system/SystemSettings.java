@@ -25,14 +25,19 @@ public class SystemSettings {
     }
 
     public static void printSettings(){
-        System.out.println("=================Settings================");
+    	
+    	System.out.println("-----------------------------------------");
+        System.out.println("                Settings                 ");
+        System.out.println("-----------------------------------------");
+        //System.out.println("================ Settings ===============");
         System.out.println("Rank Top 5 Based on Movie Tickets: " + showTop5MovieTickets);
         System.out.println("Rank Top 5 Based on Movie Ratings: " + showTop5MovieRatings);
-        System.out.println("Public Holidays: ");
+        
         printPublicHolidays();
+        System.out.println();
         System.out.println("Tickets base price: " + basePrice);
-        System.out.println("=========================================");
-
+        //System.out.println("=========================================");
+        System.out.println("-----------------------------------------");
     }
 
     public static void updateBasePrice(double newPrice){
@@ -42,22 +47,49 @@ public class SystemSettings {
     public static double getBasePrice(){
         return basePrice;
     }
-    public static void printPublicHolidays(){
-        int index = 1;
+    public static int printPublicHolidays(){
+    	int index = 1;
+        
+        if(publicHolidays.isEmpty()) {
+        	System.out.println();
+        	System.out.println("Public Holidays: No public holidays have been added.");
+        	
+        	return -1;
+        }
+        System.out.println("Public Holidays: ");
         for (PublicHoliday publicHoliday: publicHolidays){
+        	
             System.out.println(index +". "+ publicHoliday.toStr());
+            //System.out.println();
             index+=1;
         }
+        return 1;
+        
     }
     public static void addPublicHoliday(LocalDateTime date, String name){
         publicHolidays.add(new PublicHoliday(date,name));
+        System.out.println();
         System.out.println(name + " has been added.");
     }
 
     public static void removePublicHoliday(int index){
+    	if(publicHolidays.size() == 0) {
+    		System.out.println();
+         	System.out.println("No holidays exist to be removed.");
+         	return;
+    	}
+    	 if(publicHolidays.size() < index) {
+    		System.out.println();
+         	System.out.println("Option number out of range. No holiday removed.");
+         	return;
+         }
+    	 
         PublicHoliday temp = publicHolidays.get(index-1);
+       
         publicHolidays.remove(index-1);
-        System.out.println(temp.getName() + " has been removed.");
+        System.out.println();
+        System.out.println("\"" + temp.getName() + "\" has been removed.");
+      
     }
     public static boolean getTop5MovieRatingsBool(){
         return showTop5MovieRatings;

@@ -120,13 +120,24 @@ public class GuestBookTicketCommand implements Command{
 					scanner.nextLine();
 					
 					while(true) {
-						if(numTickets > 10) {
+						if(numTickets <= 0) {
+							System.out.println("Minimum of 1 ticket must be purchased.");
+							System.out.println();
+							System.out.print("Please enter the Number of tickets to be purchased again: ");
+							//scanner.nextLine();
+							numTickets = scanner.nextInt();
+							continue;
+						}
+						
+						if(numTickets > 10 ) {
 							System.out.println("Maximum of 10 tickets can be purchased at a time.");
 							System.out.println();
 							System.out.print("Please enter the Number of tickets to be purchased again: ");
-							scanner.nextLine();
+							//scanner.nextLine();
+							numTickets = scanner.nextInt();
 							continue;
 						}
+					
 						
 						break;
 						

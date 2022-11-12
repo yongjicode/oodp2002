@@ -44,6 +44,7 @@ public class MovieList {
     // For Admin
     public void listMoviesForAdmin(){
         int movieCount = 1;
+        System.out.println();
         System.out.println("List of Movies");
         System.out.println();
         for(Movie movie: movies){
@@ -52,6 +53,8 @@ public class MovieList {
             System.out.println();
         }
         System.out.println("===== There are " + movies.size() + " movies available! =====");
+        System.out.println();
+        System.out.println("-----------------------------------------");
     }
 
     public void searchMovieByKeyword(String keyword){
@@ -97,6 +100,7 @@ public class MovieList {
     public void showTopMoviesByRating(){
         //reversed cause highest should be at top
         Collections.sort(movies, Comparator.comparingInt(Movie::getRating).reversed());
+        System.out.println();
         System.out.println("Top 5 Movies by Ratings");
         if(movies.size()<=5){
             for(int i=0; i<movies.size(); i++){
