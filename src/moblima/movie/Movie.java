@@ -4,6 +4,7 @@ import moblima.movie.review.Review;
 import moblima.movie.review.ReviewList;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,19 +95,26 @@ public class Movie{
     }
 
     public void printMovieDetails() {
+    	String commaCasts = casts.toString();
+        commaCasts = commaCasts.replace(" ", " ");
         System.out.println();
         System.out.println("Movie ID: " + movieId);
         System.out.println("Title: " + title);
         System.out.println("Status: " + status);
         System.out.println("Synopsis: " + synopsis);
         System.out.println("Director: " + director);
-        System.out.print("Cast(s): ");
-        casts.forEach(System.out::print);
+        System.out.print("Cast(s): " + commaCasts);
+       
         System.out.print("\n");
-        System.out.println("Rating: " + rating);
-        System.out.print("Reviews: ");
+        System.out.println("Average Rating: " + rating);
+        System.out.println("-----------------------------------------");
+        System.out.println("                 Reviews                 ");
+        System.out.println("-----------------------------------------");
         System.out.println();
         reviews.listReviews();
+        System.out.println();
+        System.out.println("-----------------------------------------");
+        
     }
 
     public void addReview(Review review){
@@ -133,4 +141,11 @@ public class Movie{
         else if (movieStatus == MovieStatus.NOW_SHOWING) return "now showing";
         else return "end of showing";
     }
+
+//    public static LocalDateTime convertDateTimeToString(LocalDateTime expiry){
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//        LocalDateTime date = LocalDateTime.parse(expiry, formatter);
+////        String output = expiry.substring(0,10) + " " + expiry.substring(11);
+//        return date;
+//    }
 }

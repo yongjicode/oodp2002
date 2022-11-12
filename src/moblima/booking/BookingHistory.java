@@ -8,14 +8,16 @@ public class BookingHistory {
     private ArrayList<Booking> bookings = new ArrayList<>();
 
     public void showUserBookingHistory(String username){
-        System.out.println("User Booking History");
+    	System.out.println();
         int i = 1;
         boolean hasPastTransaction = false;
-        //System.out.println("=========================================");
+        System.out.println("-----------------------------------------");
+        System.out.println("             Booking History             ");
+        System.out.println("-----------------------------------------");
         for(Booking booking: bookings){
             if (booking.getCustomerName().equals(username)){
                 hasPastTransaction = true;
-                System.out.println("=========================================");
+                
                 System.out.println("Booking " + i );
                 booking.printBookingDetails();
                 i++;
@@ -24,7 +26,10 @@ public class BookingHistory {
 
         }
         if (!hasPastTransaction) {
-            System.out.println("===========No Booking History============");
+        	
+        	
+            System.out.println("No Booking History found for this name.");
+            
         }
     }
 

@@ -21,8 +21,15 @@ public class ReviewMovieCommand implements Command{
                     throw new moblimaExceptions.invalidInputException("ticket ID");
                 }
                 int ticketID = input.nextInt();
+                input.nextLine();
+                MovieTicket ticket = SilverVillage.getBookingHistory().searchTicketByTicketId(ticketID);
+                if (ticket == null) {
+                    System.out.println();
+                    System.out.println("Ticket ID cannot be found. No review created.");
+                    return;
+                }
                 System.out.println();
-                System.out.print("Please enter your rating: ");
+                System.out.print("Please enter your rating (1-5, 5 being the best): ");
 
                 while (true) {
                     try {
@@ -30,34 +37,47 @@ public class ReviewMovieCommand implements Command{
                             throw new moblimaExceptions.invalidInputException("rating");
                         }
                         int reviewRating = input.nextInt();
-                        input.nextLine();
+                        
+                        while(true) {
+                        	
+	                        if(reviewRating <= 0 || reviewRating > 5) {
+	                        	System.out.println("Rating out of range. Please try again.");
+	                        	System.out.println();
+	                            System.out.print("Please enter your rating (1-5, 5 being the best) again: ");
+	                            reviewRating = input.nextInt();
+	                        	continue;
+	                        }
+	                        input.nextLine();
+                        	break;
+                    	}
                         System.out.println();
                         System.out.print("Please enter your review: ");
                         String reviewDesc = input.nextLine();
-                        MovieTicket ticket = SilverVillage.getBookingHistory().searchTicketByTicketId(ticketID);
-                        if (ticket == null) {
-                            System.out.println();
-                            System.out.println("Ticket ID cannot be found. No review created.");
-                            return;
-                        }
+                        
                         Review review = new Review(reviewRating, reviewDesc);
                         ticket.getShow().getMovie().addReview(review);
-                        System.out.println("Review added successfully...");
+                        System.out.println();
+                        System.out.println("Review added successfully.");
                         return;
                     }
                     catch (moblimaExceptions.invalidInputException e) {
                         System.out.println(e.getMessage());
                     }
                     System.out.println();
-                    System.out.print("Please enter your rating again: ");
-                    input.next();
+                    System.out.print("Please enter your rating (1-5, 5 being the best) again: ");
+                    input.nextLine();
+                    
                     continue;
                 }
             }
             catch (moblimaExceptions.invalidInputException e) {
                 System.out.println(e.getMessage());
-                break;
+                
             }
+            System.out.println();
+            System.out.print("Please enter ticket ID again: ");
+            input.nextLine();
+            continue;
         }
     }
 }

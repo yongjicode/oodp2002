@@ -45,15 +45,22 @@ public class Booking {
 
 
     public void printBookingDetails() {
-        System.out.println();
-        System.out.println("============ Booking Details ============");
+        
+    	System.out.println();
+        //System.out.println("============ Booking Details ============");
+    	System.out.println("-----------------------------------------");
+        System.out.println("             Booking Details             ");
+        System.out.println("-----------------------------------------");
         System.out.println("Customer: " + customerName);
         System.out.println("Mobile Number: " + mobileNumber);
         System.out.println("Email: " + emailAddress);
         System.out.println("Total Price: $" + totalPrice);
         System.out.println("Transaction ID: " + transactionId);
         System.out.println();
-        System.out.println("============ Ticket Details =============");
+        //System.out.println("============ Ticket Details =============");
+        System.out.println("-----------------------------------------");
+        System.out.println("             Ticket Details              ");
+        System.out.println("-----------------------------------------");
         for(MovieTicket ticket: tickets){
             ticket.printTicketDetails();
         }
@@ -67,13 +74,20 @@ public class Booking {
         }
         return null;
     }
+
+    public MovieTicket getTicketByIndex(int index){
+        if (tickets.size()==0 || tickets.size()==index) return null;
+        else return tickets.get(index);
+    }
     public String convertTicketsToString(){
         String output = "";
         int count=0;
         for (MovieTicket ticket: tickets){
-            if (count++ ==0) output += Integer.toString(ticket.getTicketID());
-            output += ";";
-            output += Integer.toString(ticket.getTicketID());
+            if (count++==0) output += Integer.toString(ticket.getTicketID());
+            else {
+                output += ";";
+                output += Integer.toString(ticket.getTicketID());
+            }
         }
         return output;
     }
