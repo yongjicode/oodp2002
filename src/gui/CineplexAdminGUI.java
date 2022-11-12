@@ -9,8 +9,12 @@ public class CineplexAdminGUI implements Menu,Logout,GetCommand{
         this.cineplexAdmin = cineplexAdmin;
     }
     public void display(){
-        System.out.println();
-        System.out.println("========== Cineplex Admin Menu ==========");
+    	System.out.println();
+        //System.out.println("-----------------------------------------");
+        System.out.println("=========================================");
+        System.out.println("           Cineplex Admin Menu           ");
+        System.out.println("=========================================");
+        //System.out.println("-----------------------------------------");
         System.out.println();
         System.out.println("Logged in as Cineplex Admin: " + cineplexAdmin.getLoginId());
         System.out.println();
@@ -28,10 +32,21 @@ public class CineplexAdminGUI implements Menu,Logout,GetCommand{
     public int execute(){
         System.out.print("Please enter the option number: ");
         Scanner scanner = new Scanner(System.in);
-        int userCh = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println();
-        System.out.println("=========================================");
+      //Error handling for invalid input 
+        while(true)	{
+        	
+	        if(scanner.hasNextInt() == false) {
+				
+				System.out.println("Invalid input format for option number. Please try again.");
+				scanner.nextLine();
+				System.out.println();
+				System.out.print("Please enter the option number: ");
+				continue;
+			}
+	        int userCh = scanner.nextInt();
+	        scanner.nextLine();
+	        System.out.println();
+	        System.out.println("=========================================");
 
         if (userCh == 5) {
             return 0;
@@ -50,11 +65,12 @@ public class CineplexAdminGUI implements Menu,Logout,GetCommand{
                 logout();
                 break;
             default:
-                System.out.println();
-                System.out.println("Invalid Option. Please try again.");
+            	System.out.println();
+                System.out.println("Option number out of range. Please try again.");
                 break;
         }
         return 1;
+       }
     }
 
 

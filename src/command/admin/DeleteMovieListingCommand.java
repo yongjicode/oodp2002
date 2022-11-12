@@ -25,7 +25,7 @@ public class DeleteMovieListingCommand implements Command{
                 
                 if (SilverVillage.getMovieList().searchMovieById(movieID) == null){
                     System.out.println();
-                    System.out.println("Movie ID not found.");
+                    System.out.println("Movie ID not found. No Movies removed.");
                     System.out.println("-----------------------------------------");
                     
                     break;

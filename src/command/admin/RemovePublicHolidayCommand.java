@@ -10,6 +10,8 @@ public class RemovePublicHolidayCommand implements Command{
 	    
 	    int temp = SystemSettings.printPublicHolidays();
 	    if(temp == -1) {
+	    	System.out.println();
+	    	System.out.println("No holiday to be removed.");
 	    	return;
 	    }
 	    else {

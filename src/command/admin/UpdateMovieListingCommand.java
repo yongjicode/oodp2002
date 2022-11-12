@@ -22,7 +22,7 @@ public class UpdateMovieListingCommand implements Command {
                 int movieID = input.nextInt();
                 if (SilverVillage.getMovieList().searchMovieById(movieID) == null){
                     System.out.println();
-                    System.out.println("Movie ID not found.");
+                    System.out.println("Movie ID not found. No Movies updated.");
                     return;
                 }
                 input.nextLine();
