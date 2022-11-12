@@ -108,7 +108,7 @@ public class Application {
 		ArrayList<MovieTicket> movieTicketArrayList =  CSVReader.readTicketsFromCSV("src/database/MovieTicketDB.csv");
 		CSVReader.readBookingsFromCSV("src/database/bookingDB.csv", movieTicketArrayList);
 		// load in CSV
-
+		System.out.println(SilverVillage.getCineplexList().getCineplexByIndex(0).getBranchName());
 		// end of load in CSV
 
 		// Auto update expired movie status
@@ -184,7 +184,7 @@ public class Application {
 		CSVUpdater.updateCineplex("src/database/CineplexDB.csv");
 		CSVUpdater.updateReviewList("src/database/reviewListDB.csv");
 		CSVUpdater.updateCinema("src/database/CinemaDB.csv");
-		CSVUpdater.updateAccounts("src/database/accountDB.csv");
+//		CSVUpdater.updateAccounts("src/database/accountDB.csv");
 		CSVUpdater.updateShows("src/database/showDB.csv");
 		CSVUpdater.updateTickets("src/database/MovieTicketDB.csv");
 		CSVUpdater.updateBooking("src/database/bookingDB.csv");

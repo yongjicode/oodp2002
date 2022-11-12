@@ -112,8 +112,6 @@
 
          try {
              for (Account account: SystemSettings.getAccounts()){
-                 CineplexAdminAccount cineplexAdmin = null;
-                 if (Account.convertPrivilegeToInt(account.getPrivilege()) == 1) cineplexAdmin = (CineplexAdminAccount) account;
                  String[] input = new String[7];
                  input[0] = Integer.toString(Account.convertPrivilegeToInt(account.getPrivilege()));
                  input[1] = account.getLoginId();
@@ -121,8 +119,11 @@
                  input[3] = account.getEmail();
                  input[4] = account.getPhoneNo();
                  input[5] = account.getName();
-                 if (Account.convertPrivilegeToInt(account.getPrivilege()) != 1) input[6] = "NA";
-                 else input[6] = cineplexAdmin.getCineplex().getBranchName();
+                 if (Account.convertPrivilegeToInt(account.getPrivilege()) == 1){
+                     CineplexAdminAccount cineplexAdmin = (CineplexAdminAccount) account;
+                     input[6] = cineplexAdmin.getCineplex().getBranchName();
+                 }
+                 else input[6] = "NA";
                  writer.writeNext(input);
 
              }
