@@ -249,7 +249,6 @@ public class CSVReader{
                 String age = attributes[4];
                 // String seatId, Show show, double price, String age
                 Cineplex cineplex = cineplexList.getCineplexByShow(showId);
-                System.out.println(showId);
                 Show show = cineplex.getShowList().searchShowById(showId);
 
                 MovieTicket movieTicket = new MovieTicket(seatId, show, MovieTicket.convertStringToCustomerAge(age));
