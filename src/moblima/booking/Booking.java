@@ -74,13 +74,20 @@ public class Booking {
         }
         return null;
     }
+
+    public MovieTicket getTicketByIndex(int index){
+        if (tickets.size()==0 || tickets.size()==index) return null;
+        else return tickets.get(index);
+    }
     public String convertTicketsToString(){
         String output = "";
         int count=0;
         for (MovieTicket ticket: tickets){
-            if (count++ ==0) output += Integer.toString(ticket.getTicketID());
-            output += ";";
-            output += Integer.toString(ticket.getTicketID());
+            if (count++==0) output += Integer.toString(ticket.getTicketID());
+            else {
+                output += ";";
+                output += Integer.toString(ticket.getTicketID());
+            }
         }
         return output;
     }
