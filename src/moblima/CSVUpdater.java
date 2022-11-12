@@ -172,9 +172,10 @@
                  input[0] = Integer.toString(show.getShowId());
                  String time = show.getShowTime().toString();
                  input[1] = time.substring(0,10) + " " + time.substring(11);
-                 input[2] = SilverVillage.getCineplexList().getCineplexByIndex(count++).getBranchName();
+                 input[2] = SilverVillage.getCineplexList().getCineplexByIndex(count).getBranchName();
                  input[3] = show.getCinema().getCinemaCode();
                  input[4] = Integer.toString(show.getMovie().getMovieId());
+                 count++;
                  writer.writeNext(input);
              }
              writer.close();
