@@ -8,12 +8,21 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
-
+/**
+ * Represents a command for cineplex admin to edit the show time
+ */
 public class UpdateShowCommand implements Command{
     private Cineplex cineplex;
+    /**
+     * Creates an UpdateShowCommand object with the given Cineplex
+     * @param cineplex Cinplex object which stores list of Shows available at Cineplex
+     */
     public UpdateShowCommand(Cineplex cineplex){
         this.cineplex=cineplex;
     }
+    /**
+     * Gets input from user to search for and update the showing time of a Show object from the list of Shows stored in Cineplex
+     */
     public void execute(){
         Scanner input = new Scanner(System.in);
         cineplex.getShowList().listShows();

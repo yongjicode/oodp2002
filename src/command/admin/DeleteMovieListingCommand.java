@@ -6,9 +6,13 @@ import moblima.SilverVillage;
 
 
 import java.util.Scanner;
-
+/**
+ * Represents a command for Company Admin to delete a Movie
+ */
 public class DeleteMovieListingCommand implements Command{
-    //
+    /**
+     * Gets input from users to delete Movie from list of Movies in SilverVillage by setting movie status to END_OF_SHOWING and deleting all Shows from all Cineplexes which are playing the deleted Movie
+     */
     public void execute(){
         Scanner scanner = new Scanner(System.in);
         SilverVillage.getMovieList().listMoviesForAdmin();

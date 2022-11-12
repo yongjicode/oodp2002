@@ -2,8 +2,13 @@ package command.admin;
 import command.Command;
 import system.SystemSettings;
 import java.util.Scanner;
-
+/**
+ * Represents a command for Company Admin to remove public holiday dates from the System Settings.
+ */
 public class RemovePublicHolidayCommand implements Command{
+	/**
+	 * Gets input from the user to search for and remove a Public Holiday Object from the Public Holidays list in System Settings
+	 */
     public void execute(){
         
 	    Scanner scanner = new Scanner(System.in);

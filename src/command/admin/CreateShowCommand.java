@@ -13,11 +13,22 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
+/**
+ * Represents a command for Cineplex Admin to create a Show Object
+ */
 public class CreateShowCommand implements Command{
     private Cineplex cineplex;
+    /**
+     * Creates a CreateShowCommand object with the given Cineplex
+     * @param cineplex Cineplex object which stores list of Shows available at Cineplex
+     */
     public CreateShowCommand(Cineplex cineplex){
         this.cineplex = cineplex;
     }
+
+    /**
+     * Gets input from user to create a new Show Object that will be stored in the list of Shows in cineplex
+     */
     public void execute(){
         Scanner scanner = new Scanner(System.in);
         SilverVillage.getMovieList().listMoviesForAdmin();

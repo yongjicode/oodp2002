@@ -6,7 +6,13 @@ import moblima.movie.MovieStatus;
 
 import java.util.Scanner;
 
+/**
+ * Represents a command for company admin to edit the movie status
+ */
 public class UpdateMovieListingCommand implements Command {
+    /**
+     * Gets input from user to search for and change the corresponding Movie object status in the Silver Village MovieList
+     */
     public void execute(){
     	int temp = 0;
         Scanner input = new Scanner(System.in);

@@ -6,9 +6,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
-
+/**
+ * Represents a command for company admin to add public holiday dates into the System Settings.
+ */
 public class AddPublicHolidayCommand implements Command{
-
+	/**
+	 * Gets input from the user to create a Public Holiday Object and adds it into the Public Holidays list in System Settings
+	 */
     public void execute(){
     	Scanner scanner = new Scanner(System.in);
         System.out.println();
