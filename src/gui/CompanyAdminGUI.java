@@ -76,6 +76,7 @@ public class CompanyAdminGUI implements Menu,Logout,GetCommand {
 
             case 5:
                 curAcc = null;
+                System.out.println();
                 System.out.println("Logged out successfully.");
                 break;
 

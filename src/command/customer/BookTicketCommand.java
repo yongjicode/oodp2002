@@ -35,6 +35,7 @@ public class BookTicketCommand implements Command {
 				int showID = scanner.nextInt();
 				scanner.nextLine();
 				Show show = this.cineplex.getShowList().searchShowById(showID);
+				
 				if (show == null) {
 					System.out.println();
 					System.out.println("======= Show ID " + showID + " does not exist! =======");
@@ -43,11 +44,12 @@ public class BookTicketCommand implements Command {
 				else if(show != (Show)show) {
 					throw new invalidInputException("Show ID");
 				}
-				else if(show.getMovie().getStatus() == MovieStatus.COMING_SOON) {
-					System.out.println("Tickets for shows that are 'Coming Soon' are not available for sale.");
-					return;
-				}
+				
 				else {
+					if(show.getMovie().getStatus() == MovieStatus.COMING_SOON) {
+						System.out.println("Tickets for shows that are 'Coming Soon' are not available for sale.");
+						return;
+					}
 					show.printShowDetails();
 					System.out.println();
 					//to implement transaction ID function

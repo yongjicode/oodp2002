@@ -6,6 +6,7 @@ import moblima.SilverVillage;
 import moblima.booking.Booking;
 import moblima.booking.ticket.MovieTicket;
 import moblima.cineplex.Cineplex;
+import moblima.movie.MovieStatus;
 import moblima.show.Show;
 
 import java.util.Scanner;
@@ -49,6 +50,11 @@ public class GuestBookTicketCommand implements Command{
 					throw new invalidInputException("Show ID");
 				}
 				else {
+					if(show.getMovie().getStatus() == MovieStatus.COMING_SOON) {
+						System.out.println();
+						System.out.println("Tickets for shows that are 'Coming Soon' are not available for sale.");
+						return;
+					}
 					show.printShowDetails();
 					System.out.println();
 					System.out.print("Please enter your Name: ");
