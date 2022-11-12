@@ -25,6 +25,16 @@ public class ShowList {
 
     }
 
+    public void removeShowByMovieId(int movieId){
+        ArrayList<Show> foundShows = new ArrayList<Show>();
+        for (Show show : this.shows){
+            if (show.getMovie().getMovieId() == movieId){
+                foundShows.add(show);
+            }
+        }
+        this.shows.removeAll(foundShows);
+    }
+
     public void listShows(){
         System.out.println();
         System.out.println("========== Available Show List ==========");

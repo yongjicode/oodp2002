@@ -28,8 +28,8 @@ public class Cineplex {
         cinemas.add(cinema);
     }
 
-    public void removeShowById(int movieId){
-        showList.removeShowById(movieId);
+    public void removeShowByMovieId(int movieId){
+        showList.removeShowByMovieId(movieId);
     }
 
     public void printCineplexDetails(){

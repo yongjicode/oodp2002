@@ -31,7 +31,7 @@ public class CineplexList {
 
     public void removeShowsByMovieId(int movieId){
         for (Cineplex cineplex: cineplexes){
-            cineplex.removeShowById(movieId);
+            cineplex.removeShowByMovieId(movieId);
         }
     }
 
