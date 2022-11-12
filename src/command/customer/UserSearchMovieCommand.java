@@ -14,7 +14,7 @@ public class UserSearchMovieCommand implements Command {
 		String movieName;
 		System.out.println();
 		
-		System.out.print("Please enter the Movie keyword: ");
+		System.out.print("Please enter a keyword to search for Movie title: ");
 		movieName = scanner.nextLine();
 		SilverVillage.getMovieList().searchMovieByKeyword(movieName);
 		// scanner.close();

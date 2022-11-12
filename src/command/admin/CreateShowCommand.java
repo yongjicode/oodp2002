@@ -39,7 +39,7 @@ public class CreateShowCommand implements Command{
                 if (movie == null){
                     //handle error
                     System.out.println();
-                    System.out.println("Movie with Movie ID " + movieId + " does not exist");
+                    System.out.println("Movie ID \"" + movieId + "\" does not exist. No showtime created.");
                     return;
                 }
                 else if(movie != (Movie)movie) {
@@ -48,7 +48,7 @@ public class CreateShowCommand implements Command{
 
                 else {
                 	System.out.println();
-                    System.out.print("Please enter the Time (YYYY-MM-DD HH:MM): ");
+                    System.out.print("Please enter the Date (YYYY-MM-DD HH:MM): ");
                     //scanner.nextLine();
                     String str = scanner.nextLine();
 
@@ -103,9 +103,9 @@ public class CreateShowCommand implements Command{
                             break;
                         }
                         catch (DateTimeParseException e) {
-                            System.out.println("Invalid format for Date and Time");
+                            System.out.println("Invalid format for Date and Time.");
                             System.out.println();
-                            System.out.print("Please enter the Time (YYYY-MM-DD HH:MM) again: ");
+                            System.out.print("Please enter the Date (YYYY-MM-DD HH:MM) again: ");
                             str = scanner.nextLine();
                             continue;
                         }
@@ -118,7 +118,7 @@ public class CreateShowCommand implements Command{
             catch (invalidInputException e) {
                 System.out.println(e.getMessage());
                 System.out.println();
-                System.out.print("Please enter the Movie's Movie ID again: ");
+                System.out.print("Please enter the Movie ID again: ");
                 scanner.next();
                 continue;
             }

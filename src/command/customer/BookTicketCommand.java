@@ -26,7 +26,7 @@ public class BookTicketCommand implements Command {
 		Scanner scanner = new Scanner(System.in);
 		cineplex.getShowList().listShows();
 		System.out.println();
-		System.out.print("Please enter the movie's show ID: ");
+		System.out.print("Please enter the Show ID: ");
 		while(true) {
 			try {
 				if(scanner.hasNextInt() == false) {
@@ -79,7 +79,7 @@ public class BookTicketCommand implements Command {
 										}
 										//seatID wrong age correct
 										else {
-											throw new invalidInputException("seat Id");
+											throw new invalidInputException("seat ID");
 										}
 
 
@@ -118,7 +118,7 @@ public class BookTicketCommand implements Command {
 									if (show.getSeating().bookSeat(seatId) == 0)
 										System.out.println("Seat already taken.");
 									else {
-										System.out.println("Seat does not exist");
+										System.out.println("Seat does not exist.");
 									}
 
 								}
@@ -150,7 +150,7 @@ public class BookTicketCommand implements Command {
 
 			}
 			System.out.println();
-			System.out.print("Please enter the movie's Show ID again: ");
+			System.out.print("Please enter the Show ID again: ");
 			scanner.next();
 			continue;
 		}

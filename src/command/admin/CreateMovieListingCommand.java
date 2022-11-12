@@ -20,9 +20,9 @@ public class CreateMovieListingCommand implements Command {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         Scanner scanner = new Scanner(System.in);
         System.out.println();
-        System.out.print("Please enter the movie title: ");
+        System.out.print("Please enter the Movie Title: ");
         String movieTitle = scanner.nextLine();
-        System.out.print("Please enter the movie status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing): ");
+        System.out.print("Please enter the Movie Status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing): ");
         
       //Error handling for invalid input 
         while(true)	{
@@ -32,7 +32,7 @@ public class CreateMovieListingCommand implements Command {
 				System.out.println("Invalid input format for option number. Please try again.");
 				scanner.nextLine();
 				System.out.println();
-				System.out.print("Please enter the movie status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing) again: ");
+				System.out.print("Please enter the Movie Status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing) again: ");
 				continue;
 			}
 	        temp = scanner.nextInt();
@@ -40,7 +40,7 @@ public class CreateMovieListingCommand implements Command {
 	        	System.out.println("Option number out of range. Please try again.");
 	        	scanner.nextLine();
 				System.out.println();
-				System.out.print("Please enter the movie status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing) again: ");
+				System.out.print("Please enter the Movie Status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing) again: ");
 				
 				
 				continue;
@@ -53,19 +53,19 @@ public class CreateMovieListingCommand implements Command {
         
         scanner.nextLine();
         MovieStatus movieStatus = MovieStatus.intToEnum(movieStatusInt);
-        System.out.print("Please enter the movie synopsis: ");
+        System.out.print("Please enter the Movie synopsis: ");
         String movieSynopsis = scanner.nextLine();
-        System.out.print("Please enter the movie director: ");
+        System.out.print("Please enter the Movie director: ");
         String movieDirector = scanner.nextLine();
-        System.out.print("Please enter the number of movie cast(s): ");
+        System.out.print("Please enter the number of Movie Cast(s): ");
         while(true)	{
         	
 	        if(scanner.hasNextInt() == false) {
 				
-				System.out.println("Invalid input format for number of movie cast(s). Please try again.");
+				System.out.println("Invalid input format for number of Movie Cast(s). Please try again.");
 				scanner.nextLine();
 				System.out.println();
-				System.out.print("Please enter the number of movie cast(s) again: ");
+				System.out.print("Please enter the number of Movie Cast(s) again: ");
 				continue;
 			}
 	        break;
@@ -79,7 +79,7 @@ public class CreateMovieListingCommand implements Command {
             movieCasts.add(movieCast);
         }
         System.out.println();
-        System.out.print("Please enter expiry date (YYYY-MM-DD HH:MM): ");
+        System.out.print("Please enter expiry Date (YYYY-MM-DD HH:MM): ");
         while(true) {
             try {
                 String expiryDate = scanner.nextLine();
@@ -89,7 +89,7 @@ public class CreateMovieListingCommand implements Command {
             catch (DateTimeParseException e) {
                 System.out.println("Invalid input format for Date and Time. Please try again.");
                 System.out.println();
-                System.out.print("Please enter the Time (YYYY-MM-DD HH:MM) again: ");
+                System.out.print("Please enter the Date (YYYY-MM-DD HH:MM) again: ");
 
                 continue;
             }

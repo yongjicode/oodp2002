@@ -18,12 +18,12 @@ public class UpdateShowCommand implements Command{
         Scanner input = new Scanner(System.in);
         cineplex.getShowList().listShows();
         System.out.println();
-        System.out.print("Please the enter show ID: ");
+        System.out.print("Please the enter the Show ID: ");
 
         while(true) {
             try {
                 if(input.hasNextInt() == false) {
-                    throw new invalidInputException("show ID");
+                    throw new invalidInputException("Show ID");
                 }
 
 
@@ -35,7 +35,7 @@ public class UpdateShowCommand implements Command{
                 }
                 input.nextLine();
                 System.out.println();
-                System.out.print("Please enter the new Time (YYYY-MM-DD HH:MM): ");
+                System.out.print("Please enter the new Date (YYYY-MM-DD HH:MM): ");
 
                 while(true) {
                     try {
@@ -50,9 +50,9 @@ public class UpdateShowCommand implements Command{
 
                     }
                     catch (DateTimeParseException e) {
-                        System.out.println("Invalid format for Date and Time");
+                        System.out.println("Invalid format for Date and Time. Please try again.");
                         System.out.println();
-                        System.out.print("Please enter the Time (YYYY-MM-DD HH:MM) again: ");
+                        System.out.print("Please enter the Date (YYYY-MM-DD HH:MM) again: ");
 
                         continue;
                     }
@@ -62,7 +62,7 @@ public class UpdateShowCommand implements Command{
             catch (invalidInputException e) {
                 System.out.println(e.getMessage());
                 System.out.println();
-                System.out.print("Please enter the show ID again: ");
+                System.out.print("Please enter the Show ID again: ");
                 input.next();
                 continue;
             }

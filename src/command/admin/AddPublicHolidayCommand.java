@@ -29,9 +29,9 @@ public class AddPublicHolidayCommand implements Command{
 	        	break;
 	        }
 	        catch (DateTimeParseException e) {
-		    	System.out.println("Invalid format for Date and Time");
+		    	System.out.println("Invalid format for Date and Time. Please try again.");
 		        System.out.println();
-				System.out.print("Please enter the Time (YYYY-MM-DD HH:MM) again: ");
+				System.out.print("Please enter the Date (YYYY-MM-DD HH:MM) again: ");
 				//str = scanner.nextLine();
 				continue;
 		    }

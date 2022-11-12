@@ -28,7 +28,7 @@ public class GuestBookTicketCommand implements Command{
 		System.out.println("For cineplex location: " + cineplex.getBranchName());
 		cineplex.getShowList().listShows();
 		System.out.println();
-		System.out.print("Please enter the movie's Show ID: ");
+		System.out.print("Please enter the Show ID: ");
 		// handle error later
 		while(true) {
 			try {
@@ -40,7 +40,7 @@ public class GuestBookTicketCommand implements Command{
 				Show show = this.cineplex.getShowList().searchShowById(showID);
 				if (show == null) {
 					System.out.println();
-					System.out.println("Show ID " + showID + " does not exist. No ticket added.");
+					System.out.println("Show ID \"" + showID + "\" does not exist. No ticket added.");
 					
 					
 					
@@ -211,7 +211,7 @@ public class GuestBookTicketCommand implements Command{
 									if (show.getSeating().bookSeat(seatId) == 0)
 										System.out.println("Seat already taken.");
 									else {
-										System.out.println("Seat does not exist");
+										System.out.println("Seat does not exist.");
 									}
 
 								}
@@ -244,7 +244,7 @@ public class GuestBookTicketCommand implements Command{
 
 			}
 			System.out.println();
-			System.out.print("Please enter the movie's Show ID again: ");
+			System.out.print("Please enter the Show ID again: ");
 			scanner.nextLine();
 			continue;
 		}

@@ -10,7 +10,7 @@ public class GuestViewBookingHistoryCommand implements Command {
         //should search for specific customers
         Scanner scanner = new Scanner(System.in);
         System.out.println();
-        System.out.print("Please enter your name: ");
+        System.out.print("Please enter your Name: ");
         String name = scanner.nextLine();
         SilverVillage.getBookingHistory().showUserBookingHistory(name);
 

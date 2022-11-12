@@ -42,18 +42,20 @@ public class CustomerGUI implements Menu, Logout,GetCommand {
 
     public int execute(){
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Please enter the option number: ");
+        //System.out.print("Please enter the option number: ");
       //Error handling for invalid input 
-        while(true)	{
-        	System.out.print("Please enter the option number: ");
+        
+        System.out.print("Please enter the option number: ");
+        while(true) {
 	        if(scanner.hasNextInt() == false) {
 				
 				System.out.println("Invalid input format for option number. Please try again.");
-				scanner.nextLine();
 				System.out.println();
+				System.out.print("Please enter option number again: ");
+				scanner.nextLine();
 				continue;
 			}
-		
+       
 	        int userCh = scanner.nextInt();
 	        scanner.nextLine();
 	        System.out.println();
@@ -92,7 +94,7 @@ public class CustomerGUI implements Menu, Logout,GetCommand {
                 if(SystemSettings.getTop5MovieTicketsBool() && SystemSettings.getTop5MovieRatingsBool()){
                     showTop5OptionsMenu();
                     while(true) {
-	                    System.out.print("Please enter option number: ");
+	                    System.out.print("Please enter the option number: ");
 	                    if(scanner.hasNextInt() == false) {
 	        				
 	        				System.out.println("Invalid input format for option number. Please try again.");
@@ -105,6 +107,7 @@ public class CustomerGUI implements Menu, Logout,GetCommand {
                     userCh = scanner.nextInt();
                     scanner.nextLine();
                     if (userCh != 1  && userCh!=2){
+                    	System.out.println();
                     	System.out.println("Option number out of range. Please try again.");
                         break;
                     }

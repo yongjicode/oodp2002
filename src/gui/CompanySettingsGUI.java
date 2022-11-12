@@ -42,23 +42,23 @@ public class CompanySettingsGUI implements Menu,GetCommand {
             case 1:
                 new EnableTop5TicketSalesCommand().execute();
                 System.out.println();
-                System.out.println("Ranking Top 5 Ticket Sales enabled");
+                System.out.println("Ranking Top 5 Ticket Sales enabled.");
                 break;
             case 2:
                 new DisableTop5TicketSalesCommand().execute();
                 System.out.println();
-                System.out.println("Ranking Top 5 Ticket Sales disabled");
+                System.out.println("Ranking Top 5 Ticket Sales disabled.");
                 break;
             case 3:
                 new EnableTop5ReviewsCommand().execute();
                 System.out.println();
-                System.out.println("Ranking by Top 5 Movie Ratings enabled");
+                System.out.println("Ranking by Top 5 Movie Ratings enabled.");
                 break;
             case 4:
                 new DisableTop5ReviewsCommand().execute();
                 System.out.println();
           
-                System.out.println("Ranking by Top 5 Movie Ratings disabled");
+                System.out.println("Ranking by Top 5 Movie Ratings disabled.");
                 break;
             case 5:
                 new AddPublicHolidayCommand().execute();

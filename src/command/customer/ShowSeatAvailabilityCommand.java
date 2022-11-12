@@ -29,7 +29,7 @@ public class ShowSeatAvailabilityCommand implements Command {
 				Show curShow = cineplex.getShowList().searchShowById(showId);
 				if (curShow == null) {
 					System.out.println();
-					System.out.println("Show ID " + showId + " does not exist.");
+					System.out.println("Show ID \"" + showId + "\" does not exist.");
 					System.out.println("-----------------------------------------");
 					return;
 				}
@@ -48,7 +48,7 @@ public class ShowSeatAvailabilityCommand implements Command {
 
 			}
 			System.out.println();
-			System.out.print("Please enter the movie's Show ID again: ");
+			System.out.print("Please enter the Show ID again: ");
 			scanner.nextLine();
 			continue;
 

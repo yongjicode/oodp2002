@@ -13,7 +13,7 @@ public class UpdateMovieListingCommand implements Command {
         System.out.println();
         SilverVillage.getMovieList().listMoviesForAdmin();
         System.out.println();
-        System.out.print("Please enter the movie ID: ");
+        System.out.print("Please enter the Movie ID: ");
         while(true) {
             try {
                 if(input.hasNextInt() == false) {
@@ -27,7 +27,7 @@ public class UpdateMovieListingCommand implements Command {
                 }
                 input.nextLine();
                 System.out.println();
-                System.out.print("Please enter the new status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing): ");
+                System.out.print("Please enter the new Status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing): ");
                 //error handling to ensure only can pick 1 to 4
              
                 //Error handling for invalid input 
@@ -38,7 +38,7 @@ public class UpdateMovieListingCommand implements Command {
         				System.out.println("Invalid input format for option number. Please try again.");
         				input.nextLine();
         				System.out.println();
-        				System.out.print("Please enter the movie status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing) again: ");
+        				System.out.print("Please enter the Movie Status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing) again: ");
         				continue;
         			}
         	        temp = input.nextInt();
@@ -46,7 +46,7 @@ public class UpdateMovieListingCommand implements Command {
         	        	System.out.println("Option number out of range. Please try again.");
         	        	input.nextLine();
         				System.out.println();
-        				System.out.print("Please enter the movie status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing) again: ");
+        				System.out.print("Please enter the Movie Status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing) again: ");
         				
         				
         				continue;
