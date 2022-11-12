@@ -2,6 +2,7 @@ import account.*;
 import gui.*;
 import gui.GreetUserMenu;
 import moblima.CSVReader;
+import moblima.CSVUpdater;
 import moblima.SilverVillage;
 import moblima.booking.ticket.MovieTicket;
 import moblima.cineplex.Cineplex;
@@ -38,11 +39,11 @@ import java.util.Scanner;
 public class Application {
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		new Application().run();
 	}
 
-	public void run() {
+	public void run() throws IOException {
 
 		SystemSettings ss = new SystemSettings();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -102,15 +103,10 @@ public class Application {
 		CSVReader.readCineplexFromCSV("src/database/CineplexDB.csv");
 		CSVReader.readReviewFromCsv("src/database/reviewListDB.csv");
 		CSVReader.readCinemasFromCSV("src/database/CinemaDB.csv");
-		SilverVillage.getCineplexList().getCineplexByName("Bedok Branch").listCinemas();
-
 		CSVReader.readAccountsFromCSV("src/database/accountDB.csv", SilverVillage.getCineplexList());
 		CSVReader.readShowsFromCSV("src/database/showDB.csv");
-		SilverVillage.getCineplexList().getCineplexByName("Bedok Branch").getShowList().listShows();
 		ArrayList<MovieTicket> movieTicketArrayList =  CSVReader.readTicketsFromCSV("src/database/MovieTicketDB.csv");
 		CSVReader.readBookingsFromCSV("src/database/bookingDB.csv", movieTicketArrayList);
-
-
 		// load in CSV
 
 		// end of load in CSV
@@ -183,7 +179,18 @@ public class Application {
 			}
 		}
 		new EndProgramMenu().display();
+
+		CSVUpdater.updateMovies("src/database/movieDB.csv");
+		CSVUpdater.updateCineplex("src/database/CineplexDB.csv");
+		CSVUpdater.updateReviewList("src/database/reviewListDB.csv");
+		CSVUpdater.updateCinema("src/database/CinemaDB.csv");
+		CSVUpdater.updateAccounts("src/database/accountDB.csv");
+		CSVUpdater.updateShows("src/database/showDB.csv");
+		CSVUpdater.updateTickets("src/database/MovieTicketDB.csv");
+		CSVUpdater.updateBooking("src/database/bookingDB.csv");
 	}
+
+
 
 
 }

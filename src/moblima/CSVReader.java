@@ -46,12 +46,11 @@ public class CSVReader{
        Path pathToFile = Paths.get(fileName);
        MovieList movieList = SilverVillage.getMovieList();
        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
-            br.readLine();
            String line = br.readLine();
 
 
            while (line != null) {
-               //movieId,title,synopsis,director,casts,reviews,status,expiryDate,ticketSold,rating
+               //movieId,title,synopsis,director,casts,status,expiryDate
                String[] attributes = line.split(",");
                //String movieId = attributes[0];
                String title = attributes[1];
@@ -60,8 +59,9 @@ public class CSVReader{
                String castString = attributes[4]; // to change to list
                String[] casts = castString.split(";");
                List<String> castList = Arrays.asList(casts);
-               MovieStatus status = Movie.convertToMovieStatus(attributes[6]);
-               LocalDateTime expiryDate = LocalDateTime.parse(attributes[7],formatter);
+               MovieStatus status = Movie.convertToMovieStatus(attributes[5]);
+//               String expiry = attributes[6];
+               LocalDateTime expiryDate = LocalDateTime.parse(attributes[6],formatter);
 
                Movie movie = new Movie(title, status, synopsis, director, castList, expiryDate);
 
@@ -79,7 +79,6 @@ public class CSVReader{
         CineplexList cineplexList = SilverVillage.getCineplexList();
         Path pathToFile = Paths.get(fileName);
         try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
-            br.readLine();
             String line = br.readLine();
             while (line != null) {
                 // branchName,cinemaCode,classLevel
@@ -101,8 +100,6 @@ public class CSVReader{
        Path pathToFile = Paths.get(fileName);
 
        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
-
-           br.readLine();
            String line = br.readLine();
 
            while (line != null) {
@@ -116,9 +113,11 @@ public class CSVReader{
                String[] ratings = rating.split(";");
                String[] reviewDescriptions = reviewDesc.split(";");
                int len = ratings.length;
-               for (int i=0; i<len; i++){
-                   Review review = new Review(Integer.parseInt(ratings[i]), reviewDescriptions[i]);
-                   movie.addReview(review);
+               if (!(rating.equals("NA") && reviewDesc.equals("NA"))){
+                   for (int i=0; i<len; i++){
+                       Review review = new Review(Integer.parseInt(ratings[i]), reviewDescriptions[i]);
+                       movie.addReview(review);
+                   }
                }
                line = br.readLine();
            }
@@ -135,8 +134,6 @@ public class CSVReader{
        ArrayList<Account> accounts = SystemSettings.getAccounts();
        Path pathToFile = Paths.get(fileName);
        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
-
-           br.readLine();
            String line = br.readLine();
 
            while (line != null) {
@@ -175,7 +172,6 @@ public class CSVReader{
         Path pathToFile = Paths.get(fileName);
         CineplexList cineplexList = SilverVillage.getCineplexList();
         try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
-            br.readLine();
             String line = br.readLine();
             while (line != null) {
                 //cineplexName,cineplexLocation
@@ -200,8 +196,6 @@ public class CSVReader{
         CineplexList cineplexList = SilverVillage.getCineplexList();
         Path pathToFile = Paths.get(fileName);
         try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
-
-            br.readLine();
             String line = br.readLine();
 
             while (line != null) {
@@ -209,7 +203,7 @@ public class CSVReader{
                 // showId,showTime,cinemaCode,movie
                 String[] attributes = line.split(",");
                 //int showId = Integer.parseInt(attributes[0]);
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                 LocalDateTime showTime = LocalDateTime.parse(attributes[1],formatter);
                 String branchName = attributes[2];
                 String cinemaCode = attributes[3];
@@ -235,10 +229,7 @@ public class CSVReader{
         ArrayList<MovieTicket> movieTickets = new ArrayList<MovieTicket>();
         Path pathToFile = Paths.get(movieTicketFile);
         try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
-
-            br.readLine();
             String line = br.readLine();
-
             while (line != null) {
                 //showId,seatId,ticketId,price,age
                 String[] attributes = line.split(",");
@@ -267,8 +258,6 @@ public class CSVReader{
         BookingHistory bookingHistory = SilverVillage.getBookingHistory();
         Path pathToFile = Paths.get(fileName);
         try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
-
-            br.readLine();
             String line = br.readLine();
 
             while (line != null) {
