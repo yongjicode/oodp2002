@@ -30,6 +30,7 @@ public class ReviewList {
        return totalRating/reviews.size();
     }
     public String convertRatingsToString(){
+        if (reviews.size() == 0) return null;
         String output = "";
         int count=0;
         for (Review review: reviews){
@@ -43,6 +44,7 @@ public class ReviewList {
     }
 
     public String convertDescriptionToString(){
+        if (reviews.size() == 0) return null;
         String output = "";
         int count = 0;
         for (Review review: reviews){

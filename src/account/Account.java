@@ -19,26 +19,26 @@ public abstract class Account{
         this.email = emailAddress;
     }
 
-    public String getLoginId(){
+    public final String getLoginId(){
         return loginId;
     }
 
-    public String getPassword(){
+    public final String getPassword(){
         return password;
     }
 
-    public Privilege getPrivilege(){
+    public final Privilege getPrivilege(){
         return privilege;
     }
     
-    public String getName() {
+    public final String getName() {
     	return name;
     }
     
-    public String getEmail() {
+    public final String getEmail() {
     	return email;
     }
-    public String getPhoneNo(){
+    public final String getPhoneNo(){
     	return phoneNo;
     }
     public static Privilege convertIntToPrivilege(int i){

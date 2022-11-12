@@ -4,6 +4,7 @@ import moblima.movie.review.Review;
 import moblima.movie.review.ReviewList;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -140,4 +141,11 @@ public class Movie{
         else if (movieStatus == MovieStatus.NOW_SHOWING) return "now showing";
         else return "end of showing";
     }
+
+//    public static LocalDateTime convertDateTimeToString(LocalDateTime expiry){
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//        LocalDateTime date = LocalDateTime.parse(expiry, formatter);
+////        String output = expiry.substring(0,10) + " " + expiry.substring(11);
+//        return date;
+//    }
 }

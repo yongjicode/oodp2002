@@ -7,25 +7,35 @@ import moblima.SilverVillage;
 import moblima.booking.Booking;
 import moblima.booking.ticket.MovieTicket;
 import moblima.cineplex.Cineplex;
+import moblima.movie.MovieStatus;
 import moblima.show.Show;
 
 import java.util.Scanner;
 
 import static moblima.booking.ticket.MovieTicket.convertToCustomerAge;
-
+/**
+ * Represents a command for customers to select and book tickets for a show
+ */
 public class BookTicketCommand implements Command {
 	private Cineplex cineplex;
 	private Account curAcc;
+	/**
+	 * Creates a BookTicketCommand with the given Cineplex and Account
+	 * @param cineplex which is the respective Cineplex branch that the customer is viewing
+	 * @param curAcc which is the Account of the customer
+	 */
 	public BookTicketCommand(Cineplex cineplex, Account curAcc) {
 		this.cineplex = cineplex;
 		this.curAcc = curAcc;
 	}
-
+	/**
+	 * Gets input from the Customer to book specific seats for a show and generates receipt
+	 */
 	public void execute() {
 		Scanner scanner = new Scanner(System.in);
 		cineplex.getShowList().listShows();
 		System.out.println();
-		System.out.print("Please enter the movie's show ID: ");
+		System.out.print("Please enter the Show ID: ");
 		while(true) {
 			try {
 				if(scanner.hasNextInt() == false) {
@@ -34,6 +44,7 @@ public class BookTicketCommand implements Command {
 				int showID = scanner.nextInt();
 				scanner.nextLine();
 				Show show = this.cineplex.getShowList().searchShowById(showID);
+				
 				if (show == null) {
 					System.out.println();
 					System.out.println("======= Show ID " + showID + " does not exist! =======");
@@ -42,7 +53,12 @@ public class BookTicketCommand implements Command {
 				else if(show != (Show)show) {
 					throw new invalidInputException("Show ID");
 				}
+				
 				else {
+					if(show.getMovie().getStatus() == MovieStatus.COMING_SOON) {
+						System.out.println("Tickets for shows that are 'Coming Soon' are not available for sale.");
+						return;
+					}
 					show.printShowDetails();
 					System.out.println();
 					//to implement transaction ID function
@@ -72,7 +88,7 @@ public class BookTicketCommand implements Command {
 										}
 										//seatID wrong age correct
 										else {
-											throw new invalidInputException("seat Id");
+											throw new invalidInputException("seat ID");
 										}
 
 
@@ -111,7 +127,7 @@ public class BookTicketCommand implements Command {
 									if (show.getSeating().bookSeat(seatId) == 0)
 										System.out.println("Seat already taken.");
 									else {
-										System.out.println("Seat does not exist");
+										System.out.println("Seat does not exist.");
 									}
 
 								}
@@ -143,7 +159,7 @@ public class BookTicketCommand implements Command {
 
 			}
 			System.out.println();
-			System.out.print("Please enter the movie's Show ID again: ");
+			System.out.print("Please enter the Show ID again: ");
 			scanner.next();
 			continue;
 		}

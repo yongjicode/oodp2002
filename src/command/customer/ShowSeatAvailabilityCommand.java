@@ -6,11 +6,24 @@ import moblima.cineplex.Cineplex;
 import moblima.show.Show;
 
 import java.util.Scanner;
+
+/**
+ * Represents a command for Customer/Guest to view the seat availability of a specific show
+ */
 public class ShowSeatAvailabilityCommand implements Command {
 	private Cineplex cineplex;
+
+	/**
+	 * Creates a ShowSeatAvailabilityCommand object with the given cineplex
+	 * @param cineplex which is the current cineplex
+	 */
 	public ShowSeatAvailabilityCommand(Cineplex cineplex) {
 		this.cineplex = cineplex;
 	}
+
+	/**
+	 * Prints the availability of the seats for a specific show
+	 */
 	public void execute() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println();
@@ -18,7 +31,7 @@ public class ShowSeatAvailabilityCommand implements Command {
 		cineplex.getShowList().listShows();
 		System.out.println();
 
-		System.out.print("Please enter the show ID: ");
+		System.out.print("Please enter the Show ID: ");
 		while(true) {
 			try {
 				if(scanner.hasNextInt() == false) {
@@ -29,7 +42,7 @@ public class ShowSeatAvailabilityCommand implements Command {
 				Show curShow = cineplex.getShowList().searchShowById(showId);
 				if (curShow == null) {
 					System.out.println();
-					System.out.println("Show ID " + showId + " does not exist.");
+					System.out.println("Show ID \"" + showId + "\" does not exist.");
 					System.out.println("-----------------------------------------");
 					return;
 				}
@@ -48,13 +61,11 @@ public class ShowSeatAvailabilityCommand implements Command {
 
 			}
 			System.out.println();
-			System.out.print("Please enter the movie's Show ID again: ");
+			System.out.print("Please enter the Show ID again: ");
 			scanner.nextLine();
 			continue;
 
 		}
 
-
-		// scanner.close();
 	}
 }

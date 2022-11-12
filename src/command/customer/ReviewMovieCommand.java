@@ -8,17 +8,22 @@ import moblima.movie.review.Review;
 
 import java.util.Scanner;
 
+/**
+ * Represents a command for Customer to create a review for a specific movie
+ */
 public class ReviewMovieCommand implements Command{
-
+    /**
+     * Get input from user to create a Review Object for a Movie and appends it to the ReviewList in Movie
+     */
     public void execute(){
 
         Scanner input = new Scanner(System.in);
         System.out.println();
-        System.out.print("Please enter the ticket ID: ");
+        System.out.print("Please enter the Ticket ID: ");
         while(true) {
             try {
                 if (input.hasNextInt() == false) {
-                    throw new moblimaExceptions.invalidInputException("ticket ID");
+                    throw new moblimaExceptions.invalidInputException("Ticket ID");
                 }
                 int ticketID = input.nextInt();
                 input.nextLine();
@@ -29,12 +34,12 @@ public class ReviewMovieCommand implements Command{
                     return;
                 }
                 System.out.println();
-                System.out.print("Please enter your rating (1-5, 5 being the best): ");
+                System.out.print("Please enter your Review Rating (1-5, 5 being the best): ");
 
                 while (true) {
                     try {
                         if (input.hasNextInt() == false) {
-                            throw new moblimaExceptions.invalidInputException("rating");
+                            throw new moblimaExceptions.invalidInputException("Rating");
                         }
                         int reviewRating = input.nextInt();
                         
@@ -43,7 +48,7 @@ public class ReviewMovieCommand implements Command{
 	                        if(reviewRating <= 0 || reviewRating > 5) {
 	                        	System.out.println("Rating out of range. Please try again.");
 	                        	System.out.println();
-	                            System.out.print("Please enter your rating (1-5, 5 being the best) again: ");
+	                            System.out.print("Please enter your Review Rating (1-5, 5 being the best) again: ");
 	                            reviewRating = input.nextInt();
 	                        	continue;
 	                        }
@@ -51,7 +56,7 @@ public class ReviewMovieCommand implements Command{
                         	break;
                     	}
                         System.out.println();
-                        System.out.print("Please enter your review: ");
+                        System.out.print("Please enter your Review: ");
                         String reviewDesc = input.nextLine();
                         
                         Review review = new Review(reviewRating, reviewDesc);
@@ -64,7 +69,7 @@ public class ReviewMovieCommand implements Command{
                         System.out.println(e.getMessage());
                     }
                     System.out.println();
-                    System.out.print("Please enter your rating (1-5, 5 being the best) again: ");
+                    System.out.print("Please enter your Review Rating (1-5, 5 being the best) again: ");
                     input.nextLine();
                     
                     continue;
@@ -75,7 +80,7 @@ public class ReviewMovieCommand implements Command{
                 
             }
             System.out.println();
-            System.out.print("Please enter ticket ID again: ");
+            System.out.print("Please enter the Ticket ID again: ");
             input.nextLine();
             continue;
         }

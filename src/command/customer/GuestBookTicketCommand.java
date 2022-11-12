@@ -6,28 +6,37 @@ import moblima.SilverVillage;
 import moblima.booking.Booking;
 import moblima.booking.ticket.MovieTicket;
 import moblima.cineplex.Cineplex;
+import moblima.movie.MovieStatus;
 import moblima.show.Show;
 
 import java.util.Scanner;
 
 import static moblima.booking.ticket.MovieTicket.convertToCustomerAge;
-
+/**
+ * Represents a command for Guests to select and book tickets for a show
+ */
 public class GuestBookTicketCommand implements Command{
 
 	private Cineplex cineplex;
 
+	/**
+	 * Creates a GuestBookTicketCommand with given Cineplex
+	 * @param cineplex which is the current Cineplex Guest is viewing
+	 */
 	public GuestBookTicketCommand(Cineplex cineplex) {
 		this.cineplex = cineplex;
 	}
 
-
+	/**
+	 * Gets input from the Guest to book specific seats for a show and generates receipt
+	 */
 	public void execute() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println();
 		System.out.println("For cineplex location: " + cineplex.getBranchName());
 		cineplex.getShowList().listShows();
 		System.out.println();
-		System.out.print("Please enter the movie's Show ID: ");
+		System.out.print("Please enter the Show ID: ");
 		// handle error later
 		while(true) {
 			try {
@@ -39,7 +48,7 @@ public class GuestBookTicketCommand implements Command{
 				Show show = this.cineplex.getShowList().searchShowById(showID);
 				if (show == null) {
 					System.out.println();
-					System.out.println("Show ID " + showID + " does not exist. No ticket added.");
+					System.out.println("Show ID \"" + showID + "\" does not exist. No ticket added.");
 					
 					
 					
@@ -49,6 +58,11 @@ public class GuestBookTicketCommand implements Command{
 					throw new invalidInputException("Show ID");
 				}
 				else {
+					if(show.getMovie().getStatus() == MovieStatus.COMING_SOON) {
+						System.out.println();
+						System.out.println("Tickets for shows that are 'Coming Soon' are not available for sale.");
+						return;
+					}
 					show.printShowDetails();
 					System.out.println();
 					System.out.print("Please enter your Name: ");
@@ -117,17 +131,28 @@ public class GuestBookTicketCommand implements Command{
 						
 					}
 					int numTickets = scanner.nextInt();
-					scanner.nextLine();
+					//scanner.nextLine();
 					
 					while(true) {
-						if(numTickets > 10) {
-							System.out.println("Maximum of 10 tickets can be purchased at a time.");
+						if(numTickets <= 0) {
+							System.out.println("Minimum of 1 ticket must be purchased.");
 							System.out.println();
 							System.out.print("Please enter the Number of tickets to be purchased again: ");
-							scanner.nextLine();
+							//scanner.nextLine();
+							numTickets = scanner.nextInt();
 							continue;
 						}
 						
+						if(numTickets > 10 ) {
+							System.out.println("Maximum of 10 tickets can be purchased at a time.");
+							System.out.println();
+							System.out.print("Please enter the Number of tickets to be purchased again: ");
+							//scanner.nextLine();
+							numTickets = scanner.nextInt();
+							continue;
+						}
+					
+						scanner.nextLine();
 						break;
 						
 					}
@@ -194,7 +219,7 @@ public class GuestBookTicketCommand implements Command{
 									if (show.getSeating().bookSeat(seatId) == 0)
 										System.out.println("Seat already taken.");
 									else {
-										System.out.println("Seat does not exist");
+										System.out.println("Seat does not exist.");
 									}
 
 								}
@@ -227,7 +252,7 @@ public class GuestBookTicketCommand implements Command{
 
 			}
 			System.out.println();
-			System.out.print("Please enter the movie's Show ID again: ");
+			System.out.print("Please enter the Show ID again: ");
 			scanner.nextLine();
 			continue;
 		}

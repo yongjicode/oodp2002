@@ -6,12 +6,20 @@ import moblima.movie.MovieStatus;
 
 import java.util.Scanner;
 
+/**
+ * Represents a command for company admin to edit the movie status
+ */
 public class UpdateMovieListingCommand implements Command {
+    /**
+     * Gets input from user to search for and change the corresponding Movie object status in the Silver Village MovieList
+     */
     public void execute(){
+    	int temp = 0;
         Scanner input = new Scanner(System.in);
         System.out.println();
         SilverVillage.getMovieList().listMoviesForAdmin();
-        System.out.print("Please enter movie ID: ");
+        System.out.println();
+        System.out.print("Please enter the Movie ID: ");
         while(true) {
             try {
                 if(input.hasNextInt() == false) {
@@ -20,15 +28,43 @@ public class UpdateMovieListingCommand implements Command {
                 int movieID = input.nextInt();
                 if (SilverVillage.getMovieList().searchMovieById(movieID) == null){
                     System.out.println();
-                    System.out.println("Movie not found...");
+                    System.out.println("Movie ID not found. No Movies updated.");
                     return;
                 }
                 input.nextLine();
-                System.out.print("Please enter new status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing): ");
+                System.out.println();
+                System.out.print("Please enter the new Status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing): ");
                 //error handling to ensure only can pick 1 to 4
-                int newStatus = input.nextInt();
+             
+                //Error handling for invalid input 
+                while(true)	{
+                	
+        	        if(input.hasNextInt() == false) {
+        				
+        				System.out.println("Invalid input format for option number. Please try again.");
+        				input.nextLine();
+        				System.out.println();
+        				System.out.print("Please enter the Movie Status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing) again: ");
+        				continue;
+        			}
+        	        temp = input.nextInt();
+        	        if (temp != 1  &&  temp!=2 && temp!= 3 && temp!= 4){
+        	        	System.out.println("Option number out of range. Please try again.");
+        	        	input.nextLine();
+        				System.out.println();
+        				System.out.print("Please enter the Movie Status (1. Coming Soon, 2. Preview, 3. Now Showing, 4. End of showing) again: ");
+        				
+        				
+        				continue;
+        			}
+        	        break;
+                }
+                
+                int newStatus = temp;
+                
                 input.nextLine();
                 SilverVillage.getMovieList().updateMovieStatus(movieID,MovieStatus.intToEnum(newStatus));
+                System.out.println();
                 System.out.println("Movie has been updated successfully.");
                 SilverVillage.getMovieList().listMoviesForAdmin();
 
@@ -37,7 +73,7 @@ public class UpdateMovieListingCommand implements Command {
             catch (invalidInputException e) {
                 System.out.println(e.getMessage());
                 System.out.println();
-                System.out.print("Please enter the movie's Movie ID again: ");
+                System.out.print("Please enter the Movie ID again: ");
                 input.next();
                 continue;
             }

@@ -9,7 +9,7 @@ public class CineplexList {
     private final ArrayList<Cineplex> cineplexes = new ArrayList<>();
 
     public Cineplex getCineplexByIndex(int index){
-        if (index < 0 || index >= cineplexes.size()) {
+        if (index < 0 || index == cineplexes.size()) {
             return null;
         }
         return cineplexes.get(index);
@@ -33,7 +33,7 @@ public class CineplexList {
 
     public void removeShowsByMovieId(int movieId){
         for (Cineplex cineplex: cineplexes){
-            cineplex.removeShowById(movieId);
+            cineplex.removeShowByMovieId(movieId);
         }
     }
 

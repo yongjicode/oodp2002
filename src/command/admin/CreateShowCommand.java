@@ -13,11 +13,22 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
+/**
+ * Represents a command for Cineplex Admin to create a Show Object
+ */
 public class CreateShowCommand implements Command{
     private Cineplex cineplex;
+    /**
+     * Creates a CreateShowCommand object with the given Cineplex
+     * @param cineplex Cineplex object which stores list of Shows available at Cineplex
+     */
     public CreateShowCommand(Cineplex cineplex){
         this.cineplex = cineplex;
     }
+
+    /**
+     * Gets input from user to create a new Show Object that will be stored in the list of Shows in cineplex
+     */
     public void execute(){
         Scanner scanner = new Scanner(System.in);
         SilverVillage.getMovieList().listMoviesForAdmin();
@@ -39,7 +50,7 @@ public class CreateShowCommand implements Command{
                 if (movie == null){
                     //handle error
                     System.out.println();
-                    System.out.println("Movie with movie ID " + movieId + " does not exist");
+                    System.out.println("Movie ID \"" + movieId + "\" does not exist. No showtime created.");
                     return;
                 }
                 else if(movie != (Movie)movie) {
@@ -47,7 +58,8 @@ public class CreateShowCommand implements Command{
                 }
 
                 else {
-                    System.out.print("Please enter the Time (YYYY-MM-DD HH:MM): ");
+                	System.out.println();
+                    System.out.print("Please enter the Date (YYYY-MM-DD HH:MM): ");
                     //scanner.nextLine();
                     String str = scanner.nextLine();
 
@@ -102,9 +114,9 @@ public class CreateShowCommand implements Command{
                             break;
                         }
                         catch (DateTimeParseException e) {
-                            System.out.println("Invalid format for Date and Time");
+                            System.out.println("Invalid format for Date and Time.");
                             System.out.println();
-                            System.out.print("Please enter the Time (YYYY-MM-DD HH:MM) again: ");
+                            System.out.print("Please enter the Date (YYYY-MM-DD HH:MM) again: ");
                             str = scanner.nextLine();
                             continue;
                         }
@@ -117,7 +129,7 @@ public class CreateShowCommand implements Command{
             catch (invalidInputException e) {
                 System.out.println(e.getMessage());
                 System.out.println();
-                System.out.print("Please enter the movie's Movie ID again: ");
+                System.out.print("Please enter the Movie ID again: ");
                 scanner.next();
                 continue;
             }

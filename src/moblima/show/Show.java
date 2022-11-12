@@ -50,7 +50,7 @@ public class Show {
     public void printShowDetails(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         System.out.println();
-        System.out.println("ShowId: " + showId);
+        System.out.println("ShowID: " + showId);
         System.out.println("Movie Title: " + movie.getTitle());
         System.out.println("Cinema Hall: " + cinema.getCinemaCode());
         System.out.println("Cinema Class: " + Cinema.convertCinemaClassToString(cinema.getClassLevel()));

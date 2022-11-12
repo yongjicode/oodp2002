@@ -21,9 +21,19 @@ public class ShowList {
             }
         }
         System.out.println();
-        System.out.println("Show " + showId + " does not exist.");
-
+        System.out.println("Show " + showId + " does not exist. No Shows removed.");
+        
     }
+    
+    public void removeShowByMovieId(int movieId){
+        ArrayList<Show> foundShows = new ArrayList<Show>();
+        for (Show show : this.shows){
+            if (show.getMovie().getMovieId() == movieId){
+                foundShows.add(show);
+            }
+        }
+        this.shows.removeAll(foundShows);
+    } 
 
     public void listShows(){
         System.out.println();
@@ -31,11 +41,19 @@ public class ShowList {
         System.out.println("-----------------------------------------");
         System.out.println("           Available Show List           ");
         System.out.println("-----------------------------------------");
+        if(shows.size() == 0) {
+        	System.out.println();
+        	System.out.println("             No shows exist              ");
+        	System.out.println();
+        	System.out.println("-----------------------------------------");
+        	return;
+        }
         for(Show show: shows){
             if(show.isShowing()){
                 show.printShowDetails();
             }
         }
+        System.out.println();
         System.out.println("-----------------------------------------");
        
     }
