@@ -92,12 +92,21 @@ public class GuestGUI implements Menu, Login, GetCommand {
 	            case 8:
 	                if(SystemSettings.getTop5MovieTicketsBool() && SystemSettings.getTop5MovieRatingsBool()){
 	                    showTop5OptionsMenu();
-	
-	                    System.out.print("Please enter option number: ");
+	                    while(true) {
+		                    System.out.print("Please enter option number: ");
+		                    if(scanner.hasNextInt() == false) {
+		        				
+		        				System.out.println("Invalid input format for option number. Please try again.");
+		        				scanner.nextLine();
+		        				System.out.println();
+		        				continue;
+		        			}
+		                    break;
+	                    }
 	                    userCh = scanner.nextInt();
 	                    scanner.nextLine();
 	                    if (userCh != 1  && userCh!=2){
-	                        System.out.println("Invalid Entry");
+	                    	System.out.println("Option number out of range. Please try again.");
 	                        break;
 	                    }
 	                    if (userCh == 1){
@@ -114,7 +123,7 @@ public class GuestGUI implements Menu, Login, GetCommand {
 	                    new RankTicketSalesCommand().execute();
 	                }
 	                else{
-	                    System.out.println("Data unavailable");
+	                    System.out.println("Data unavailable.");
 	                }
 	                break;
 	

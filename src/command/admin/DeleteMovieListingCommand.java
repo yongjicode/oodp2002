@@ -12,6 +12,7 @@ public class DeleteMovieListingCommand implements Command{
     public void execute(){
         Scanner scanner = new Scanner(System.in);
         SilverVillage.getMovieList().listMoviesForAdmin();
+        
         System.out.println();
         System.out.print("Please enter the Movie ID to delete: ");
 
@@ -21,19 +22,32 @@ public class DeleteMovieListingCommand implements Command{
                     throw new invalidInputException("Movie ID");
                 }
                 int movieID = scanner.nextInt();
+                
+                if (SilverVillage.getMovieList().searchMovieById(movieID) == null){
+                    System.out.println();
+                    System.out.println("Movie ID not found.");
+                    System.out.println("-----------------------------------------");
+                    
+                    break;
+                }
+                else {
+                //scanner.nextLine();
+                
                 SilverVillage.getCineplexList().removeShowsByMovieId(movieID);
                 SilverVillage.getMovieList().delistMovie(movieID);
                 break;
+                }
             }
+        
             catch (invalidInputException e) {
-                System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
             }
             System.out.println();
             System.out.print("Please enter the Movie ID again: ");
             scanner.next();
             continue;
+         }
 
-
-        }
+       
     }
 }
