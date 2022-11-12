@@ -23,9 +23,11 @@ public class GuestBookTicketCommand implements Command{
 
 	public void execute() {
 		Scanner scanner = new Scanner(System.in);
+		System.out.println();
+		System.out.println("For cineplex location: " + cineplex.getBranchName());
 		cineplex.getShowList().listShows();
 		System.out.println();
-		System.out.print("Please enter the movie's show ID: ");
+		System.out.print("Please enter the movie's Show ID: ");
 		// handle error later
 		while(true) {
 			try {
@@ -37,7 +39,10 @@ public class GuestBookTicketCommand implements Command{
 				Show show = this.cineplex.getShowList().searchShowById(showID);
 				if (show == null) {
 					System.out.println();
-					System.out.println("======= Show ID " + showID + " does not exist! =======");
+					System.out.println("Show ID " + showID + " does not exist. No ticket added.");
+					
+					
+					
 					return;
 				}
 				else if(show != (Show)show) {
@@ -99,9 +104,34 @@ public class GuestBookTicketCommand implements Command{
 					//to implement transaction ID function
 					System.out.println();
 					System.out.print("Please enter the Number of tickets to be purchased: ");
+					while(true) {
+						if(scanner.hasNextInt() == false) {
+							System.out.println("Invalid input format for Number of tickets. Please try again");
+							System.out.println();
+							System.out.print("Please enter the Number of tickets to be purchased again: ");
+							scanner.nextLine();
+							continue;
+						}
+						
+						break;
+						
+					}
 					int numTickets = scanner.nextInt();
 					scanner.nextLine();
-
+					
+					while(true) {
+						if(numTickets > 10) {
+							System.out.println("Maximum of 10 tickets can be purchased at a time.");
+							System.out.println();
+							System.out.print("Please enter the Number of tickets to be purchased again: ");
+							scanner.nextLine();
+							continue;
+						}
+						
+						break;
+						
+					}
+					
 					if(numTickets > 0) {
 						Booking booking = new Booking(name,mobileNumber,emailAddress);
 
@@ -125,7 +155,7 @@ public class GuestBookTicketCommand implements Command{
 										}
 										//seatID wrong age correct
 										else {
-											throw new invalidInputException("seat Id");
+											throw new invalidInputException("seat ID");
 										}
 
 
@@ -198,7 +228,7 @@ public class GuestBookTicketCommand implements Command{
 			}
 			System.out.println();
 			System.out.print("Please enter the movie's Show ID again: ");
-			scanner.next();
+			scanner.nextLine();
 			continue;
 		}
 

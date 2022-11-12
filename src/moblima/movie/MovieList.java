@@ -30,7 +30,7 @@ public class MovieList {
     public void listMoviesForUser() {
         int movieCount = 1;
         System.out.println();
-        System.out.println("List of Movies");
+        System.out.println("List of Movies showing in Silver Village");
         System.out.println();
         for (Movie movie : movies) {
             if (movie.getStatus() != MovieStatus.END_OF_SHOWING) {
@@ -56,17 +56,28 @@ public class MovieList {
 
     public void searchMovieByKeyword(String keyword){
         int numOfResults = 0;
+        
+       
         System.out.println();
         System.out.println("Search Results for movie titled \"" + keyword + "\"");
         System.out.println();
+        
         for(Movie movie: movies){
+        	
             if(movie.getTitle().toLowerCase().contains(keyword.toLowerCase())){
+            	
                 System.out.println("============= Result No. " + ++numOfResults + " ==============");
                 movie.printMovieDetails();
                 System.out.println();
             }
         }
-        System.out.println("====== There are " + numOfResults + " search results! ======");
+       
+        if(numOfResults == 0) {
+        	System.out.println("No such movie exists.");
+        }
+        else {
+        	System.out.println("====== There are " + numOfResults + " search results! ======");
+        }
 
     }
 

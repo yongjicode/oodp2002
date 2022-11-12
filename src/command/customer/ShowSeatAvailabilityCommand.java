@@ -13,6 +13,8 @@ public class ShowSeatAvailabilityCommand implements Command {
 	}
 	public void execute() {
 		Scanner scanner = new Scanner(System.in);
+		System.out.println();
+		System.out.println("For cineplex location: " + cineplex.getBranchName());
 		cineplex.getShowList().listShows();
 		System.out.println();
 
@@ -27,7 +29,8 @@ public class ShowSeatAvailabilityCommand implements Command {
 				Show curShow = cineplex.getShowList().searchShowById(showId);
 				if (curShow == null) {
 					System.out.println();
-					System.out.println("======= Show ID " + showId + " does not exist! =======");
+					System.out.println("Show ID " + showId + " does not exist.");
+					System.out.println("-----------------------------------------");
 					return;
 				}
 				else if(curShow != (Show)curShow) {
@@ -36,6 +39,7 @@ public class ShowSeatAvailabilityCommand implements Command {
 
 				else {
 					curShow.showSeating();
+					
 				}
 				break;
 			}
@@ -45,7 +49,7 @@ public class ShowSeatAvailabilityCommand implements Command {
 			}
 			System.out.println();
 			System.out.print("Please enter the movie's Show ID again: ");
-			scanner.next();
+			scanner.nextLine();
 			continue;
 
 		}
