@@ -15,9 +15,12 @@ public class ReviewList {
 
     public void listReviews(){
         if(reviews.size()==0){
-            System.out.println("No reviews yet!");
+        	//System.out.println("-----------------------------------------");
+            System.out.println("             No reviews yet!             ");
+            
         }
         for(Review review: reviews){
+        	
             review.printReview();
         }
     }

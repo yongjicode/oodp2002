@@ -130,18 +130,18 @@ public class Application {
 		while (true) {
 
 			System.out.println();
-			System.out.print("Please enter the cinema location number: ");
+			System.out.print("Please enter the cineplex location number: ");
 
 			if (scanner.hasNextInt() == false) {
 				System.out.println("Invalid input format for location number. Please try again.");
-				scanner.next();
+				scanner.nextLine();
 				continue;
 			}
 			int locationCh = scanner.nextInt();
 			scanner.nextLine();
 			cineplex = SilverVillage.getCineplexList().getCineplexByIndex(locationCh - 1);
 			if (cineplex != null) break;
-			System.out.println("Invalid option");
+			System.out.println("Option number out of range. Please try again.");
 		}
 
 		System.out.println();

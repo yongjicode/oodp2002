@@ -20,7 +20,7 @@ public class ChangeLocationCommand implements Command{
             if(scanner.hasNextInt() == false) {
                 System.out.println("Invalid input format for location number. Please try again.");
                 scanner.next();
-
+                continue;
             }
             int locationCh = scanner.nextInt();
             scanner.nextLine();

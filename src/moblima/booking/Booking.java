@@ -45,15 +45,22 @@ public class Booking {
 
 
     public void printBookingDetails() {
-        System.out.println();
-        System.out.println("============ Booking Details ============");
+        
+    	System.out.println();
+        //System.out.println("============ Booking Details ============");
+    	System.out.println("-----------------------------------------");
+        System.out.println("             Booking Details             ");
+        System.out.println("-----------------------------------------");
         System.out.println("Customer: " + customerName);
         System.out.println("Mobile Number: " + mobileNumber);
         System.out.println("Email: " + emailAddress);
         System.out.println("Total Price: $" + totalPrice);
         System.out.println("Transaction ID: " + transactionId);
         System.out.println();
-        System.out.println("============ Ticket Details =============");
+        //System.out.println("============ Ticket Details =============");
+        System.out.println("-----------------------------------------");
+        System.out.println("             Ticket Details              ");
+        System.out.println("-----------------------------------------");
         for(MovieTicket ticket: tickets){
             ticket.printTicketDetails();
         }

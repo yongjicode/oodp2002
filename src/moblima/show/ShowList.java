@@ -27,13 +27,17 @@ public class ShowList {
 
     public void listShows(){
         System.out.println();
-        System.out.println("========== Available Show List ==========");
+        
+        System.out.println("-----------------------------------------");
+        System.out.println("           Available Show List           ");
+        System.out.println("-----------------------------------------");
         for(Show show: shows){
             if(show.isShowing()){
                 show.printShowDetails();
             }
         }
-        System.out.println("=========================================");
+        System.out.println("-----------------------------------------");
+       
     }
 
     public Show searchShowById(int showId){

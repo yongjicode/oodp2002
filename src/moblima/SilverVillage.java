@@ -16,6 +16,7 @@ public class SilverVillage {
         return bookingHistory;
     }
     public static MovieList getMovieList() {
+    	
         return movieList;
     }
     public static CineplexList getCineplexList() {
