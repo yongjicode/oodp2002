@@ -12,9 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static moblima.movie.Movie.convertToMovieStatus;
 
+/**
+ * Represents a command to create a Movie object
+ */
 public class CreateMovieListingCommand implements Command {
+    /**
+     * Gets input from Company Admin to create a Movie Object and adds it to the list of Movies in Silver Village
+     */
     public void execute(){
     	int temp = 0;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");

@@ -2,8 +2,14 @@ package command.admin;
 import command.Command;
 import system.SystemSettings;
 import java.util.Scanner;
-public class AdjustTicketBasePriceCommand implements Command{
 
+/**
+ * Represents a command for company admin to change the base price of movie tickets
+ */
+public class AdjustTicketBasePriceCommand implements Command{
+	/**
+	 * Gets input from user to update the base price of movie tickets
+	 */
     public void execute(){
         Scanner scanner = new Scanner(System.in);
         System.out.println();
