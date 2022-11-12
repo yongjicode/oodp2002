@@ -71,6 +71,7 @@ public class CSVUpdater {
                         input[0] = SilverVillage.getCineplexList().getCineplexByIndex(cineplexCount).getBranchName();
                         input[1] = cinema.convertCinemaCodeToCurrentCode();
                         input[2] = cinema.getClassLevel().toString();
+                        writer.writeNext(input);
                     }
             }
             writer.close();
