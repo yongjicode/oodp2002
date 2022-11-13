@@ -4,27 +4,19 @@ import account.*;
 import moblima.booking.Booking;
 import moblima.cineplex.CineplexList;
 import moblima.cineplex.cinema.Cinema;
-import moblima.cineplex.cinema.CinemaClass;
 import moblima.cineplex.Cineplex;
 import moblima.movie.Movie;
 import moblima.movie.MovieList;
 import moblima.movie.MovieStatus;
 import moblima.movie.review.Review;
-import moblima.movie.review.ReviewList;
-import moblima.show.Seating;
 import moblima.show.Show;
 import moblima.show.ShowList;
 import moblima.booking.ticket.MovieTicket;
-import moblima.booking.ticket.CustomerAge;
 import moblima.booking.BookingHistory;
 import system.SystemSettings;
-import moblima.SilverVillage;
-
-import java.io.FileReader;
 
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -36,7 +28,7 @@ import java.util.Arrays;
 import java.util.List;
 
 //import static moblima.cineplex.Cinema.convertToCinemaClass;
-import static moblima.movie.Movie.convertToMovieStatus;
+
 //import static moblima.show.ticket.MovieTicket.checkCustomerAge;
 
 public class CSVReader{
@@ -149,8 +141,8 @@ public class CSVReader{
 
                if (privilege == Privilege.User) { // user
                    // String loginId, String password, Privilege privilege,String emailAddress, String phoneNo, String name
-                   UserAccount userAccount = new UserAccount(loginId, password, privilege, email, mobile, name);
-                   accounts.add(userAccount);
+                   CustomerAccount customerAccount = new CustomerAccount(loginId, password, privilege, email, mobile, name);
+                   accounts.add(customerAccount);
                } else if (privilege == Privilege.CineplexAdmin) { // cineplex admin
                    Cineplex cineplex = cineplexList.getCineplexByName(branchName );
                    //String loginId, String password, Privilege privilege, Cineplex cineplex, String emailAddress, String phoneNo, String name

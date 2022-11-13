@@ -133,7 +133,7 @@ public class Application {
 			}
 		}
 		new EndProgramMenu().display();
-		/*
+
 		CSVUpdater.updateMovies("src/database/movieDB.csv");
 		CSVUpdater.updateCineplex("src/database/CineplexDB.csv");
 		CSVUpdater.updateReviewList("src/database/reviewListDB.csv");
@@ -142,7 +142,7 @@ public class Application {
 		CSVUpdater.updateShows("src/database/showDB.csv");
 		CSVUpdater.updateTickets("src/database/MovieTicketDB.csv");
 		CSVUpdater.updateBooking("src/database/bookingDB.csv");
-		 */
+
 	}
 
 }
