@@ -5,15 +5,26 @@ import account.Account;
 import java.util.Scanner;
 import system.SystemSettings;
 
+/**
+ * GUI which is shown to guest
+ */
 public class GuestGUI implements Menu, Login, GetCommand {
     private Cineplex cineplex;
     private Account curAcc;
 
+	/**
+	 * Create a GuestGUI with the given Cineplex and Account
+	 * @param cineplex which is the Cineplex guest is currently viewing
+	 * @param curAcc which is the Account of guest (null)
+	 */
     public GuestGUI(Cineplex cineplex, Account curAcc){
         this.cineplex = cineplex;
         this.curAcc = curAcc;
     }
 
+	/**
+	 * Prints list of possible actions that can be performed by Guest
+	 */
     public void display(){
         System.out.println();
         //System.out.println("-----------------------------------------");
@@ -40,6 +51,11 @@ public class GuestGUI implements Menu, Login, GetCommand {
         //System.out.println("-----------------------------------------");
         System.out.println();
     }
+
+	/**
+	 * Gets input from Guest and executes the required instruction
+	 * @return 0 to exit the program entirely, 1 to continue program
+	 */
 
     public int execute(){
         Scanner scanner = new Scanner(System.in);
@@ -156,17 +172,32 @@ public class GuestGUI implements Menu, Login, GetCommand {
     	}
     };
 
+	/**
+	 * Authenticates username and password
+	 * @param username which is username entered by Guest
+	 * @param password which is password entered by Guest
+	 * @return Account if login successful, null if not successful
+	 */
     public Account login(String username, String password){
         return SystemSettings.login(username,password);
     }
-
+	/**
+	 * Returns Account in GuestGUI
+	 * @return Account
+	 */
     public Account getAccount(){
         return curAcc;
     }
+	/**
+	 * Returns Cineplex in GuestGUI
+	 * @return Cineplex
+	 */
     public Cineplex getCineplex(){
         return this.cineplex;
     }
-
+	/**
+	 * Prints possible options when SystemSettings enable showing of the top 5 movies ranked based on ticket sales or reviews
+	 */
     public void showTop5OptionsMenu(){
         System.out.println();
         System.out.println("============== Option Menu ==============");

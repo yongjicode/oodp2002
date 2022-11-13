@@ -4,21 +4,21 @@ import java.util.Scanner;
 import command.admin.*;
 
 /**
- *
+ * GUI which is shown to the Cineplex Admin
  */
 public class CineplexAdminGUI implements Menu,Logout,GetCommand{
     private CineplexAdminAccount cineplexAdmin;
 
     /**
-     *
-     * @param cineplexAdmin
+     * Creates a CineplexAdminGui with the given Cineplex Admin Account
+     * @param cineplexAdmin which is the Cineplex Admin account
      */
     public CineplexAdminGUI(CineplexAdminAccount cineplexAdmin){
         this.cineplexAdmin = cineplexAdmin;
     }
 
     /**
-     *
+     * Prints list of possible actions that can be performed by Cineplex Admin
      */
     public void display(){
     	System.out.println();
@@ -43,8 +43,8 @@ public class CineplexAdminGUI implements Menu,Logout,GetCommand{
     };
 
     /**
-     *
-     * @return
+     * Gets input from Cineplex Admin and executes the required instruction
+     * @return 0 to exit the program entirely, 1 to continue program
      */
     public int execute(){
         System.out.print("Please enter the option number: ");
@@ -91,15 +91,15 @@ public class CineplexAdminGUI implements Menu,Logout,GetCommand{
     }
 
     /**
-     *
+     * Logout from account by setting Cineplex Admin Account to null
      */
     public void logout(){
         cineplexAdmin = null;
     }
 
     /**
-     *
-     * @return
+     * Returns Account in CineplexAdminGUI
+     * @return Account
      */
     public Account getAccount(){
         return this.cineplexAdmin;
