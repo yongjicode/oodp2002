@@ -39,7 +39,6 @@ public class Application {
 		CSVReader.readShowsFromCSV("src/database/showDB.csv");
 		ArrayList<MovieTicket> movieTicketArrayList =  CSVReader.readTicketsFromCSV("src/database/MovieTicketDB.csv");
 		CSVReader.readBookingsFromCSV("src/database/bookingDB.csv", movieTicketArrayList);
-		SilverVillage.getCineplexList().getCineplexByIndex(0).getShowList().listShows();
 		// load in CSV
 		
 		// end of load in CSV
