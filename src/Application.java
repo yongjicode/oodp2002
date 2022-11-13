@@ -49,8 +49,9 @@ public class Application {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		LocalDateTime dateTime = LocalDateTime.parse("2022-12-25 00:00", formatter);
 		ArrayList<PublicHoliday> publicHolidays = new ArrayList<PublicHoliday>();
-		SystemSettings.addPublicHoliday(LocalDateTime.parse("2022-12-25 00:00", formatter), "Christmas");
-		SystemSettings.addPublicHoliday(LocalDateTime.parse("2022-10-31 00:00", formatter), "Halloween");
+//		SystemSettings.addPublicHoliday(LocalDateTime.parse("2022-12-25 00:00", formatter), "Christmas");
+//		SystemSettings.addPublicHoliday(LocalDateTime.parse("2022-10-31 00:00", formatter), "Halloween");
+		System.out.println();
 
 
 		CSVReader.readMoviesFromCSV("src/database/movieDB.csv");
@@ -61,8 +62,8 @@ public class Application {
 		CSVReader.readShowsFromCSV("src/database/showDB.csv");
 		ArrayList<MovieTicket> movieTicketArrayList =  CSVReader.readTicketsFromCSV("src/database/MovieTicketDB.csv");
 		CSVReader.readBookingsFromCSV("src/database/bookingDB.csv", movieTicketArrayList);
-		// load in CSV
-		System.out.println(SilverVillage.getCineplexList().getCineplexByIndex(0).getBranchName());
+
+		SilverVillage.getCineplexList().getCineplexByIndex(0).getShowList().listShows();
 		// end of load in CSV
 
 		// Auto update expired movie status
