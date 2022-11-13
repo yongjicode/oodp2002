@@ -6,11 +6,21 @@ import system.SystemSettings;
 
 import java.util.Scanner;
 
+/**
+ * GUI which is shown to the Company Admin
+ */
 public class CompanyAdminGUI implements Menu,Logout,GetCommand {
     private Account curAcc;
+    /**
+     * Creates a CompanyAdminGui with the given Company Admin Account
+     * @param curAcc which is the Company Admin Account
+     */
     public CompanyAdminGUI(Account curAcc){
         this.curAcc = curAcc;
     }
+    /**
+     * Prints list of possible actions that can be performed by Company Admin
+     */
     public void display(){
     	System.out.println();
         //System.out.println("-----------------------------------------");
@@ -30,6 +40,11 @@ public class CompanyAdminGUI implements Menu,Logout,GetCommand {
         System.out.println("=========================================");
         System.out.println();
     };
+
+    /**
+     * Gets input from Company Admin and executes the required instruction
+     * @return 0 to exit the program entirely, 1 to continue program
+     */
     public int execute(){
         Scanner scanner = new Scanner(System.in);
       //Error handling for invalid input 
@@ -88,11 +103,16 @@ public class CompanyAdminGUI implements Menu,Logout,GetCommand {
         return 1;
        }
     }
-
+    /**
+     * Logout from account by setting Cineplex Admin Account to null
+     */
     public void logout(){
         curAcc = null;
     }
-
+    /**
+     * Returns Account in CompanyAdminGUI
+     * @return Account
+     */
     public Account getAccount(){
         return curAcc;
     }
