@@ -3,8 +3,14 @@ package gui;
 import command.admin.*;
 import system.SystemSettings;
 import java.util.Scanner;
-
+/**
+ * System Settings GUI which is shown to the Company Admin
+ */
 public class CompanySettingsGUI implements Menu,GetCommand {
+
+    /**
+     * Prints list of possible actions that can be performed by Company Admin on the System Settings
+     */
     public void display(){
     	System.out.println();
     	 System.out.println("-----------------------------------------");
@@ -21,6 +27,11 @@ public class CompanySettingsGUI implements Menu,GetCommand {
         //System.out.println("=========================================");
         System.out.println("-----------------------------------------");
     }
+
+    /**
+     * Gets input from Company Admin and executes the required instruction on SystemSettings
+     * @return 0 to return to previous page (CompanyAdminGUI)
+     */
     public int execute(){
         Scanner scanner = new Scanner(System.in);
         System.out.println();

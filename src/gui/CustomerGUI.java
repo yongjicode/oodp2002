@@ -5,14 +5,25 @@ import command.customer.*;
 import system.SystemSettings;
 
 import java.util.Scanner;
-
+/**
+ * GUI which is shown to the Customer
+ */
 public class CustomerGUI implements Menu, Logout,GetCommand {
     private Account curAcc;
     private Cineplex cineplex;
+
+    /**
+     * Creates a CustomerGui with the given Customer Account and Cineplex
+     * @param cineplex which is the Cineplex that the customer is viewing
+     * @param curAcc which is the Account of the customer
+     */
     public CustomerGUI(Cineplex cineplex, Account curAcc){
         this.curAcc = curAcc;
         this.cineplex = cineplex;
     }
+    /**
+     * Prints list of possible actions that can be performed by Customer
+     */
     public void display(){
     	System.out.println();
         //System.out.println("-----------------------------------------");
@@ -39,7 +50,10 @@ public class CustomerGUI implements Menu, Logout,GetCommand {
         System.out.println("=========================================");
         System.out.println();
     }
-
+    /**
+     * Gets input from Customer and executes the required instruction
+     * @return 0 to exit the program entirely, 1 to continue program
+     */
     public int execute(){
         Scanner scanner = new Scanner(System.in);
         //System.out.print("Please enter the option number: ");
@@ -149,6 +163,9 @@ public class CustomerGUI implements Menu, Logout,GetCommand {
        }
     }
 
+    /**
+     * Prints possible options when SystemSettings enable showing of the top 5 movies ranked based on ticket sales or reviews
+     */
     public void showTop5OptionsMenu(){
         System.out.println();
         System.out.println("============== Option Menu ==============");
@@ -157,15 +174,24 @@ public class CustomerGUI implements Menu, Logout,GetCommand {
         System.out.println("=========================================");
         System.out.println();
     }
-
+    /**
+     * Logout from account by setting Customer Account to null
+     */
     public void logout(){
         this.curAcc = null;
     }
 
+    /**
+     * Returns Account in CustomerGUI
+     * @return Account
+     */
     public Account getAccount(){
         return this.curAcc;
     }
-
+    /**
+     * Returns Cineplex in CustomerGUI
+     * @return Cineplex
+     */
     public Cineplex getCineplex(){
         return this.cineplex;
     }
