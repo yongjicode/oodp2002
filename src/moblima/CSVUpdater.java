@@ -168,16 +168,19 @@
          CSVWriter writer = new CSVWriter(outputFile, ',', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
          int count=0;
          try {
-             for (Show show: SilverVillage.getCineplexList().getCineplexByIndex(count).getShowList().getShows()){
-                 String[] input = new String[5];
-                 input[0] = Integer.toString(show.getShowId());
-                 String time = show.getShowTime().toString();
-                 input[1] = time.substring(0,10) + " " + time.substring(11);
-                 input[2] = SilverVillage.getCineplexList().getCineplexByIndex(count).getBranchName();
-                 input[3] = show.getCinema().getCinemaCode();
-                 input[4] = Integer.toString(show.getMovie().getMovieId());
+             while (SilverVillage.getCineplexList().getCineplexByIndex(count) != null){
+                 Cineplex cineplex = SilverVillage.getCineplexList().getCineplexByIndex(count);
+                 for (Show show: cineplex.getShowList().getShows()){
+                     String[] input = new String[5];
+                     input[0] = Integer.toString(show.getShowId());
+                     String time = show.getShowTime().toString();
+                     input[1] = time.substring(0,10) + " " + time.substring(11);
+                     input[2] = SilverVillage.getCineplexList().getCineplexByIndex(count).getBranchName();
+                     input[3] = show.getCinema().getCinemaCode();
+                     input[4] = Integer.toString(show.getMovie().getMovieId());
+                     writer.writeNext(input);
+                 }
                  count++;
-                 writer.writeNext(input);
              }
              writer.close();
          }
