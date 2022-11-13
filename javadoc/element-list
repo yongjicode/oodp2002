@@ -1,0 +1,16 @@
+unnamed package
+account
+command
+command.admin
+command.customer
+exceptions
+gui
+moblima
+moblima.booking
+moblima.booking.ticket
+moblima.cineplex
+moblima.cineplex.cinema
+moblima.movie
+moblima.movie.review
+moblima.show
+system
