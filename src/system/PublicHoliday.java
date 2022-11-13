@@ -1,5 +1,9 @@
 package system;
 import java.time.LocalDateTime;
+
+/**
+ * Represents a recognised Public Holiday for the company, such that Shows which falls on a public holiday will have surcharges
+ */
 public class PublicHoliday {
 
     private LocalDateTime date;

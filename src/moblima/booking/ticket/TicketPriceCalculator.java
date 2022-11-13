@@ -6,6 +6,9 @@ import system.SystemSettings;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
+/**
+ * Represents a calculator to calculate ticket price based on customer age, cinema class, and date of show
+ */
 public class TicketPriceCalculator {
 
     private double basePrice = 6;
@@ -13,6 +16,12 @@ public class TicketPriceCalculator {
     CinemaClass cinemaClass;
     LocalDateTime date;
 
+    /**
+     * Creates a ticket price calculator
+     * @param customerAge CustomerAge enum
+     * @param cinemaClass CinemaClass enum
+     * @param date Date of show
+     */
     public TicketPriceCalculator(CustomerAge customerAge, CinemaClass cinemaClass, LocalDateTime date){
         this.cinemaClass = cinemaClass;
         this.customerAge = customerAge;
@@ -21,7 +30,10 @@ public class TicketPriceCalculator {
     }
 
 
-
+    /**
+     * Method to calculate the price of ticket by adding additional charges to the base price
+     * @return Calculated price of the ticket
+     */
     public double calculatePrice(){
         double additionalCharge = 0;
 

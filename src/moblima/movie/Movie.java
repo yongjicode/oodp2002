@@ -4,10 +4,11 @@ import moblima.movie.review.Review;
 import moblima.movie.review.ReviewList;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a Movie film
+ */
 public class Movie{
 
     private static int currentId=1;
@@ -22,6 +23,15 @@ public class Movie{
     private int rating = 0;
     private ReviewList reviews = new ReviewList();
 
+    /**
+     * Creates a Movie object
+     * @param title Movie title
+     * @param status Movie status, either Coming Soon, Preview, Now Showing or End of Showing
+     * @param synopsis Movie Synopsis
+     * @param director Name of movie director
+     * @param casts List of movie casts
+     * @param expiryDate Expiry date of Movie purchased by the company
+     */
     public Movie(String title,
                  MovieStatus status,
                  String synopsis,
@@ -90,10 +100,16 @@ public class Movie{
         return synopsis;
     }
 
+    /**
+     * Increments the ticket sales for the instance of Movie
+     */
     public void incrementTicketSold(){
         this.ticketSold++;
     }
 
+    /**
+     * Prints the details of the instance of Movie
+     */
     public void printMovieDetails() {
     	String commaCasts = casts.toString();
         commaCasts = commaCasts.replace(" ", " ");
@@ -117,11 +133,20 @@ public class Movie{
         
     }
 
+    /**
+     * Adds a review to the ReviewList of the Movie
+     * @param review
+     */
     public void addReview(Review review){
         reviews.add(review);
         rating = reviews.showAverageRating();
     }
 
+    /**
+     * Helper function to convert movie status in string form to MovieStatus enum, for CSV storage
+     * @param movieStatus Movie status in string form
+     * @return MovieStatus enum
+     */
     public static MovieStatus convertToMovieStatus(String movieStatus){
         switch(movieStatus.toLowerCase()){
         case "coming soon":
@@ -135,6 +160,12 @@ public class Movie{
         }
         return null;
     }
+
+    /**
+     * Helper function to convert MovieStatus enum to string, for CSV storage
+     * @param movieStatus MoveStatus enum
+     * @return Movie status in string form
+     */
     public static String convertMovieStatusToString(MovieStatus movieStatus){
         if (movieStatus == MovieStatus.COMING_SOON) return "coming soon";
         else if (movieStatus == MovieStatus.PREVIEW) return "preview";
@@ -142,10 +173,4 @@ public class Movie{
         else return "end of showing";
     }
 
-//    public static LocalDateTime convertDateTimeToString(LocalDateTime expiry){
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-//        LocalDateTime date = LocalDateTime.parse(expiry, formatter);
-////        String output = expiry.substring(0,10) + " " + expiry.substring(11);
-//        return date;
-//    }
 }

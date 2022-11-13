@@ -4,6 +4,9 @@ import moblima.booking.ticket.MovieTicket;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * Represents a booking of a customer that contains movie tickets purchased
+ */
 public class Booking {
     private String customerName;
     private String mobileNumber;
@@ -12,6 +15,12 @@ public class Booking {
     private double totalPrice;
     private ArrayList<MovieTicket> tickets = new ArrayList<>();
 
+    /**
+     * Creates a booking for a customer
+     * @param customerName Name of the customer
+     * @param mobileNumber Mobile number of the customer
+     * @param emailAddress Email address of the customer
+     */
     public Booking(String customerName, String mobileNumber, String emailAddress) {
         this.customerName = customerName;
         this.mobileNumber = mobileNumber;
@@ -19,6 +28,10 @@ public class Booking {
         this.totalPrice = 0;
     }
 
+    /**
+     * Generates a transaction ID for the booking when the booking is finalised
+     * @param cinemaCode Code of the cinema that the booking is for
+     */
     public void generateTransactionId(String cinemaCode) {
         LocalDateTime currentDateTime = LocalDateTime.now();
         String yearCode = String.valueOf(currentDateTime.getYear());
@@ -33,6 +46,10 @@ public class Booking {
         return customerName;
     }
 
+    /**
+     * Adds movie tickets to the booking
+     * @param ticket Movie Ticket that is created for a show
+     */
     public void addTickets(MovieTicket ticket){
         tickets.add(ticket);
         // sum up the ticket prices
@@ -44,6 +61,9 @@ public class Booking {
     }
 
 
+    /**
+     * Prints the booking details which includes the customer information and details of all the tickets purchased
+     */
     public void printBookingDetails() {
         
     	System.out.println();
@@ -66,6 +86,11 @@ public class Booking {
         }
     }
 
+    /**
+     * Searches for a MovieTicket in this booking using ticket id
+     * @param ticketId TicketId to be searched for
+     * @return MovieTicket object
+     */
     public MovieTicket getTicket(int ticketId){
         for (MovieTicket ticket: tickets){
             if(ticket.getTicketID() == ticketId){
@@ -75,10 +100,20 @@ public class Booking {
         return null;
     }
 
+    /**
+     * Searches for a MovieTicket in this booking by index
+     * @param index Index of ticket to be searched for
+     * @return MovieTicket object
+     */
     public MovieTicket getTicketByIndex(int index){
         if (tickets.size()==0 || tickets.size()==index) return null;
         else return tickets.get(index);
     }
+
+    /**
+     * Helper function to convert tickets to string, for CSV storage
+     * @return String form of a ticket
+     */
     public String convertTicketsToString(){
         String output = "";
         int count=0;
