@@ -69,7 +69,6 @@ public class SystemSettings {
     public static void addPublicHoliday(LocalDateTime date, String name){
         publicHolidays.add(new PublicHoliday(date,name));
         System.out.println();
-        System.out.println("\"" + name + "\" has been added.");
     }
 
     public static void removePublicHoliday(int index){
