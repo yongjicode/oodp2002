@@ -1,9 +1,13 @@
 package system;
 
-import java.util.ArrayList;
-import java.time.LocalDateTime;
-import account.*;
+import account.Account;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+/**
+ * Represents the system settings of the entire application, which can only be updated by the high level Company Admin
+ */
 public class SystemSettings {
     private static boolean showTop5MovieRatings = true;
     private static boolean showTop5MovieTickets = true;
@@ -15,6 +19,13 @@ public class SystemSettings {
         accounts.add(account);
     }
 
+    /**
+     * Checks if input account matches an existing account in the system
+     * Successful login if there is a matching account
+     * @param loginId Input login ID
+     * @param password Input password
+     * @return Existing Account in system is returned
+     */
     public static Account login(String loginId, String password){
         for (Account account: accounts){
             if (account.getLoginId().equals(loginId) && account.login(loginId,password) != null){
@@ -24,6 +35,9 @@ public class SystemSettings {
         return null; //account not found
     }
 
+    /**
+     * Prints the current system settings of the application
+     */
     public static void printSettings(){
     	
     	System.out.println("-----------------------------------------");
@@ -40,6 +54,10 @@ public class SystemSettings {
         System.out.println("-----------------------------------------");
     }
 
+    /**
+     * Updates the base price of movie tickets
+     * @param newPrice New price to be updated to
+     */
     public static void updateBasePrice(double newPrice){
         basePrice = newPrice;
     }
@@ -47,6 +65,10 @@ public class SystemSettings {
     public static double getBasePrice(){
         return basePrice;
     }
+
+    /**
+     * Prints the current list of recognised public holidays
+     */
     public static int printPublicHolidays(){
     	int index = 1;
         
@@ -66,11 +88,21 @@ public class SystemSettings {
         return 1;
         
     }
+
+    /**
+     * Add public holiday to the list of recognised holidays
+     * @param date Date of new public holiday to be added
+     * @param name Name of new public holiday to be added
+     */
     public static void addPublicHoliday(LocalDateTime date, String name){
         publicHolidays.add(new PublicHoliday(date,name));
         System.out.println();
     }
 
+    /**
+     * Remove a public holiday in the system
+     * @param index Index of public holiday to be removed
+     */
     public static void removePublicHoliday(int index){
     	if(publicHolidays.size() == 0) {
     		System.out.println();
@@ -108,18 +140,30 @@ public class SystemSettings {
         return showTop5MovieTickets;
     }
 
+    /**
+     * Enable the Top 5 Movie by Ticket Sale function for Customers
+     */
     public static void enableTop5MovieTickets(){
         showTop5MovieTickets = true;
     }
 
+    /**
+     * Disable the Top 5 Movie by Ticket Sale function for Customers
+     */
     public static void disableTop5MovieTickets(){
         showTop5MovieTickets = false;
     }
 
+    /**
+     * Enable the Top 5 Movie by Rating function for Customers
+     */
     public static void enableTop5MovieRatings(){
         showTop5MovieRatings = true;
     }
 
+    /**
+     * Disable the Top 5 Movie by Rating function for Customers
+     */
     public static void disableTop5MovieRatings(){
         showTop5MovieRatings = false;
     }
