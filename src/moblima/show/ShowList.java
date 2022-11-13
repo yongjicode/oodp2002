@@ -90,4 +90,8 @@ public class ShowList {
         return null;
     }
 
+    public ArrayList<Show> getShows() {
+        return shows;
+    }
+
 }
