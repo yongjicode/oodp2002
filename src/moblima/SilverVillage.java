@@ -4,6 +4,10 @@ import moblima.booking.BookingHistory;
 import moblima.cineplex.CineplexList;
 import moblima.movie.MovieList;
 
+/**
+ * Represents the company this application is created for
+ * Contains all bookings, movies and cineplexes the company owns
+ */
 public class SilverVillage {
 
     private static final BookingHistory bookingHistory = new BookingHistory();

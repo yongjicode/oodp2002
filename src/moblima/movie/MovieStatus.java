@@ -1,5 +1,8 @@
 package moblima.movie;
 
+/**
+ * Represents the status of movies
+ */
 public enum MovieStatus {
 
     COMING_SOON("COMING SOON"),
