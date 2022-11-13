@@ -6,33 +6,11 @@ import moblima.CSVUpdater;
 import moblima.SilverVillage;
 import moblima.booking.ticket.MovieTicket;
 import moblima.cineplex.Cineplex;
-import moblima.cineplex.cinema.Cinema;
-import moblima.cineplex.cinema.CinemaClass;
-import moblima.cineplex.CineplexList;
-import moblima.movie.Movie;
-import moblima.movie.MovieStatus;
-import moblima.movie.MovieList;
-import moblima.movie.review.ReviewList;
-import moblima.booking.Booking;
-import moblima.booking.BookingHistory;
-import moblima.show.Show;
-import moblima.show.ShowList;
-import system.PublicHoliday;
 import system.SystemSettings;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 
@@ -48,8 +26,9 @@ public class Application {
 		SystemSettings ss = new SystemSettings();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		LocalDateTime dateTime = LocalDateTime.parse("2022-12-25 00:00", formatter);
-		ArrayList<PublicHoliday> publicHolidays = new ArrayList<PublicHoliday>();
-		
+		SystemSettings.addPublicHoliday(dateTime,"Christmas");
+		dateTime = LocalDateTime.parse("2022-10-31 00:00", formatter);
+		SystemSettings.addPublicHoliday(dateTime, "Halloween");
 
 
 		CSVReader.readMoviesFromCSV("src/database/movieDB.csv");
@@ -137,7 +116,6 @@ public class Application {
 		CSVUpdater.updateCineplex("src/database/CineplexDB.csv");
 		CSVUpdater.updateReviewList("src/database/reviewListDB.csv");
 		CSVUpdater.updateCinema("src/database/CinemaDB.csv");
-//		CSVUpdater.updateAccounts("src/database/accountDB.csv");
 		CSVUpdater.updateShows("src/database/showDB.csv");
 		CSVUpdater.updateTickets("src/database/MovieTicketDB.csv");
 		CSVUpdater.updateBooking("src/database/bookingDB.csv");
